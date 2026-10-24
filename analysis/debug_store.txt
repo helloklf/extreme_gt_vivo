@@ -1,0 +1,620 @@
+00000000000470ec <debug_store>:
+   470ec:      	paciasp
+   470f0:      	sub	sp, sp, #0x60
+   470f4:      	stp	x29, x30, [sp, #0x20]
+   470f8:      	str	x23, [sp, #0x30]
+   470fc:      	stp	x22, x21, [sp, #0x40]
+   47100:      	stp	x20, x19, [sp, #0x50]
+   47104:      	add	x29, sp, #0x20
+   47108:      	mrs	x8, SP_EL0
+   4710c:      	mov	x9, #-0xcbc0
+   47110:      	mov	x20, x0
+   47114:      	ldr	x8, [x8, #0x710]
+   47118:      	add	x21, x0, x9
+   4711c:      	mov	x19, x3
+   47120:      	mov	x0, x21
+   47124:      	mov	x22, x2
+   47128:      	stur	x8, [x29, #-0x8]
+   4712c:      	str	xzr, [sp, #0x10]
+   47130:      	bl	0x47130 <debug_store+0x44>
+		0000000000047130:  R_AARCH64_CALL26	vfcs_cms_ensure_psy_available
+   47134:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047134:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1a568 ; 'health-warm'
+   47138:      	add	x1, x1, #0x0
+		0000000000047138:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1a568 ; 'health-warm'
+   4713c:      	mov	x0, x22
+   47140:      	mov	w2, #0xb
+   47144:      	bl	0x47144 <debug_store+0x58>
+		0000000000047144:  R_AARCH64_CALL26	strncmp
+   47148:      	cbz	w0, 0x47304 <debug_store+0x218>
+   4714c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004714c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2dd40 ; 'health-cold'
+   47150:      	add	x1, x1, #0x0
+		0000000000047150:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2dd40 ; 'health-cold'
+   47154:      	mov	x0, x22
+   47158:      	mov	w2, #0xb
+   4715c:      	bl	0x4715c <debug_store+0x70>
+		000000000004715c:  R_AARCH64_CALL26	strncmp
+   47160:      	cbz	w0, 0x47310 <debug_store+0x224>
+   47164:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047164:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x33070 ; 'health-bat-ov'
+   47168:      	add	x1, x1, #0x0
+		0000000000047168:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x33070 ; 'health-bat-ov'
+   4716c:      	mov	x0, x22
+   47170:      	mov	w2, #0xd
+   47174:      	bl	0x47174 <debug_store+0x88>
+		0000000000047174:  R_AARCH64_CALL26	strncmp
+   47178:      	cbz	w0, 0x4731c <debug_store+0x230>
+   4717c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004717c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3307e ; 'health-chg-ov'
+   47180:      	add	x1, x1, #0x0
+		0000000000047180:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3307e ; 'health-chg-ov'
+   47184:      	mov	x0, x22
+   47188:      	mov	w2, #0xd
+   4718c:      	bl	0x4718c <debug_store+0xa0>
+		000000000004718c:  R_AARCH64_CALL26	strncmp
+   47190:      	cbz	w0, 0x47328 <debug_store+0x23c>
+   47194:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047194:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15c1c ; 'health-chg-tmout'
+   47198:      	add	x1, x1, #0x0
+		0000000000047198:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15c1c ; 'health-chg-tmout'
+   4719c:      	mov	x0, x22
+   471a0:      	mov	w2, #0x10
+   471a4:      	bl	0x471a4 <debug_store+0xb8>
+		00000000000471a4:  R_AARCH64_CALL26	strncmp
+   471a8:      	cbz	w0, 0x47334 <debug_store+0x248>
+   471ac:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000471ac:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2dd4c ; 'health-missing'
+   471b0:      	add	x1, x1, #0x0
+		00000000000471b0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2dd4c ; 'health-missing'
+   471b4:      	mov	x0, x22
+   471b8:      	mov	w2, #0xe
+   471bc:      	bl	0x471bc <debug_store+0xd0>
+		00000000000471bc:  R_AARCH64_CALL26	strncmp
+   471c0:      	cbz	w0, 0x47340 <debug_store+0x254>
+   471c4:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000471c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x23db8 ; 'health-invalid'
+   471c8:      	add	x1, x1, #0x0
+		00000000000471c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x23db8 ; 'health-invalid'
+   471cc:      	mov	x0, x22
+   471d0:      	mov	w2, #0xe
+   471d4:      	bl	0x471d4 <debug_store+0xe8>
+		00000000000471d4:  R_AARCH64_CALL26	strncmp
+   471d8:      	cbz	w0, 0x4734c <debug_store+0x260>
+   471dc:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000471dc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1a574 ; 'usbid_water'
+   471e0:      	add	x1, x1, #0x0
+		00000000000471e0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1a574 ; 'usbid_water'
+   471e4:      	mov	x0, x22
+   471e8:      	mov	w2, #0xb
+   471ec:      	bl	0x471ec <debug_store+0x100>
+		00000000000471ec:  R_AARCH64_CALL26	strncmp
+   471f0:      	cbz	w0, 0x47358 <debug_store+0x26c>
+   471f4:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000471f4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x23dc7 ; 'usb_conn_heat'
+   471f8:      	add	x1, x1, #0x0
+		00000000000471f8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x23dc7 ; 'usb_conn_heat'
+   471fc:      	mov	x0, x22
+   47200:      	mov	w2, #0xd
+   47204:      	bl	0x47204 <debug_store+0x118>
+		0000000000047204:  R_AARCH64_CALL26	strncmp
+   47208:      	cbz	w0, 0x47364 <debug_store+0x278>
+   4720c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004720c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x23dd5 ; 'chg_err'
+   47210:      	add	x1, x1, #0x0
+		0000000000047210:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x23dd5 ; 'chg_err'
+   47214:      	mov	x0, x22
+   47218:      	mov	w2, #0x7
+   4721c:      	bl	0x4721c <debug_store+0x130>
+		000000000004721c:  R_AARCH64_CALL26	strncmp
+   47220:      	cbz	w0, 0x47370 <debug_store+0x284>
+   47224:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047224:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15c2d ; 'health-ok'
+   47228:      	add	x1, x1, #0x0
+		0000000000047228:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15c2d ; 'health-ok'
+   4722c:      	mov	x0, x22
+   47230:      	mov	w2, #0x9
+   47234:      	bl	0x47234 <debug_store+0x148>
+		0000000000047234:  R_AARCH64_CALL26	strncmp
+   47238:      	cbz	w0, 0x473b8 <debug_store+0x2cc>
+   4723c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004723c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15c37 ; 'chg-cutoff'
+   47240:      	add	x1, x1, #0x0
+		0000000000047240:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15c37 ; 'chg-cutoff'
+   47244:      	mov	x0, x22
+   47248:      	mov	w2, #0xa
+   4724c:      	bl	0x4724c <debug_store+0x160>
+		000000000004724c:  R_AARCH64_CALL26	strncmp
+   47250:      	cbz	w0, 0x473cc <debug_store+0x2e0>
+   47254:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047254:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x35ebf ; 'chg-open'
+   47258:      	add	x1, x1, #0x0
+		0000000000047258:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x35ebf ; 'chg-open'
+   4725c:      	mov	x0, x22
+   47260:      	mov	w2, #0x8
+   47264:      	bl	0x47264 <debug_store+0x178>
+		0000000000047264:  R_AARCH64_CALL26	strncmp
+   47268:      	cbz	w0, 0x473dc <debug_store+0x2f0>
+   4726c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004726c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2660d ; 'sealed'
+   47270:      	add	x1, x1, #0x0
+		0000000000047270:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2660d ; 'sealed'
+   47274:      	mov	x0, x22
+   47278:      	mov	w2, #0x6
+   4727c:      	bl	0x4727c <debug_store+0x190>
+		000000000004727c:  R_AARCH64_CALL26	strncmp
+   47280:      	cbz	w0, 0x47408 <debug_store+0x31c>
+   47284:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047284:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x37ed8 ; 'unsealed'
+   47288:      	add	x1, x1, #0x0
+		0000000000047288:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x37ed8 ; 'unsealed'
+   4728c:      	mov	x0, x22
+   47290:      	mov	w2, #0x8
+   47294:      	bl	0x47294 <debug_store+0x1a8>
+		0000000000047294:  R_AARCH64_CALL26	strncmp
+   47298:      	cbz	w0, 0x4746c <debug_store+0x380>
+   4729c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004729c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3fd89 ; 'no-bat-warning'
+   472a0:      	add	x1, x1, #0x0
+		00000000000472a0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3fd89 ; 'no-bat-warning'
+   472a4:      	mov	x0, x22
+   472a8:      	mov	w2, #0xe
+   472ac:      	add	x23, x20, #0x5, lsl #12 // =0x5000
+   472b0:      	bl	0x472b0 <debug_store+0x1c4>
+		00000000000472b0:  R_AARCH64_CALL26	strncmp
+   472b4:      	cbz	w0, 0x474a8 <debug_store+0x3bc>
+   472b8:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000472b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x42481 ; 'LG4'
+   472bc:      	add	x1, x1, #0x0
+		00000000000472bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x42481 ; 'LG4'
+   472c0:      	mov	x0, x22
+   472c4:      	bl	0x472c4 <debug_store+0x1d8>
+		00000000000472c4:  R_AARCH64_CALL26	strstr
+   472c8:      	cbz	x0, 0x474f0 <debug_store+0x404>
+   472cc:      	cbz	x21, 0x47670 <debug_store+0x584>
+   472d0:      	mov	x8, #-0xcbb0
+   472d4:      	ldr	x8, [x20, x8]
+   472d8:      	cbz	x8, 0x472e8 <debug_store+0x1fc>
+   472dc:      	ldr	w8, [x8]
+   472e0:      	tbnz	w8, #0x4, 0x476ec <debug_store+0x600>
+   472e4:      	tbnz	w8, #0x0, 0x47718 <debug_store+0x62c>
+   472e8:      	mov	w8, #0x1
+   472ec:      	mov	x0, x21
+   472f0:      	mov	w1, #0xc
+   472f4:      	mov	w2, wzr
+   472f8:      	strb	w8, [x23, #0xb49]
+   472fc:      	bl	0x472fc <debug_store+0x210>
+		00000000000472fc:  R_AARCH64_CALL26	vfcs_cms_set_general_func
+   47300:      	b	0x47380 <debug_store+0x294>
+   47304:      	mov	x0, x21
+   47308:      	mov	w1, #0x1
+   4730c:      	b	0x47378 <debug_store+0x28c>
+   47310:      	mov	x0, x21
+   47314:      	mov	w1, #0x5
+   47318:      	b	0x47378 <debug_store+0x28c>
+   4731c:      	mov	x0, x21
+   47320:      	mov	w1, #0x3
+   47324:      	b	0x47378 <debug_store+0x28c>
+   47328:      	mov	x0, x21
+   4732c:      	mov	w1, wzr
+   47330:      	b	0x47378 <debug_store+0x28c>
+   47334:      	mov	x0, x21
+   47338:      	mov	w1, #0x4
+   4733c:      	b	0x47378 <debug_store+0x28c>
+   47340:      	mov	x0, x21
+   47344:      	mov	w1, #0x6
+   47348:      	b	0x47378 <debug_store+0x28c>
+   4734c:      	mov	x0, x21
+   47350:      	mov	w1, #0x8
+   47354:      	b	0x47378 <debug_store+0x28c>
+   47358:      	mov	x0, x21
+   4735c:      	mov	w1, #0xf
+   47360:      	b	0x47378 <debug_store+0x28c>
+   47364:      	mov	x0, x21
+   47368:      	mov	w1, #0xe
+   4736c:      	b	0x47378 <debug_store+0x28c>
+   47370:      	mov	x0, x21
+   47374:      	mov	w1, #0x9
+   47378:      	mov	w2, #0x1
+   4737c:      	bl	0x4737c <debug_store+0x290>
+		000000000004737c:  R_AARCH64_CALL26	vfcs_cms_notify_changed
+   47380:      	mov	x8, x19
+   47384:      	mrs	x9, SP_EL0
+   47388:      	ldr	x9, [x9, #0x710]
+   4738c:      	ldur	x10, [x29, #-0x8]
+   47390:      	cmp	x9, x10
+   47394:      	b.ne	0x477e8 <debug_store+0x6fc>
+   47398:      	sxtw	x0, w8
+   4739c:      	ldp	x20, x19, [sp, #0x50]
+   473a0:      	ldr	x23, [sp, #0x30]
+   473a4:      	ldp	x22, x21, [sp, #0x40]
+   473a8:      	ldp	x29, x30, [sp, #0x20]
+   473ac:      	add	sp, sp, #0x60
+   473b0:      	autiasp
+   473b4:      	ret
+   473b8:      	sub	x8, x20, #0x400
+   473bc:      	str	xzr, [x20, #0x5b40]
+   473c0:      	ldr	x0, [x8]
+   473c4:      	bl	0x473c4 <debug_store+0x2d8>
+		00000000000473c4:  R_AARCH64_CALL26	power_supply_changed
+   473c8:      	b	0x47380 <debug_store+0x294>
+   473cc:      	add	x0, x20, #0x80
+   473d0:      	bl	0x473d0 <debug_store+0x2e4>
+		00000000000473d0:  R_AARCH64_CALL26	cancel_delayed_work
+   473d4:      	mov	w8, #0x1
+   473d8:      	b	0x473e8 <debug_store+0x2fc>
+   473dc:      	add	x0, x20, #0x80
+   473e0:      	bl	0x473e0 <debug_store+0x2f4>
+		00000000000473e0:  R_AARCH64_CALL26	cancel_delayed_work
+   473e4:      	mov	w8, #0x2
+   473e8:      	str	w8, [x20, #0xe8]
+   473ec:      	adrp	x8, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000473ec:  R_AARCH64_ADR_PREL_PG_HI21	system_wq
+   473f0:      	add	x2, x20, #0x80
+   473f4:      	ldr	x1, [x8]
+		00000000000473f4:  R_AARCH64_LDST64_ABS_LO12_NC	system_wq
+   473f8:      	mov	w0, #0x20
+   473fc:      	mov	x3, xzr
+   47400:      	bl	0x47400 <debug_store+0x314>
+		0000000000047400:  R_AARCH64_CALL26	queue_delayed_work_on
+   47404:      	b	0x47380 <debug_store+0x294>
+   47408:      	mov	w8, #0x1
+   4740c:      	str	w8, [sp, #0x10]
+   47410:      	cbz	x21, 0x475b8 <debug_store+0x4cc>
+   47414:      	mov	x21, #-0xcbb0
+   47418:      	ldr	x8, [x20, x21]
+   4741c:      	cbz	x8, 0x4742c <debug_store+0x340>
+   47420:      	ldr	w8, [x8]
+   47424:      	tbnz	w8, #0x4, 0x47624 <debug_store+0x538>
+   47428:      	tbnz	w8, #0x0, 0x47650 <debug_store+0x564>
+   4742c:      	sub	x8, x20, #0x3e8
+   47430:      	ldr	x0, [x8]
+   47434:      	cbnz	x0, 0x47498 <debug_store+0x3ac>
+   47438:      	ldr	x8, [x20, x21]
+   4743c:      	cbz	x8, 0x47380 <debug_store+0x294>
+   47440:      	ldr	w8, [x8]
+   47444:      	tbnz	w8, #0x4, 0x4758c <debug_store+0x4a0>
+   47448:      	tbz	w8, #0x0, 0x47380 <debug_store+0x294>
+   4744c:      	mov	x8, #-0xcba8
+   47450:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047450:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2b353 ; '\x013%s: %s: external fg psy not found\n'
+   47454:      	add	x0, x0, #0x0
+		0000000000047454:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2b353 ; '\x013%s: %s: external fg psy not found\n'
+   47458:      	ldr	x1, [x20, x8]
+   4745c:      	adrp	x2, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004745c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47460:      	add	x2, x2, #0x0
+		0000000000047460:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47464:      	bl	0x47464 <debug_store+0x378>
+		0000000000047464:  R_AARCH64_CALL26	_printk
+   47468:      	b	0x47380 <debug_store+0x294>
+   4746c:      	str	wzr, [sp, #0x10]
+   47470:      	cbz	x21, 0x475ec <debug_store+0x500>
+   47474:      	mov	x21, #-0xcbb0
+   47478:      	ldr	x8, [x20, x21]
+   4747c:      	cbz	x8, 0x4748c <debug_store+0x3a0>
+   47480:      	ldr	w8, [x8]
+   47484:      	tbnz	w8, #0x4, 0x476a0 <debug_store+0x5b4>
+   47488:      	tbnz	w8, #0x0, 0x476cc <debug_store+0x5e0>
+   4748c:      	sub	x8, x20, #0x3e8
+   47490:      	ldr	x0, [x8]
+   47494:      	cbz	x0, 0x4757c <debug_store+0x490>
+   47498:      	add	x2, sp, #0x10
+   4749c:      	mov	w1, #0x5
+   474a0:      	bl	0x474a0 <debug_store+0x3b4>
+		00000000000474a0:  R_AARCH64_CALL26	power_supply_set_property
+   474a4:      	b	0x47380 <debug_store+0x294>
+   474a8:      	cbz	x21, 0x47688 <debug_store+0x59c>
+   474ac:      	mov	x8, #-0xcbb0
+   474b0:      	ldr	x8, [x20, x8]
+   474b4:      	cbz	x8, 0x474c4 <debug_store+0x3d8>
+   474b8:      	ldr	w8, [x8]
+   474bc:      	tbnz	w8, #0x4, 0x47738 <debug_store+0x64c>
+   474c0:      	tbnz	w8, #0x0, 0x47764 <debug_store+0x678>
+   474c4:      	mov	w8, #0x1
+   474c8:      	mov	x10, #0x1
+   474cc:      	sub	x9, x20, #0x288
+   474d0:      	movk	x10, #0x2, lsl #32
+   474d4:      	strb	w8, [x23, #0xb48]
+   474d8:      	sub	x8, x20, #0x280
+   474dc:      	str	x10, [x9]
+   474e0:      	str	wzr, [x8]
+   474e4:      	mov	x8, x19
+   474e8:      	str	xzr, [x20, #0x5b40]
+   474ec:      	b	0x47384 <debug_store+0x298>
+   474f0:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000474f0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4773e ; 'no-chg-timeout'
+   474f4:      	add	x1, x1, #0x0
+		00000000000474f4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4773e ; 'no-chg-timeout'
+   474f8:      	mov	x0, x22
+   474fc:      	mov	w2, #0xe
+   47500:      	bl	0x47500 <debug_store+0x414>
+		0000000000047500:  R_AARCH64_CALL26	strncmp
+   47504:      	cbz	w0, 0x472cc <debug_store+0x1e0>
+   47508:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047508:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3684 ; 'skip-chg-wakelock'
+   4750c:      	add	x1, x1, #0x0
+		000000000004750c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3684 ; 'skip-chg-wakelock'
+   47510:      	mov	x0, x22
+   47514:      	mov	w2, #0x11
+   47518:      	bl	0x47518 <debug_store+0x42c>
+		0000000000047518:  R_AARCH64_CALL26	strncmp
+   4751c:      	cbz	w0, 0x475c4 <debug_store+0x4d8>
+   47520:      	mov	x8, #-0x16
+   47524:      	cbz	x22, 0x47384 <debug_store+0x298>
+   47528:      	cmp	x19, #0x3
+   4752c:      	b.lo	0x47384 <debug_store+0x298>
+   47530:      	add	x1, sp, #0x8
+   47534:      	mov	x0, x22
+   47538:      	mov	w2, #0xa
+   4753c:      	str	xzr, [sp, #0x8]
+   47540:      	bl	0x47540 <debug_store+0x454>
+		0000000000047540:  R_AARCH64_CALL26	simple_strtoul
+   47544:      	ldr	x8, [sp, #0x8]
+   47548:      	str	x0, [x20, #0xc30]
+   4754c:      	mov	x1, xzr
+   47550:      	mov	w2, #0xa
+   47554:      	add	x0, x8, #0x1
+   47558:      	bl	0x47558 <debug_store+0x46c>
+		0000000000047558:  R_AARCH64_CALL26	simple_strtoul
+   4755c:      	sub	x8, x20, #0xf38
+   47560:      	cmp	x0, #0x0
+   47564:      	str	x0, [x20, #0xc38]
+   47568:      	ldr	x1, [x8]
+   4756c:      	cset	w2, ne
+   47570:      	mov	x0, x21
+   47574:      	bl	0x47574 <debug_store+0x488>
+		0000000000047574:  R_AARCH64_CALL26	vfcs_cms_config_pwm_for_dpb_slave_bat_connect
+   47578:      	b	0x47380 <debug_store+0x294>
+   4757c:      	ldr	x8, [x20, x21]
+   47580:      	cbz	x8, 0x47380 <debug_store+0x294>
+   47584:      	ldr	w8, [x8]
+   47588:      	tbz	w8, #0x4, 0x47448 <debug_store+0x35c>
+   4758c:      	bl	0x469dc <get_android_time>
+   47590:      	mov	x8, #-0xcba8
+   47594:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047594:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4bfd8 ; '\x013[%s]%s: %s: external fg psy not found\n'
+   47598:      	add	x0, x0, #0x0
+		0000000000047598:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4bfd8 ; '\x013[%s]%s: %s: external fg psy not found\n'
+   4759c:      	ldr	x2, [x20, x8]
+   475a0:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000475a0:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15ce ; __android_time
+   475a4:      	add	x1, x1, #0x0
+		00000000000475a4:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15ce ; __android_time
+   475a8:      	adrp	x3, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000475a8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   475ac:      	add	x3, x3, #0x0
+		00000000000475ac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   475b0:      	bl	0x475b0 <debug_store+0x4c4>
+		00000000000475b0:  R_AARCH64_CALL26	_printk
+   475b4:      	b	0x47380 <debug_store+0x294>
+   475b8:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000475b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3308c ; '\x013%s: sealed\n'
+   475bc:      	add	x0, x0, #0x0
+		00000000000475bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3308c ; '\x013%s: sealed\n'
+   475c0:      	b	0x475f4 <debug_store+0x508>
+   475c4:      	cbz	x21, 0x47784 <debug_store+0x698>
+   475c8:      	mov	x8, #-0xcbb0
+   475cc:      	ldr	x8, [x20, x8]
+   475d0:      	cbz	x8, 0x475e0 <debug_store+0x4f4>
+   475d4:      	ldr	w8, [x8]
+   475d8:      	tbnz	w8, #0x4, 0x4779c <debug_store+0x6b0>
+   475dc:      	tbnz	w8, #0x0, 0x477c8 <debug_store+0x6dc>
+   475e0:      	mov	w8, #0x1
+   475e4:      	strb	w8, [x23, #0xaa0]
+   475e8:      	b	0x47380 <debug_store+0x294>
+   475ec:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000475ec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3674 ; '\x013%s: unsealed\n'
+   475f0:      	add	x0, x0, #0x0
+		00000000000475f0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3674 ; '\x013%s: unsealed\n'
+   475f4:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000475f4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   475f8:      	add	x1, x1, #0x0
+		00000000000475f8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   475fc:      	bl	0x475fc <debug_store+0x510>
+		00000000000475fc:  R_AARCH64_CALL26	_printk
+   47600:      	sub	x8, x20, #0x3e8
+   47604:      	ldr	x0, [x8]
+   47608:      	cbnz	x0, 0x47498 <debug_store+0x3ac>
+   4760c:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004760c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3309a ; '\x013%s: external fg psy not found\n'
+   47610:      	add	x0, x0, #0x0
+		0000000000047610:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3309a ; '\x013%s: external fg psy not found\n'
+   47614:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047614:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47618:      	add	x1, x1, #0x0
+		0000000000047618:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   4761c:      	bl	0x4761c <debug_store+0x530>
+		000000000004761c:  R_AARCH64_CALL26	_printk
+   47620:      	b	0x47380 <debug_store+0x294>
+   47624:      	bl	0x469dc <get_android_time>
+   47628:      	mov	x8, #-0xcba8
+   4762c:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004762c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x365e ; '\x013[%s]%s: %s: sealed\n'
+   47630:      	add	x0, x0, #0x0
+		0000000000047630:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x365e ; '\x013[%s]%s: %s: sealed\n'
+   47634:      	ldr	x2, [x20, x8]
+   47638:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047638:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15ce ; __android_time
+   4763c:      	add	x1, x1, #0x0
+		000000000004763c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15ce ; __android_time
+   47640:      	adrp	x3, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047640:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47644:      	add	x3, x3, #0x0
+		0000000000047644:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47648:      	bl	0x47648 <debug_store+0x55c>
+		0000000000047648:  R_AARCH64_CALL26	_printk
+   4764c:      	b	0x4742c <debug_store+0x340>
+   47650:      	mov	x8, #-0xcba8
+   47654:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047654:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x111fa ; '\x013%s: %s: sealed\n'
+   47658:      	add	x0, x0, #0x0
+		0000000000047658:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x111fa ; '\x013%s: %s: sealed\n'
+   4765c:      	ldr	x1, [x20, x8]
+   47660:      	adrp	x2, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047660:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47664:      	add	x2, x2, #0x0
+		0000000000047664:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47668:      	bl	0x47668 <debug_store+0x57c>
+		0000000000047668:  R_AARCH64_CALL26	_printk
+   4766c:      	b	0x4742c <debug_store+0x340>
+   47670:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047670:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4774d ; '\x013%s: no-chg-timeout\n'
+   47674:      	add	x0, x0, #0x0
+		0000000000047674:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4774d ; '\x013%s: no-chg-timeout\n'
+   47678:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047678:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   4767c:      	add	x1, x1, #0x0
+		000000000004767c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47680:      	bl	0x47680 <debug_store+0x594>
+		0000000000047680:  R_AARCH64_CALL26	_printk
+   47684:      	b	0x472e8 <debug_store+0x1fc>
+   47688:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047688:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x26614 ; '\x013%s: no-bat-warning\n'
+   4768c:      	add	x0, x0, #0x0
+		000000000004768c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x26614 ; '\x013%s: no-bat-warning\n'
+   47690:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047690:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47694:      	add	x1, x1, #0x0
+		0000000000047694:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47698:      	bl	0x47698 <debug_store+0x5ac>
+		0000000000047698:  R_AARCH64_CALL26	_printk
+   4769c:      	b	0x474c4 <debug_store+0x3d8>
+   476a0:      	bl	0x469dc <get_android_time>
+   476a4:      	mov	x8, #-0xcba8
+   476a8:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000476a8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3fd71 ; '\x013[%s]%s: %s: unsealed\n'
+   476ac:      	add	x0, x0, #0x0
+		00000000000476ac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3fd71 ; '\x013[%s]%s: %s: unsealed\n'
+   476b0:      	ldr	x2, [x20, x8]
+   476b4:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000476b4:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15ce ; __android_time
+   476b8:      	add	x1, x1, #0x0
+		00000000000476b8:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15ce ; __android_time
+   476bc:      	adrp	x3, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000476bc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   476c0:      	add	x3, x3, #0x0
+		00000000000476c0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   476c4:      	bl	0x476c4 <debug_store+0x5d8>
+		00000000000476c4:  R_AARCH64_CALL26	_printk
+   476c8:      	b	0x4748c <debug_store+0x3a0>
+   476cc:      	mov	x8, #-0xcba8
+   476d0:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000476d0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2b378 ; '\x013%s: %s: unsealed\n'
+   476d4:      	add	x0, x0, #0x0
+		00000000000476d4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2b378 ; '\x013%s: %s: unsealed\n'
+   476d8:      	ldr	x1, [x20, x8]
+   476dc:      	adrp	x2, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000476dc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   476e0:      	add	x2, x2, #0x0
+		00000000000476e0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   476e4:      	bl	0x476e4 <debug_store+0x5f8>
+		00000000000476e4:  R_AARCH64_CALL26	_printk
+   476e8:      	b	0x4748c <debug_store+0x3a0>
+   476ec:      	bl	0x469dc <get_android_time>
+   476f0:      	mov	x8, #-0xcba8
+   476f4:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000476f4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2dd75 ; '\x013[%s]%s: %s: no-chg-timeout\n'
+   476f8:      	add	x0, x0, #0x0
+		00000000000476f8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2dd75 ; '\x013[%s]%s: %s: no-chg-timeout\n'
+   476fc:      	ldr	x2, [x20, x8]
+   47700:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047700:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15ce ; __android_time
+   47704:      	add	x1, x1, #0x0
+		0000000000047704:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15ce ; __android_time
+   47708:      	adrp	x3, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047708:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   4770c:      	add	x3, x3, #0x0
+		000000000004770c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47710:      	bl	0x47710 <debug_store+0x624>
+		0000000000047710:  R_AARCH64_CALL26	_printk
+   47714:      	b	0x472e8 <debug_store+0x1fc>
+   47718:      	mov	x8, #-0xcba8
+   4771c:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004771c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x21444 ; '\x013%s: %s: no-chg-timeout\n'
+   47720:      	add	x0, x0, #0x0
+		0000000000047720:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x21444 ; '\x013%s: %s: no-chg-timeout\n'
+   47724:      	ldr	x1, [x20, x8]
+   47728:      	adrp	x2, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047728:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   4772c:      	add	x2, x2, #0x0
+		000000000004772c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47730:      	bl	0x47730 <debug_store+0x644>
+		0000000000047730:  R_AARCH64_CALL26	_printk
+   47734:      	b	0x472e8 <debug_store+0x1fc>
+   47738:      	bl	0x469dc <get_android_time>
+   4773c:      	mov	x8, #-0xcba8
+   47740:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047740:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1a580 ; '\x013[%s]%s: %s: no-bat-warning\n'
+   47744:      	add	x0, x0, #0x0
+		0000000000047744:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1a580 ; '\x013[%s]%s: %s: no-bat-warning\n'
+   47748:      	ldr	x2, [x20, x8]
+   4774c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004774c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15ce ; __android_time
+   47750:      	add	x1, x1, #0x0
+		0000000000047750:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15ce ; __android_time
+   47754:      	adrp	x3, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047754:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47758:      	add	x3, x3, #0x0
+		0000000000047758:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   4775c:      	bl	0x4775c <debug_store+0x670>
+		000000000004775c:  R_AARCH64_CALL26	_printk
+   47760:      	b	0x474c4 <debug_store+0x3d8>
+   47764:      	mov	x8, #-0xcba8
+   47768:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047768:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2dd5b ; '\x013%s: %s: no-bat-warning\n'
+   4776c:      	add	x0, x0, #0x0
+		000000000004776c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2dd5b ; '\x013%s: %s: no-bat-warning\n'
+   47770:      	ldr	x1, [x20, x8]
+   47774:      	adrp	x2, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047774:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47778:      	add	x2, x2, #0x0
+		0000000000047778:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   4777c:      	bl	0x4777c <debug_store+0x690>
+		000000000004777c:  R_AARCH64_CALL26	_printk
+   47780:      	b	0x474c4 <debug_store+0x3d8>
+   47784:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		0000000000047784:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1a59e ; '\x013%s: skip-chg-wakelock...\n'
+   47788:      	add	x0, x0, #0x0
+		0000000000047788:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1a59e ; '\x013%s: skip-chg-wakelock...\n'
+   4778c:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		000000000004778c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47790:      	add	x1, x1, #0x0
+		0000000000047790:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   47794:      	bl	0x47794 <debug_store+0x6a8>
+		0000000000047794:  R_AARCH64_CALL26	_printk
+   47798:      	b	0x475e0 <debug_store+0x4f4>
+   4779c:      	bl	0x469dc <get_android_time>
+   477a0:      	mov	x8, #-0xcba8
+   477a4:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000477a4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1120c ; '\x013[%s]%s: %s: skip-chg-wakelock...\n'
+   477a8:      	add	x0, x0, #0x0
+		00000000000477a8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1120c ; '\x013[%s]%s: %s: skip-chg-wakelock...\n'
+   477ac:      	ldr	x2, [x20, x8]
+   477b0:      	adrp	x1, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000477b0:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15ce ; __android_time
+   477b4:      	add	x1, x1, #0x0
+		00000000000477b4:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15ce ; __android_time
+   477b8:      	adrp	x3, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000477b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   477bc:      	add	x3, x3, #0x0
+		00000000000477bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   477c0:      	bl	0x477c0 <debug_store+0x6d4>
+		00000000000477c0:  R_AARCH64_CALL26	_printk
+   477c4:      	b	0x475e0 <debug_store+0x4f4>
+   477c8:      	mov	x8, #-0xcba8
+   477cc:      	adrp	x0, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000477cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11230 ; '\x013%s: %s: skip-chg-wakelock...\n'
+   477d0:      	add	x0, x0, #0x0
+		00000000000477d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11230 ; '\x013%s: %s: skip-chg-wakelock...\n'
+   477d4:      	ldr	x1, [x20, x8]
+   477d8:      	adrp	x2, 0x47000 <vfcs_cms_debug_write_work+0x2f0>
+		00000000000477d8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   477dc:      	add	x2, x2, #0x0
+		00000000000477dc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49bc8 ; 'debug_store'
+   477e0:      	bl	0x477e0 <debug_store+0x6f4>
+		00000000000477e0:  R_AARCH64_CALL26	_printk
+   477e4:      	b	0x475e0 <debug_store+0x4f4>
+   477e8:      	bl	0x477e8 <debug_store+0x6fc>
+		00000000000477e8:  R_AARCH64_CALL26	__stack_chk_fail
+

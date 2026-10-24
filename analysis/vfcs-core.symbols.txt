@@ -1,0 +1,546 @@
+0000000000000000 0000000000000000 r __crc_vfcs_core_ready
+0000000000000004 0000000000000000 r __crc_vfcs_dev_register
+0000000000000008 0000000000000000 r __crc_vfcs_dev_unregister
+                                  U __fortify_panic
+000000004697fdf1 0000000000000000 W __kcfi_typeid_delayed_work_timer_fn
+                                  U __kmalloc_cache_noprof
+                                  U __kmalloc_noprof
+0000000000000001 0000000000000000 r __kstrtab_vfcs_core_ready
+0000000000000011 0000000000000000 r __kstrtab_vfcs_dev_register
+0000000000000023 0000000000000000 r __kstrtab_vfcs_dev_unregister
+0000000000000000 0000000000000000 r __kstrtabns_vfcs_core_ready
+0000000000000000 0000000000000000 r __kstrtabns_vfcs_dev_register
+0000000000000000 0000000000000000 r __kstrtabns_vfcs_dev_unregister
+0000000000000000 0000000000000000 r __ksymtab_vfcs_core_ready
+000000000000000c 0000000000000000 r __ksymtab_vfcs_dev_register
+0000000000000018 0000000000000000 r __ksymtab_vfcs_dev_unregister
+                                  U __msecs_to_jiffies
+                                  U __mutex_init
+                                  U __platform_driver_register
+                                  U __pm_relax
+                                  U __pm_stay_awake
+                                  U __stack_chk_fail
+0000000000000000 0000000000000000 D __start_alloc_tags
+00000000000001e0 0000000000000000 D __stop_alloc_tags
+                                  U _printk
+                                  U alarm_cancel
+                                  U alarm_init
+                                  U alarm_start_relative
+                                  U alloc_workqueue
+                                  U battery_cout_value
+                                  U bsp_test_mode
+                                  U cancel_delayed_work
+                                  U cancel_delayed_work_sync
+                                  U class_register
+                                  U create_votable
+                                  U delayed_work_timer_fn
+                                  U destroy_votable
+                                  U destroy_workqueue
+                                  U devm_iio_channel_get
+                                  U devm_kfree
+                                  U devm_kmalloc
+                                  U devm_power_supply_register
+                                  U devm_regulator_get
+                                  U devm_request_threaded_irq
+                                  U em_authorized
+                                  U ex_fg_sha1_verify_result
+                                  U fake_cable_connect
+                                  U find_votable
+                                  U force_active_votable
+                                  U fuelsummary_collect_data
+                                  U fuelsummary_collect_value
+                                  U get_client_vote
+                                  U get_effective_client
+                                  U get_effective_client_locked
+                                  U get_effective_result
+                                  U get_votable_info
+                                  U gpio_free
+                                  U gpio_request
+                                  U gpio_request_one
+                                  U gpio_to_desc
+                                  U gpiod_direction_output_raw
+                                  U gpiod_get_raw_value
+                                  U gpiod_to_irq
+                                  U iio_read_channel_processed
+                                  U init_timer_key
+                                  U irq_set_irq_wake
+                                  U is_atboot
+                                  U is_client_vote_enabled
+                                  U jiffies
+                                  U kfree
+                                  U kmalloc_caches
+                                  U kstrtoint
+                                  U kstrtouint
+                                  U ktime_get_real_ts64
+                                  U mem_alloc_profiling_key
+                                  U memcpy
+                                  U memset
+                                  U msleep
+                                  U mutex_lock
+                                  U mutex_unlock
+                                  U of_find_property
+                                  U of_get_named_gpio
+                                  U of_get_next_child
+                                  U of_property_match_string
+                                  U of_property_read_string
+                                  U of_property_read_string_helper
+                                  U of_property_read_variable_u32_array
+                                  U platform_driver_unregister
+                                  U power_off_charging_mode
+                                  U power_supply_changed
+                                  U power_supply_get_by_name
+                                  U power_supply_get_drvdata
+                                  U power_supply_set_property
+                                  U queue_delayed_work_on
+                                  U queue_work_on
+                                  U register_reboot_notifier
+                                  U regulator_disable
+                                  U regulator_enable
+                                  U regulator_is_enabled
+                                  U regulator_set_load
+                                  U regulator_set_voltage
+                                  U release_firmware
+                                  U request_firmware
+                                  U rerun_election
+                                  U rtc_time64_to_tm
+                                  U sched_clock
+                                  U scnprintf
+                                  U snprintf
+                                  U strlen
+                                  U strncmp
+                                  U sys_tz
+                                  U system_wq
+                                  U vfcs_misc_core_ready
+                                  U vote
+                                  U wakeup_source_add
+                                  U wakeup_source_remove
+                                  U wcd_usbss_switch_update
+0000000000000000 0000000000000001 V __llvm_fs_discriminator__
+000000000000016e 0000000000000001 b _vfcs_usbsel_enable_.switch_dpdm_flag
+0000000000000088 0000000000000001 b vfcs_adjust_power.charging_error_flag
+0000000000000074 0000000000000001 b vfcs_check_hchg_sys_bootup_time_limit.limit_release
+0000000000000070 0000000000000001 b vfcs_check_sys_bootup_time_limit.limit_release
+000000000000002d 0000000000000001 b vfcs_dev_fw_burn_work.retry_burn
+0000000000000008 0000000000000001 b vfcs_dev_register.trigger
+00000000000000ac 0000000000000001 b vfcs_fchg_power_enable_vote_callback.last_force_active
+00000000000000a8 0000000000000001 b vfcs_pi_power_enable_vote_callback.last_force_active
+0000000000000027 0000000000000001 b vfcs_probe.__key
+0000000000000028 0000000000000001 b vfcs_probe.__key.148
+0000000000000029 0000000000000001 b vfcs_probe.__key.150
+000000000000002a 0000000000000001 b vfcs_probe.__key.152
+000000000000002b 0000000000000001 b vfcs_probe.__key.154
+000000000000002c 0000000000000001 b vfcs_probe.__key.156
+00000000000000b4 0000000000000001 b vfcs_set_property.wireplus_reverse_flag
+00000000000000f0 0000000000000004 d __debug_mask
+000000000000007c 0000000000000004 b vfcs_calculate_cable_r.check_count
+0000000000000078 0000000000000004 b vfcs_calculate_cable_r.last_cable_r_mohm
+000000000000003c 0000000000000004 b vfcs_check_ex_fg_i2c_exception.exception_count
+0000000000000174 0000000000000004 b vfcs_check_ffc_foolproof.ffc_full_count
+000000000000004c 0000000000000004 b vfcs_check_ibat_exception.exception_count
+0000000000000050 0000000000000004 b vfcs_check_temp_exception.exception_count.0
+0000000000000054 0000000000000004 b vfcs_check_temp_exception.exception_count.1
+0000000000000058 0000000000000004 b vfcs_check_temp_exception.exception_count.2
+000000000000005c 0000000000000004 b vfcs_check_temp_exception.exception_count.3
+0000000000000060 0000000000000004 b vfcs_check_temp_exception.exception_count.4
+0000000000000064 0000000000000004 b vfcs_check_temp_exception.exception_count.5
+0000000000000068 0000000000000004 b vfcs_check_temp_exception.exception_count.6
+000000000000006c 0000000000000004 b vfcs_check_temp_exception.exception_count.7
+0000000000000040 0000000000000004 b vfcs_check_vbat_exception.exception_count
+0000000000000044 0000000000000004 b vfcs_check_vbat_exception.exception_count2
+0000000000000048 0000000000000004 b vfcs_check_vbat_exception.exception_count3
+00000000000000b0 0000000000000004 b vfcs_get_property.last_vivo_flash_charge_status
+0000000000000114 0000000000000004 d vfcs_power_props
+0000000000000084 0000000000000004 b vfcs_sp_handle_cable_r.sp_handle_ibus_ma
+0000000000000080 0000000000000004 b vfcs_sp_handle_cable_r.sp_handle_vbus_mv
+0000000000000170 0000000000000004 b vfcs_update_batt_aging_ffc_data.last_data_index
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_cleanup_module917
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_init_module916
+0000000000000000 0000000000000008 b the_chip
+0000000000033d50 0000000000000008 t vfcs_property_is_writeable
+0000000000000030 000000000000000c b vfcs_check_fchg_dev_exception.fchg_dev_state
+000000000000004d 000000000000000f r __UNIQUE_ID_built_with0
+000000000000003e 000000000000000f r __UNIQUE_ID_license920
+000000000000005c 000000000000000f r __UNIQUE_ID_name534
+0000000000000118 0000000000000010 d vfcs_class_groups
+0000000000000310 0000000000000010 d vfcs_debug_class_groups
+0000000000000000 0000000000000010 d vfcs_dev_fw_burn_work._alloc_tag_cntr
+0000000000000010 0000000000000010 d vfcs_i2c_burn_command._alloc_tag_cntr
+0000000000000020 0000000000000010 d vfcs_i2c_burn_command._alloc_tag_cntr.360
+0000000000000030 0000000000000010 d vfcs_i2c_burn_data._alloc_tag_cntr
+0000000000000040 0000000000000010 d vfcs_i2c_burn_data._alloc_tag_cntr.428
+0000000000000050 0000000000000010 d vfcs_of_get_property_data._alloc_tag_cntr
+0000000000000060 0000000000000010 d vfcs_of_get_property_data._alloc_tag_cntr.2014
+0000000000000070 0000000000000010 d vfcs_of_get_property_data._alloc_tag_cntr.2016
+0000000000000080 0000000000000010 d vfcs_parse_ffc_param._alloc_tag_cntr
+0000000000000090 0000000000000010 d vfcs_parse_ffc_param._alloc_tag_cntr.2073
+00000000000000a0 0000000000000010 d vfcs_parse_ffc_param._alloc_tag_cntr.2085
+00000000000000b0 0000000000000010 d vfcs_parse_ffc_param._alloc_tag_cntr.2090
+0000000000000000 0000000000000018 r __UNIQUE_ID_description918
+0000000000000000 0000000000000018 r _note_18
+0000000000000018 0000000000000018 r _note_19
+00000000000005e8 0000000000000018 r fchg_mode_str
+000000000000008c 000000000000001c b _temp_det_method_default
+0000000000000009 000000000000001e b __android_time
+00000000000000b5 000000000000001e b __android_time
+00000000000000d3 000000000000001e b __android_time
+0000000000000150 000000000000001e b __android_time
+0000000000000178 000000000000001e b __android_time
+0000000000000196 000000000000001e b __android_time
+000000000000006b 000000000000001f r __UNIQUE_ID_scmversion535
+00000000000000f4 0000000000000020 d _temp_exception_thr_default
+0000000000000928 0000000000000020 d class_attr_adapter_conn_temp
+0000000000000908 0000000000000020 d class_attr_adapter_temp
+0000000000000190 0000000000000020 d class_attr_address
+0000000000000888 0000000000000020 d class_attr_bat_conn_temp
+0000000000000868 0000000000000020 d class_attr_bat_temp
+0000000000000848 0000000000000020 d class_attr_bat_temp_mv
+00000000000005e8 0000000000000020 d class_attr_burn_ctl
+0000000000000988 0000000000000020 d class_attr_cable_matched
+0000000000000808 0000000000000020 d class_attr_cable_mohm
+00000000000007a8 0000000000000020 d class_attr_chg_enable
+0000000000000270 0000000000000020 d class_attr_chg_protocol_support
+0000000000000948 0000000000000020 d class_attr_chg_switch
+00000000000001b0 0000000000000020 d class_attr_data
+0000000000000968 0000000000000020 d class_attr_dchg_exit_event
+00000000000005a8 0000000000000020 d class_attr_dchg_ic_config
+0000000000000588 0000000000000020 d class_attr_dchg_ic_i2c_state
+0000000000000488 0000000000000020 d class_attr_dchg_ic_vendor
+00000000000004a8 0000000000000020 d class_attr_dchg_state
+00000000000002f0 0000000000000020 d class_attr_debug_chg_protocol_exit
+00000000000002b0 0000000000000020 d class_attr_debug_chg_protocol_support
+00000000000002d0 0000000000000020 d class_attr_debug_force_bypass
+0000000000000290 0000000000000020 d class_attr_debug_main_sm
+0000000000000230 0000000000000020 d class_attr_fchg_address
+0000000000000250 0000000000000020 d class_attr_fchg_data
+00000000000001f0 0000000000000020 d class_attr_fchg_disable
+00000000000001d0 0000000000000020 d class_attr_fchg_fcc_ma
+0000000000000210 0000000000000020 d class_attr_fchg_id
+0000000000000608 0000000000000020 d class_attr_handshake_success
+0000000000000668 0000000000000020 d class_attr_ibus
+0000000000000628 0000000000000020 d class_attr_in_version
+00000000000006c8 0000000000000020 d class_attr_main_board1_ibus
+00000000000006e8 0000000000000020 d class_attr_main_board2_ibus
+00000000000008a8 0000000000000020 d class_attr_master_bat_conn_temp
+0000000000000748 0000000000000020 d class_attr_master_chg_enable
+0000000000000788 0000000000000020 d class_attr_master_chg_enable_status
+00000000000009c8 0000000000000020 d class_attr_master_chg_online
+0000000000000688 0000000000000020 d class_attr_master_ibus
+00000000000005c8 0000000000000020 d class_attr_mcu_fw_inside_burn_result
+00000000000009a8 0000000000000020 d class_attr_mcu_manufacturer
+0000000000000648 0000000000000020 d class_attr_out_version
+0000000000000828 0000000000000020 d class_attr_req_ibus
+00000000000004c8 0000000000000020 d class_attr_sbu_adc
+0000000000000508 0000000000000020 d class_attr_sbu_direct_on_adc
+0000000000000548 0000000000000020 d class_attr_sbu_ex_adc
+0000000000000528 0000000000000020 d class_attr_sbu_flip_on_adc
+0000000000000568 0000000000000020 d class_attr_sbu_info
+00000000000004e8 0000000000000020 d class_attr_sbu_off_adc
+0000000000000728 0000000000000020 d class_attr_slave_chg_enable
+0000000000000708 0000000000000020 d class_attr_slave_chg_enable_flag
+0000000000000768 0000000000000020 d class_attr_slave_chg_enable_status
+00000000000009e8 0000000000000020 d class_attr_slave_chg_online
+00000000000006a8 0000000000000020 d class_attr_slave_ibus
+00000000000008c8 0000000000000020 d class_attr_usb_conn_temp
+00000000000008e8 0000000000000020 d class_attr_usb_conn_temp1
+00000000000007e8 0000000000000020 d class_attr_vbat
+00000000000007c8 0000000000000020 d class_attr_vbus
+0000000000000004 0000000000000024 T cleanup_module
+0000000000000018 0000000000000026 r __UNIQUE_ID_import_ns919
+0000000000000be8 0000000000000028 r _appt_str
+00000000000008b0 0000000000000028 r vfcs_class_group
+0000000000000930 0000000000000028 r vfcs_debug_class_group
+0000000000000000 0000000000000028 d vfcs_dev_fw_burn_work._alloc_tag
+0000000000000028 0000000000000028 d vfcs_i2c_burn_command._alloc_tag
+0000000000000050 0000000000000028 d vfcs_i2c_burn_command._alloc_tag.361
+0000000000000078 0000000000000028 d vfcs_i2c_burn_data._alloc_tag
+00000000000000a0 0000000000000028 d vfcs_i2c_burn_data._alloc_tag.429
+00000000000000c8 0000000000000028 d vfcs_of_get_property_data._alloc_tag
+00000000000000f0 0000000000000028 d vfcs_of_get_property_data._alloc_tag.2015
+0000000000000118 0000000000000028 d vfcs_of_get_property_data._alloc_tag.2017
+0000000000000140 0000000000000028 d vfcs_parse_ffc_param._alloc_tag
+0000000000000168 0000000000000028 d vfcs_parse_ffc_param._alloc_tag.2074
+0000000000000190 0000000000000028 d vfcs_parse_ffc_param._alloc_tag.2086
+00000000000001b8 0000000000000028 d vfcs_parse_ffc_param._alloc_tag.2091
+0000000000000004 000000000000002c T init_module
+0000000000000b44 0000000000000030 r qcom_3p5mm_headphone_and_plat_adc_normal_list
+0000000000000a6c 0000000000000030 r qcom_typec_headphone_and_plat_adc_normal_list
+0000000000000a00 0000000000000030 r qcom_typec_headphone_and_switch_adc_normal_list
+0000000000000ad8 0000000000000030 r qcom_wcd_adc_normal_list
+000000000003493c 0000000000000034 t address_show
+000000000003975c 0000000000000034 t chg_switch_show
+0000000000034db0 0000000000000034 t fchg_address_show
+0000000000034bf4 0000000000000034 t fchg_disable_show
+0000000000034b18 0000000000000034 t fchg_fcc_ma_show
+0000000000034cf0 0000000000000034 t fchg_id_show
+0000000000038658 0000000000000034 t slave_chg_enable_flag_show
+0000000000039720 0000000000000038 t adapter_conn_temp_show
+00000000000396e4 0000000000000038 t adapter_temp_show
+0000000000038d44 0000000000000038 t bat_temp_mv_show
+0000000000035f38 0000000000000038 t dchg_state_show
+0000000000035114 0000000000000038 t debug_chg_protocol_support_show
+0000000000000558 0000000000000038 r dev_fw_iniside_burn_result_str
+0000000000000958 0000000000000038 r dev_fw_iniside_burn_result_str
+0000000000038d08 0000000000000038 t req_ibus_show
+00000000000009c8 0000000000000038 r sbu_cable_id_pdo
+0000000000000990 0000000000000038 r sbu_cable_id_type_str
+0000000000000bb0 0000000000000038 r sbu_cable_id_type_str
+0000000000038a04 0000000000000038 t vbat_show
+00000000000389c8 0000000000000038 t vbus_show
+0000000000000b74 000000000000003c r qcom_3p5mm_headphone_and_plat_adc_error_list
+0000000000000a9c 000000000000003c r qcom_typec_headphone_and_plat_adc_error_list
+0000000000000a30 000000000000003c r qcom_typec_headphone_and_switch_adc_error_list
+0000000000000b08 000000000000003c r qcom_wcd_adc_error_list
+0000000000000004 0000000000000044 T vfcs_core_ready
+000000000000008a 0000000000000047 r __UNIQUE_ID_depends536
+00000000000378ac 0000000000000048 t dchg_ic_config_show
+0000000000037860 0000000000000048 t dchg_ic_i2c_state_show
+0000000000038800 0000000000000048 t master_chg_enable_show
+0000000000038898 0000000000000048 t master_chg_enable_status_show
+00000000000387b4 0000000000000048 t slave_chg_enable_show
+000000000003884c 0000000000000048 t slave_chg_enable_status_show
+000000000000a7f0 0000000000000048 t vfcs_destroy_votables
+000000000000d6c4 000000000000004c t vfcs_get_crc_cmd_param
+0000000000035038 0000000000000050 t debug_main_sm_show
+0000000000038484 0000000000000050 t ibus_show
+00000000000383d4 0000000000000050 t in_version_show
+0000000000038378 0000000000000058 t handshake_success_show
+0000000000000590 0000000000000058 r main_sm_str
+00000000000008d8 0000000000000058 r main_sm_str
+0000000000038428 0000000000000058 t out_version_show
+000000000003dc3c 0000000000000058 T vfcs_is_ffc_runing_from_platform
+00000000000000d1 0000000000000059 r __UNIQUE_ID_vermagic534
+0000000000038598 000000000000005c t main_board1_ibus_show
+00000000000385f8 000000000000005c t main_board2_ibus_show
+00000000000384d8 000000000000005c t master_ibus_show
+0000000000038538 000000000000005c t slave_ibus_show
+00000000000000f4 000000000000005c b vfcs_check_cable_r_limit_current_from_platform.cable_r_limit_count
+0000000000000850 0000000000000060 r vfcs_psy_desc
+00000000000398dc 0000000000000064 t dchg_exit_event_show
+0000000000000128 0000000000000068 d vfcs_class_attrs
+000000000000c3b4 0000000000000070 t vfcs_get_erase_cmd_param
+0000000000034974 0000000000000084 t address_store
+00000000000349fc 0000000000000084 t data_show
+000000000003508c 0000000000000084 t debug_main_sm_store
+0000000000034d28 0000000000000084 t fchg_id_store
+0000000000035150 0000000000000088 t debug_chg_protocol_support_store
+0000000000034e84 0000000000000088 t fchg_data_show
+0000000000039944 000000000000008c t cable_matched_show
+0000000000034fa8 000000000000008c t chg_protocol_support_show
+0000000000034a84 0000000000000090 t data_store
+00000000000033a8 0000000000000090 t vfcs_fchg_is_enable
+0000000000034f10 0000000000000094 t fchg_data_store
+0000000000034de8 0000000000000098 t fchg_address_store
+000000000000d95c 0000000000000098 t vfcs_fchg_hw_init
+00000000000345ac 000000000000009c t vfcs_set_otg_mode
+0000000000034b50 00000000000000a0 t fchg_fcc_ma_store
+0000000000034c2c 00000000000000c0 t fchg_disable_store
+000000000002a388 00000000000000c4 t vfcs_enter_platform_plugout_type_hw_init
+00000000000002c4 00000000000000c8 t get_android_time
+0000000000034870 00000000000000c8 t get_android_time
+0000000000035d88 00000000000000c8 t get_android_time
+000000000003afa8 00000000000000c8 t get_android_time
+0000000000042e20 00000000000000c8 t get_android_time
+0000000000034024 00000000000000cc t vfcs_test_errno
+0000000000025890 00000000000000d4 t vfcs_fchg_enable
+0000000000038d80 00000000000000dc t bat_temp_show
+0000000000039604 00000000000000dc t usb_conn_temp1_show
+000000000000076c 00000000000000e0 r adpt_bypass_abnormal_list
+00000000000388e4 00000000000000e0 t chg_enable_show
+0000000000035e54 00000000000000e0 t dchg_ic_vendor_show
+000000000000303c 00000000000000e8 T vfcs_adc_read
+000000000000a358 00000000000000ec t vfcs_register_psy
+0000000000000000 00000000000000f0 d vfcs_driver
+0000000000018954 0000000000000114 t vfcs_get_power
+0000000000022694 0000000000000114 t vfcs_request_mode
+0000000000022580 0000000000000114 t vfcs_reset_dpdm
+0000000000018a68 0000000000000118 t vfcs_set_watchdog
+0000000000032204 000000000000011c t vfcs_dev_enable
+000000000002a26c 000000000000011c t vfcs_set_wait_timeout
+0000000000038690 0000000000000120 t slave_chg_enable_flag_store
+0000000000038be0 0000000000000124 t cable_mohm_store
+0000000000035388 0000000000000124 t debug_force_bypass_store
+00000000000305d0 0000000000000124 t vfcs_int_stat_handler
+000000000002bc20 0000000000000124 t vfcs_set_reverse_wls_mode
+000000000003b94c 0000000000000128 T vfcs_get_source_ret_status_from_platform
+0000000000039794 0000000000000144 t chg_switch_store
+0000000000004b54 0000000000000144 t vfcs_shutdown
+000000000002aeb4 0000000000000148 t vfcs_enter_fchg_hw_init
+0000000000024afc 0000000000000150 t vfcs_chg_is_suspend
+000000000003dae8 0000000000000150 T vfcs_get_chg_ic_vfloat_from_platform
+000000000000e8fc 0000000000000150 t vfcs_get_fw_version
+0000000000018804 0000000000000150 t vfcs_get_ibus
+0000000000001ae0 0000000000000150 T vfcs_get_protocol_fault_info
+0000000000001c34 0000000000000150 T vfcs_get_task_error_flag
+00000000000186b4 0000000000000150 t vfcs_get_vbus
+00000000000009a8 0000000000000150 T vfcs_i2c_read
+0000000000000afc 0000000000000150 T vfcs_i2c_write
+0000000000000854 0000000000000150 T vfcs_masked_write_reg
+0000000000001f3c 0000000000000150 T vfcs_protocol_hardreset
+00000000000005ac 0000000000000150 T vfcs_read_reg
+0000000000000700 0000000000000150 T vfcs_write_reg
+0000000000004c9c 0000000000000154 t vfcs_suspend
+000000000001b67c 000000000000015c t vfcs_get_usb_conn1_temp
+000000000000f454 0000000000000160 t vfcs_get_ic_status
+00000000000049ec 0000000000000164 t vfcs_remove
+0000000000022418 0000000000000168 t vfcs_check_cable_limit_current
+0000000000000320 0000000000000168 d vfcs_debug_class_attrs
+0000000000040fc0 0000000000000168 t vfcs_irq_gen1_default_func
+0000000000041968 0000000000000168 t vfcs_irq_gen2_default_func
+00000000000417fc 0000000000000168 t vfcs_irq_gen2_received_ok_flag
+0000000000000600 000000000000016c r adpt_ufcs_abnormal_list
+0000000000024990 000000000000016c t vfcs_detect_cable_id
+0000000000000c10 0000000000000170 r cable_r_limit_table
+0000000000004df4 0000000000000174 t vfcs_resume
+00000000000399d4 0000000000000180 t mcu_manufacturer_show
+000000000004112c 0000000000000184 t vfcs_irq_gen1_adapter_fault_warning
+0000000000041e00 0000000000000184 t vfcs_irq_gen2_handshake_error_code
+00000000000412b4 0000000000000188 t vfcs_irq_gen1_procotol_init_done
+0000000000040e30 000000000000018c t vfcs_irq_gen1_protocol_fault
+0000000000041f88 000000000000018c t vfcs_irq_gen2_baud_rate_change
+0000000000041ad4 000000000000018c t vfcs_irq_gen2_task_error_flag
+00000000000003c8 0000000000000190 r vfcs_match_table
+00000000000423a8 0000000000000194 t vfcs_irq_gen2_get_exit_ufcs_mode
+0000000000041c64 0000000000000198 t vfcs_irq_gen2_request_ufcs_hardreset
+0000000000000000 000000000000019c r ____version_ext_crcs
+0000000000038a40 000000000000019c t cable_mohm_show
+0000000000000c50 000000000000019c T vfcs_get_adapter_power_derating
+000000000003b070 00000000000001a4 t _vfcs_sbu_switch_event_
+00000000000354b0 00000000000001a8 t debug_chg_protocol_exit_show
+00000000000351dc 00000000000001a8 t debug_force_bypass_show
+0000000000041650 00000000000001a8 t vfcs_irq_gen1_trigger_usart_timeout_upper_limit
+0000000000034400 00000000000001ac t vfcs_check_kick_watchdog_enable
+0000000000002890 00000000000001ac T vfcs_check_step_time
+0000000000001d88 00000000000001b0 T vfcs_get_protocol_baud_rate
+0000000000037b40 00000000000001b8 t burn_ctl_show
+000000000002ba68 00000000000001b8 t vfcs_get_bypass_switch_current
+00000000000227a8 00000000000001b8 t vfcs_set_protocol_baud_rate
+00000000000365cc 00000000000001bc t _vfcs_sbu_switch_event_
+000000000003565c 00000000000001c0 t debug_chg_protocol_exit_store
+00000000000247cc 00000000000001c4 t vfcs_check_protocol_test_mode
+0000000000002090 00000000000001cc T vfcs_fchg_set
+00000000000184e4 00000000000001d0 t vfcs_dump_reg
+000000000000907c 00000000000001d0 t vfcs_fchg_status_delay_notify_work
+000000000001add0 00000000000001d0 t vfcs_get_bat_board_temp
+000000000001b4a8 00000000000001d4 t vfcs_get_usb_conn_temp
+000000000003c988 00000000000001e4 T vfcs_check_cable_usb_temp_limit_current_from_platform
+000000000003745c 00000000000001e8 t sbu_ex_adc_show
+000000000001b7d8 00000000000001f0 t vfcs_get_adapter_temp
+0000000000039b58 00000000000001f4 t master_chg_online_show
+0000000000039d50 00000000000001f4 t slave_chg_online_show
+0000000000024214 00000000000001f4 t vfcs_check_adapter_abnormal
+000000000000ff20 00000000000001f8 t vfcs_wls_extra_boost_enable
+000000000003dee8 0000000000000200 T vfcs_check_ffc_state_from_platform
+000000000000a154 0000000000000204 t vfcs_fchg_kick_wtd_callback
+0000000000041440 000000000000020c t vfcs_irq_gen1_receive_hardreset
+00000000000427a4 000000000000020c t vfcs_irq_gen2_receive_hardreset
+0000000000037648 0000000000000214 t sbu_info_show
+0000000000000390 0000000000000218 T vfcs_dev_unregister
+000000000000ac80 0000000000000220 t vfcs_direct_to_enter_dev_app
+0000000000002260 0000000000000220 T vfcs_fchg_get
+0000000000036b68 0000000000000224 t _vfcs_get_sbu_switch_adc_
+000000000003b214 0000000000000224 t _vfcs_get_sbu_switch_adc_
+000000000003464c 0000000000000224 T vfcs_class_init
+00000000000306f8 000000000000023c t vfcs_fchg_disable_vote_callback
+0000000000031d88 000000000000023c t vfcs_hchg_disable_vote_callback
+0000000000009f14 000000000000023c t vfcs_otg_mode_delay_work
+000000000003d0b4 000000000000023c T vfcs_usbsel_enable_from_platform
+0000000000000a08 0000000000000240 D irq_gen1_handlers
+0000000000000c48 0000000000000240 D irq_gen2_handlers
+0000000000031fc4 0000000000000240 t vfcs_chg_suspend
+0000000000000df0 0000000000000240 T vfcs_get_adapter_error_code
+00000000000378f8 0000000000000244 t mcu_fw_inside_burn_result_show
+0000000000002a3c 0000000000000244 t vfcs_kick_watchdog
+000000000000d710 000000000000024c t vfcs_hw_init
+000000000003dc98 000000000000024c T vfcs_is_cv_from_platform
+0000000000030eb4 0000000000000250 t vfcs_chg_suspend_vote_callback
+0000000000035820 0000000000000250 T vfcs_debug_class_init
+0000000000031b34 0000000000000250 t vfcs_fchg_power_enable_vote_callback
+000000000003cb70 0000000000000258 T vfcs_check_hw_version_from_platform
+0000000000042540 0000000000000260 t vfcs_irq_gen2_self_sending_receiving_fault
+0000000000009250 0000000000000264 t vfcs_ffc_fchg_cv_recharge_work
+0000000000001034 0000000000000268 T vfcs_handle_adapter_error_code2_info
+000000000000f1e8 000000000000026c t vfcs_check_reply_wrap
+000000000000004c 0000000000000278 T vfcs_dev_register
+0000000000003128 0000000000000280 T vfcs_get_adc_chan
+000000000001afa0 0000000000000284 t vfcs_get_bat_btb_temp
+000000000001b224 0000000000000284 t vfcs_get_bat_btb_temp_m
+0000000000038e60 0000000000000288 t bat_conn_temp_show
+00000000000390ec 0000000000000288 t master_bat_conn_temp_show
+0000000000039378 0000000000000288 t usb_conn_temp_show
+0000000000001854 0000000000000288 T vfcs_get_mode_error_code
+0000000000042118 000000000000028c t vfcs_irq_gen2_adapter_fault_warning
+0000000000035f74 0000000000000298 t sbu_adc_show
+0000000000033d58 00000000000002cc t _vfcs_get_sbu_switch_adc_
+000000000002213c 00000000000002dc t vfcs_calculate_cable_r
+000000000003cdcc 00000000000002e4 T vfcs_select_vfc_driver_from_platform
+00000000000340f0 0000000000000310 t get_usb_connecter_pin_resistance_value
+0000000000036d8c 0000000000000310 t get_usb_connecter_pin_resistance_value
+000000000003ee14 0000000000000310 t get_usb_connecter_pin_resistance_value
+0000000000035a74 0000000000000314 t vfcs_debug_chg_switch_work
+000000000000fc00 0000000000000320 t vfcs_reset_votables
+000000000003d2f4 0000000000000334 T vfcs_bigdata_collect_insert
+000000000000ea4c 0000000000000384 t vfcs_get_reply_wrap_size
+00000000000094b8 0000000000000388 t vfcs_fchg_kick_watchdog_work
+000000000000a448 00000000000003a8 t vfcs_shutdown_callback
+0000000000002c84 00000000000003b4 T vfcs_check_bat_heating_state
+00000000000370a0 00000000000003b8 t sbu_flip_on_adc_show
+0000000000036210 00000000000003bc t sbu_off_adc_show
+000000000001b9c8 00000000000003bc t vfcs_get_fchg_ic_state_info
+0000000000024408 00000000000003c4 t vfcs_check_adapter_pps_high_priority
+000000000003678c 00000000000003dc t sbu_direct_on_adc_show
+000000000002b678 00000000000003f0 t vfcs_get_vbus_step_factor
+0000000000029e74 00000000000003f8 t vfcs_check_fchg_mode_switch
+0000000000002484 0000000000000408 T vfcs_notify_term_param
+000000000000edd0 0000000000000418 t vfcs_dump_reply_wrap
+0000000000028610 0000000000000424 t vfcs_calculate_cv_trigger_count
+000000000003ba78 0000000000000430 T vfcs_get_pd_adapter_info_from_platform
+000000000000a838 0000000000000448 t vfcs_hw_deinit
+00000000000429b4 000000000000046c t vfcs_irq_gen2_ufcs_power_change
+0000000000040164 0000000000000474 t vfcs_check_chg_ffc_state
+000000000002aa18 000000000000049c t vfcs_detect_adapter_abnormal
+000000000003d62c 00000000000004b8 T vfcs_bigdata_collect_value
+0000000000010118 00000000000004bc t vfcs_check_charge_context
+000000000002bd44 0000000000000500 t vfcs_wls_reset_vout_config
+000000000003b43c 000000000000050c T vfcs_request_power_from_platform
+000000000003beac 0000000000000548 T vfcs_get_pd_power_from_platform
+0000000000030938 0000000000000578 t vfcs_fchg_fcc_vote_callback
+000000000003c3f8 000000000000058c T vfcs_check_cable_r_limit_current_from_platform
+00000000000012a0 00000000000005b0 T vfcs_get_adapter_error_code2
+000000000002a44c 00000000000005cc t vfcs_sp_handle_cable_r
+0000000000000000 0000000000000640 D __this_module
+000000000000f5b8 0000000000000648 t vfcs_external_power_changed
+000000000000d9f4 000000000000064c t vfcs_usbsel_enable
+000000000000aea0 0000000000000658 t vfcs_check_dev_fw_version
+0000000000037cfc 0000000000000678 t burn_ctl_store
+000000000002affc 000000000000067c t vfcs_check_fchg_restart
+00000000000065c0 00000000000006a8 t vfcs_sys_bootup_work
+0000000000009844 00000000000006cc t vfcs_int_stat_handler_work
+000000000002fef0 00000000000006dc t vfcs_of_get_property_data
+000000000003fa84 00000000000006e0 t vfcs_check_fchg_ffc_state
+0000000000000000 000000000000070f r ____version_ext_names
+0000000000026990 00000000000007fc t vfcs_check_buck_power_comp
+00000000000405d8 0000000000000854 t vfcs_check_ffc_foolproof
+000000000000e040 00000000000008bc t vfcs_reset_sm
+0000000000032324 0000000000000960 t vfcs_get_property
+000000000003f124 0000000000000960 t vfcs_update_batt_aging_ffc_data
+0000000000028a34 0000000000000970 t vfcs_calculate_req_current
+0000000000031108 0000000000000a28 t vfcs_pi_power_enable_vote_callback
+00000000000293a4 0000000000000ad0 t vfcs_adjust_power
+0000000000024c4c 0000000000000c44 t vfcs_enter_fchg_protocol_init
+000000000003e0e8 0000000000000d2c t vfcs_check_ffc_state_from_normal
+000000000000b4f8 0000000000000ebc t vfcs_i2c_burn_command
+0000000000025964 000000000000102c t vfcs_request_source_power
+0000000000039f48 0000000000001060 T vfcs_get_cable_id_from_platform
+0000000000032c88 00000000000010c4 t vfcs_set_property
+000000000000c424 00000000000012a0 t vfcs_i2c_burn_data
+000000000002718c 0000000000001484 t vfcs_check_fchg_ic_work_status
+000000000001bd84 0000000000001598 t vfcs_check_protocol_abnormal
+000000000000343c 00000000000015ac t vfcs_probe
+0000000000004f6c 0000000000001650 t vfcs_dev_fw_burn_work
+0000000000022960 00000000000018b4 t vfcs_get_source_capacity
+0000000000000000 00000000000019c0 r ____versions
+0000000000018b80 0000000000002250 t vfcs_monitor_wls_fchg_protocol
+0000000000006c6c 000000000000240c t vfcs_main_work
+000000000002c244 0000000000003cac t vfcs_parse_reconfigurable_dt
+000000000001d31c 0000000000004e20 t vfcs_monitor_fchg_protocol
+00000000000105d4 0000000000007f10 t vfcs_loop_charge_protocol

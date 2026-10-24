@@ -1,0 +1,1461 @@
+0000000000015680 <vfcs_cms_get_property>:
+   15680:      	paciasp
+   15684:      	sub	sp, sp, #0xc0
+   15688:      	stp	x29, x30, [sp, #0x60]
+   1568c:      	stp	x28, x27, [sp, #0x70]
+   15690:      	stp	x26, x25, [sp, #0x80]
+   15694:      	stp	x24, x23, [sp, #0x90]
+   15698:      	stp	x22, x21, [sp, #0xa0]
+   1569c:      	stp	x20, x19, [sp, #0xb0]
+   156a0:      	add	x29, sp, #0x60
+   156a4:      	mrs	x8, SP_EL0
+   156a8:      	mov	x19, x2
+   156ac:      	mov	w22, w1
+   156b0:      	ldr	x8, [x8, #0x710]
+   156b4:      	stur	x8, [x29, #-0x8]
+   156b8:      	bl	0x156b8 <vfcs_cms_get_property+0x38>
+		00000000000156b8:  R_AARCH64_CALL26	power_supply_get_drvdata
+   156bc:      	mov	w8, #0xccb0
+   156c0:      	stur	xzr, [x29, #-0x10]
+   156c4:      	add	x24, x0, x8
+   156c8:      	ldrb	w23, [x24, #0xff8]
+   156cc:      	cmp	x23, #0x6
+   156d0:      	b.hs	0x169c4 <vfcs_cms_get_property+0x1344>
+   156d4:      	mov	w8, #0xbc18
+   156d8:      	mov	x20, x0
+   156dc:      	add	x25, x0, x8
+   156e0:      	ldr	w21, [x25, #0x10]
+   156e4:      	bl	0x156e4 <vfcs_cms_get_property+0x64>
+		00000000000156e4:  R_AARCH64_CALL26	vfcs_cms_get_normal_tc_index
+   156e8:      	ldr	x8, [x25, #0x1e0]
+   156ec:      	cbz	x8, 0x156fc <vfcs_cms_get_property+0x7c>
+   156f0:      	cmn	x8, #0x1, lsl #12       // =0x1000
+   156f4:      	b.hi	0x156fc <vfcs_cms_get_property+0x7c>
+   156f8:      	ldr	w21, [x8, w0, sxtw #2]
+   156fc:      	sub	w8, w22, #0x3
+   15700:      	cmp	w8, #0x27b
+   15704:      	b.hi	0x16128 <vfcs_cms_get_property+0xaa8>
+   15708:      	mov	w9, #0x12
+   1570c:      	adrp	x13, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		000000000001570c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata
+   15710:      	add	x13, x13, #0x0
+		0000000000015710:  R_AARCH64_ADD_ABS_LO12_NC	.rodata
+   15714:      	umaddl	x9, w23, w9, x20
+   15718:      	mov	w10, #0xde1c
+   1571c:      	mov	w11, #0xde50
+   15720:      	add	x12, x20, #0x11, lsl #12 // =0x11000
+   15724:      	adr	x14, #0x20
+   15728:      	ldrh	w15, [x13, x8, lsl #1]
+   1572c:      	add	x14, x14, x15, lsl #2
+   15730:      	mov	w0, wzr
+   15734:      	add	x22, x12, #0xb10
+   15738:      	add	x26, x20, x10
+   1573c:      	add	x28, x9, x11
+   15740:      	br	x14
+   15744:      	mov	x0, x20
+   15748:      	mov	x1, x19
+   1574c:      	bl	0x1574c <vfcs_cms_get_property+0xcc>
+		000000000001574c:  R_AARCH64_CALL26	vfcs_cms_get_bat_therm
+   15750:      	mov	w0, wzr
+   15754:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15758:      	ldr	w8, [x25, #0xe50]
+   1575c:      	cbnz	w8, 0x16178 <vfcs_cms_get_property+0xaf8>
+   15760:      	ldr	x8, [x22, #0xbf0]
+   15764:      	mov	w0, wzr
+   15768:      	str	w8, [x19]
+   1576c:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15770:      	ldr	w8, [x24]
+   15774:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15778:      	ldr	w8, [x22, #0xb88]
+   1577c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15780:      	ldr	w8, [x22, #0xbc4]
+   15784:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15788:      	ldrb	w8, [x20, #0x186]
+   1578c:      	cmp	w8, #0x1
+   15790:      	b.ne	0x16178 <vfcs_cms_get_property+0xaf8>
+   15794:      	ldr	w8, [x22, #0xed4]
+   15798:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   1579c:      	mov	x0, x20
+   157a0:      	bl	0x157a0 <vfcs_cms_get_property+0x120>
+		00000000000157a0:  R_AARCH64_CALL26	vfcs_cms_charge_get_chg_up_limit_keep_soc
+   157a4:      	b	0x15c9c <vfcs_cms_get_property+0x61c>
+   157a8:      	ldrb	w8, [x24, #0xb1d]
+   157ac:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   157b0:      	ldr	w8, [x25, #0x5b8]
+   157b4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   157b8:      	ldr	w8, [x22]
+   157bc:      	cbnz	w8, 0x16184 <vfcs_cms_get_property+0xb04>
+   157c0:      	ldrb	w8, [x24, #0xfac]
+   157c4:      	cmp	w8, #0x1
+   157c8:      	b.ne	0x16178 <vfcs_cms_get_property+0xaf8>
+   157cc:      	b	0x16184 <vfcs_cms_get_property+0xb04>
+   157d0:      	ldr	w8, [x25, #0x7f0]
+   157d4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   157d8:      	ldr	w3, [x22, #0xfe8]
+   157dc:      	str	w3, [x19]
+   157e0:      	cbz	x20, 0x16580 <vfcs_cms_get_property+0xf00>
+   157e4:      	ldr	x8, [x20, #0x10]
+   157e8:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   157ec:      	ldr	w8, [x8]
+   157f0:      	tbnz	w8, #0x4, 0x16674 <vfcs_cms_get_property+0xff4>
+   157f4:      	tbz	w8, #0x0, 0x1656c <vfcs_cms_get_property+0xeec>
+   157f8:      	ldr	x1, [x20, #0x18]
+   157fc:      	adrp	x0, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		00000000000157fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x32420 ; '\x013%s: %s: delay_cycle_flag = %d\n'
+   15800:      	add	x0, x0, #0x0
+		0000000000015800:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x32420 ; '\x013%s: %s: delay_cycle_flag = %d\n'
+   15804:      	b	0x161cc <vfcs_cms_get_property+0xb4c>
+   15808:      	ldr	w8, [x25, #0xc]
+   1580c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15810:      	ldr	w8, [x22, #0xedc]
+   15814:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15818:      	ldr	w8, [x22, #0x1a4]
+   1581c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15820:      	ldr	w8, [x22, #0xbcc]
+   15824:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15828:      	ldr	w8, [x22, #0xeb8]
+   1582c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15830:      	ldr	x0, [x25, #0xbb0]
+   15834:      	cbz	x0, 0x16178 <vfcs_cms_get_property+0xaf8>
+   15838:      	adrp	x8, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015838:  R_AARCH64_ADR_PREL_PG_HI21	is_atboot
+   1583c:      	adrp	x9, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		000000000001583c:  R_AARCH64_ADR_PREL_PG_HI21	bsp_test_mode
+   15840:      	ldr	w8, [x8]
+		0000000000015840:  R_AARCH64_LDST32_ABS_LO12_NC	is_atboot
+   15844:      	ldr	w9, [x9]
+		0000000000015844:  R_AARCH64_LDST32_ABS_LO12_NC	bsp_test_mode
+   15848:      	orr	w8, w8, w9
+   1584c:      	cbz	w8, 0x16178 <vfcs_cms_get_property+0xaf8>
+   15850:      	ldr	w8, [x0, #0x458]
+   15854:      	cmp	w8, #0x1
+   15858:      	b.lt	0x1656c <vfcs_cms_get_property+0xeec>
+   1585c:      	ldr	x8, [x0]
+   15860:      	mov	w1, #0x87
+   15864:      	b	0x15f4c <vfcs_cms_get_property+0x8cc>
+   15868:      	ldr	w8, [x25]
+   1586c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15870:      	ldr	w8, [x24, #0xfa8]
+   15874:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15878:      	mov	x0, x20
+   1587c:      	mov	x1, x19
+   15880:      	bl	0x1ad20 <vfcs_cms_get_protocol_power_pps_status>
+   15884:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15888:      	ldr	w8, [x22, #0x958]
+   1588c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15890:      	ldrb	w8, [x24, #0xa20]
+   15894:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15898:      	ldr	w3, [x22, #0xfec]
+   1589c:      	str	w3, [x19]
+   158a0:      	cbz	x20, 0x1658c <vfcs_cms_get_property+0xf0c>
+   158a4:      	ldr	x8, [x20, #0x10]
+   158a8:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   158ac:      	ldr	w8, [x8]
+   158b0:      	tbnz	w8, #0x4, 0x1668c <vfcs_cms_get_property+0x100c>
+   158b4:      	tbz	w8, #0x0, 0x1656c <vfcs_cms_get_property+0xeec>
+   158b8:      	ldr	x1, [x20, #0x18]
+   158bc:      	adrp	x0, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		00000000000158bc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x44266 ; '\x013%s: %s: os_version = %d\n'
+   158c0:      	add	x0, x0, #0x0
+		00000000000158c0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x44266 ; '\x013%s: %s: os_version = %d\n'
+   158c4:      	b	0x161cc <vfcs_cms_get_property+0xb4c>
+   158c8:      	mov	x0, x20
+   158cc:      	mov	w1, #0x19
+   158d0:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   158d4:      	ldr	w8, [x22, #0xed8]
+   158d8:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   158dc:      	ldr	w8, [x25, #0xe60]
+   158e0:      	cbz	w8, 0x161e8 <vfcs_cms_get_property+0xb68>
+   158e4:      	ldr	w8, [x25, #0x7a0]
+   158e8:      	ldr	w9, [x25, #0x5e4]
+   158ec:      	cmp	w8, w9
+   158f0:      	b.ge	0x161e8 <vfcs_cms_get_property+0xb68>
+   158f4:      	mov	w8, #-0x1
+   158f8:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   158fc:      	ldr	w8, [x22, #0xfdc]
+   15900:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15904:      	mov	x0, x20
+   15908:      	mov	x1, x19
+   1590c:      	bl	0x1590c <vfcs_cms_get_property+0x28c>
+		000000000001590c:  R_AARCH64_CALL26	vfcs_cms_get_chg_pmos_temp
+   15910:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15914:      	ldrb	w8, [x25, #0xe1]
+   15918:      	tbz	w8, #0x0, 0x16178 <vfcs_cms_get_property+0xaf8>
+   1591c:      	mov	w8, #0x3cf
+   15920:      	add	w9, w21, w21, lsl #10
+   15924:      	ldrsh	w10, [x28, #0xe]
+   15928:      	mul	w8, w21, w8
+   1592c:      	mov	w11, #0x4dd3
+   15930:      	mov	w15, #0x4240
+   15934:      	movk	w11, #0x1062, lsl #16
+   15938:      	str	w10, [x19]
+   1593c:      	movk	w15, #0xf, lsl #16
+   15940:      	smull	x9, w9, w11
+   15944:      	smull	x10, w8, w11
+   15948:      	ldrh	w8, [x26, #0x22]
+   1594c:      	lsr	x12, x9, #63
+   15950:      	asr	x22, x9, #38
+   15954:      	sub	w9, w8, #0x65
+   15958:      	lsr	x27, x10, #63
+   1595c:      	asr	x23, x10, #38
+   15960:      	cmp	w9, #0x397
+   15964:      	b.hi	0x16254 <vfcs_cms_get_property+0xbd4>
+   15968:      	ldr	w9, [x24, #0xfcc]
+   1596c:      	mov	w11, #0xbdc1
+   15970:      	mov	w5, wzr
+   15974:      	movk	w11, #0xfff0, lsl #16
+   15978:      	stur	wzr, [x29, #-0x1c]
+   1597c:      	mul	w8, w9, w8
+   15980:      	ldr	w9, [x24, #0xfd0]
+   15984:      	mul	w8, w8, w9
+   15988:      	mov	w9, #0xde83
+   1598c:      	movk	w9, #0x431b, lsl #16
+   15990:      	smull	x9, w8, w9
+   15994:      	cmp	w8, w11
+   15998:      	lsr	x10, x9, #63
+   1599c:      	asr	x9, x9, #50
+   159a0:      	add	w9, w9, w10
+   159a4:      	csel	w8, wzr, w9, lt
+   159a8:      	b	0x163f0 <vfcs_cms_get_property+0xd70>
+   159ac:      	ldr	w8, [x22, #0xec8]
+   159b0:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   159b4:      	ldr	w8, [x22, #0x9c0]
+   159b8:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   159bc:      	ldr	w8, [x25, #0x80]
+   159c0:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   159c4:      	mov	x0, x20
+   159c8:      	mov	w1, #0x5
+   159cc:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   159d0:      	ldr	w8, [x24, #0xf90]
+   159d4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   159d8:      	adrp	x8, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		00000000000159d8:  R_AARCH64_ADR_PREL_PG_HI21	is_atboot
+   159dc:      	mov	w0, wzr
+   159e0:      	ldr	w8, [x8]
+		00000000000159e0:  R_AARCH64_LDST32_ABS_LO12_NC	is_atboot
+   159e4:      	b	0x169e4 <vfcs_cms_get_property+0x1364>
+   159e8:      	ldrb	w8, [x24, #0xfac]
+   159ec:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   159f0:      	mov	x0, x20
+   159f4:      	bl	0x13e84 <vfcs_cms_check_fchg_current>
+   159f8:      	b	0x15c9c <vfcs_cms_get_property+0x61c>
+   159fc:      	ldr	w3, [x22, #0xff0]
+   15a00:      	str	w3, [x19]
+   15a04:      	cbz	x20, 0x16598 <vfcs_cms_get_property+0xf18>
+   15a08:      	ldr	x8, [x20, #0x10]
+   15a0c:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15a10:      	ldr	w8, [x8]
+   15a14:      	tbnz	w8, #0x4, 0x166a4 <vfcs_cms_get_property+0x1024>
+   15a18:      	tbz	w8, #0x0, 0x1656c <vfcs_cms_get_property+0xeec>
+   15a1c:      	ldr	x1, [x20, #0x18]
+   15a20:      	adrp	x0, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015a20:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x678 ; '\x013%s: %s: fist_os_version = %d\n'
+   15a24:      	add	x0, x0, #0x0
+		0000000000015a24:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x678 ; '\x013%s: %s: fist_os_version = %d\n'
+   15a28:      	b	0x161cc <vfcs_cms_get_property+0xb4c>
+   15a2c:      	ldr	x8, [x20, #0x150]
+   15a30:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15a34:      	ldr	x8, [x8, #0x18]
+   15a38:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15a3c:      	ldr	w8, [x8]
+   15a40:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15a44:      	ldrb	w8, [x24, #0xa90]
+   15a48:      	str	w8, [x19]
+   15a4c:      	cbz	x20, 0x165a4 <vfcs_cms_get_property+0xf24>
+   15a50:      	ldr	x8, [x20, #0x10]
+   15a54:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15a58:      	ldr	w8, [x8]
+   15a5c:      	tbnz	w8, #0x4, 0x166bc <vfcs_cms_get_property+0x103c>
+   15a60:      	tbz	w8, #0x0, 0x1656c <vfcs_cms_get_property+0xeec>
+   15a64:      	ldr	x1, [x20, #0x18]
+   15a68:      	ldrb	w3, [x24, #0xa90]
+   15a6c:      	adrp	x0, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015a6c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xb0d2 ; '\x013%s: %s: ## get otg_enable=%d ##\n'
+   15a70:      	add	x0, x0, #0x0
+		0000000000015a70:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xb0d2 ; '\x013%s: %s: ## get otg_enable=%d ##\n'
+   15a74:      	b	0x161cc <vfcs_cms_get_property+0xb4c>
+   15a78:      	mov	x0, x20
+   15a7c:      	mov	w1, #0xf
+   15a80:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15a84:      	ldr	w8, [x20, #0x34]
+   15a88:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15a8c:      	ldr	w3, [x25, #0xe2c]
+   15a90:      	str	w3, [x19]
+   15a94:      	cbz	x20, 0x165b4 <vfcs_cms_get_property+0xf34>
+   15a98:      	ldr	x8, [x20, #0x10]
+   15a9c:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15aa0:      	ldr	w8, [x8]
+   15aa4:      	tbnz	w8, #0x4, 0x166d4 <vfcs_cms_get_property+0x1054>
+   15aa8:      	tbz	w8, #0x1, 0x1656c <vfcs_cms_get_property+0xeec>
+   15aac:      	ldr	x1, [x20, #0x18]
+   15ab0:      	adrp	x0, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015ab0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1dfcc ; '\x013%s: %s: system ui get ai_disable_charge=%d\n'
+   15ab4:      	add	x0, x0, #0x0
+		0000000000015ab4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1dfcc ; '\x013%s: %s: system ui get ai_disable_charge=%d\n'
+   15ab8:      	b	0x161cc <vfcs_cms_get_property+0xb4c>
+   15abc:      	mov	x0, x20
+   15ac0:      	mov	w1, #0xa
+   15ac4:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15ac8:      	mov	x0, x20
+   15acc:      	mov	w1, #0x8
+   15ad0:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15ad4:      	ldr	w8, [x25, #0xc]
+   15ad8:      	mov	w9, #0x3e8
+   15adc:      	mov	w0, wzr
+   15ae0:      	mul	w8, w8, w9
+   15ae4:      	b	0x169e4 <vfcs_cms_get_property+0x1364>
+   15ae8:      	mov	x0, x20
+   15aec:      	bl	0x19470 <vfcs_cms_get_fchg_current>
+   15af0:      	mov	w8, w0
+   15af4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15af8:      	mov	x0, x20
+   15afc:      	bl	0x19318 <vfcs_cms_get_bat_id>
+   15b00:      	mov	w8, w0
+   15b04:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15b08:      	mov	x0, x20
+   15b0c:      	mov	x1, x19
+   15b10:      	bl	0x1a87c <vfcs_cms_get_pmic_usbin_voltage>
+   15b14:      	mov	w0, wzr
+   15b18:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15b1c:      	ldr	w8, [x25, #0x10]
+   15b20:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15b24:      	ldr	w8, [x20, #0x20]
+   15b28:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15b2c:      	ldr	x8, [x22, #0xbf0]
+   15b30:      	stur	x8, [x29, #-0x18]
+   15b34:      	ldur	x8, [x29, #-0x18]
+   15b38:      	tbnz	w8, #0x0, 0x161f0 <vfcs_cms_get_property+0xb70>
+   15b3c:      	ldur	x8, [x29, #-0x18]
+   15b40:      	tbnz	w8, #0x1, 0x162ec <vfcs_cms_get_property+0xc6c>
+   15b44:      	ldur	x8, [x29, #-0x18]
+   15b48:      	tbnz	w8, #0x2, 0x16350 <vfcs_cms_get_property+0xcd0>
+   15b4c:      	ldur	x8, [x29, #-0x18]
+   15b50:      	tbnz	w8, #0x3, 0x16574 <vfcs_cms_get_property+0xef4>
+   15b54:      	ldur	x8, [x29, #-0x18]
+   15b58:      	tbnz	w8, #0x4, 0x16770 <vfcs_cms_get_property+0x10f0>
+   15b5c:      	ldur	x8, [x29, #-0x18]
+   15b60:      	tbnz	w8, #0x5, 0x16874 <vfcs_cms_get_property+0x11f4>
+   15b64:      	ldur	x8, [x29, #-0x18]
+   15b68:      	tbnz	w8, #0x6, 0x168e4 <vfcs_cms_get_property+0x1264>
+   15b6c:      	ldur	x8, [x29, #-0x18]
+   15b70:      	tbnz	w8, #0x7, 0x1697c <vfcs_cms_get_property+0x12fc>
+   15b74:      	ldur	x8, [x29, #-0x18]
+   15b78:      	tbnz	w8, #0x8, 0x16988 <vfcs_cms_get_property+0x1308>
+   15b7c:      	ldur	x8, [x29, #-0x18]
+   15b80:      	tbnz	w8, #0x9, 0x16994 <vfcs_cms_get_property+0x1314>
+   15b84:      	ldur	x8, [x29, #-0x18]
+   15b88:      	tbnz	w8, #0xc, 0x169a0 <vfcs_cms_get_property+0x1320>
+   15b8c:      	ldur	x8, [x29, #-0x18]
+   15b90:      	tbnz	w8, #0xd, 0x169ac <vfcs_cms_get_property+0x132c>
+   15b94:      	ldur	x8, [x29, #-0x18]
+   15b98:      	tbnz	w8, #0xe, 0x169b8 <vfcs_cms_get_property+0x1338>
+   15b9c:      	ldur	x8, [x29, #-0x18]
+   15ba0:      	tbnz	w8, #0xf, 0x169c8 <vfcs_cms_get_property+0x1348>
+   15ba4:      	ldur	x8, [x29, #-0x18]
+   15ba8:      	tbnz	w8, #0x10, 0x169d4 <vfcs_cms_get_property+0x1354>
+   15bac:      	mov	w8, wzr
+   15bb0:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15bb4:      	ldr	w3, [x22, #0xfe4]
+   15bb8:      	str	w3, [x19]
+   15bbc:      	cbz	x20, 0x165c0 <vfcs_cms_get_property+0xf40>
+   15bc0:      	ldr	x8, [x20, #0x10]
+   15bc4:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15bc8:      	ldr	w8, [x8]
+   15bcc:      	tbnz	w8, #0x4, 0x166ec <vfcs_cms_get_property+0x106c>
+   15bd0:      	tbz	w8, #0x0, 0x1656c <vfcs_cms_get_property+0xeec>
+   15bd4:      	ldr	x1, [x20, #0x18]
+   15bd8:      	adrp	x0, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015bd8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x378b5 ; '\x013%s: %s: delay_cycle_count = %d\n'
+   15bdc:      	add	x0, x0, #0x0
+		0000000000015bdc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x378b5 ; '\x013%s: %s: delay_cycle_count = %d\n'
+   15be0:      	b	0x161cc <vfcs_cms_get_property+0xb4c>
+   15be4:      	mov	x0, x20
+   15be8:      	mov	w1, #0x1a
+   15bec:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15bf0:      	ldrb	w8, [x24, #0x940]
+   15bf4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15bf8:      	ldr	w8, [x25, #0xf14]
+   15bfc:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c00:      	ldr	w8, [x25, #0xe40]
+   15c04:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c08:      	mov	x0, x20
+   15c0c:      	mov	x1, x19
+   15c10:      	bl	0x15c10 <vfcs_cms_get_property+0x590>
+		0000000000015c10:  R_AARCH64_CALL26	vfcs_cms_get_bat_therm1
+   15c14:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15c18:      	ldr	w8, [x25, #0xe38]
+   15c1c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c20:      	mov	x0, x20
+   15c24:      	mov	x1, x19
+   15c28:      	bl	0x1a5cc <vfcs_cms_get_vbat_2s_mid>
+   15c2c:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15c30:      	mov	x0, x20
+   15c34:      	bl	0x15c34 <vfcs_cms_get_property+0x5b4>
+		0000000000015c34:  R_AARCH64_CALL26	vfcs_cms_get_normal_tc_index
+   15c38:      	mov	w8, w0
+   15c3c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c40:      	ldrb	w8, [x22, #0xfd8]
+   15c44:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c48:      	ldr	w8, [x25, #0xe3c]
+   15c4c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c50:      	ldr	w8, [x25, #0xe34]
+   15c54:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c58:      	mov	x0, x20
+   15c5c:      	mov	x1, x19
+   15c60:      	bl	0x15c60 <vfcs_cms_get_property+0x5e0>
+		0000000000015c60:  R_AARCH64_CALL26	vfcs_cms_get_pmic_vph
+   15c64:      	mov	w0, wzr
+   15c68:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15c6c:      	mov	x0, x20
+   15c70:      	mov	w1, #0xc
+   15c74:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15c78:      	ldr	x8, [x20, #0x140]
+   15c7c:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15c80:      	ldr	x8, [x8]
+   15c84:      	cbnz	x8, 0x169dc <vfcs_cms_get_property+0x135c>
+   15c88:      	b	0x1656c <vfcs_cms_get_property+0xeec>
+   15c8c:      	ldr	w8, [x25, #0xe28]
+   15c90:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15c94:      	mov	x0, x20
+   15c98:      	bl	0x15c98 <vfcs_cms_get_property+0x618>
+		0000000000015c98:  R_AARCH64_CALL26	vfcs_cms_get_ai_keep_soc_status
+   15c9c:      	mov	w8, w0
+   15ca0:      	mov	w0, wzr
+   15ca4:      	and	w8, w8, #0x1
+   15ca8:      	b	0x169e4 <vfcs_cms_get_property+0x1364>
+   15cac:      	mov	x0, x20
+   15cb0:      	mov	x1, x19
+   15cb4:      	bl	0x19a74 <vfcs_cms_get_bat_btb_therm>
+   15cb8:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15cbc:      	mov	x0, x20
+   15cc0:      	mov	w1, #0x18
+   15cc4:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15cc8:      	ldr	w8, [x22, #0xee0]
+   15ccc:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15cd0:      	mov	w8, #0x2ed8
+   15cd4:      	movk	w8, #0x1, lsl #16
+   15cd8:      	ldr	w8, [x20, x8]
+   15cdc:      	cbz	w8, 0x16238 <vfcs_cms_get_property+0xbb8>
+   15ce0:      	str	w8, [x19]
+   15ce4:      	b	0x16248 <vfcs_cms_get_property+0xbc8>
+   15ce8:      	ldr	x8, [x25, #0x58]
+   15cec:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15cf0:      	ldr	x0, [x25, #0xbd0]
+   15cf4:      	cbnz	x0, 0x15d08 <vfcs_cms_get_property+0x688>
+   15cf8:      	mov	x0, x8
+   15cfc:      	bl	0x15cfc <vfcs_cms_get_property+0x67c>
+		0000000000015cfc:  R_AARCH64_CALL26	power_supply_get_by_name
+   15d00:      	str	x0, [x25, #0xbd0]
+   15d04:      	cbz	x0, 0x169e8 <vfcs_cms_get_property+0x1368>
+   15d08:      	ldr	w8, [x0, #0x458]
+   15d0c:      	cmp	w8, #0x1
+   15d10:      	b.lt	0x1656c <vfcs_cms_get_property+0xeec>
+   15d14:      	ldr	x8, [x0]
+   15d18:      	mov	w1, #0x24f
+   15d1c:      	b	0x15f4c <vfcs_cms_get_property+0x8cc>
+   15d20:      	mov	x0, x20
+   15d24:      	mov	w1, #0x2
+   15d28:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15d2c:      	ldr	w8, [x25, #0xe50]
+   15d30:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15d34:      	mov	x0, x20
+   15d38:      	mov	w1, #0xd
+   15d3c:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15d40:      	ldr	w8, [x22, #0xee4]
+   15d44:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15d48:      	ldr	w8, [x22, #0xed0]
+   15d4c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15d50:      	ldrb	w8, [x24, #0x9b0]
+   15d54:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15d58:      	ldr	x8, [x20, #0x140]
+   15d5c:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15d60:      	ldr	x8, [x8]
+   15d64:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15d68:      	ldr	w8, [x8, #0x8]
+   15d6c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15d70:      	mov	x0, x20
+   15d74:      	mov	x1, x19
+   15d78:      	bl	0x15d78 <vfcs_cms_get_property+0x6f8>
+		0000000000015d78:  R_AARCH64_CALL26	vfcs_cms_get_usb_conn1_temp
+   15d7c:      	mov	w0, wzr
+   15d80:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15d84:      	adrp	x8, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015d84:  R_AARCH64_ADR_PREL_PG_HI21	power_off_charging_mode
+   15d88:      	mov	w0, wzr
+   15d8c:      	ldr	w8, [x8]
+		0000000000015d8c:  R_AARCH64_LDST32_ABS_LO12_NC	power_off_charging_mode
+   15d90:      	b	0x169e4 <vfcs_cms_get_property+0x1364>
+   15d94:      	mov	x0, x20
+   15d98:      	mov	x1, x19
+   15d9c:      	bl	0x1a04c <vfcs_cms_get_chg_sub_temp>
+   15da0:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15da4:      	mov	w21, #0x2118
+   15da8:      	movk	w21, #0x1, lsl #16
+   15dac:      	add	x0, x20, x21
+   15db0:      	bl	0x15db0 <vfcs_cms_get_property+0x730>
+		0000000000015db0:  R_AARCH64_CALL26	cancel_delayed_work
+   15db4:      	adrp	x8, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015db4:  R_AARCH64_ADR_PREL_PG_HI21	system_wq
+   15db8:      	add	x2, x20, x21
+   15dbc:      	mov	w0, #0x20
+   15dc0:      	ldr	x1, [x8]
+		0000000000015dc0:  R_AARCH64_LDST64_ABS_LO12_NC	system_wq
+   15dc4:      	mov	w3, #0x3
+   15dc8:      	bl	0x15dc8 <vfcs_cms_get_property+0x748>
+		0000000000015dc8:  R_AARCH64_CALL26	queue_delayed_work_on
+   15dcc:      	ldr	w8, [x22, #0x94c]
+   15dd0:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15dd4:      	ldr	w8, [x25, #0xe60]
+   15dd8:      	cbz	w8, 0x15df4 <vfcs_cms_get_property+0x774>
+   15ddc:      	ldrb	w9, [x25, #0x5d8]
+   15de0:      	tbz	w9, #0x0, 0x15df4 <vfcs_cms_get_property+0x774>
+   15de4:      	ldr	w9, [x25, #0x7a0]
+   15de8:      	ldr	w10, [x25, #0x5e4]
+   15dec:      	cmp	w9, w10
+   15df0:      	b.lt	0x15df8 <vfcs_cms_get_property+0x778>
+   15df4:      	mov	w8, wzr
+   15df8:      	str	w8, [x19]
+   15dfc:      	cbz	x20, 0x165d8 <vfcs_cms_get_property+0xf58>
+   15e00:      	ldr	x9, [x20, #0x10]
+   15e04:      	cbz	x9, 0x1656c <vfcs_cms_get_property+0xeec>
+   15e08:      	ldr	w9, [x9]
+   15e0c:      	tbnz	w9, #0x4, 0x16704 <vfcs_cms_get_property+0x1084>
+   15e10:      	tbz	w9, #0x0, 0x1656c <vfcs_cms_get_property+0xeec>
+   15e14:      	ldr	x1, [x20, #0x18]
+   15e18:      	ldr	w4, [x25, #0x5d8]
+   15e1c:      	adrp	x0, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015e1c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x323f8 ; '\x013%s: %s: vince enable=%d(%d,%d,%d,%d)\n'
+   15e20:      	add	x0, x0, #0x0
+		0000000000015e20:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x323f8 ; '\x013%s: %s: vince enable=%d(%d,%d,%d,%d)\n'
+   15e24:      	ldr	w5, [x25, #0xe60]
+   15e28:      	ldr	w6, [x25, #0x7a0]
+   15e2c:      	ldr	w7, [x25, #0x5e4]
+   15e30:      	adrp	x2, 0x15000 <vfcs_cms_keep_chg_ui_vote_callback+0x14>
+		0000000000015e30:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   15e34:      	add	x2, x2, #0x0
+		0000000000015e34:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   15e38:      	mov	w3, w8
+   15e3c:      	b	0x16868 <vfcs_cms_get_property+0x11e8>
+   15e40:      	mov	x0, x20
+   15e44:      	mov	w1, #0x9
+   15e48:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15e4c:      	ldr	x8, [x20, #0x138]
+   15e50:      	ldr	w8, [x8]
+   15e54:      	cmp	w8, #0x8
+   15e58:      	b.lt	0x16178 <vfcs_cms_get_property+0xaf8>
+   15e5c:      	ldr	x8, [x20, #0x140]
+   15e60:      	ldr	x8, [x8, #0x38]
+   15e64:      	ldr	w8, [x8]
+   15e68:      	cbz	w8, 0x16178 <vfcs_cms_get_property+0xaf8>
+   15e6c:      	ldr	x8, [x25, #0x518]
+   15e70:      	cbnz	x8, 0x16184 <vfcs_cms_get_property+0xb04>
+   15e74:      	b	0x16178 <vfcs_cms_get_property+0xaf8>
+   15e78:      	mov	x0, x20
+   15e7c:      	mov	x1, x19
+   15e80:      	bl	0x15e80 <vfcs_cms_get_property+0x800>
+		0000000000015e80:  R_AARCH64_CALL26	vfcs_cms_get_parallel_board_temp
+   15e84:      	mov	w0, wzr
+   15e88:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15e8c:      	ldr	w0, [x25, #0x64]
+   15e90:      	cmp	w0, #0x1
+   15e94:      	b.lt	0x1656c <vfcs_cms_get_property+0xeec>
+   15e98:      	bl	0x15e98 <vfcs_cms_get_property+0x818>
+		0000000000015e98:  R_AARCH64_CALL26	gpio_to_desc
+   15e9c:      	bl	0x15e9c <vfcs_cms_get_property+0x81c>
+		0000000000015e9c:  R_AARCH64_CALL26	gpiod_get_raw_value
+   15ea0:      	mov	w8, w0
+   15ea4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15ea8:      	ldrb	w8, [x24, #0xf8c]
+   15eac:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15eb0:      	ldr	x8, [x25, #0x58]
+   15eb4:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15eb8:      	ldr	x0, [x25, #0xbd0]
+   15ebc:      	cbnz	x0, 0x15ed0 <vfcs_cms_get_property+0x850>
+   15ec0:      	mov	x0, x8
+   15ec4:      	bl	0x15ec4 <vfcs_cms_get_property+0x844>
+		0000000000015ec4:  R_AARCH64_CALL26	power_supply_get_by_name
+   15ec8:      	str	x0, [x25, #0xbd0]
+   15ecc:      	cbz	x0, 0x169e8 <vfcs_cms_get_property+0x1368>
+   15ed0:      	ldr	w8, [x0, #0x458]
+   15ed4:      	cmp	w8, #0x1
+   15ed8:      	b.lt	0x1656c <vfcs_cms_get_property+0xeec>
+   15edc:      	ldr	x8, [x0]
+   15ee0:      	mov	w1, #0x24d
+   15ee4:      	b	0x15f4c <vfcs_cms_get_property+0x8cc>
+   15ee8:      	mov	x0, x20
+   15eec:      	mov	w1, #0x4
+   15ef0:      	b	0x15f0c <vfcs_cms_get_property+0x88c>
+   15ef4:      	ldr	w8, [x25, #0xe64]
+   15ef8:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15efc:      	ldr	w8, [x25, #0xe48]
+   15f00:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   15f04:      	mov	x0, x20
+   15f08:      	mov	w1, #0xe
+   15f0c:      	mov	x2, x19
+   15f10:      	bl	0x15f10 <vfcs_cms_get_property+0x890>
+		0000000000015f10:  R_AARCH64_CALL26	vfcs_cms_get_general_func
+   15f14:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15f18:      	ldr	x8, [x25, #0x58]
+   15f1c:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   15f20:      	ldr	x0, [x25, #0xbd0]
+   15f24:      	cbnz	x0, 0x15f38 <vfcs_cms_get_property+0x8b8>
+   15f28:      	mov	x0, x8
+   15f2c:      	bl	0x15f2c <vfcs_cms_get_property+0x8ac>
+		0000000000015f2c:  R_AARCH64_CALL26	power_supply_get_by_name
+   15f30:      	str	x0, [x25, #0xbd0]
+   15f34:      	cbz	x0, 0x169e8 <vfcs_cms_get_property+0x1368>
+   15f38:      	ldr	w8, [x0, #0x458]
+   15f3c:      	cmp	w8, #0x1
+   15f40:      	b.lt	0x1656c <vfcs_cms_get_property+0xeec>
+   15f44:      	ldr	x8, [x0]
+   15f48:      	mov	w1, #0x15b
+   15f4c:      	ldr	x8, [x8, #0x28]
+   15f50:      	mov	x2, x19
+   15f54:      	ldur	w16, [x8, #-0x4]
+   15f58:      	movk	w17, #0xcd3
+   15f5c:      	movk	w17, #0xe899, lsl #16
+   15f60:      	cmp	w16, w17
+   15f64:      	b.eq	0x15f6c <vfcs_cms_get_property+0x8ec>
+   15f68:      	brk	#0x8228
+   15f6c:      	blr	x8
+   15f70:      	mov	w0, wzr
+   15f74:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15f78:      	mov	x0, x20
+   15f7c:      	mov	x1, x19
+   15f80:      	bl	0x1953c <vfcs_cms_get_bat_therm2>
+   15f84:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   15f88:      	ldrb	w8, [x25, #0xe4]
+   15f8c:      	tbnz	w8, #0x0, 0x16128 <vfcs_cms_get_property+0xaa8>
+   15f90:      	ldrb	w8, [x25, #0xe1]
+   15f94:      	cmp	w8, #0x1
+   15f98:      	b.ne	0x16128 <vfcs_cms_get_property+0xaa8>
+   15f9c:      	ldr	x0, [x25, #0xbb0]
+   15fa0:      	cbz	x0, 0x15fdc <vfcs_cms_get_property+0x95c>
+   15fa4:      	ldr	w8, [x0, #0x458]
+   15fa8:      	cmp	w8, #0x1
+   15fac:      	b.lt	0x15fdc <vfcs_cms_get_property+0x95c>
+   15fb0:      	ldr	x8, [x0]
+   15fb4:      	mov	w1, #0x7
+   15fb8:      	mov	x2, x19
+   15fbc:      	ldr	x8, [x8, #0x28]
+   15fc0:      	ldur	w16, [x8, #-0x4]
+   15fc4:      	movk	w17, #0xcd3
+   15fc8:      	movk	w17, #0xe899, lsl #16
+   15fcc:      	cmp	w16, w17
+   15fd0:      	b.eq	0x15fd8 <vfcs_cms_get_property+0x958>
+   15fd4:      	brk	#0x8228
+   15fd8:      	blr	x8
+   15fdc:      	ldr	w1, [x19]
+   15fe0:      	mov	x0, x20
+   15fe4:      	bl	0x15fe4 <vfcs_cms_get_property+0x964>
+		0000000000015fe4:  R_AARCH64_CALL26	vfcs_cms_soh__search_cap_loss__from_Capacity_Loss_Cycle_Table
+   15fe8:      	ldrh	w10, [x26, #0x22]
+   15fec:      	sub	w8, w10, #0x65
+   15ff0:      	cmp	w8, #0x398
+   15ff4:      	mov	w8, w0
+   15ff8:      	b.hs	0x1635c <vfcs_cms_get_property+0xcdc>
+   15ffc:      	ldr	w11, [x24, #0xfd0]
+   16000:      	mov	w0, wzr
+   16004:      	mov	w9, wzr
+   16008:      	mul	w10, w11, w10
+   1600c:      	mov	w11, #0x4dd3
+   16010:      	movk	w11, #0x1062, lsl #16
+   16014:      	smull	x10, w10, w11
+   16018:      	lsr	x11, x10, #63
+   1601c:      	asr	x10, x10, #38
+   16020:      	add	w10, w10, w11
+   16024:      	add	w8, w8, w10
+   16028:      	mov	w10, #0x6667
+   1602c:      	add	w8, w8, #0x5
+   16030:      	movk	w10, #0x6666, lsl #16
+   16034:      	smull	x10, w8, w10
+   16038:      	cmn	w8, #0x9
+   1603c:      	lsr	x11, x10, #63
+   16040:      	asr	x10, x10, #34
+   16044:      	add	w3, w10, w11
+   16048:      	str	w3, [x19]
+   1604c:      	b.ge	0x16394 <vfcs_cms_get_property+0xd14>
+   16050:      	b	0x16638 <vfcs_cms_get_property+0xfb8>
+   16054:      	ldr	w8, [x25, #0xe68]
+   16058:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   1605c:      	mov	x0, x20
+   16060:      	mov	x1, x19
+   16064:      	bl	0x197a4 <vfcs_cms_get_wls_therm>
+   16068:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   1606c:      	ldr	x8, [x25, #0x38]
+   16070:      	cbz	x8, 0x16230 <vfcs_cms_get_property+0xbb0>
+   16074:      	ldr	x0, [x25, #0xbc0]
+   16078:      	cbnz	x0, 0x1608c <vfcs_cms_get_property+0xa0c>
+   1607c:      	mov	x0, x8
+   16080:      	bl	0x16080 <vfcs_cms_get_property+0xa00>
+		0000000000016080:  R_AARCH64_CALL26	power_supply_get_by_name
+   16084:      	str	x0, [x25, #0xbc0]
+   16088:      	cbz	x0, 0x16230 <vfcs_cms_get_property+0xbb0>
+   1608c:      	ldr	w8, [x0, #0x458]
+   16090:      	cmp	w8, #0x0
+   16094:      	b.le	0x16338 <vfcs_cms_get_property+0xcb8>
+   16098:      	ldr	x8, [x0]
+   1609c:      	mov	w1, #0xfe
+   160a0:      	mov	x2, x19
+   160a4:      	ldr	x8, [x8, #0x28]
+   160a8:      	ldur	w16, [x8, #-0x4]
+   160ac:      	movk	w17, #0xcd3
+   160b0:      	movk	w17, #0xe899, lsl #16
+   160b4:      	cmp	w16, w17
+   160b8:      	b.eq	0x160c0 <vfcs_cms_get_property+0xa40>
+   160bc:      	brk	#0x8228
+   160c0:      	blr	x8
+   160c4:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   160c8:      	ldr	w8, [x22, #0xec4]
+   160cc:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   160d0:      	ldr	w8, [x20, #0x2c]
+   160d4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   160d8:      	mov	x0, x20
+   160dc:      	mov	x1, x19
+   160e0:      	bl	0x160e0 <vfcs_cms_get_property+0xa60>
+		00000000000160e0:  R_AARCH64_CALL26	vfcs_cms_get_usb_conn_temp
+   160e4:      	mov	w0, wzr
+   160e8:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   160ec:      	ldr	w8, [x22, #0xef0]
+   160f0:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   160f4:      	mov	x0, x20
+   160f8:      	mov	x1, x19
+   160fc:      	bl	0x19d44 <vfcs_cms_get_master_bat_conn_temp>
+   16100:      	mov	w0, wzr
+   16104:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16108:      	mov	x0, x20
+   1610c:      	mov	x1, x19
+   16110:      	bl	0x1a31c <vfcs_cms_get_vbat_sns>
+   16114:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16118:      	ldr	w8, [x22, #0xeb0]
+   1611c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   16120:      	ldrb	w8, [x25, #0xe4]
+   16124:      	tbz	w8, #0x0, 0x161fc <vfcs_cms_get_property+0xb7c>
+   16128:      	mov	w0, #-0x16
+   1612c:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16130:      	mov	x0, x20
+   16134:      	mov	x1, x19
+   16138:      	bl	0x16138 <vfcs_cms_get_property+0xab8>
+		0000000000016138:  R_AARCH64_CALL26	vfcs_cms_get_vir_shell_temp
+   1613c:      	mov	w0, wzr
+   16140:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16144:      	ldr	w8, [x22, #0xb9c]
+   16148:      	cmp	w8, #0x1
+   1614c:      	b.ge	0x169e0 <vfcs_cms_get_property+0x1360>
+   16150:      	ldr	w8, [x25, #0x7dc]
+   16154:      	cbnz	w8, 0x16178 <vfcs_cms_get_property+0xaf8>
+   16158:      	ldr	w8, [x22, #0xb78]
+   1615c:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   16160:      	mov	x0, x20
+   16164:      	mov	x1, x19
+   16168:      	bl	0x1ab1c <vfcs_cms_get_protocol_power_pdo>
+   1616c:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16170:      	ldr	w8, [x22, #0xef4]
+   16174:      	cbz	w8, 0x16184 <vfcs_cms_get_property+0xb04>
+   16178:      	mov	w0, wzr
+   1617c:      	str	wzr, [x19]
+   16180:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16184:      	mov	w8, #0x1
+   16188:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   1618c:      	ldr	w8, [x22, #0x1a8]
+   16190:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   16194:      	mov	x0, x20
+   16198:      	mov	w1, #0x1c
+   1619c:      	mov	x2, x19
+   161a0:      	bl	0x161a0 <vfcs_cms_get_property+0xb20>
+		00000000000161a0:  R_AARCH64_CALL26	vfcs_cms_get_general_func
+   161a4:      	cbz	x20, 0x16614 <vfcs_cms_get_property+0xf94>
+   161a8:      	ldr	x8, [x20, #0x10]
+   161ac:      	cbz	x8, 0x1656c <vfcs_cms_get_property+0xeec>
+   161b0:      	ldr	w8, [x8]
+   161b4:      	tbnz	w8, #0x4, 0x16740 <vfcs_cms_get_property+0x10c0>
+   161b8:      	tbz	w8, #0x0, 0x1656c <vfcs_cms_get_property+0xeec>
+   161bc:      	ldr	x1, [x20, #0x18]
+   161c0:      	ldr	w3, [x19]
+   161c4:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000161c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x589e ; '\x013%s: %s: get otg_power_enable=%d(1:enable,0:disable)\n'
+   161c8:      	add	x0, x0, #0x0
+		00000000000161c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x589e ; '\x013%s: %s: get otg_power_enable=%d(1:enable,0:disable)\n'
+   161cc:      	adrp	x2, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000161cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   161d0:      	add	x2, x2, #0x0
+		00000000000161d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   161d4:      	bl	0x161d4 <vfcs_cms_get_property+0xb54>
+		00000000000161d4:  R_AARCH64_CALL26	_printk
+   161d8:      	mov	w0, wzr
+   161dc:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   161e0:      	ldrb	w8, [x24, #0xfad]
+   161e4:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   161e8:      	ldr	w8, [x24, #0xf98]
+   161ec:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   161f0:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000161f0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x9e8 ; _health_status_map
+   161f4:      	add	x8, x8, #0x0
+		00000000000161f4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x9e8 ; _health_status_map
+   161f8:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   161fc:      	ldrb	w8, [x25, #0xe1]
+   16200:      	cmp	w8, #0x1
+   16204:      	b.ne	0x162f8 <vfcs_cms_get_property+0xc78>
+   16208:      	ldrb	w8, [x26, #0x6a]
+   1620c:      	tbnz	w8, #0x0, 0x16228 <vfcs_cms_get_property+0xba8>
+   16210:      	ldrb	w8, [x26, #0x7c]
+   16214:      	cmp	w8, #0x1
+   16218:      	b.ne	0x16228 <vfcs_cms_get_property+0xba8>
+   1621c:      	ldrb	w8, [x26, #0x7d]
+   16220:      	cmp	w8, #0x1
+   16224:      	b.ne	0x1677c <vfcs_cms_get_property+0x10fc>
+   16228:      	mov	w3, #0x2
+   1622c:      	b	0x162fc <vfcs_cms_get_property+0xc7c>
+   16230:      	ldr	w8, [x22, #0x950]
+   16234:      	b	0x169e0 <vfcs_cms_get_property+0x1360>
+   16238:      	mov	x0, x20
+   1623c:      	mov	x1, x19
+   16240:      	bl	0x16240 <vfcs_cms_get_property+0xbc0>
+		0000000000016240:  R_AARCH64_CALL26	vfcs_cms_get_primary_board_temp
+   16244:      	ldr	w8, [x19]
+   16248:      	mov	w0, wzr
+   1624c:      	str	w8, [x22, #0xb74]
+   16250:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16254:      	ldrb	w8, [x28, #0x1]
+   16258:      	cmp	w8, #0x1
+   1625c:      	b.ne	0x16270 <vfcs_cms_get_property+0xbf0>
+   16260:      	ldrh	w8, [x28, #0x6]
+   16264:      	sub	w9, w8, #0x65
+   16268:      	cmp	w9, #0x397
+   1626c:      	b.ls	0x15968 <vfcs_cms_get_property+0x2e8>
+   16270:      	ldr	w9, [x20, #0x170]
+   16274:      	ldr	w8, [x26, #0x2b8]
+   16278:      	cmp	w9, #0x3
+   1627c:      	b.ne	0x16290 <vfcs_cms_get_property+0xc10>
+   16280:      	cbz	w8, 0x16298 <vfcs_cms_get_property+0xc18>
+   16284:      	ldr	w9, [x26, #0x2ec]
+   16288:      	cbz	w9, 0x16298 <vfcs_cms_get_property+0xc18>
+   1628c:      	add	w8, w9, w8
+   16290:      	cmp	w8, w15
+   16294:      	b.ls	0x1629c <vfcs_cms_get_property+0xc1c>
+   16298:      	mov	w8, wzr
+   1629c:      	str	w8, [x19]
+   162a0:      	ldr	x0, [x25, #0xbb0]
+   162a4:      	cbz	x0, 0x163a4 <vfcs_cms_get_property+0xd24>
+   162a8:      	ldr	w8, [x0, #0x458]
+   162ac:      	mov	x24, x12
+   162b0:      	cmp	w8, #0x1
+   162b4:      	b.lt	0x163a8 <vfcs_cms_get_property+0xd28>
+   162b8:      	ldr	x8, [x0]
+   162bc:      	sub	x2, x29, #0x10
+   162c0:      	mov	w1, #0x7
+   162c4:      	ldr	x8, [x8, #0x28]
+   162c8:      	ldur	w16, [x8, #-0x4]
+   162cc:      	movk	w17, #0xcd3
+   162d0:      	movk	w17, #0xe899, lsl #16
+   162d4:      	cmp	w16, w17
+   162d8:      	b.eq	0x162e0 <vfcs_cms_get_property+0xc60>
+   162dc:      	brk	#0x8228
+   162e0:      	blr	x8
+   162e4:      	ldur	w1, [x29, #-0x10]
+   162e8:      	b	0x163ac <vfcs_cms_get_property+0xd2c>
+   162ec:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000162ec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x9f0 ; _health_status_map+0x8
+   162f0:      	add	x8, x8, #0x0
+		00000000000162f0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x9f0 ; _health_status_map+0x8
+   162f4:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   162f8:      	mov	w3, wzr
+   162fc:      	str	w3, [x19]
+   16300:      	adrp	x21, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016300:  R_AARCH64_ADR_PREL_PG_HI21	.data+0xf8 ; vfcs_cms_get_property.last_learning_battery_state
+   16304:      	ldr	w8, [x21]
+		0000000000016304:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0xf8 ; vfcs_cms_get_property.last_learning_battery_state
+   16308:      	cmp	w8, w3
+   1630c:      	b.eq	0x16328 <vfcs_cms_get_property+0xca8>
+   16310:      	cbz	x20, 0x16880 <vfcs_cms_get_property+0x1200>
+   16314:      	ldr	x8, [x20, #0x10]
+   16318:      	cbz	x8, 0x16328 <vfcs_cms_get_property+0xca8>
+   1631c:      	ldr	w8, [x8]
+   16320:      	tbnz	w8, #0x4, 0x1689c <vfcs_cms_get_property+0x121c>
+   16324:      	tbnz	w8, #0x0, 0x168c8 <vfcs_cms_get_property+0x1248>
+   16328:      	ldr	w8, [x19]
+   1632c:      	mov	w0, wzr
+   16330:      	str	w8, [x21]
+		0000000000016330:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0xf8 ; vfcs_cms_get_property.last_learning_battery_state
+   16334:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16338:      	ldrb	w8, [x0, #0x455]
+   1633c:      	mov	w9, #-0x13
+   16340:      	cmp	w8, #0x0
+   16344:      	mov	w8, #-0xb
+   16348:      	csel	w0, w9, w8, ne
+   1634c:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16350:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016350:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0x9f8 ; _health_status_map+0x10
+   16354:      	add	x8, x8, #0x0
+		0000000000016354:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0x9f8 ; _health_status_map+0x10
+   16358:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   1635c:      	ldrb	w9, [x28, #0x1]
+   16360:      	cmp	w9, #0x1
+   16364:      	b.ne	0x16378 <vfcs_cms_get_property+0xcf8>
+   16368:      	ldrh	w10, [x28, #0x6]
+   1636c:      	sub	w9, w10, #0x1
+   16370:      	cmp	w9, #0x3fc
+   16374:      	b.lo	0x15ffc <vfcs_cms_get_property+0x97c>
+   16378:      	ldr	w1, [x19]
+   1637c:      	mov	x0, x20
+   16380:      	bl	0x16380 <vfcs_cms_get_property+0xd00>
+		0000000000016380:  R_AARCH64_CALL26	vfcs_cms_soh__search_soh__from_Soh_Cycle_Table
+   16384:      	cmp	w0, #0x1
+   16388:      	b.lt	0x16634 <vfcs_cms_get_property+0xfb4>
+   1638c:      	str	w0, [x19]
+   16390:      	mov	w3, w0
+   16394:      	cmp	w3, #0x65
+   16398:      	b.lt	0x16640 <vfcs_cms_get_property+0xfc0>
+   1639c:      	mov	w9, #0x64
+   163a0:      	b	0x16638 <vfcs_cms_get_property+0xfb8>
+   163a4:      	mov	x24, x12
+   163a8:      	mov	w1, wzr
+   163ac:      	mov	x0, x20
+   163b0:      	stur	w1, [x29, #-0x1c]
+   163b4:      	bl	0x163b4 <vfcs_cms_get_property+0xd34>
+		00000000000163b4:  R_AARCH64_CALL26	vfcs_cms_soh__search_cap_loss__from_Capacity_Loss_Cycle_Table
+   163b8:      	ldr	w8, [x19]
+   163bc:      	mov	w9, #0x3e8
+   163c0:      	mov	w15, #0x4240
+   163c4:      	sub	w9, w9, w0
+   163c8:      	mov	w5, w0
+   163cc:      	movk	w15, #0xf, lsl #16
+   163d0:      	mul	w8, w8, w9
+   163d4:      	mov	w9, #0x4dd3
+   163d8:      	mov	x12, x24
+   163dc:      	movk	w9, #0x1062, lsl #16
+   163e0:      	smull	x8, w8, w9
+   163e4:      	lsr	x9, x8, #63
+   163e8:      	asr	x8, x8, #38
+   163ec:      	add	w8, w8, w9
+   163f0:      	add	w22, w22, w12
+   163f4:      	add	w28, w23, w27
+   163f8:      	str	w8, [x19]
+   163fc:      	cbz	w8, 0x16418 <vfcs_cms_get_property+0xd98>
+   16400:      	ldr	w9, [x26, #0x2b4]
+   16404:      	cbnz	w9, 0x16410 <vfcs_cms_get_property+0xd90>
+   16408:      	ldrh	w9, [x26]
+   1640c:      	cbz	w9, 0x16418 <vfcs_cms_get_property+0xd98>
+   16410:      	mov	w23, wzr
+   16414:      	b	0x16494 <vfcs_cms_get_property+0xe14>
+   16418:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016418:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x78 ; vfcs_cms_get_property.rand_data
+   1641c:      	ldr	w8, [x8]
+		000000000001641c:  R_AARCH64_LDST32_ABS_LO12_NC	.bss+0x78 ; vfcs_cms_get_property.rand_data
+   16420:      	cbnz	w8, 0x1644c <vfcs_cms_get_property+0xdcc>
+   16424:      	adrp	x24, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016424:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x78 ; vfcs_cms_get_property.rand_data
+   16428:      	add	x24, x24, #0x0
+		0000000000016428:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x78 ; vfcs_cms_get_property.rand_data
+   1642c:      	mov	w1, #0x4
+   16430:      	mov	x0, x24
+   16434:      	mov	w23, w5
+   16438:      	bl	0x16438 <vfcs_cms_get_property+0xdb8>
+		0000000000016438:  R_AARCH64_CALL26	get_random_bytes
+   1643c:      	mov	w15, #0x4240
+   16440:      	ldr	w8, [x24]
+   16444:      	mov	w5, w23
+   16448:      	movk	w15, #0xf, lsl #16
+   1644c:      	sub	w9, w22, w28
+   16450:      	udiv	w10, w8, w9
+   16454:      	msub	w8, w10, w9, w8
+   16458:      	add	w8, w8, w28
+   1645c:      	cmp	w8, w28
+   16460:      	csel	w9, w8, w28, gt
+   16464:      	cmp	w8, w22
+   16468:      	mov	w8, #0x3e8
+   1646c:      	csel	w23, w22, w9, gt
+   16470:      	sub	w8, w8, w5
+   16474:      	mov	w9, #0x4dd3
+   16478:      	mul	w8, w23, w8
+   1647c:      	movk	w9, #0x1062, lsl #16
+   16480:      	smull	x8, w8, w9
+   16484:      	lsr	x9, x8, #63
+   16488:      	asr	x8, x8, #38
+   1648c:      	add	w8, w8, w9
+   16490:      	str	w8, [x19]
+   16494:      	mov	w9, #0x3e8
+   16498:      	mov	w10, #0x4dd3
+   1649c:      	ldr	w11, [x25, #0x1e8]
+   164a0:      	sub	w24, w9, w5
+   164a4:      	movk	w10, #0x1062, lsl #16
+   164a8:      	mov	w12, #0x851f
+   164ac:      	mul	w9, w24, w21
+   164b0:      	movk	w12, #0x51eb, lsl #16
+   164b4:      	mov	w13, #0x64
+   164b8:      	smull	x9, w9, w10
+   164bc:      	lsr	x10, x9, #63
+   164c0:      	asr	x9, x9, #38
+   164c4:      	add	w9, w9, w10
+   164c8:      	add	w10, w11, #0x64
+   164cc:      	sub	w11, w13, w11
+   164d0:      	mul	w10, w10, w9
+   164d4:      	mul	w9, w11, w9
+   164d8:      	smull	x10, w10, w12
+   164dc:      	lsr	x14, x10, #63
+   164e0:      	asr	x10, x10, #37
+   164e4:      	add	w10, w10, w14
+   164e8:      	cmp	w21, w10
+   164ec:      	csel	w25, w21, w10, lt
+   164f0:      	smull	x10, w9, w12
+   164f4:      	cmp	w8, #0x0
+   164f8:      	cset	w11, gt
+   164fc:      	cmp	w25, #0x0
+   16500:      	ccmp	w8, w25, #0x4, gt
+   16504:      	lsr	x12, x10, #63
+   16508:      	asr	x10, x10, #37
+   1650c:      	cset	w13, gt
+   16510:      	ands	w11, w11, w13
+   16514:      	add	w27, w10, w12
+   16518:      	csel	w8, w25, w8, ne
+   1651c:      	cmp	w8, w27
+   16520:      	cset	w10, lt
+   16524:      	cmp	w9, #0x63
+   16528:      	ccmp	w8, #0x0, #0x4, gt
+   1652c:      	cset	w9, gt
+   16530:      	ands	w10, w9, w10
+   16534:      	csel	w9, w27, w8, ne
+   16538:      	cmp	w9, w15
+   1653c:      	csel	w8, wzr, w9, hi
+   16540:      	tbnz	w11, #0x0, 0x16550 <vfcs_cms_get_property+0xed0>
+   16544:      	tbnz	w10, #0x0, 0x16550 <vfcs_cms_get_property+0xed0>
+   16548:      	cmp	w9, w15
+   1654c:      	b.ls	0x16554 <vfcs_cms_get_property+0xed4>
+   16550:      	str	w8, [x19]
+   16554:      	cbz	x20, 0x16784 <vfcs_cms_get_property+0x1104>
+   16558:      	ldr	x9, [x20, #0x10]
+   1655c:      	cbz	x9, 0x1656c <vfcs_cms_get_property+0xeec>
+   16560:      	ldr	w9, [x9]
+   16564:      	tbnz	w9, #0x4, 0x167cc <vfcs_cms_get_property+0x114c>
+   16568:      	tbnz	w9, #0x0, 0x16828 <vfcs_cms_get_property+0x11a8>
+   1656c:      	mov	w0, wzr
+   16570:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16574:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016574:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa00 ; _health_status_map+0x18
+   16578:      	add	x8, x8, #0x0
+		0000000000016578:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa00 ; _health_status_map+0x18
+   1657c:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   16580:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016580:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x46db7 ; '\x013%s: delay_cycle_flag = %d\n'
+   16584:      	add	x0, x0, #0x0
+		0000000000016584:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x46db7 ; '\x013%s: delay_cycle_flag = %d\n'
+   16588:      	b	0x165c8 <vfcs_cms_get_property+0xf48>
+   1658c:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		000000000001658c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d3c0 ; '\x013%s: os_version = %d\n'
+   16590:      	add	x0, x0, #0x0
+		0000000000016590:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d3c0 ; '\x013%s: os_version = %d\n'
+   16594:      	b	0x165c8 <vfcs_cms_get_property+0xf48>
+   16598:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016598:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4190a ; '\x013%s: fist_os_version = %d\n'
+   1659c:      	add	x0, x0, #0x0
+		000000000001659c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4190a ; '\x013%s: fist_os_version = %d\n'
+   165a0:      	b	0x165c8 <vfcs_cms_get_property+0xf48>
+   165a4:      	ldrb	w2, [x24, #0xa90]
+   165a8:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000165a8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x44247 ; '\x013%s: ## get otg_enable=%d ##\n'
+   165ac:      	add	x0, x0, #0x0
+		00000000000165ac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x44247 ; '\x013%s: ## get otg_enable=%d ##\n'
+   165b0:      	b	0x16620 <vfcs_cms_get_property+0xfa0>
+   165b4:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000165b4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x492d2 ; '\x013%s: system ui get ai_disable_charge=%d\n'
+   165b8:      	add	x0, x0, #0x0
+		00000000000165b8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x492d2 ; '\x013%s: system ui get ai_disable_charge=%d\n'
+   165bc:      	b	0x165c8 <vfcs_cms_get_property+0xf48>
+   165c0:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000165c0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2f683 ; '\x013%s: delay_cycle_count = %d\n'
+   165c4:      	add	x0, x0, #0x0
+		00000000000165c4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2f683 ; '\x013%s: delay_cycle_count = %d\n'
+   165c8:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000165c8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   165cc:      	add	x1, x1, #0x0
+		00000000000165cc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   165d0:      	mov	w2, w3
+   165d4:      	b	0x16628 <vfcs_cms_get_property+0xfa8>
+   165d8:      	mov	w9, #0xc1f0
+   165dc:      	mov	w10, #0xc3b8
+   165e0:      	mov	w11, #0xc1fc
+   165e4:      	ldr	w3, [x9]
+   165e8:      	ldr	w4, [x25, #0xe60]
+   165ec:      	ldr	w5, [x10]
+   165f0:      	ldr	w6, [x11]
+   165f4:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000165f4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2bc1 ; '\x013%s: vince enable=%d(%d,%d,%d,%d)\n'
+   165f8:      	add	x0, x0, #0x0
+		00000000000165f8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2bc1 ; '\x013%s: vince enable=%d(%d,%d,%d,%d)\n'
+   165fc:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000165fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16600:      	add	x1, x1, #0x0
+		0000000000016600:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16604:      	mov	w2, w8
+   16608:      	bl	0x16608 <vfcs_cms_get_property+0xf88>
+		0000000000016608:  R_AARCH64_CALL26	_printk
+   1660c:      	mov	w0, wzr
+   16610:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16614:      	ldr	w2, [x19]
+   16618:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016618:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1bab7 ; '\x013%s: get otg_power_enable=%d(1:enable,0:disable)\n'
+   1661c:      	add	x0, x0, #0x0
+		000000000001661c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1bab7 ; '\x013%s: get otg_power_enable=%d(1:enable,0:disable)\n'
+   16620:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016620:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16624:      	add	x1, x1, #0x0
+		0000000000016624:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16628:      	bl	0x16628 <vfcs_cms_get_property+0xfa8>
+		0000000000016628:  R_AARCH64_CALL26	_printk
+   1662c:      	mov	w0, wzr
+   16630:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16634:      	mov	w9, wzr
+   16638:      	mov	w3, w9
+   1663c:      	str	w9, [x19]
+   16640:      	adrp	x22, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016640:  R_AARCH64_ADR_PREL_PG_HI21	.data+0xfc ; vfcs_cms_get_property.last_soh
+   16644:      	ldr	w8, [x22]
+		0000000000016644:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0xfc ; vfcs_cms_get_property.last_soh
+   16648:      	cmp	w8, w3
+   1664c:      	b.eq	0x16668 <vfcs_cms_get_property+0xfe8>
+   16650:      	cbz	x20, 0x168f0 <vfcs_cms_get_property+0x1270>
+   16654:      	ldr	x8, [x20, #0x10]
+   16658:      	cbz	x8, 0x16668 <vfcs_cms_get_property+0xfe8>
+   1665c:      	ldr	w8, [x8]
+   16660:      	tbnz	w8, #0x4, 0x16918 <vfcs_cms_get_property+0x1298>
+   16664:      	tbnz	w8, #0x0, 0x16950 <vfcs_cms_get_property+0x12d0>
+   16668:      	ldr	w8, [x19]
+   1666c:      	str	w8, [x22]
+		000000000001666c:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0xfc ; vfcs_cms_get_property.last_soh
+   16670:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16674:      	bl	0x4ec <get_android_time>
+   16678:      	ldr	x2, [x20, #0x18]
+   1667c:      	ldr	w4, [x19]
+   16680:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016680:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x37890 ; '\x013[%s]%s: %s: delay_cycle_flag = %d\n'
+   16684:      	add	x0, x0, #0x0
+		0000000000016684:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x37890 ; '\x013[%s]%s: %s: delay_cycle_flag = %d\n'
+   16688:      	b	0x16754 <vfcs_cms_get_property+0x10d4>
+   1668c:      	bl	0x4ec <get_android_time>
+   16690:      	ldr	x2, [x20, #0x18]
+   16694:      	ldr	w4, [x19]
+   16698:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016698:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x23247 ; '\x013[%s]%s: %s: os_version = %d\n'
+   1669c:      	add	x0, x0, #0x0
+		000000000001669c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x23247 ; '\x013[%s]%s: %s: os_version = %d\n'
+   166a0:      	b	0x16754 <vfcs_cms_get_property+0x10d4>
+   166a4:      	bl	0x4ec <get_android_time>
+   166a8:      	ldr	x2, [x20, #0x18]
+   166ac:      	ldr	w4, [x19]
+   166b0:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000166b0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x46d93 ; '\x013[%s]%s: %s: fist_os_version = %d\n'
+   166b4:      	add	x0, x0, #0x0
+		00000000000166b4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x46d93 ; '\x013[%s]%s: %s: fist_os_version = %d\n'
+   166b8:      	b	0x16754 <vfcs_cms_get_property+0x10d4>
+   166bc:      	bl	0x4ec <get_android_time>
+   166c0:      	ldr	x2, [x20, #0x18]
+   166c4:      	ldrb	w4, [x24, #0xa90]
+   166c8:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000166c8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3f25c ; '\x013[%s]%s: %s: ## get otg_enable=%d ##\n'
+   166cc:      	add	x0, x0, #0x0
+		00000000000166cc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3f25c ; '\x013[%s]%s: %s: ## get otg_enable=%d ##\n'
+   166d0:      	b	0x16754 <vfcs_cms_get_property+0x10d4>
+   166d4:      	bl	0x4ec <get_android_time>
+   166d8:      	ldr	x2, [x20, #0x18]
+   166dc:      	ldr	w4, [x25, #0xe2c]
+   166e0:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000166e0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x41894 ; '\x013[%s]%s: %s: system ui get ai_disable_charge=%d\n'
+   166e4:      	add	x0, x0, #0x0
+		00000000000166e4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x41894 ; '\x013[%s]%s: %s: system ui get ai_disable_charge=%d\n'
+   166e8:      	b	0x16754 <vfcs_cms_get_property+0x10d4>
+   166ec:      	bl	0x4ec <get_android_time>
+   166f0:      	ldr	x2, [x20, #0x18]
+   166f4:      	ldr	w4, [x19]
+   166f8:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000166f8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x46dd4 ; '\x013[%s]%s: %s: delay_cycle_count = %d\n'
+   166fc:      	add	x0, x0, #0x0
+		00000000000166fc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x46dd4 ; '\x013[%s]%s: %s: delay_cycle_count = %d\n'
+   16700:      	b	0x16754 <vfcs_cms_get_property+0x10d4>
+   16704:      	bl	0x4ec <get_android_time>
+   16708:      	ldr	x2, [x20, #0x18]
+   1670c:      	ldr	w4, [x19]
+   16710:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016710:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4b745 ; '\x013[%s]%s: %s: vince enable=%d(%d,%d,%d,%d)\n'
+   16714:      	add	x0, x0, #0x0
+		0000000000016714:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4b745 ; '\x013[%s]%s: %s: vince enable=%d(%d,%d,%d,%d)\n'
+   16718:      	ldr	w5, [x25, #0x5d8]
+   1671c:      	ldr	w6, [x25, #0xe60]
+   16720:      	ldr	w7, [x25, #0x7a0]
+   16724:      	ldr	w8, [x25, #0x5e4]
+   16728:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016728:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   1672c:      	add	x1, x1, #0x0
+		000000000001672c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   16730:      	adrp	x3, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016730:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16734:      	add	x3, x3, #0x0
+		0000000000016734:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16738:      	str	w8, [sp]
+   1673c:      	b	0x1681c <vfcs_cms_get_property+0x119c>
+   16740:      	bl	0x4ec <get_android_time>
+   16744:      	ldr	x2, [x20, #0x18]
+   16748:      	ldr	w4, [x19]
+   1674c:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		000000000001674c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3cdc3 ; '\x013[%s]%s: %s: get otg_power_enable=%d(1:enable,0:disable)\n'
+   16750:      	add	x0, x0, #0x0
+		0000000000016750:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3cdc3 ; '\x013[%s]%s: %s: get otg_power_enable=%d(1:enable,0:disable)\n'
+   16754:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016754:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   16758:      	add	x1, x1, #0x0
+		0000000000016758:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   1675c:      	adrp	x3, 0x16000 <vfcs_cms_get_property+0x980>
+		000000000001675c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16760:      	add	x3, x3, #0x0
+		0000000000016760:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16764:      	bl	0x16764 <vfcs_cms_get_property+0x10e4>
+		0000000000016764:  R_AARCH64_CALL26	_printk
+   16768:      	mov	w0, wzr
+   1676c:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16770:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016770:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa08 ; _health_status_map+0x20
+   16774:      	add	x8, x8, #0x0
+		0000000000016774:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa08 ; _health_status_map+0x20
+   16778:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   1677c:      	mov	w3, #0x1
+   16780:      	b	0x162fc <vfcs_cms_get_property+0xc7c>
+   16784:      	mov	w9, #0xe0d4
+   16788:      	ldur	w4, [x29, #-0x1c]
+   1678c:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		000000000001678c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x39ea3 ; '\x013%s: aging_capacity_avg=%d, power_bigdata_capacity_max=%d, cur_cycle=%d, capacity_loss=%d[%d], return_value=%d[%d,%d], default_capacity_mah=%d[%d,%d]. \n'
+   16790:      	add	x0, x0, #0x0
+		0000000000016790:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x39ea3 ; '\x013%s: aging_capacity_avg=%d, power_bigdata_capacity_max=%d, cur_cycle=%d, capacity_loss=%d[%d], return_value=%d[%d,%d], default_capacity_mah=%d[%d,%d]. \n'
+   16794:      	ldr	w2, [x9]
+   16798:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016798:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   1679c:      	add	x1, x1, #0x0
+		000000000001679c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   167a0:      	mov	w3, w21
+   167a4:      	mov	w6, w24
+   167a8:      	mov	w7, w8
+   167ac:      	str	w22, [sp, #0x20]
+   167b0:      	str	w28, [sp, #0x18]
+   167b4:      	str	w23, [sp, #0x10]
+   167b8:      	str	w25, [sp, #0x8]
+   167bc:      	str	w27, [sp]
+   167c0:      	bl	0x167c0 <vfcs_cms_get_property+0x1140>
+		00000000000167c0:  R_AARCH64_CALL26	_printk
+   167c4:      	mov	w0, wzr
+   167c8:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   167cc:      	stur	w5, [x29, #-0x20]
+   167d0:      	bl	0x4ec <get_android_time>
+   167d4:      	ldr	w8, [x19]
+   167d8:      	ldr	x2, [x20, #0x18]
+   167dc:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000167dc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x12f5b ; '\x013[%s]%s: %s: aging_capacity_avg=%d, power_bigdata_capacity_max=%d, cur_cycle=%d, capacity_loss=%d[%d], return_value=%d[%d,%d], default_capacity_mah=%d[%d,%d]. \n'
+   167e0:      	add	x0, x0, #0x0
+		00000000000167e0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x12f5b ; '\x013[%s]%s: %s: aging_capacity_avg=%d, power_bigdata_capacity_max=%d, cur_cycle=%d, capacity_loss=%d[%d], return_value=%d[%d,%d], default_capacity_mah=%d[%d,%d]. \n'
+   167e4:      	ldr	w4, [x26, #0x2b8]
+   167e8:      	str	w22, [sp, #0x30]
+   167ec:      	ldp	w7, w6, [x29, #-0x20]
+   167f0:      	str	w28, [sp, #0x28]
+   167f4:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000167f4:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   167f8:      	add	x1, x1, #0x0
+		00000000000167f8:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   167fc:      	str	w23, [sp, #0x20]
+   16800:      	adrp	x3, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016800:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16804:      	add	x3, x3, #0x0
+		0000000000016804:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16808:      	str	w25, [sp, #0x18]
+   1680c:      	mov	w5, w21
+   16810:      	str	w27, [sp, #0x10]
+   16814:      	str	w8, [sp, #0x8]
+   16818:      	str	w24, [sp]
+   1681c:      	bl	0x1681c <vfcs_cms_get_property+0x119c>
+		000000000001681c:  R_AARCH64_CALL26	_printk
+   16820:      	mov	w0, wzr
+   16824:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16828:      	ldr	x1, [x20, #0x18]
+   1682c:      	ldr	w3, [x26, #0x2b8]
+   16830:      	mov	w6, w5
+   16834:      	ldur	w5, [x29, #-0x1c]
+   16838:      	str	w22, [sp, #0x28]
+   1683c:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		000000000001683c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x19b83 ; '\x013%s: %s: aging_capacity_avg=%d, power_bigdata_capacity_max=%d, cur_cycle=%d, capacity_loss=%d[%d], return_value=%d[%d,%d], default_capacity_mah=%d[%d,%d]. \n'
+   16840:      	add	x0, x0, #0x0
+		0000000000016840:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x19b83 ; '\x013%s: %s: aging_capacity_avg=%d, power_bigdata_capacity_max=%d, cur_cycle=%d, capacity_loss=%d[%d], return_value=%d[%d,%d], default_capacity_mah=%d[%d,%d]. \n'
+   16844:      	str	w28, [sp, #0x20]
+   16848:      	adrp	x2, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016848:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   1684c:      	add	x2, x2, #0x0
+		000000000001684c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16850:      	str	w23, [sp, #0x18]
+   16854:      	mov	w4, w21
+   16858:      	str	w25, [sp, #0x10]
+   1685c:      	mov	w7, w24
+   16860:      	str	w27, [sp, #0x8]
+   16864:      	str	w8, [sp]
+   16868:      	bl	0x16868 <vfcs_cms_get_property+0x11e8>
+		0000000000016868:  R_AARCH64_CALL26	_printk
+   1686c:      	mov	w0, wzr
+   16870:      	b	0x169e8 <vfcs_cms_get_property+0x1368>
+   16874:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016874:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa10 ; _health_status_map+0x28
+   16878:      	add	x8, x8, #0x0
+		0000000000016878:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa10 ; _health_status_map+0x28
+   1687c:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   16880:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016880:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15450 ; '\x013%s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_CAPACITY_STATE: val=%d\n'
+   16884:      	add	x0, x0, #0x0
+		0000000000016884:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15450 ; '\x013%s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_CAPACITY_STATE: val=%d\n'
+   16888:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016888:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   1688c:      	add	x1, x1, #0x0
+		000000000001688c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16890:      	mov	w2, w3
+   16894:      	bl	0x16894 <vfcs_cms_get_property+0x1214>
+		0000000000016894:  R_AARCH64_CALL26	_printk
+   16898:      	b	0x16328 <vfcs_cms_get_property+0xca8>
+   1689c:      	bl	0x4ec <get_android_time>
+   168a0:      	ldr	x2, [x20, #0x18]
+   168a4:      	ldr	w4, [x19]
+   168a8:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168a8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2f633 ; '\x013[%s]%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_CAPACITY_STATE: val=%d\n'
+   168ac:      	add	x0, x0, #0x0
+		00000000000168ac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2f633 ; '\x013[%s]%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_CAPACITY_STATE: val=%d\n'
+   168b0:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168b0:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   168b4:      	add	x1, x1, #0x0
+		00000000000168b4:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   168b8:      	adrp	x3, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   168bc:      	add	x3, x3, #0x0
+		00000000000168bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   168c0:      	bl	0x168c0 <vfcs_cms_get_property+0x1240>
+		00000000000168c0:  R_AARCH64_CALL26	_printk
+   168c4:      	b	0x16328 <vfcs_cms_get_property+0xca8>
+   168c8:      	ldr	x1, [x20, #0x18]
+   168cc:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d374 ; '\x013%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_CAPACITY_STATE: val=%d\n'
+   168d0:      	add	x0, x0, #0x0
+		00000000000168d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d374 ; '\x013%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_CAPACITY_STATE: val=%d\n'
+   168d4:      	adrp	x2, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168d4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   168d8:      	add	x2, x2, #0x0
+		00000000000168d8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   168dc:      	bl	0x168dc <vfcs_cms_get_property+0x125c>
+		00000000000168dc:  R_AARCH64_CALL26	_printk
+   168e0:      	b	0x16328 <vfcs_cms_get_property+0xca8>
+   168e4:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168e4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa18 ; _health_status_map+0x30
+   168e8:      	add	x8, x8, #0x0
+		00000000000168e8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa18 ; _health_status_map+0x30
+   168ec:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   168f0:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168f0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x418c6 ; '\x013%s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_SOH: val=%d, rc=%d\n'
+   168f4:      	add	x8, x8, #0x0
+		00000000000168f4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x418c6 ; '\x013%s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_SOH: val=%d, rc=%d\n'
+   168f8:      	mov	w20, w0
+   168fc:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000168fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16900:      	add	x1, x1, #0x0
+		0000000000016900:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16904:      	mov	x0, x8
+   16908:      	mov	w2, w3
+   1690c:      	mov	w3, w20
+   16910:      	bl	0x16910 <vfcs_cms_get_property+0x1290>
+		0000000000016910:  R_AARCH64_CALL26	_printk
+   16914:      	b	0x16974 <vfcs_cms_get_property+0x12f4>
+   16918:      	mov	w21, w0
+   1691c:      	bl	0x4ec <get_android_time>
+   16920:      	ldr	x2, [x20, #0x18]
+   16924:      	ldr	w4, [x19]
+   16928:      	adrp	x0, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016928:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x284a7 ; '\x013[%s]%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_SOH: val=%d, rc=%d\n'
+   1692c:      	add	x0, x0, #0x0
+		000000000001692c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x284a7 ; '\x013[%s]%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_SOH: val=%d, rc=%d\n'
+   16930:      	adrp	x1, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016930:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   16934:      	add	x1, x1, #0x0
+		0000000000016934:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   16938:      	adrp	x3, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016938:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   1693c:      	add	x3, x3, #0x0
+		000000000001693c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16940:      	mov	w5, w21
+   16944:      	bl	0x16944 <vfcs_cms_get_property+0x12c4>
+		0000000000016944:  R_AARCH64_CALL26	_printk
+   16948:      	mov	w0, w21
+   1694c:      	b	0x16668 <vfcs_cms_get_property+0xfe8>
+   16950:      	ldr	x1, [x20, #0x18]
+   16954:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016954:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3cd7b ; '\x013%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_SOH: val=%d, rc=%d\n'
+   16958:      	add	x8, x8, #0x0
+		0000000000016958:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3cd7b ; '\x013%s: %s: POWER_SUPPLY_PROP_BATTERY_HEALTH_LEARNING_SOH: val=%d, rc=%d\n'
+   1695c:      	mov	w20, w0
+   16960:      	adrp	x2, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016960:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16964:      	add	x2, x2, #0x0
+		0000000000016964:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17bb3 ; 'vfcs_cms_get_property'
+   16968:      	mov	x0, x8
+   1696c:      	mov	w4, w20
+   16970:      	bl	0x16970 <vfcs_cms_get_property+0x12f0>
+		0000000000016970:  R_AARCH64_CALL26	_printk
+   16974:      	mov	w0, w20
+   16978:      	b	0x16668 <vfcs_cms_get_property+0xfe8>
+   1697c:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		000000000001697c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa20 ; _health_status_map+0x38
+   16980:      	add	x8, x8, #0x0
+		0000000000016980:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa20 ; _health_status_map+0x38
+   16984:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   16988:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016988:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa28 ; _health_status_map+0x40
+   1698c:      	add	x8, x8, #0x0
+		000000000001698c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa28 ; _health_status_map+0x40
+   16990:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   16994:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		0000000000016994:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa30 ; _health_status_map+0x48
+   16998:      	add	x8, x8, #0x0
+		0000000000016998:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa30 ; _health_status_map+0x48
+   1699c:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   169a0:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000169a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa38 ; _health_status_map+0x50
+   169a4:      	add	x8, x8, #0x0
+		00000000000169a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa38 ; _health_status_map+0x50
+   169a8:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   169ac:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000169ac:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa40 ; _health_status_map+0x58
+   169b0:      	add	x8, x8, #0x0
+		00000000000169b0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa40 ; _health_status_map+0x58
+   169b4:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   169b8:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000169b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa48 ; _health_status_map+0x60
+   169bc:      	add	x8, x8, #0x0
+		00000000000169bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa48 ; _health_status_map+0x60
+   169c0:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   169c4:      	brk	#0x5512
+   169c8:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000169c8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa50 ; _health_status_map+0x68
+   169cc:      	add	x8, x8, #0x0
+		00000000000169cc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa50 ; _health_status_map+0x68
+   169d0:      	b	0x169dc <vfcs_cms_get_property+0x135c>
+   169d4:      	adrp	x8, 0x16000 <vfcs_cms_get_property+0x980>
+		00000000000169d4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata+0xa58 ; _health_status_map+0x70
+   169d8:      	add	x8, x8, #0x0
+		00000000000169d8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata+0xa58 ; _health_status_map+0x70
+   169dc:      	ldr	w8, [x8, #0x4]
+   169e0:      	mov	w0, wzr
+   169e4:      	str	w8, [x19]
+   169e8:      	mrs	x8, SP_EL0
+   169ec:      	ldr	x8, [x8, #0x710]
+   169f0:      	ldur	x9, [x29, #-0x8]
+   169f4:      	cmp	x8, x9
+   169f8:      	b.ne	0x16a20 <vfcs_cms_get_property+0x13a0>
+   169fc:      	ldp	x20, x19, [sp, #0xb0]
+   16a00:      	ldp	x22, x21, [sp, #0xa0]
+   16a04:      	ldp	x24, x23, [sp, #0x90]
+   16a08:      	ldp	x26, x25, [sp, #0x80]
+   16a0c:      	ldp	x28, x27, [sp, #0x70]
+   16a10:      	ldp	x29, x30, [sp, #0x60]
+   16a14:      	add	sp, sp, #0xc0
+   16a18:      	autiasp
+   16a1c:      	ret
+   16a20:      	bl	0x16a20 <vfcs_cms_get_property+0x13a0>
+		0000000000016a20:  R_AARCH64_CALL26	__stack_chk_fail
+

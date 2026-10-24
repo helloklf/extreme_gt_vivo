@@ -1,0 +1,378 @@
+0000000000061248 <vfcs_cms_scene_chg_switch_cb>:
+   61248:      	paciasp
+   6124c:      	stp	x29, x30, [sp, #-0x30]!
+   61250:      	str	x21, [sp, #0x10]
+   61254:      	stp	x20, x19, [sp, #0x20]
+   61258:      	mov	x29, sp
+   6125c:      	ldr	w8, [x0, #0x24]
+   61260:      	cbz	w8, 0x612c0 <vfcs_cms_scene_chg_switch_cb+0x78>
+   61264:      	cbz	x1, 0x612e8 <vfcs_cms_scene_chg_switch_cb+0xa0>
+   61268:      	cmp	w2, #0x2
+   6126c:      	b.le	0x612e8 <vfcs_cms_scene_chg_switch_cb+0xa0>
+   61270:      	add	x20, x0, #0xc, lsl #12  // =0xc000
+   61274:      	cbz	x0, 0x613f8 <vfcs_cms_scene_chg_switch_cb+0x1b0>
+   61278:      	ldr	x8, [x0, #0x10]
+   6127c:      	cbz	x8, 0x6128c <vfcs_cms_scene_chg_switch_cb+0x44>
+   61280:      	ldr	w8, [x8]
+   61284:      	tbnz	w8, #0x4, 0x6148c <vfcs_cms_scene_chg_switch_cb+0x244>
+   61288:      	tbnz	w8, #0x0, 0x614c4 <vfcs_cms_scene_chg_switch_cb+0x27c>
+   6128c:      	ldr	w8, [x1]
+   61290:      	cbz	w8, 0x61504 <vfcs_cms_scene_chg_switch_cb+0x2bc>
+   61294:      	ldr	w8, [x20, #0xa40]
+   61298:      	cbz	w8, 0x6132c <vfcs_cms_scene_chg_switch_cb+0xe4>
+   6129c:      	ldr	x8, [x0, #0x10]
+   612a0:      	cbz	x8, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   612a4:      	ldr	w8, [x8]
+   612a8:      	tbnz	w8, #0x4, 0x6157c <vfcs_cms_scene_chg_switch_cb+0x334>
+   612ac:      	tbz	w8, #0x2, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   612b0:      	ldr	x1, [x0, #0x18]
+   612b4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000612b4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x383d3 ; "\x013%s: %s: scene chg switch isn't priority!\n"
+   612b8:      	add	x0, x0, #0x0
+		00000000000612b8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x383d3 ; "\x013%s: %s: scene chg switch isn't priority!\n"
+   612bc:      	b	0x61524 <vfcs_cms_scene_chg_switch_cb+0x2dc>
+   612c0:      	cbz	x0, 0x613c4 <vfcs_cms_scene_chg_switch_cb+0x17c>
+   612c4:      	ldr	x8, [x0, #0x10]
+   612c8:      	cbz	x8, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   612cc:      	ldr	w8, [x8]
+   612d0:      	tbnz	w8, #0x4, 0x61430 <vfcs_cms_scene_chg_switch_cb+0x1e8>
+   612d4:      	tbz	w8, #0x1, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   612d8:      	ldr	x1, [x0, #0x18]
+   612dc:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000612dc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   612e0:      	add	x0, x0, #0x0
+		00000000000612e0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   612e4:      	b	0x61524 <vfcs_cms_scene_chg_switch_cb+0x2dc>
+   612e8:      	cbz	x0, 0x613d0 <vfcs_cms_scene_chg_switch_cb+0x188>
+   612ec:      	ldr	x8, [x0, #0x10]
+   612f0:      	cbz	x8, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   612f4:      	ldr	w8, [x8]
+   612f8:      	tbnz	w8, #0x4, 0x61448 <vfcs_cms_scene_chg_switch_cb+0x200>
+   612fc:      	tbz	w8, #0x1, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   61300:      	cmp	w2, #0x3
+   61304:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061304:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61308:      	add	x2, x2, #0x0
+		0000000000061308:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   6130c:      	cset	w4, lt
+   61310:      	cmp	x1, #0x0
+   61314:      	ldr	x1, [x0, #0x18]
+   61318:      	cset	w3, eq
+   6131c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006131c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11a84 ; '\x013%s: %s: scene chg switch data(%d %d) param error,return\n'
+   61320:      	add	x0, x0, #0x0
+		0000000000061320:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11a84 ; '\x013%s: %s: scene chg switch data(%d %d) param error,return\n'
+   61324:      	bl	0x61324 <vfcs_cms_scene_chg_switch_cb+0xdc>
+		0000000000061324:  R_AARCH64_CALL26	_printk
+   61328:      	b	0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   6132c:      	ldr	w9, [x20, #0xa4c]
+   61330:      	ldr	x8, [x0, #0x10]
+   61334:      	mov	x19, x0
+   61338:      	cbz	w9, 0x6137c <vfcs_cms_scene_chg_switch_cb+0x134>
+   6133c:      	cbz	x8, 0x6134c <vfcs_cms_scene_chg_switch_cb+0x104>
+   61340:      	ldr	w8, [x8]
+   61344:      	tbnz	w8, #0x4, 0x615ec <vfcs_cms_scene_chg_switch_cb+0x3a4>
+   61348:      	tbnz	w8, #0x0, 0x61614 <vfcs_cms_scene_chg_switch_cb+0x3cc>
+   6134c:      	ldr	x0, [x20, #0x300]
+   61350:      	adrp	x19, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061350:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x32619 ; 'SWITCH_EVENT'
+   61354:      	add	x19, x19, #0x0
+		0000000000061354:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x32619 ; 'SWITCH_EVENT'
+   61358:      	mov	x1, x19
+   6135c:      	mov	w2, wzr
+   61360:      	mov	w3, wzr
+   61364:      	bl	0x61364 <vfcs_cms_scene_chg_switch_cb+0x11c>
+		0000000000061364:  R_AARCH64_CALL26	vote
+   61368:      	ldr	x0, [x20, #0x308]
+   6136c:      	mov	x1, x19
+   61370:      	mov	w2, wzr
+   61374:      	mov	w3, wzr
+   61378:      	b	0x613bc <vfcs_cms_scene_chg_switch_cb+0x174>
+   6137c:      	cbz	x8, 0x6138c <vfcs_cms_scene_chg_switch_cb+0x144>
+   61380:      	ldr	w8, [x8]
+   61384:      	tbnz	w8, #0x4, 0x61630 <vfcs_cms_scene_chg_switch_cb+0x3e8>
+   61388:      	tbnz	w8, #0x0, 0x61660 <vfcs_cms_scene_chg_switch_cb+0x418>
+   6138c:      	ldr	x0, [x20, #0x300]
+   61390:      	ldr	w3, [x1, #0x8]
+   61394:      	adrp	x19, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061394:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x32619 ; 'SWITCH_EVENT'
+   61398:      	add	x19, x19, #0x0
+		0000000000061398:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x32619 ; 'SWITCH_EVENT'
+   6139c:      	mov	x21, x1
+   613a0:      	mov	w2, #0x1
+   613a4:      	mov	x1, x19
+   613a8:      	bl	0x613a8 <vfcs_cms_scene_chg_switch_cb+0x160>
+		00000000000613a8:  R_AARCH64_CALL26	vote
+   613ac:      	ldr	x0, [x20, #0x308]
+   613b0:      	ldr	w3, [x21, #0x4]
+   613b4:      	mov	x1, x19
+   613b8:      	mov	w2, #0x1
+   613bc:      	bl	0x613bc <vfcs_cms_scene_chg_switch_cb+0x174>
+		00000000000613bc:  R_AARCH64_CALL26	vote
+   613c0:      	b	0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   613c4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000613c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   613c8:      	add	x0, x0, #0x0
+		00000000000613c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   613cc:      	b	0x6156c <vfcs_cms_scene_chg_switch_cb+0x324>
+   613d0:      	cmp	w2, #0x3
+   613d4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000613d4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x171f ; '\x013%s: scene chg switch data(%d %d) param error,return\n'
+   613d8:      	add	x0, x0, #0x0
+		00000000000613d8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x171f ; '\x013%s: scene chg switch data(%d %d) param error,return\n'
+   613dc:      	cset	w3, lt
+   613e0:      	cmp	x1, #0x0
+   613e4:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000613e4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   613e8:      	add	x1, x1, #0x0
+		00000000000613e8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   613ec:      	cset	w2, eq
+   613f0:      	bl	0x613f0 <vfcs_cms_scene_chg_switch_cb+0x1a8>
+		00000000000613f0:  R_AARCH64_CALL26	_printk
+   613f4:      	b	0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   613f8:      	ldp	w2, w3, [x1]
+   613fc:      	ldr	w4, [x1, #0x8]
+   61400:      	adrp	x8, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061400:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61404:      	add	x8, x8, #0x0
+		0000000000061404:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61408:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061408:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3b3cc ; '\x013%s: scene chg switch data:(%d %d %d)\n'
+   6140c:      	add	x0, x0, #0x0
+		000000000006140c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3b3cc ; '\x013%s: scene chg switch data:(%d %d %d)\n'
+   61410:      	mov	x19, x1
+   61414:      	mov	x1, x8
+   61418:      	bl	0x61418 <vfcs_cms_scene_chg_switch_cb+0x1d0>
+		0000000000061418:  R_AARCH64_CALL26	_printk
+   6141c:      	ldr	w8, [x19]
+   61420:      	cbnz	w8, 0x61534 <vfcs_cms_scene_chg_switch_cb+0x2ec>
+   61424:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061424:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xeac0 ; "\x013%s: scene chg switch isn't enabled!\n"
+   61428:      	add	x0, x0, #0x0
+		0000000000061428:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xeac0 ; "\x013%s: scene chg switch isn't enabled!\n"
+   6142c:      	b	0x6156c <vfcs_cms_scene_chg_switch_cb+0x324>
+   61430:      	mov	x19, x0
+   61434:      	bl	0x48bfc <get_android_time>
+   61438:      	ldr	x2, [x19, #0x18]
+   6143c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006143c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   61440:      	add	x0, x0, #0x0
+		0000000000061440:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   61444:      	b	0x615a8 <vfcs_cms_scene_chg_switch_cb+0x360>
+   61448:      	cmp	w2, #0x3
+   6144c:      	mov	x21, x0
+   61450:      	cset	w19, lt
+   61454:      	cmp	x1, #0x0
+   61458:      	cset	w20, eq
+   6145c:      	bl	0x48bfc <get_android_time>
+   61460:      	ldr	x2, [x21, #0x18]
+   61464:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061464:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3b38d ; '\x013[%s]%s: %s: scene chg switch data(%d %d) param error,return\n'
+   61468:      	add	x0, x0, #0x0
+		0000000000061468:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3b38d ; '\x013[%s]%s: %s: scene chg switch data(%d %d) param error,return\n'
+   6146c:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006146c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   61470:      	add	x1, x1, #0x0
+		0000000000061470:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   61474:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061474:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61478:      	add	x3, x3, #0x0
+		0000000000061478:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   6147c:      	mov	w4, w20
+   61480:      	mov	w5, w19
+   61484:      	bl	0x61484 <vfcs_cms_scene_chg_switch_cb+0x23c>
+		0000000000061484:  R_AARCH64_CALL26	_printk
+   61488:      	b	0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   6148c:      	mov	x19, x0
+   61490:      	mov	x21, x1
+   61494:      	bl	0x48bfc <get_android_time>
+   61498:      	ldp	w4, w5, [x21]
+   6149c:      	ldr	x2, [x19, #0x18]
+   614a0:      	ldr	w6, [x21, #0x8]
+   614a4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000614a4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x24556 ; '\x013[%s]%s: %s: scene chg switch data:(%d %d %d)\n'
+   614a8:      	add	x0, x0, #0x0
+		00000000000614a8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x24556 ; '\x013[%s]%s: %s: scene chg switch data:(%d %d %d)\n'
+   614ac:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000614ac:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   614b0:      	add	x1, x1, #0x0
+		00000000000614b0:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   614b4:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000614b4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   614b8:      	add	x3, x3, #0x0
+		00000000000614b8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   614bc:      	bl	0x614bc <vfcs_cms_scene_chg_switch_cb+0x274>
+		00000000000614bc:  R_AARCH64_CALL26	_printk
+   614c0:      	b	0x614f4 <vfcs_cms_scene_chg_switch_cb+0x2ac>
+   614c4:      	ldr	x8, [x0, #0x18]
+   614c8:      	ldr	w5, [x1, #0x8]
+   614cc:      	adrp	x9, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000614cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1cbaa ; '\x013%s: %s: scene chg switch data:(%d %d %d)\n'
+   614d0:      	add	x9, x9, #0x0
+		00000000000614d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1cbaa ; '\x013%s: %s: scene chg switch data:(%d %d %d)\n'
+   614d4:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000614d4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   614d8:      	add	x2, x2, #0x0
+		00000000000614d8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   614dc:      	ldp	w3, w4, [x1]
+   614e0:      	mov	x19, x0
+   614e4:      	mov	x0, x9
+   614e8:      	mov	x21, x1
+   614ec:      	mov	x1, x8
+   614f0:      	bl	0x614f0 <vfcs_cms_scene_chg_switch_cb+0x2a8>
+		00000000000614f0:  R_AARCH64_CALL26	_printk
+   614f4:      	mov	x1, x21
+   614f8:      	mov	x0, x19
+   614fc:      	ldr	w8, [x1]
+   61500:      	cbnz	w8, 0x61294 <vfcs_cms_scene_chg_switch_cb+0x4c>
+   61504:      	ldr	x8, [x0, #0x10]
+   61508:      	cbz	x8, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   6150c:      	ldr	w8, [x8]
+   61510:      	tbnz	w8, #0x4, 0x61594 <vfcs_cms_scene_chg_switch_cb+0x34c>
+   61514:      	tbz	w8, #0x1, 0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   61518:      	ldr	x1, [x0, #0x18]
+   6151c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006151c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x24586 ; "\x013%s: %s: scene chg switch isn't enabled!\n"
+   61520:      	add	x0, x0, #0x0
+		0000000000061520:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x24586 ; "\x013%s: %s: scene chg switch isn't enabled!\n"
+   61524:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061524:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61528:      	add	x2, x2, #0x0
+		0000000000061528:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   6152c:      	bl	0x6152c <vfcs_cms_scene_chg_switch_cb+0x2e4>
+		000000000006152c:  R_AARCH64_CALL26	_printk
+   61530:      	b	0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   61534:      	mov	w8, #0xca40
+   61538:      	ldr	w8, [x8]
+   6153c:      	cbnz	w8, 0x61564 <vfcs_cms_scene_chg_switch_cb+0x31c>
+   61540:      	mov	w8, #0xca4c
+   61544:      	ldr	w8, [x8]
+   61548:      	cbnz	w8, 0x615d4 <vfcs_cms_scene_chg_switch_cb+0x38c>
+   6154c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006154c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4a1ad ; '\x013%s: switch state vote\n'
+   61550:      	add	x0, x0, #0x0
+		0000000000061550:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4a1ad ; '\x013%s: switch state vote\n'
+   61554:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061554:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61558:      	add	x1, x1, #0x0
+		0000000000061558:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   6155c:      	bl	0x6155c <vfcs_cms_scene_chg_switch_cb+0x314>
+		000000000006155c:  R_AARCH64_CALL26	_printk
+   61560:      	b	0x61680 <vfcs_cms_scene_chg_switch_cb+0x438>
+   61564:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061564:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x364e8 ; "\x013%s: scene chg switch isn't priority!\n"
+   61568:      	add	x0, x0, #0x0
+		0000000000061568:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x364e8 ; "\x013%s: scene chg switch isn't priority!\n"
+   6156c:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006156c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61570:      	add	x1, x1, #0x0
+		0000000000061570:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61574:      	bl	0x61574 <vfcs_cms_scene_chg_switch_cb+0x32c>
+		0000000000061574:  R_AARCH64_CALL26	_printk
+   61578:      	b	0x615bc <vfcs_cms_scene_chg_switch_cb+0x374>
+   6157c:      	mov	x19, x0
+   61580:      	bl	0x48bfc <get_android_time>
+   61584:      	ldr	x2, [x19, #0x18]
+   61588:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061588:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x339d2 ; "\x013[%s]%s: %s: scene chg switch isn't priority!\n"
+   6158c:      	add	x0, x0, #0x0
+		000000000006158c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x339d2 ; "\x013[%s]%s: %s: scene chg switch isn't priority!\n"
+   61590:      	b	0x615a8 <vfcs_cms_scene_chg_switch_cb+0x360>
+   61594:      	mov	x19, x0
+   61598:      	bl	0x48bfc <get_android_time>
+   6159c:      	ldr	x2, [x19, #0x18]
+   615a0:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000615a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2bd89 ; "\x013[%s]%s: %s: scene chg switch isn't enabled!\n"
+   615a4:      	add	x0, x0, #0x0
+		00000000000615a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2bd89 ; "\x013[%s]%s: %s: scene chg switch isn't enabled!\n"
+   615a8:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000615a8:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   615ac:      	add	x1, x1, #0x0
+		00000000000615ac:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   615b0:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000615b0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   615b4:      	add	x3, x3, #0x0
+		00000000000615b4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   615b8:      	bl	0x615b8 <vfcs_cms_scene_chg_switch_cb+0x370>
+		00000000000615b8:  R_AARCH64_CALL26	_printk
+   615bc:      	mov	w0, wzr
+   615c0:      	ldp	x20, x19, [sp, #0x20]
+   615c4:      	ldr	x21, [sp, #0x10]
+   615c8:      	ldp	x29, x30, [sp], #0x30
+   615cc:      	autiasp
+   615d0:      	ret
+   615d4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000615d4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x33a02 ; '\x013%s: switch cancel vote\n'
+   615d8:      	add	x0, x0, #0x0
+		00000000000615d8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x33a02 ; '\x013%s: switch cancel vote\n'
+   615dc:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000615dc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   615e0:      	add	x1, x1, #0x0
+		00000000000615e0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   615e4:      	bl	0x615e4 <vfcs_cms_scene_chg_switch_cb+0x39c>
+		00000000000615e4:  R_AARCH64_CALL26	_printk
+   615e8:      	b	0x6134c <vfcs_cms_scene_chg_switch_cb+0x104>
+   615ec:      	bl	0x48bfc <get_android_time>
+   615f0:      	ldr	x2, [x19, #0x18]
+   615f4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000615f4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x982a ; '\x013[%s]%s: %s: switch cancel vote\n'
+   615f8:      	add	x0, x0, #0x0
+		00000000000615f8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x982a ; '\x013[%s]%s: %s: switch cancel vote\n'
+   615fc:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000615fc:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   61600:      	add	x1, x1, #0x0
+		0000000000061600:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   61604:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061604:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61608:      	add	x3, x3, #0x0
+		0000000000061608:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   6160c:      	bl	0x6160c <vfcs_cms_scene_chg_switch_cb+0x3c4>
+		000000000006160c:  R_AARCH64_CALL26	_printk
+   61610:      	b	0x6134c <vfcs_cms_scene_chg_switch_cb+0x104>
+   61614:      	ldr	x1, [x19, #0x18]
+   61618:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061618:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3dd76 ; '\x013%s: %s: switch cancel vote\n'
+   6161c:      	add	x0, x0, #0x0
+		000000000006161c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3dd76 ; '\x013%s: %s: switch cancel vote\n'
+   61620:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061620:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61624:      	add	x2, x2, #0x0
+		0000000000061624:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61628:      	bl	0x61628 <vfcs_cms_scene_chg_switch_cb+0x3e0>
+		0000000000061628:  R_AARCH64_CALL26	_printk
+   6162c:      	b	0x6134c <vfcs_cms_scene_chg_switch_cb+0x104>
+   61630:      	mov	x21, x1
+   61634:      	bl	0x48bfc <get_android_time>
+   61638:      	ldr	x2, [x19, #0x18]
+   6163c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006163c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xc680 ; '\x013[%s]%s: %s: switch state vote\n'
+   61640:      	add	x0, x0, #0x0
+		0000000000061640:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xc680 ; '\x013[%s]%s: %s: switch state vote\n'
+   61644:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061644:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   61648:      	add	x1, x1, #0x0
+		0000000000061648:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   6164c:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006164c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61650:      	add	x3, x3, #0x0
+		0000000000061650:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61654:      	bl	0x61654 <vfcs_cms_scene_chg_switch_cb+0x40c>
+		0000000000061654:  R_AARCH64_CALL26	_printk
+   61658:      	mov	x1, x21
+   6165c:      	b	0x6138c <vfcs_cms_scene_chg_switch_cb+0x144>
+   61660:      	ldr	x8, [x19, #0x18]
+   61664:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061664:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x980d ; '\x013%s: %s: switch state vote\n'
+   61668:      	add	x0, x0, #0x0
+		0000000000061668:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x980d ; '\x013%s: %s: switch state vote\n'
+   6166c:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006166c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61670:      	add	x2, x2, #0x0
+		0000000000061670:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97f0 ; 'vfcs_cms_scene_chg_switch_cb'
+   61674:      	mov	x19, x1
+   61678:      	mov	x1, x8
+   6167c:      	bl	0x6167c <vfcs_cms_scene_chg_switch_cb+0x434>
+		000000000006167c:  R_AARCH64_CALL26	_printk
+   61680:      	mov	x1, x19
+   61684:      	b	0x6138c <vfcs_cms_scene_chg_switch_cb+0x144>
+

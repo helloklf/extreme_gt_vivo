@@ -1,0 +1,423 @@
+T	yi
+6a"@
+T	yi
+Tj^@
+6a"@
+7 7H$
+6a"@
+6a"@
+ 7H 
+6a"@
+H2 7h
+6a"@
+(, 7h-
+H* 7
+6a"@
+Lyixk	
+*)1@
+	`A9
+	dA9
+p 7hK
+6a"@
+hd 7(D
+c 7(
+c 7h
+Hc 7
+c 7(
+6a"@
+(b 7
+ha 7H
+h` 7
+_ 7h
+H_ 7
+T E0
+T E0
+T E0
+T 7(
+T E0
+\ 7H
+6a"@
+hb 7h
+Ha 7
+Ha 7
+` 7(
+H_ 7
+^ 7h{
+] 7Hg
+6a"@
+h] 7
+H] 7h^
+] 7(p
+hd 7
+j 7(l
+q	]@
+(L 7
+T	]@
+F 7h,
+(: 7
+(A 7
+= 7h"
+q	]@
+T@E0
+(- 7h
+6a"@
+6a"@
+(, 7(
+6a"@
+6a"@
+(+ 7
+6a"@
+* 7h
+6a"@
+r`}@
+T@E0
+S`}@
+T@E0
+T@E0
+r@}@
+h, 7
+h+ 7
+H+ 7h
+H* 7
+, 7h
+vivo,vfcs-fchg
+built_with=DDK
+description=VFCS Fast Charge Driver
+import_ns=ANDROID_GKI_VFS_EXPORT_ONLY
+license=GPL v2
+name=vfcs_fchg_core
+scmversion=gc623cc86c958-dirty
+depends=vfcs-misc-core
+vermagic=6.12.23-android16-5-g801ede8ff3b9-4k SMP preempt mod_unload modversions aarch64
+3[%s]%s: %s: Failed to initialize power supply: %d
+vfcs_fchg_register_psy
+3%s: id[%d] out of rangle,return
+3%s: fchg_dev[%d] func get_vbus,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func get_win_ov_thr,No exist,skip!
+3%s: %s: fchg_dev[%d] func set_switch_clk,No exist,skip!
+3%s: 
+vfcs_fchg_parse_reconfigurable_dt
+3[%s]%s: %s: parse %s node start...
+vfcs_fchg_dev_get_device_id
+vfcs_fchg_dev_get_ibus_ocp_status
+vfcs_fchg_dev_set_vfcs_sm
+fchg_dev_unregister
+3[%s]%s: %s: fchg_select=%d
+vivo,fchg-dev-num
+3%s: %s: fchg_dev[%d] func get_vbus_stat,No exist,skip!
+3%s: %s: fchg_dev[%d] func get_vbus,No exist,skip!
+%s%s
+vfcs_fchg_probe
+3[%s]%s: %s: start
+3[%s]%s: %s: fchg_dev[%d] func set_switch_clk,No exist,skip!
+vivo,fchg-name
+3[%s]%s: %s: get board_version failed,return
+3%s: %s: fchg_dev[%d] func get_vbat,No exist,skip!
+vfcs_fchg_write_reg
+3%s: %s: parse %s node start...
+vfcs_fchg_dev_get_vbus_stat
+3%s: fchg_dev[%d] func get_ibus,No exist,skip!
+3%s: fchg_dev[%d] func get_ibus_ocp_thr,No exist,skip!
+vfcs_fchg_read_reg
+3%s: Couldn't allocate memory
+3[%s]%s: %s: get fchg_name failed,return
+3%s: %s: Couldn't register vfcs_fchg power supply
+3%s: %s: fchg_dev[%d] func dump_reg,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func get_ibus,No exist,skip!
+3%s: fchg_dev[%d] func get_win_ov_thr,No exist,skip!
+unknown
+vfcs_fchg_parse_dt
+vfcs_fchg_dev_get_vbus
+3%s: %s: fchg_dev[%d] func get_ibus_ocp_thr,No exist,skip!
+3%s: %s: fchg_dev[%d] func get_volt_limit_thr,used default 3v!
+vfcs_fchg_dev_check_comm_excep_state
+3[%s]%s: %s: device tree node null,return
+vfcs_fchg_parse_child_dt
+3%s: fchg_dev[%d] func enable,No exist,skip!
+vfcs-fchg
+3[%s]%s: %s: Couldn't parse DT nodes rc=%d
+3%s: %s: Failed to initialize power supply: %d
+3[%s]%s: %s: fchg_name=%s
+3%s: %s: id[%d] out of rangle,return
+3%s: %s: fchg_dev[%d] func get_ibus,No exist,skip!
+vfcs_fchg_dev_get_win_ov_thr
+vfcs_fchg_shutdown
+%d-%02d-%02d %02d:%02d:%02d.%06d
+3%s: %s: child_dt match success
+3[%s]%s: %s: id[%d] out of rangle,return
+3%s: %s: no fchg_dev[%d],return
+vfcs_fchg_dev_is_enable
+3%s: the_chip null,return
+vfcs_fchg_dev_get_ibus
+3%s: %s: unregister fchg_dev(name=%s id=%d),Done(num=%d)!
+3%s: %s: fchg_select=%d
+3[%s]%s: %s: fchg_dev[%d] func is_enable,No exist,skip!
+3%s: fchg_dev[%d] func get_vbat,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func hw_init,No exist,skip!
+vfcs_fchg_dev_get_bat_btb_temp
+vfcs_fchg_dev_get_kick_watchdog_enable
+3%s: fchg_dev[%d] func set_switch_clk,No exist,skip!
+3%s: %s: register fchg_dev(name=%s id=%d),Done(num=%d)!
+3%s: %s: fchg_dev[%d] null,return
+3[%s]%s: %s: 
+3%s: %s: child_node not exist,return
+3%s: no fchg_dev,return
+3[%s]%s: %s: fchg_dev[%d] func get_ibus_ocp_thr,No exist,skip!
+vfcs_fchg_dev_get_volt_limit_thr
+3[%s]%s: %s: fchg_dev[%d] null,return
+vfcs_fchg_remove
+3%s: %s: 
+vivo,fchg-version
+3%s: no fchg_dev[%d],return
+PARENT
+3[%s]%s: %s: no fchg_dev,return
+3%s: fchg_dev[%d] func is_enable,No exist,skip!
+3%s: %s: fchg_dev[%d] func enable,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func dump_reg,No exist,skip!
+vfcs_fchg_dev_get_ibus_ocp_thr
+3%s: %s: fchg_dev[%d] func write_i2c_reg,No exist,skip!
+3[%s]%s: %s: fchg_dev null,return
+3%s: %s: done
+vivo,fchg-select
+3%s: %s: parse node end...
+3%s: %s: get fchg_name failed,return
+3[%s]%s: %s: child_dt match success
+3%s: %s: get board_version failed,return
+vfcs_fchg_dev_enable
+3[%s]%s: %s: fchg_dev[%d] func enable,No exist,skip!
+vfcs_fchg_dev_set_switch_clk
+3[%s]%s: %s: child_node not exist,return
+3%s: %s: fchg_dev[%d] func get_win_ov_thr,No exist,skip!
+3%s: fchg_dev[%d] func get_volt_limit_thr,used default 3v!
+3%s: %s: fchg_dev[%d] func hw_init,No exist,skip!
+3%s: fchg_dev[%d] func hw_init,No exist,skip!
+3%s: %s: fchg_dev id(%d) out of range for FCHG_ID_MAX(%d) and the project(%d),return
+vfcs_fchg_dev_get_vbat
+CHILD
+3%s: %s: fchg_dev[%d] func is_enable,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func get_vbus,No exist,skip!
+3%s: vfcs_misc_core not ready,deferring probe
+3%s: fchg_dev[%d] func get_vbus_stat,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func read_i2c_reg,No exist,skip!
+vfcs_fchg_dev_check_stat_error
+fchg_dev_register
+3%s: %s: fchg_dev null,return
+3%s: %s: device tree node null,return
+vivo,child-name
+UNKNOWN
+3%s: %s: child_node name=%s
+3%s: fchg_dev[%d] null,return
+vfcs_fchg_dev_hw_init
+3[%s]%s: %s: done
+3[%s]%s: %s: unregister fchg_dev(name=%s id=%d),Done(num=%d)!
+3%s: %s: start
+3[%s]%s: %s: parse node end...
+3[%s]%s: %s: according to SELECT_TYPE_ID,not yet implemented
+3%s: %s: according to SELECT_TYPE_ID,not yet implemented
+3[%s]%s: %s: child_node name=%s
+3%s: %s: fchg_dev[%d] func read_i2c_reg,No exist,skip!
+3%s: %s: fchg_name=%s
+3[%s]%s: %s: fchg_dev[%d] func get_vbus_stat,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func get_vbat,No exist,skip!
+3[%s]%s: %s: fchg_dev[%d] func write_i2c_reg,No exist,skip!
+vfcs_fchg_dev_set_otg_mode
+vfcs_fchg_dev_set_reverse_wls_mode
+3[%s]%s: %s: fchg_dev id(%d) out of range for FCHG_ID_MAX(%d) and the project(%d),return
+3%s: %s: no fchg_dev,return
+vfcs_fchg_dev_get_bat_btb_temp_m
+3%s: fchg_dev[%d] func dump_reg,No exist,skip!
+3%s: fchg_dev[%d] func read_i2c_reg,No exist,skip!
+3[%s]%s: %s: register fchg_dev(name=%s id=%d),Done(num=%d)!
+3%s: %s: Couldn't parse DT nodes rc=%d
+3[%s]%s: %s: Couldn't register vfcs_fchg power supply
+3[%s]%s: %s: no fchg_dev[%d],return
+3[%s]%s: %s: fchg_dev[%d] func get_volt_limit_thr,used default 3v!
+vfcs_fchg_dump_reg
+3%s: fchg_dev[%d] func write_i2c_reg,No exist,skip!
+fchg_dev_unregister
+fchg_dev_register
+vfcs_fchg_core
+scnprintf
+_printk
+ktime_get_real_ts64
+sys_tz
+rtc_time64_to_tm
+snprintf
+__stack_chk_fail
+__platform_driver_register
+platform_driver_unregister
+vfcs_misc_core_ready
+devm_kmalloc
+of_property_read_variable_u32_array
+of_property_read_string
+of_get_next_child
+strlen
+strncmp
+:/.I
+devm_power_supply_register
+devm_kfree
+power_supply_get_drvdata
+module_layout
+:/.I^
+scnprintf
+_printk
+ktime_get_real_ts64
+sys_tz
+rtc_time64_to_tm
+snprintf
+__stack_chk_fail
+__platform_driver_register
+platform_driver_unregister
+vfcs_misc_core_ready
+devm_kmalloc
+of_property_read_variable_u32_array
+of_property_read_string
+of_get_next_child
+strlen
+strncmp
+devm_power_supply_register
+devm_kfree
+power_supply_get_drvdata
+module_layout
+Linux
+Linux
+Android (12833971, +pgo, +bolt, +lto, +mlgo, based on r536225) clang version 19.0.1 (https://android.googlesource.com/toolchain/llvm-project b3a530ec6537146650e42be89f1089e9a3588460)
+`ail
+"'*-07:=>?BEFG
+.note.gnu.property
+.note.Linux
+.rela.exit.text
+.rela.init.text
+.hyp.text
+.rela.text
+.comment
+.init.plt
+.hyp.bss
+__versions
+__ksymtab_strings
+.codetag.alloc_tags
+__version_ext_names
+.hyp.patchable_function_entries
+.hyp.event_ids
+__version_ext_crcs
+.modinfo
+.note.GNU-stack
+.llvm_addrsig
+.text.ftrace_trampoline
+.rela.init.eh_frame
+.rela.gnu.linkonce.this_module
+.note.gnu.build-id
+.shstrtab
+.strtab
+.rela__ksymtab
+.symtab
+__kcrctab
+.hyp.rodata
+.rela.rodata
+.rela.exit.data
+.rela.init.data
+.hyp.data
+.rela.data
+.rodata.__llvm_fs_discriminator__
+.rodata.str1.1
+sys_tz
+vfcs_fchg_set_property
+vfcs_fchg_get_property
+vfcs_misc_core_ready
+of_property_read_variable_u32_array
+vfcs_fchg_parse_reconfigurable_dt
+vfcs_fchg_power_props
+fchg_dev_register.pos
+____versions
+__start_alloc_tags
+__stop_alloc_tags
+____version_ext_names
+____version_ext_crcs
+vfcs_fchg_driver
+__kstrtabns_fchg_dev_unregister
+__crc_fchg_dev_unregister
+__kstrtab_fchg_dev_unregister
+__ksymtab_fchg_dev_unregister
+platform_driver_unregister
+devm_power_supply_register
+__kstrtabns_fchg_dev_register
+__crc_fchg_dev_register
+__kstrtab_fchg_dev_register
+__ksymtab_fchg_dev_register
+__platform_driver_register
+strncmp
+the_chip
+vfcs_fchg_shutdown
+strlen
+rtc_time64_to_tm
+__stack_chk_fail
+_printk
+__debug_mask
+of_property_read_string
+snprintf
+scnprintf
+vfcs_fchg_remove
+get_android_time
+__android_time
+init_module
+__this_module
+cleanup_module
+vfcs_fchg_match_table
+vfcs_fchg_property_is_writeable
+devm_kfree
+vfcs_fchg_probe
+of_get_next_child
+vfcs_fchg_psy_desc
+devm_kmalloc
+power_supply_get_drvdata
+__llvm_fs_discriminator__
+__UNIQUE_ID_description789
+$d.29
+_note_19
+$d.19
+$x.9
+$d.9
+__UNIQUE_ID___addressable_cleanup_module788
+_note_18
+$d.18
+$d.8
+__UNIQUE_ID___addressable_init_module787
+$x.17
+$d.17
+$x.7
+$d.7
+__UNIQUE_ID_depends536
+$d.26
+$d.16
+$d.6
+__UNIQUE_ID_scmversion535
+$d.25
+$x.15
+$x.5
+$d.5
+ktime_get_real_ts64
+__UNIQUE_ID_name534
+__UNIQUE_ID_vermagic534
+$d.14
+$d.4
+$d.23
+$x.13
+$x.3
+$d.3
+$d.32
+$x.22
+$d.12
+$d.2
+__UNIQUE_ID_license791
+$d.41
+$d.31
+$d.21
+$x.11
+$d.11
+$d.1
+__UNIQUE_ID_built_with0
+__UNIQUE_ID_import_ns790
+$d.40
+$d.30
+$x.20
+$d.10

@@ -1,0 +1,302 @@
+                                  U ___ratelimit
+0000000000000000 0000000000000000 r __crc_qti_battery_charger_get_prop
+0000000000000004 0000000000000000 r __crc_register_hboost_event_notifier
+0000000000000008 0000000000000000 r __crc_unregister_hboost_event_notifier
+                                  U __init_rwsem
+                                  U __init_swait_queue_head
+000000004697fdf1 0000000000000000 W __kcfi_typeid_delayed_work_timer_fn
+0000000000000020 0000000000000000 r __kstrtab_qti_battery_charger_get_prop
+0000000000000001 0000000000000000 r __kstrtab_register_hboost_event_notifier
+000000000000003d 0000000000000000 r __kstrtab_unregister_hboost_event_notifier
+0000000000000000 0000000000000000 r __kstrtabns_qti_battery_charger_get_prop
+0000000000000000 0000000000000000 r __kstrtabns_register_hboost_event_notifier
+0000000000000000 0000000000000000 r __kstrtabns_unregister_hboost_event_notifier
+0000000000000000 0000000000000000 r __ksymtab_qti_battery_charger_get_prop
+000000000000000c 0000000000000000 r __ksymtab_register_hboost_event_notifier
+0000000000000018 0000000000000000 r __ksymtab_unregister_hboost_event_notifier
+                                  U __msecs_to_jiffies
+                                  U __mutex_init
+                                  U __platform_driver_register
+                                  U __stack_chk_fail
+0000000000000000 0000000000000000 D __start_alloc_tags
+0000000000000000 0000000000000000 D __stop_alloc_tags
+                                  U _dev_err
+                                  U _printk
+                                  U bsp_test_mode
+                                  U cancel_delayed_work
+                                  U cancel_work_sync
+                                  U class_register
+                                  U class_unregister
+                                  U complete
+                                  U debugfs_create_bool
+                                  U debugfs_create_dir
+                                  U debugfs_remove
+                                  U delayed_work_timer_fn
+                                  U device_set_wakeup_capable
+                                  U device_wakeup_disable
+                                  U device_wakeup_enable
+                                  U devm_kmalloc
+                                  U devm_power_supply_register
+                                  U devm_regulator_register
+                                  U devm_request_threaded_irq
+                                  U devm_thermal_of_cooling_device_register
+                                  U down_read
+                                  U down_write
+                                  U fake_FULL_ui
+                                  U fake_cable_connect
+                                  U firmware_request_nowarn
+                                  U fuelsummary_collect_value_v2
+                                  U gpio_request
+                                  U gpio_to_desc
+                                  U gpiod_direction_input
+                                  U gpiod_direction_output_raw
+                                  U gpiod_get_raw_value
+                                  U gpiod_to_irq
+                                  U init_timer_key
+                                  U irq_set_irq_wake
+                                  U jiffies
+                                  U jiffies_to_msecs
+                                  U kernel_power_off
+                                  U kstrtobool
+                                  U kstrtoint
+                                  U kstrtou16
+                                  U kstrtouint
+                                  U ktime_get_with_offset
+                                  U last_cable_disconnect_start_time
+                                  U memcpy
+                                  U memset
+                                  U msleep
+                                  U mutex_lock
+                                  U mutex_unlock
+                                  U ns_to_timespec64
+                                  U of_find_property
+                                  U of_get_named_gpio
+                                  U of_property_count_elems_of_size
+                                  U of_property_read_string
+                                  U of_property_read_u32_index
+                                  U of_property_read_variable_u32_array
+                                  U panel_event_notifier_unregister
+                                  U platform_driver_unregister
+                                  U pm_relax
+                                  U pm_stay_awake
+                                  U pm_wakeup_dev_event
+                                  U pmic_glink_register_client
+                                  U pmic_glink_unregister_client
+                                  U pmic_glink_write
+                                  U power_supply_changed
+                                  U power_supply_get_by_name
+                                  U power_supply_get_drvdata
+                                  U power_supply_get_property
+                                  U power_supply_put
+                                  U power_supply_set_property
+                                  U queue_delayed_work_on
+                                  U queue_work_on
+                                  U raw_notifier_call_chain
+                                  U raw_notifier_chain_register
+                                  U raw_notifier_chain_unregister
+                                  U rdev_get_drvdata
+                                  U register_reboot_notifier
+                                  U release_firmware
+                                  U rtc_class_close
+                                  U rtc_class_open
+                                  U rtc_read_time
+                                  U rtc_tm_to_time64
+                                  U rtc_valid_tm
+                                  U sched_clock
+                                  U scnprintf
+                                  U strcmp
+                                  U strstr
+                                  U system_wq
+                                  U unregister_reboot_notifier
+                                  U up_read
+                                  U up_write
+                                  U usleep_range_state
+                                  U vbus_connect_start_time
+                                  U vbus_smpl_detect
+                                  U vchg_reserved_rw
+                                  U wait_for_completion_timeout
+0000000000000000 0000000000000001 V __llvm_fs_discriminator__
+0000000000000010 0000000000000001 b battery_chg_probe.__key
+0000000000000011 0000000000000001 b battery_chg_probe.__key.53
+0000000000000012 0000000000000001 b battery_chg_probe.__key.63
+0000000000000008 0000000000000001 b battery_get_equalizing_chg_temp_state.super_high_temp_box_flag
+000000000000002c 0000000000000001 b battery_psy_get_prop.last_pdet_charge_status
+0000000000000013 0000000000000001 b init_completion.__key
+000000000000003c 0000000000000001 b vivo_battery_handle_ui_decimal_soc.skip_discharging_smooth
+0000000000000058 0000000000000001 b vivo_battery_handle_ui_soc.skip_discharging_smooth
+000000000000000c 0000000000000004 B _VCHG_CHARGE_MODE
+0000000000000014 0000000000000004 b battery_chg_update_usb_type_work.last_adap_type
+0000000000000024 0000000000000004 b battery_psy_get_prop.last_adsp_status
+0000000000000020 0000000000000004 b battery_psy_get_prop.last_status
+0000000000000028 0000000000000004 b battery_psy_get_prop.last_usb_online_count
+0000000000000030 0000000000000004 b vfcs_fg_common_support.fg_common_present
+0000000000000034 0000000000000004 b vivo_battery_handle_ui_decimal_soc.last_ui_soc
+0000000000000038 0000000000000004 b vivo_battery_handle_ui_decimal_soc.last_ui_soc_delta_time_s
+0000000000000050 0000000000000004 b vivo_battery_handle_ui_soc.last_ui_soc
+0000000000000054 0000000000000004 b vivo_battery_handle_ui_soc.last_ui_soc_delta_time_s
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_cleanup_module815
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_init_module814
+0000000000001d80 0000000000000008 t extern_boost_regulator_FAKE_disable
+0000000000001d74 0000000000000008 t extern_boost_regulator_FAKE_enable
+0000000000001d8c 0000000000000008 t extern_boost_regulator_FAKE_is_enable
+0000000000000018 0000000000000008 b handle_notification.last_notification_start_time
+0000000000000000 0000000000000008 b hboost_notifier
+0000000000000048 0000000000000008 b is_panel_backlight_on.display_psy
+0000000000000040 0000000000000008 b vivo_battery_handle_ui_decimal_soc.last_ui_change_time_ms
+0000000000005eec 0000000000000008 t wls_psy_prop_is_writeable
+000000000000003c 000000000000000c r __UNIQUE_ID_license817
+00000000000058dc 000000000000000c t usb_psy_prop_is_writeable
+0000000000000000 000000000000000f r __UNIQUE_ID_built_with0
+0000000000000340 0000000000000010 d battery_class_groups
+0000000000009854 0000000000000010 t battery_psy_prop_is_writeable
+000000000000c8c0 0000000000000014 t battery_chg_get_cur_charge_cntl_limit
+000000000000c8a8 0000000000000014 t battery_chg_get_max_charge_cntl_limit
+0000000000000000 0000000000000018 r _note_18
+0000000000000018 0000000000000018 r _note_19
+00000000000007b8 0000000000000018 r qc_power_supply_usb_type_text
+0000000000000048 0000000000000019 r __UNIQUE_ID_name534
+0000000000000418 000000000000001c d wls_props
+0000000000000061 000000000000001f r __UNIQUE_ID_scmversion535
+0000000000000780 0000000000000020 d class_attr_battery_parallel_cell_count
+0000000000000760 0000000000000020 d class_attr_charge_control_en
+00000000000005e0 0000000000000020 d class_attr_fake_soc
+00000000000005a0 0000000000000020 d class_attr_moisture_detection_en
+0000000000000580 0000000000000020 d class_attr_moisture_detection_status
+0000000000000560 0000000000000020 d class_attr_resistance
+00000000000006e0 0000000000000020 d class_attr_restrict_chg
+0000000000000700 0000000000000020 d class_attr_restrict_cur
+00000000000006c0 0000000000000020 d class_attr_ship_mode_en
+0000000000000540 0000000000000020 d class_attr_soh
+0000000000000720 0000000000000020 d class_attr_usb_real_type
+0000000000000740 0000000000000020 d class_attr_usb_typec_compliant
+00000000000005c0 0000000000000020 d class_attr_wireless_boost_en
+0000000000000660 0000000000000020 d class_attr_wireless_fw_crc
+0000000000000620 0000000000000020 d class_attr_wireless_fw_force_update
+0000000000000600 0000000000000020 d class_attr_wireless_fw_update
+0000000000000680 0000000000000020 d class_attr_wireless_fw_update_time_ms
+0000000000000640 0000000000000020 d class_attr_wireless_fw_version
+00000000000006a0 0000000000000020 d class_attr_wireless_type
+0000000000003c1c 0000000000000020 t extern_boost_regulator_prepare_work
+0000000000000798 0000000000000020 r qc_power_supply_wls_type_text
+00000000000003f8 0000000000000020 d usb_psy_supplied_to
+00000000000003d8 0000000000000020 d validate_message._rs
+0000000000000004 0000000000000024 T cleanup_module
+0000000000000350 0000000000000024 d usb_props
+0000000000000770 0000000000000028 r battery_class_group
+0000000000000004 0000000000000028 T register_hboost_event_notifier
+0000000000000030 0000000000000028 T unregister_hboost_event_notifier
+0000000000000004 000000000000002c T init_module
+00000000000005f0 000000000000002c r wls_prop_map
+000000000000000f 000000000000002d r __UNIQUE_ID_description816
+000000000000c694 0000000000000034 t charge_control_en_show
+000000000000b448 0000000000000034 t fake_soc_show
+000000000000c1a4 0000000000000034 t restrict_chg_show
+000000000000c340 0000000000000034 t restrict_cur_show
+000000000000bfd4 0000000000000034 t ship_mode_en_show
+000000000000be88 0000000000000034 t wireless_fw_update_time_ms_show
+00000000000014d4 0000000000000034 T wls_plugin_event
+0000000000000620 0000000000000038 r battery_tcd_ops
+00000000000005b8 0000000000000038 r usb_prop_map
+000000000000bec0 0000000000000044 t wireless_fw_update_time_ms_store
+00000000000007d0 0000000000000050 r power_supply_usb_type_text
+0000000000000718 0000000000000058 r soc_volatge
+00000000000000dd 0000000000000059 r __UNIQUE_ID_vermagic534
+0000000000005e8c 000000000000005c t wls_psy_set_prop
+0000000000000080 000000000000005d r __UNIQUE_ID_depends536
+00000000000006b8 0000000000000060 r batt_psy_desc
+0000000000000378 0000000000000060 d usb_psy_desc
+0000000000000658 0000000000000060 r wls_psy_desc
+0000000000003bb4 0000000000000064 t battery_chg_delay_power_supply_changed_work
+0000000000000434 0000000000000068 d battery_props
+0000000000001ea4 0000000000000068 t wls_get_wls_psy
+0000000000000d14 000000000000006c t wls_set_enable_b2b_mos
+000000000000b95c 0000000000000070 t wireless_fw_check_for_update
+0000000000000e1c 0000000000000070 t wls_get_enable_b2b_mos
+00000000000058e8 0000000000000074 t get_property_id
+000000000000458c 0000000000000078 t battery_chg_add_debugfs
+00000000000003dc 0000000000000084 t get_power_supply
+0000000000000464 0000000000000088 T smblib_get_rx_mode_enable
+000000000000bdfc 0000000000000088 t wireless_fw_crc_store
+0000000000000528 0000000000000090 r battery_prop_map
+0000000000005ae4 0000000000000094 t battery_chg_ship_mode
+000000000000aca4 0000000000000094 t calculate_delta_time
+000000000000bc9c 0000000000000094 t wireless_fw_force_update_store
+000000000000b51c 0000000000000094 t wireless_fw_update_store
+00000000000033d0 0000000000000098 t battery_chg_remove
+000000000000b480 0000000000000098 t fake_soc_store
+000000000000b8c0 000000000000009c t wireless_fw_version_get
+0000000000000d80 000000000000009c t wls_set_enable_rx_chip_en
+00000000000004a0 00000000000000a0 d battery_class_attrs
+0000000000004604 00000000000000a4 t battery_chg_notify_enable
+0000000000004168 00000000000000a8 t battery_chg_state_cb
+000000000000b118 00000000000000a8 t moisture_detection_en_show
+000000000000b06c 00000000000000a8 t moisture_detection_status_show
+000000000000afc0 00000000000000a8 t resistance_show
+000000000000af14 00000000000000a8 t soh_show
+000000000000c5e8 00000000000000a8 t usb_typec_compliant_show
+000000000000b2b0 00000000000000a8 t wireless_boost_en_show
+00000000000007b4 00000000000000a8 T wls_chargre_monitor
+000000000000bbec 00000000000000ac t battery_chg_fw_write
+000000000000c7f4 00000000000000b0 t battery_parallel_cell_count_show
+000000000000bd34 00000000000000c4 t wireless_fw_version_show
+0000000000009cb4 00000000000000c8 t adsp_fg_get_batt_capacity
+000000000000bf08 00000000000000c8 t wireless_type_show
+00000000000020e8 00000000000000c8 t wls_set_enable_ap_ctrl_mos_sleep_en
+0000000000000e8c 00000000000000cc t wls_get_enable_rx_chip_en
+0000000000001c9c 00000000000000d4 t extern_boost_regulator_is_enable
+00000000000013fc 00000000000000d4 t smblib_get_wls_reverse_tx_enable
+0000000000000954 00000000000000e0 T wls_tx_pmic_vbus_enable
+000000000000ad38 00000000000000e4 t is_panel_backlight_on
+000000000000b1c4 00000000000000e8 t moisture_detection_en_store
+000000000000b35c 00000000000000e8 t wireless_boost_en_store
+0000000000000250 00000000000000f0 d battery_chg_driver
+0000000000000860 00000000000000f0 T wls_tx_pmic_vbus_is_enabled
+0000000000009bc0 00000000000000f4 t battery_psy_get_alternate_charger_status
+000000000000ae1c 00000000000000f4 t battery_psy_set_general_func
+0000000000001300 00000000000000fc t smblib_get_wls_reverse_switch_on
+00000000000021b0 00000000000000fc t wls_get_enable_ap_ctrl_mos_sleep_en
+000000000000c4e0 0000000000000104 t usb_real_type_show
+0000000000009864 0000000000000108 t vfcs_fg_common_support
+000000000000005c 000000000000010c T qti_battery_charger_get_prop
+0000000000001d94 0000000000000110 t battery_chg_write
+000000000000ab94 0000000000000110 t get_current_time
+000000000000c6cc 0000000000000124 t charge_control_en_store
+0000000000005b7c 0000000000000128 t extern_boost_otg_ocp_irq_handler
+0000000000000128 0000000000000128 D extern_boost_regulator_FAKE_ops
+0000000000000000 0000000000000128 D extern_boost_regulator_ops
+00000000000046a8 0000000000000138 t extern_boost_regulator_init
+000000000000c1dc 0000000000000160 t restrict_chg_store
+000000000000c378 0000000000000164 t restrict_cur_store
+00000000000047e0 0000000000000180 t usb_psy_set_icl
+000000000000595c 0000000000000188 t otg_use_usbin_vout
+0000000000000398 0000000000000190 r battery_chg_match_table
+000000000000c00c 0000000000000194 t ship_mode_en_store
+0000000000000000 000000000000019c r ____version_ext_crcs
+00000000000022ac 00000000000001b4 t wls_set_enable_otg_boost_ctrl__waitting_mcu_prepare
+00000000000039dc 00000000000001d4 t battery_chg_check_status_work
+000000000000346c 00000000000001dc t battery_chg_subsys_up_work
+0000000000001f0c 00000000000001dc t wls_set_enable_otg_boost_ctrl
+0000000000005ca8 00000000000001e0 t wls_psy_get_prop
+000000000000b9cc 0000000000000220 t wireless_fw_send_firmware
+000000000000c8d8 0000000000000238 t battery_chg_set_cur_charge_cntl_limit
+000000000000996c 0000000000000254 t ex_fg_get_batt_capacity
+000000000000016c 0000000000000270 T battery_get_equalizing_chg_temp_state
+00000000000004ec 00000000000002c4 t wls_get_charge_mode
+0000000000000a38 00000000000002dc T wls_plugin_init
+000000000000b5b0 0000000000000310 t wireless_fw_update
+0000000000004214 0000000000000378 t battery_chg_reboot_notify
+000000000000150c 0000000000000388 t extern_boost_regulator_enable
+000000000000364c 000000000000038c t battery_chg_update_usb_type_work
+0000000000000f5c 00000000000003a4 T wls_plugin_deinit
+0000000000001898 0000000000000400 t extern_boost_regulator_disable
+0000000000003c40 0000000000000524 t battery_chg_callback
+0000000000005364 0000000000000574 t usb_psy_set_prop
+000000000000a5a4 00000000000005f0 t vivo_battery_handle_ui_soc
+0000000000000000 0000000000000640 D __this_module
+0000000000000000 0000000000000760 r ____version_ext_names
+0000000000009d7c 0000000000000828 t vivo_battery_handle_ui_decimal_soc
+0000000000004964 00000000000009fc t usb_psy_get_prop
+0000000000008ce0 0000000000000b70 t battery_psy_set_prop
+0000000000002464 0000000000000f68 t battery_chg_probe
+0000000000000000 00000000000019c0 r ____versions
+0000000000005ef8 0000000000002de4 t battery_psy_get_prop

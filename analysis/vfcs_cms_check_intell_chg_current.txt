@@ -1,0 +1,315 @@
+0000000000049bf4 <vfcs_cms_check_intell_chg_current>:
+   49bf4:      	paciasp
+   49bf8:      	stp	x29, x30, [sp, #-0x30]!
+   49bfc:      	str	x21, [sp, #0x10]
+   49c00:      	stp	x20, x19, [sp, #0x20]
+   49c04:      	mov	x29, sp
+   49c08:      	mov	x19, x0
+   49c0c:      	bl	0x49c0c <vfcs_cms_check_intell_chg_current+0x18>
+		0000000000049c0c:  R_AARCH64_CALL26	sched_clock
+   49c10:      	ldr	w8, [x19, #0x24]
+   49c14:      	cbz	w8, 0x49ca0 <vfcs_cms_check_intell_chg_current+0xac>
+   49c18:      	mov	w8, #0xc9f0
+   49c1c:      	add	x8, x19, x8
+   49c20:      	ldrb	w9, [x8, #0x2bc]
+   49c24:      	cmp	w9, #0x1
+   49c28:      	b.ne	0x49c60 <vfcs_cms_check_intell_chg_current+0x6c>
+   49c2c:      	ldrb	w9, [x8, #0xd52]
+   49c30:      	cmp	w9, #0x1
+   49c34:      	b.ne	0x49c60 <vfcs_cms_check_intell_chg_current+0x6c>
+   49c38:      	cbz	x19, 0x49e20 <vfcs_cms_check_intell_chg_current+0x22c>
+   49c3c:      	ldr	x8, [x19, #0x10]
+   49c40:      	cbz	x8, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49c44:      	ldr	w8, [x8]
+   49c48:      	tbnz	w8, #0x4, 0x49e74 <vfcs_cms_check_intell_chg_current+0x280>
+   49c4c:      	tbz	w8, #0x2, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49c50:      	ldr	x1, [x19, #0x18]
+   49c54:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049c54:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4c43b ; '\x013%s: %s: wls debug cur enabled,return\n'
+   49c58:      	add	x0, x0, #0x0
+		0000000000049c58:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4c43b ; '\x013%s: %s: wls debug cur enabled,return\n'
+   49c5c:      	b	0x49cec <vfcs_cms_check_intell_chg_current+0xf8>
+   49c60:      	mov	w9, #0xb710
+   49c64:      	add	x21, x19, x9
+   49c68:      	ldrb	w9, [x21]
+   49c6c:      	tbz	w9, #0x0, 0x49cc8 <vfcs_cms_check_intell_chg_current+0xd4>
+   49c70:      	ldr	w9, [x8, #0x50]
+   49c74:      	cbz	w9, 0x49cfc <vfcs_cms_check_intell_chg_current+0x108>
+   49c78:      	cbz	x19, 0x49e2c <vfcs_cms_check_intell_chg_current+0x238>
+   49c7c:      	ldr	x8, [x19, #0x10]
+   49c80:      	cbz	x8, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49c84:      	ldr	w8, [x8]
+   49c88:      	tbnz	w8, #0x4, 0x49e88 <vfcs_cms_check_intell_chg_current+0x294>
+   49c8c:      	tbz	w8, #0x2, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49c90:      	ldr	x1, [x19, #0x18]
+   49c94:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049c94:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2b56c ; "\x013%s: %s: intell charge isn't priority!\n"
+   49c98:      	add	x0, x0, #0x0
+		0000000000049c98:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2b56c ; "\x013%s: %s: intell charge isn't priority!\n"
+   49c9c:      	b	0x49cec <vfcs_cms_check_intell_chg_current+0xf8>
+   49ca0:      	cbz	x19, 0x49df4 <vfcs_cms_check_intell_chg_current+0x200>
+   49ca4:      	ldr	x8, [x19, #0x10]
+   49ca8:      	cbz	x8, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49cac:      	ldr	w8, [x8]
+   49cb0:      	tbnz	w8, #0x4, 0x49e0c <vfcs_cms_check_intell_chg_current+0x218>
+   49cb4:      	tbz	w8, #0x2, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49cb8:      	ldr	x1, [x19, #0x18]
+   49cbc:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049cbc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   49cc0:      	add	x0, x0, #0x0
+		0000000000049cc0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   49cc4:      	b	0x49cec <vfcs_cms_check_intell_chg_current+0xf8>
+   49cc8:      	cbz	x19, 0x49e00 <vfcs_cms_check_intell_chg_current+0x20c>
+   49ccc:      	ldr	x8, [x19, #0x10]
+   49cd0:      	cbz	x8, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49cd4:      	ldr	w8, [x8]
+   49cd8:      	tbnz	w8, #0x4, 0x49e60 <vfcs_cms_check_intell_chg_current+0x26c>
+   49cdc:      	tbz	w8, #0x2, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49ce0:      	ldr	x1, [x19, #0x18]
+   49ce4:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049ce4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x114a6 ; "\x013%s: %s: intell charge isn't enabled!\n"
+   49ce8:      	add	x0, x0, #0x0
+		0000000000049ce8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x114a6 ; "\x013%s: %s: intell charge isn't enabled!\n"
+   49cec:      	adrp	x2, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049cec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49cf0:      	add	x2, x2, #0x0
+		0000000000049cf0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49cf4:      	bl	0x49cf4 <vfcs_cms_check_intell_chg_current+0x100>
+		0000000000049cf4:  R_AARCH64_CALL26	_printk
+   49cf8:      	b	0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49cfc:      	mov	x9, #0xadff
+   49d00:      	movk	x9, #0x8fa6, lsl #16
+   49d04:      	movk	x9, #0x2, lsl #32
+   49d08:      	cmp	x0, x9
+   49d0c:      	b.ls	0x49dcc <vfcs_cms_check_intell_chg_current+0x1d8>
+   49d10:      	ldr	x8, [x8]
+   49d14:      	cmp	x8, #0x3
+   49d18:      	b.hi	0x49d24 <vfcs_cms_check_intell_chg_current+0x130>
+   49d1c:      	ldr	w8, [x21, #0xce0]
+   49d20:      	cbz	w8, 0x49e38 <vfcs_cms_check_intell_chg_current+0x244>
+   49d24:      	ldrb	w8, [x21, #0x498]
+   49d28:      	mov	w9, #0xc3cc
+   49d2c:      	ldr	w1, [x21, #0xce4]
+   49d30:      	ldr	w2, [x21, #0xce0]
+   49d34:      	ldr	w4, [x21, #0xcb8]
+   49d38:      	mov	x0, x19
+   49d3c:      	cmp	w8, #0x0
+   49d40:      	mov	w8, #0xc3c4
+   49d44:      	ldr	w5, [x21, #0xc3c]
+   49d48:      	csel	x8, x9, x8, ne
+   49d4c:      	ldr	w3, [x19, x8]
+   49d50:      	bl	0x53bf0 <vfcs_cms_get_intell_chg_current>
+   49d54:      	mov	w20, w0
+   49d58:      	tbnz	w0, #0x1f, 0x49d74 <vfcs_cms_check_intell_chg_current+0x180>
+   49d5c:      	ldr	x0, [x21, #0xbf0]
+   49d60:      	adrp	x1, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049d60:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3cf45 ; 'INTELL_CHG_EVENT'
+   49d64:      	add	x1, x1, #0x0
+		0000000000049d64:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3cf45 ; 'INTELL_CHG_EVENT'
+   49d68:      	mov	w2, #0x1
+   49d6c:      	mov	w3, w20
+   49d70:      	bl	0x49d70 <vfcs_cms_check_intell_chg_current+0x17c>
+		0000000000049d70:  R_AARCH64_CALL26	vote
+   49d74:      	cbz	x19, 0x49eb4 <vfcs_cms_check_intell_chg_current+0x2c0>
+   49d78:      	ldr	x8, [x19, #0x10]
+   49d7c:      	cbz	x8, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49d80:      	ldr	w8, [x8]
+   49d84:      	tbnz	w8, #0x4, 0x49f2c <vfcs_cms_check_intell_chg_current+0x338>
+   49d88:      	tbz	w8, #0x0, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49d8c:      	ldr	w8, [x21, #0xce4]
+   49d90:      	adrp	x9, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049d90:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3abc2 ; 'on'
+   49d94:      	add	x9, x9, #0x0
+		0000000000049d94:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3abc2 ; 'on'
+   49d98:      	ldr	x1, [x19, #0x18]
+   49d9c:      	ldrb	w5, [x21, #0x498]
+   49da0:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049da0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15de1 ; '\x013%s: %s: fb_%s,ibat_ma:%d,vir_shell_temp_replace_primary_temp=%d\n'
+   49da4:      	add	x0, x0, #0x0
+		0000000000049da4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15de1 ; '\x013%s: %s: fb_%s,ibat_ma:%d,vir_shell_temp_replace_primary_temp=%d\n'
+   49da8:      	cmp	w8, #0x0
+   49dac:      	adrp	x8, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049dac:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x214d5 ; 'off'
+   49db0:      	add	x8, x8, #0x0
+		0000000000049db0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x214d5 ; 'off'
+   49db4:      	adrp	x2, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049db4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49db8:      	add	x2, x2, #0x0
+		0000000000049db8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49dbc:      	csel	x3, x8, x9, eq
+   49dc0:      	mov	w4, w20
+   49dc4:      	bl	0x49dc4 <vfcs_cms_check_intell_chg_current+0x1d0>
+		0000000000049dc4:  R_AARCH64_CALL26	_printk
+   49dc8:      	b	0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49dcc:      	cbz	x19, 0x49e9c <vfcs_cms_check_intell_chg_current+0x2a8>
+   49dd0:      	ldr	x8, [x19, #0x10]
+   49dd4:      	cbz	x8, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49dd8:      	ldr	w8, [x8]
+   49ddc:      	tbnz	w8, #0x4, 0x49ef4 <vfcs_cms_check_intell_chg_current+0x300>
+   49de0:      	tbz	w8, #0x2, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49de4:      	ldr	x1, [x19, #0x18]
+   49de8:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049de8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2b595 ; '\x013%s: %s: waiting,until system power on for 3min!\n'
+   49dec:      	add	x0, x0, #0x0
+		0000000000049dec:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2b595 ; '\x013%s: %s: waiting,until system power on for 3min!\n'
+   49df0:      	b	0x49cec <vfcs_cms_check_intell_chg_current+0xf8>
+   49df4:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049df4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   49df8:      	add	x0, x0, #0x0
+		0000000000049df8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   49dfc:      	b	0x49ea4 <vfcs_cms_check_intell_chg_current+0x2b0>
+   49e00:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e00:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x29091 ; "\x013%s: intell charge isn't enabled!\n"
+   49e04:      	add	x0, x0, #0x0
+		0000000000049e04:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x29091 ; "\x013%s: intell charge isn't enabled!\n"
+   49e08:      	b	0x49ea4 <vfcs_cms_check_intell_chg_current+0x2b0>
+   49e0c:      	bl	0x48bfc <get_android_time>
+   49e10:      	ldr	x2, [x19, #0x18]
+   49e14:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e14:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   49e18:      	add	x0, x0, #0x0
+		0000000000049e18:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   49e1c:      	b	0x49f04 <vfcs_cms_check_intell_chg_current+0x310>
+   49e20:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e20:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x18557 ; '\x013%s: wls debug cur enabled,return\n'
+   49e24:      	add	x0, x0, #0x0
+		0000000000049e24:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x18557 ; '\x013%s: wls debug cur enabled,return\n'
+   49e28:      	b	0x49ea4 <vfcs_cms_check_intell_chg_current+0x2b0>
+   49e2c:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e2c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3ab9d ; "\x013%s: intell charge isn't priority!\n"
+   49e30:      	add	x0, x0, #0x0
+		0000000000049e30:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3ab9d ; "\x013%s: intell charge isn't priority!\n"
+   49e34:      	b	0x49ea4 <vfcs_cms_check_intell_chg_current+0x2b0>
+   49e38:      	cbz	x19, 0x49f78 <vfcs_cms_check_intell_chg_current+0x384>
+   49e3c:      	ldr	x8, [x19, #0x10]
+   49e40:      	cbz	x8, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49e44:      	ldr	w8, [x8]
+   49e48:      	tbnz	w8, #0x4, 0x49f84 <vfcs_cms_check_intell_chg_current+0x390>
+   49e4c:      	tbz	w8, #0x2, 0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49e50:      	ldr	x1, [x19, #0x18]
+   49e54:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e54:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4e6fe ; '\x013%s: %s: waiting,until main_work_count>=4 or vchg_state update!\n'
+   49e58:      	add	x0, x0, #0x0
+		0000000000049e58:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4e6fe ; '\x013%s: %s: waiting,until main_work_count>=4 or vchg_state update!\n'
+   49e5c:      	b	0x49cec <vfcs_cms_check_intell_chg_current+0xf8>
+   49e60:      	bl	0x48bfc <get_android_time>
+   49e64:      	ldr	x2, [x19, #0x18]
+   49e68:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e68:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x47944 ; "\x013[%s]%s: %s: intell charge isn't enabled!\n"
+   49e6c:      	add	x0, x0, #0x0
+		0000000000049e6c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x47944 ; "\x013[%s]%s: %s: intell charge isn't enabled!\n"
+   49e70:      	b	0x49f04 <vfcs_cms_check_intell_chg_current+0x310>
+   49e74:      	bl	0x48bfc <get_android_time>
+   49e78:      	ldr	x2, [x19, #0x18]
+   49e7c:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e7c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3334b ; '\x013[%s]%s: %s: wls debug cur enabled,return\n'
+   49e80:      	add	x0, x0, #0x0
+		0000000000049e80:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3334b ; '\x013[%s]%s: %s: wls debug cur enabled,return\n'
+   49e84:      	b	0x49f04 <vfcs_cms_check_intell_chg_current+0x310>
+   49e88:      	bl	0x48bfc <get_android_time>
+   49e8c:      	ldr	x2, [x19, #0x18]
+   49e90:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e90:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3d870 ; "\x013[%s]%s: %s: intell charge isn't priority!\n"
+   49e94:      	add	x0, x0, #0x0
+		0000000000049e94:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3d870 ; "\x013[%s]%s: %s: intell charge isn't priority!\n"
+   49e98:      	b	0x49f04 <vfcs_cms_check_intell_chg_current+0x310>
+   49e9c:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049e9c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x65d6 ; '\x013%s: waiting,until system power on for 3min!\n'
+   49ea0:      	add	x0, x0, #0x0
+		0000000000049ea0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x65d6 ; '\x013%s: waiting,until system power on for 3min!\n'
+   49ea4:      	adrp	x1, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049ea4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49ea8:      	add	x1, x1, #0x0
+		0000000000049ea8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49eac:      	bl	0x49eac <vfcs_cms_check_intell_chg_current+0x2b8>
+		0000000000049eac:  R_AARCH64_CALL26	_printk
+   49eb0:      	b	0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49eb4:      	mov	w8, #0xc3f4
+   49eb8:      	adrp	x9, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049eb8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3abc2 ; 'on'
+   49ebc:      	add	x9, x9, #0x0
+		0000000000049ebc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3abc2 ; 'on'
+   49ec0:      	ldr	w8, [x8]
+   49ec4:      	ldrb	w4, [x21, #0x498]
+   49ec8:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049ec8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbef7 ; '\x013%s: fb_%s,ibat_ma:%d,vir_shell_temp_replace_primary_temp=%d\n'
+   49ecc:      	add	x0, x0, #0x0
+		0000000000049ecc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbef7 ; '\x013%s: fb_%s,ibat_ma:%d,vir_shell_temp_replace_primary_temp=%d\n'
+   49ed0:      	adrp	x1, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049ed0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49ed4:      	add	x1, x1, #0x0
+		0000000000049ed4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49ed8:      	cmp	w8, #0x0
+   49edc:      	adrp	x8, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049edc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x214d5 ; 'off'
+   49ee0:      	add	x8, x8, #0x0
+		0000000000049ee0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x214d5 ; 'off'
+   49ee4:      	csel	x2, x8, x9, eq
+   49ee8:      	mov	w3, w20
+   49eec:      	bl	0x49eec <vfcs_cms_check_intell_chg_current+0x2f8>
+		0000000000049eec:  R_AARCH64_CALL26	_printk
+   49ef0:      	b	0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49ef4:      	bl	0x48bfc <get_android_time>
+   49ef8:      	ldr	x2, [x19, #0x18]
+   49efc:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049efc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49cc5 ; '\x013[%s]%s: %s: waiting,until system power on for 3min!\n'
+   49f00:      	add	x0, x0, #0x0
+		0000000000049f00:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49cc5 ; '\x013[%s]%s: %s: waiting,until system power on for 3min!\n'
+   49f04:      	adrp	x1, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f04:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   49f08:      	add	x1, x1, #0x0
+		0000000000049f08:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   49f0c:      	adrp	x3, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f0c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49f10:      	add	x3, x3, #0x0
+		0000000000049f10:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49f14:      	bl	0x49f14 <vfcs_cms_check_intell_chg_current+0x320>
+		0000000000049f14:  R_AARCH64_CALL26	_printk
+   49f18:      	ldp	x20, x19, [sp, #0x20]
+   49f1c:      	ldr	x21, [sp, #0x10]
+   49f20:      	ldp	x29, x30, [sp], #0x30
+   49f24:      	autiasp
+   49f28:      	ret
+   49f2c:      	bl	0x48bfc <get_android_time>
+   49f30:      	ldr	w8, [x21, #0xce4]
+   49f34:      	adrp	x9, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f34:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3abc2 ; 'on'
+   49f38:      	add	x9, x9, #0x0
+		0000000000049f38:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3abc2 ; 'on'
+   49f3c:      	ldr	x2, [x19, #0x18]
+   49f40:      	ldrb	w6, [x21, #0x498]
+   49f44:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f44:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x114ce ; '\x013[%s]%s: %s: fb_%s,ibat_ma:%d,vir_shell_temp_replace_primary_temp=%d\n'
+   49f48:      	add	x0, x0, #0x0
+		0000000000049f48:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x114ce ; '\x013[%s]%s: %s: fb_%s,ibat_ma:%d,vir_shell_temp_replace_primary_temp=%d\n'
+   49f4c:      	cmp	w8, #0x0
+   49f50:      	adrp	x8, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f50:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x214d5 ; 'off'
+   49f54:      	add	x8, x8, #0x0
+		0000000000049f54:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x214d5 ; 'off'
+   49f58:      	adrp	x1, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f58:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   49f5c:      	add	x1, x1, #0x0
+		0000000000049f5c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   49f60:      	csel	x4, x8, x9, eq
+   49f64:      	adrp	x3, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f64:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49f68:      	add	x3, x3, #0x0
+		0000000000049f68:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c59a ; 'vfcs_cms_check_intell_chg_current'
+   49f6c:      	mov	w5, w20
+   49f70:      	bl	0x49f70 <vfcs_cms_check_intell_chg_current+0x37c>
+		0000000000049f70:  R_AARCH64_CALL26	_printk
+   49f74:      	b	0x49f18 <vfcs_cms_check_intell_chg_current+0x324>
+   49f78:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f78:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4e740 ; '\x013%s: waiting,until main_work_count>=4 or vchg_state update!\n'
+   49f7c:      	add	x0, x0, #0x0
+		0000000000049f7c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4e740 ; '\x013%s: waiting,until main_work_count>=4 or vchg_state update!\n'
+   49f80:      	b	0x49ea4 <vfcs_cms_check_intell_chg_current+0x2b0>
+   49f84:      	bl	0x48bfc <get_android_time>
+   49f88:      	ldr	x2, [x19, #0x18]
+   49f8c:      	adrp	x0, 0x49000 <vfcs_cms_check_scene_content+0x338>
+		0000000000049f8c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xe640 ; '\x013[%s]%s: %s: waiting,until main_work_count>=4 or vchg_state update!\n'
+   49f90:      	add	x0, x0, #0x0
+		0000000000049f90:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xe640 ; '\x013[%s]%s: %s: waiting,until main_work_count>=4 or vchg_state update!\n'
+   49f94:      	b	0x49f04 <vfcs_cms_check_intell_chg_current+0x310>
+

@@ -1,0 +1,508 @@
+                                  U __alloc_skb
+                                  U __const_udelay
+0000000000000000 0000000000000000 r __crc_adsp_raw_soc
+0000000000000004 0000000000000000 r __crc_battery_cout_counter
+0000000000000008 0000000000000000 r __crc_battery_cout_value
+0000000000000000 0000000000000000 r __crc_create_votable
+0000000000000004 0000000000000000 r __crc_destroy_votable
+000000000000000c 0000000000000000 r __crc_enable_slave_charger
+0000000000000010 0000000000000000 r __crc_ex_fg_bat_factory
+0000000000000014 0000000000000000 r __crc_ex_fg_bat_model_num
+0000000000000018 0000000000000000 r __crc_ex_fg_detect_done
+000000000000001c 0000000000000000 r __crc_ex_fg_ffc_support
+0000000000000020 0000000000000000 r __crc_ex_fg_i2c_error_counter
+0000000000000024 0000000000000000 r __crc_ex_fg_i2c_hand_step
+0000000000000028 0000000000000000 r __crc_ex_fg_power_on_i2c_try_success
+000000000000002c 0000000000000000 r __crc_ex_fg_sha1_verify_result
+0000000000000030 0000000000000000 r __crc_ex_fg_soc
+0000000000000034 0000000000000000 r __crc_ex_fg_state
+0000000000000038 0000000000000000 r __crc_ex_fg_support
+000000000000003c 0000000000000000 r __crc_fake_FULL_ui
+0000000000000040 0000000000000000 r __crc_fake_cable_connect
+0000000000000008 0000000000000000 r __crc_find_votable
+000000000000000c 0000000000000000 r __crc_force_active_votable
+0000000000000010 0000000000000000 r __crc_get_client_vote
+0000000000000014 0000000000000000 r __crc_get_client_vote_locked
+0000000000000018 0000000000000000 r __crc_get_effective_client
+000000000000001c 0000000000000000 r __crc_get_effective_client_locked
+0000000000000020 0000000000000000 r __crc_get_effective_result
+0000000000000024 0000000000000000 r __crc_get_effective_result_locked
+0000000000000028 0000000000000000 r __crc_get_votable_info
+000000000000002c 0000000000000000 r __crc_get_votable_summary
+0000000000000030 0000000000000000 r __crc_is_client_vote_enabled
+0000000000000034 0000000000000000 r __crc_is_client_vote_enabled_locked
+0000000000000038 0000000000000000 r __crc_is_override_vote_enabled
+000000000000003c 0000000000000000 r __crc_is_override_vote_enabled_locked
+0000000000000044 0000000000000000 r __crc_last_cable_disconnect_start_time
+0000000000000048 0000000000000000 r __crc_mtbf_test_mode
+0000000000000040 0000000000000000 r __crc_rerun_election
+000000000000004c 0000000000000000 r __crc_vbus_connect_start_time
+0000000000000050 0000000000000000 r __crc_vbus_smpl_detect
+0000000000000044 0000000000000000 r __crc_vchg_reserved_bak_read
+0000000000000048 0000000000000000 r __crc_vchg_reserved_bak_write
+0000000000000054 0000000000000000 r __crc_vchg_reserved_rw
+000000000000004c 0000000000000000 r __crc_vfcs_asv_reset_params_for_new_device
+0000000000000050 0000000000000000 r __crc_vfcs_log_engine_init
+0000000000000054 0000000000000000 r __crc_vfcs_log_engine_notifier_boardcast
+0000000000000058 0000000000000000 r __crc_vfcs_log_engine_register_notifier
+0000000000000058 0000000000000000 r __crc_vfcs_misc_core_ready
+000000000000005c 0000000000000000 r __crc_vote
+0000000000000060 0000000000000000 r __crc_vote_override
+                                  U __fortify_panic
+                                  U __init_swait_queue_head
+                                  U __init_waitqueue_head
+00000000f4e9d97c 0000000000000000 W __kcfi_typeid_debugfs_attr_read
+00000000c3d43b4d 0000000000000000 W __kcfi_typeid_debugfs_attr_write
+000000004697fdf1 0000000000000000 W __kcfi_typeid_delayed_work_timer_fn
+00000000d527a0de 0000000000000000 W __kcfi_typeid_seq_lseek
+00000000f4e9d97c 0000000000000000 W __kcfi_typeid_seq_read
+000000009829071d 0000000000000000 W __kcfi_typeid_simple_attr_release
+000000009829071d 0000000000000000 W __kcfi_typeid_single_release
+                                  U __kfifo_alloc
+                                  U __kfifo_in
+                                  U __kfifo_out
+                                  U __kmalloc_cache_noprof
+                                  U __kmem_cache_create_args
+0000000000000132 0000000000000000 r __kstrtab_adsp_raw_soc
+00000000000002dc 0000000000000000 r __kstrtab_battery_cout_counter
+00000000000003d6 0000000000000000 r __kstrtab_battery_cout_value
+0000000000000000 0000000000000000 r __kstrtab_create_votable
+000000000000029f 0000000000000000 r __kstrtab_destroy_votable
+000000000000025f 0000000000000000 r __kstrtab_enable_slave_charger
+0000000000000309 0000000000000000 r __kstrtab_ex_fg_bat_factory
+0000000000000024 0000000000000000 r __kstrtab_ex_fg_bat_model_num
+00000000000000ae 0000000000000000 r __kstrtab_ex_fg_detect_done
+0000000000000113 0000000000000000 r __kstrtab_ex_fg_ffc_support
+00000000000002f1 0000000000000000 r __kstrtab_ex_fg_i2c_error_counter
+000000000000035d 0000000000000000 r __kstrtab_ex_fg_i2c_hand_step
+000000000000013f 0000000000000000 r __kstrtab_ex_fg_power_on_i2c_try_success
+00000000000002c3 0000000000000000 r __kstrtab_ex_fg_sha1_verify_result
+00000000000000d1 0000000000000000 r __kstrtab_ex_fg_soc
+0000000000000220 0000000000000000 r __kstrtab_ex_fg_state
+0000000000000398 0000000000000000 r __kstrtab_ex_fg_support
+00000000000003a6 0000000000000000 r __kstrtab_fake_FULL_ui
+00000000000003c3 0000000000000000 r __kstrtab_fake_cable_connect
+0000000000000125 0000000000000000 r __kstrtab_find_votable
+000000000000000f 0000000000000000 r __kstrtab_force_active_votable
+00000000000003b3 0000000000000000 r __kstrtab_get_client_vote
+000000000000015e 0000000000000000 r __kstrtab_get_client_vote_locked
+000000000000031b 0000000000000000 r __kstrtab_get_effective_client
+0000000000000038 0000000000000000 r __kstrtab_get_effective_client_locked
+000000000000024a 0000000000000000 r __kstrtab_get_effective_result
+0000000000000283 0000000000000000 r __kstrtab_get_effective_result_locked
+0000000000000175 0000000000000000 r __kstrtab_get_votable_info
+00000000000002af 0000000000000000 r __kstrtab_get_votable_summary
+0000000000000341 0000000000000000 r __kstrtab_is_client_vote_enabled
+000000000000022c 0000000000000000 r __kstrtab_is_client_vote_enabled_locked
+00000000000001d6 0000000000000000 r __kstrtab_is_override_vote_enabled
+000000000000008e 0000000000000000 r __kstrtab_is_override_vote_enabled_locked
+00000000000001b5 0000000000000000 r __kstrtab_last_cable_disconnect_start_time
+0000000000000274 0000000000000000 r __kstrtab_mtbf_test_mode
+0000000000000371 0000000000000000 r __kstrtab_rerun_election
+0000000000000380 0000000000000000 r __kstrtab_vbus_connect_start_time
+0000000000000330 0000000000000000 r __kstrtab_vbus_smpl_detect
+0000000000000186 0000000000000000 r __kstrtab_vchg_reserved_bak_read
+000000000000019d 0000000000000000 r __kstrtab_vchg_reserved_bak_write
+00000000000000c0 0000000000000000 r __kstrtab_vchg_reserved_rw
+0000000000000054 0000000000000000 r __kstrtab_vfcs_asv_reset_params_for_new_device
+00000000000000dc 0000000000000000 r __kstrtab_vfcs_log_engine_init
+00000000000001fd 0000000000000000 r __kstrtab_vfcs_log_engine_notifier_boardcast
+00000000000000f1 0000000000000000 r __kstrtab_vfcs_log_engine_register_notifier
+0000000000000079 0000000000000000 r __kstrtab_vfcs_misc_core_ready
+0000000000000358 0000000000000000 r __kstrtab_vote
+00000000000001ef 0000000000000000 r __kstrtab_vote_override
+00000000000000db 0000000000000000 r __kstrtabns_adsp_raw_soc
+00000000000000db 0000000000000000 r __kstrtabns_battery_cout_counter
+00000000000000db 0000000000000000 r __kstrtabns_battery_cout_value
+00000000000000db 0000000000000000 r __kstrtabns_create_votable
+00000000000000db 0000000000000000 r __kstrtabns_destroy_votable
+00000000000000db 0000000000000000 r __kstrtabns_enable_slave_charger
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_bat_factory
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_bat_model_num
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_detect_done
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_ffc_support
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_i2c_error_counter
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_i2c_hand_step
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_power_on_i2c_try_success
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_sha1_verify_result
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_soc
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_state
+00000000000000db 0000000000000000 r __kstrtabns_ex_fg_support
+00000000000000db 0000000000000000 r __kstrtabns_fake_FULL_ui
+00000000000000db 0000000000000000 r __kstrtabns_fake_cable_connect
+00000000000000db 0000000000000000 r __kstrtabns_find_votable
+00000000000000db 0000000000000000 r __kstrtabns_force_active_votable
+00000000000000db 0000000000000000 r __kstrtabns_get_client_vote
+00000000000000db 0000000000000000 r __kstrtabns_get_client_vote_locked
+00000000000000db 0000000000000000 r __kstrtabns_get_effective_client
+00000000000000db 0000000000000000 r __kstrtabns_get_effective_client_locked
+00000000000000db 0000000000000000 r __kstrtabns_get_effective_result
+00000000000000db 0000000000000000 r __kstrtabns_get_effective_result_locked
+00000000000000db 0000000000000000 r __kstrtabns_get_votable_info
+00000000000000db 0000000000000000 r __kstrtabns_get_votable_summary
+00000000000000db 0000000000000000 r __kstrtabns_is_client_vote_enabled
+00000000000000db 0000000000000000 r __kstrtabns_is_client_vote_enabled_locked
+00000000000000db 0000000000000000 r __kstrtabns_is_override_vote_enabled
+00000000000000db 0000000000000000 r __kstrtabns_is_override_vote_enabled_locked
+00000000000000db 0000000000000000 r __kstrtabns_last_cable_disconnect_start_time
+00000000000000db 0000000000000000 r __kstrtabns_mtbf_test_mode
+00000000000000db 0000000000000000 r __kstrtabns_rerun_election
+00000000000000db 0000000000000000 r __kstrtabns_vbus_connect_start_time
+00000000000000db 0000000000000000 r __kstrtabns_vbus_smpl_detect
+00000000000000db 0000000000000000 r __kstrtabns_vchg_reserved_bak_read
+00000000000000db 0000000000000000 r __kstrtabns_vchg_reserved_bak_write
+00000000000000db 0000000000000000 r __kstrtabns_vchg_reserved_rw
+00000000000000db 0000000000000000 r __kstrtabns_vfcs_asv_reset_params_for_new_device
+00000000000000db 0000000000000000 r __kstrtabns_vfcs_log_engine_init
+00000000000000db 0000000000000000 r __kstrtabns_vfcs_log_engine_notifier_boardcast
+00000000000000db 0000000000000000 r __kstrtabns_vfcs_log_engine_register_notifier
+00000000000000db 0000000000000000 r __kstrtabns_vfcs_misc_core_ready
+00000000000000db 0000000000000000 r __kstrtabns_vote
+00000000000000db 0000000000000000 r __kstrtabns_vote_override
+0000000000000000 0000000000000000 r __ksymtab_adsp_raw_soc
+000000000000000c 0000000000000000 r __ksymtab_battery_cout_counter
+0000000000000018 0000000000000000 r __ksymtab_battery_cout_value
+0000000000000000 0000000000000000 r __ksymtab_create_votable
+000000000000000c 0000000000000000 r __ksymtab_destroy_votable
+0000000000000024 0000000000000000 r __ksymtab_enable_slave_charger
+0000000000000030 0000000000000000 r __ksymtab_ex_fg_bat_factory
+000000000000003c 0000000000000000 r __ksymtab_ex_fg_bat_model_num
+0000000000000048 0000000000000000 r __ksymtab_ex_fg_detect_done
+0000000000000054 0000000000000000 r __ksymtab_ex_fg_ffc_support
+0000000000000060 0000000000000000 r __ksymtab_ex_fg_i2c_error_counter
+000000000000006c 0000000000000000 r __ksymtab_ex_fg_i2c_hand_step
+0000000000000078 0000000000000000 r __ksymtab_ex_fg_power_on_i2c_try_success
+0000000000000084 0000000000000000 r __ksymtab_ex_fg_sha1_verify_result
+0000000000000090 0000000000000000 r __ksymtab_ex_fg_soc
+000000000000009c 0000000000000000 r __ksymtab_ex_fg_state
+00000000000000a8 0000000000000000 r __ksymtab_ex_fg_support
+00000000000000b4 0000000000000000 r __ksymtab_fake_FULL_ui
+00000000000000c0 0000000000000000 r __ksymtab_fake_cable_connect
+0000000000000018 0000000000000000 r __ksymtab_find_votable
+0000000000000024 0000000000000000 r __ksymtab_force_active_votable
+0000000000000030 0000000000000000 r __ksymtab_get_client_vote
+000000000000003c 0000000000000000 r __ksymtab_get_client_vote_locked
+0000000000000048 0000000000000000 r __ksymtab_get_effective_client
+0000000000000054 0000000000000000 r __ksymtab_get_effective_client_locked
+0000000000000060 0000000000000000 r __ksymtab_get_effective_result
+000000000000006c 0000000000000000 r __ksymtab_get_effective_result_locked
+0000000000000078 0000000000000000 r __ksymtab_get_votable_info
+0000000000000084 0000000000000000 r __ksymtab_get_votable_summary
+0000000000000090 0000000000000000 r __ksymtab_is_client_vote_enabled
+000000000000009c 0000000000000000 r __ksymtab_is_client_vote_enabled_locked
+00000000000000a8 0000000000000000 r __ksymtab_is_override_vote_enabled
+00000000000000b4 0000000000000000 r __ksymtab_is_override_vote_enabled_locked
+00000000000000cc 0000000000000000 r __ksymtab_last_cable_disconnect_start_time
+00000000000000d8 0000000000000000 r __ksymtab_mtbf_test_mode
+00000000000000c0 0000000000000000 r __ksymtab_rerun_election
+00000000000000e4 0000000000000000 r __ksymtab_vbus_connect_start_time
+00000000000000f0 0000000000000000 r __ksymtab_vbus_smpl_detect
+00000000000000cc 0000000000000000 r __ksymtab_vchg_reserved_bak_read
+00000000000000d8 0000000000000000 r __ksymtab_vchg_reserved_bak_write
+00000000000000fc 0000000000000000 r __ksymtab_vchg_reserved_rw
+00000000000000e4 0000000000000000 r __ksymtab_vfcs_asv_reset_params_for_new_device
+00000000000000f0 0000000000000000 r __ksymtab_vfcs_log_engine_init
+00000000000000fc 0000000000000000 r __ksymtab_vfcs_log_engine_notifier_boardcast
+0000000000000108 0000000000000000 r __ksymtab_vfcs_log_engine_register_notifier
+0000000000000108 0000000000000000 r __ksymtab_vfcs_misc_core_ready
+0000000000000114 0000000000000000 r __ksymtab_vote
+0000000000000120 0000000000000000 r __ksymtab_vote_override
+                                  U __list_add_valid_or_report
+                                  U __list_del_entry_valid_or_report
+                                  U __msecs_to_jiffies
+                                  U __mutex_init
+                                  U __netlink_kernel_create
+                                  U __nlmsg_put
+                                  U __platform_driver_register
+                                  U __pm_relax
+                                  U __pm_stay_awake
+                                  U __stack_chk_fail
+0000000000000000 0000000000000000 D __start_alloc_tags
+00000000000000a0 0000000000000000 D __stop_alloc_tags
+                                  U __wake_up
+                                  U _printk
+                                  U _raw_spin_lock_irqsave
+                                  U _raw_spin_unlock_irqrestore
+                                  U alt_cb_patch_nops
+                                  U bsp_test_mode
+                                  U cancel_delayed_work
+                                  U cancel_delayed_work_sync
+                                  U complete
+                                  U debugfs_attr_read
+                                  U debugfs_attr_write
+                                  U debugfs_create_dir
+                                  U debugfs_create_file
+                                  U debugfs_create_u32
+                                  U debugfs_remove
+                                  U delayed_work_timer_fn
+                                  U device_create_file
+                                  U device_remove_file
+                                  U devm_kmalloc
+                                  U em_authorized
+                                  U finish_wait
+                                  U get_random_bytes
+                                  U gpio_request
+                                  U gpio_to_desc
+                                  U gpiod_direction_output_raw
+                                  U gpiod_get_raw_value
+                                  U init_net
+                                  U init_timer_key
+                                  U init_wait_entry
+                                  U is_atboot
+                                  U jiffies
+                                  U jiffies_to_msecs
+                                  U kfree
+                                  U kmalloc_caches
+                                  U kmem_cache_alloc_noprof
+                                  U kmem_cache_destroy
+                                  U kmem_cache_free
+                                  U kstrdup
+                                  U kstrtoint
+                                  U kthread_create_on_node
+                                  U kthread_should_stop
+                                  U ktime_get_real_ts64
+                                  U ktime_get_with_offset
+                                  U mainboard_state
+                                  U mem_alloc_profiling_key
+                                  U memcpy
+                                  U memset
+                                  U mod_timer
+                                  U msleep
+                                  U mutex_lock
+                                  U mutex_unlock
+                                  U netlink_unicast
+                                  U ns_to_timespec64
+                                  U of_find_compatible_node
+                                  U of_find_device_by_node
+                                  U of_find_property
+                                  U of_get_named_gpio
+                                  U of_property_read_string
+                                  U of_property_read_variable_u32_array
+                                  U platform_device_register
+                                  U platform_driver_unregister
+                                  U power_off_charging_mode
+                                  U power_supply_get_by_name
+                                  U power_supply_reg_notifier
+                                  U power_supply_set_property
+                                  U prepare_to_wait_event
+                                  U queue_delayed_work_on
+                                  U queue_work_on
+                                  U raw_notifier_call_chain
+                                  U raw_notifier_chain_register
+                                  U register_kprobe
+                                  U register_pm_notifier
+                                  U register_reboot_notifier
+                                  U rtc_time64_to_tm
+                                  U sched_set_fifo
+                                  U schedule
+                                  U scnprintf
+                                  U seq_lseek
+                                  U seq_printf
+                                  U seq_read
+                                  U simple_attr_open
+                                  U simple_attr_release
+                                  U single_open
+                                  U single_release
+                                  U sk_skb_reason_drop
+                                  U snprintf
+                                  U sprintf
+                                  U sscanf
+                                  U strchr
+                                  U strcmp
+                                  U strncmp
+                                  U strncpy
+                                  U strnlen
+                                  U sys_tz
+                                  U system_wq
+                                  U timer_delete
+                                  U timer_delete_sync
+                                  U timer_reduce
+                                  U unregister_kprobe
+                                  U usleep_range_state
+                                  U wait_for_completion_timeout
+                                  U wake_up_process
+                                  U wakeup_source_add
+0000000000000000 0000000000000001 V __llvm_fs_discriminator__
+0000000000000190 0000000000000001 b create_votable.__key
+0000000000000092 0000000000000001 B fake_FULL_ui
+0000000000000090 0000000000000001 B fake_cable_connect
+0000000000000041 0000000000000001 b init_completion.__key
+00000000000001a9 0000000000000001 b is_suspend
+00000000000001a8 0000000000000001 b is_sys_shutdown
+0000000000000091 0000000000000001 B vbus_smpl_detect
+0000000000000074 0000000000000001 b vfcs_log_engine_chg_or_dischg_current_integration_algo.last_usb_state
+0000000000000046 0000000000000001 b vfcs_log_engine_event_init.__key
+0000000000000045 0000000000000001 b vfcs_log_engine_event_init.inited
+0000000000000043 0000000000000001 b vfcs_log_engine_init_lock.__key
+0000000000000044 0000000000000001 b vfcs_log_engine_init_lock.__key.19
+0000000000000042 0000000000000001 b vfcs_log_engine_init_lock.inited
+0000000000000071 0000000000000001 b vfcs_log_engine_init_reboot_count.first
+0000000000000070 0000000000000001 b vfcs_log_engine_init_reboot_count.inited
+0000000000000048 0000000000000001 b vfcs_log_engine_later_init.inited
+0000000000000072 0000000000000001 b vfcs_log_engine_monitor_timer_init.inited
+0000000000000059 0000000000000001 b vfcs_log_engine_notifier_queue_init.inited
+0000000000000040 0000000000000001 b vfcs_log_engine_probe.__key
+0000000000000058 0000000000000001 b vfcs_log_engine_queue_init.inited
+0000000000000174 0000000000000001 b vfcs_misc_common_lpm_gpio_timing_special_processing.s_has_finished
+000000000000017c 0000000000000001 b vfcs_misc_fchg_lpm_disable_vote_callback.last_force_active
+0000000000000178 0000000000000001 b vfcs_misc_pi_lpm_disable_vote_callback.last_force_active
+00000000000001f8 0000000000000001 b vfcs_reserved_block_init.__key
+00000000000004e0 0000000000000004 d __debug_mask
+0000000000000094 0000000000000004 B adsp_raw_soc
+00000000000000b0 0000000000000004 B battery_cout_counter
+00000000000000ac 0000000000000004 B battery_cout_value
+00000000000000c8 0000000000000004 B enable_slave_charger
+00000000000000c0 0000000000000004 B ex_fg_bat_factory
+00000000000000cc 0000000000000004 B ex_fg_bat_model_num
+00000000000000b8 0000000000000004 B ex_fg_detect_done
+00000000000000a0 0000000000000004 B ex_fg_ffc_support
+00000000000000bc 0000000000000004 B ex_fg_i2c_error_counter
+00000000000000b4 0000000000000004 B ex_fg_i2c_hand_step
+00000000000000a8 0000000000000004 B ex_fg_power_on_i2c_try_success
+0000000000000098 0000000000000004 B ex_fg_sha1_verify_result
+00000000000000c4 0000000000000004 B ex_fg_soc
+000000000000009c 0000000000000004 B ex_fg_state
+00000000000000a4 0000000000000004 B ex_fg_support
+00000000000000d0 0000000000000004 B mtbf_test_mode
+0000000000000170 0000000000000004 b vfcs_misc_common_lpm_gpio_timing_special_processing.s_count
+0000000000000180 0000000000000004 b votable_list_slock
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_cleanup_module675
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_init_module674
+0000000000000188 0000000000000008 b debug_root
+0000000000000000 0000000000000008 b engine_notifier_head
+00000000000002f0 0000000000000008 b g_kallsyms_lookup_name
+0000000000000088 0000000000000008 B last_cable_disconnect_start_time
+0000000000000008 0000000000000008 b this_engine
+0000000000000080 0000000000000008 B vbus_connect_start_time
+00000000000001a0 0000000000000008 B vchg_filp_close
+0000000000000198 0000000000000008 B vchg_filp_open
+00000000000001b8 0000000000000008 B vchg_kernel_read
+00000000000001c0 0000000000000008 B vchg_kernel_write
+00000000000001b0 0000000000000008 B vchg_vfs_llseek
+0000000000000078 0000000000000008 b vfcs_log_engine_chg_or_dischg_current_integration_algo.last_usb_change_jiffies
+0000000000000068 0000000000000008 b vfcs_log_engine_init_reboot_count.last_jiffies
+0000000000000060 0000000000000008 b vfcs_log_engine_init_reboot_count.start_jiffies
+0000000000000050 0000000000000008 b vfcs_log_engine_nl_recv_msg.engine
+000000000000483c 0000000000000008 t vfcs_log_engine_power_supply_notifier_cb
+0000000000004204 0000000000000008 t vfcs_log_engine_reboot_notifier_cb
+000000000000a04c 0000000000000008 t vfcs_store_attrs
+00000000000002f8 0000000000000008 b vps
+0000000000000060 000000000000000c T vfcs_log_engine_get_engine
+000000000000004b 000000000000000e r __UNIQUE_ID_import_ns652
+0000000000000059 000000000000000f r __UNIQUE_ID_built_with0
+000000000000003c 000000000000000f r __UNIQUE_ID_license678
+0000000000000020 0000000000000010 d create_votable._alloc_tag_cntr
+0000000000007ffc 0000000000000010 t force_active_get
+0000000000000000 0000000000000010 d vfcs_log_engine_notifier_msg_enqueue._alloc_tag_cntr
+0000000000000010 0000000000000010 d vfcs_log_engine_queue_enqueue._alloc_tag_cntr
+0000000000000030 0000000000000010 d vfcs_power_supply_sysfs_init._alloc_tag_cntr
+00000000000005d8 0000000000000010 d votable_list
+0000000000000068 0000000000000014 r __UNIQUE_ID_name534
+0000000000000000 0000000000000016 r __UNIQUE_ID_description676
+000000000000009b 0000000000000018 r __UNIQUE_ID_depends536
+0000000000000000 0000000000000018 r _note_18
+0000000000000018 0000000000000018 r _note_19
+00000000000002d8 0000000000000018 b pm_notifier
+00000000000002c0 0000000000000018 b reboot_notifier
+0000000000000150 000000000000001e b __android_time
+000000000000007c 000000000000001f r __UNIQUE_ID_scmversion535
+0000000000006958 0000000000000020 T lock_votable
+000000000000697c 0000000000000020 T unlock_votable
+0000000000001628 0000000000000020 d usb_attrs
+00000000000069a0 0000000000000024 T is_override_vote_enabled_locked
+0000000000000016 0000000000000026 r __UNIQUE_ID_import_ns677
+0000000000000050 0000000000000028 d create_votable._alloc_tag
+0000000000000000 0000000000000028 d vfcs_log_engine_notifier_msg_enqueue._alloc_tag
+0000000000000028 0000000000000028 d vfcs_log_engine_queue_enqueue._alloc_tag
+0000000000000004 0000000000000028 T vfcs_log_engine_register_notifier
+0000000000000078 0000000000000028 d vfcs_power_supply_sysfs_init._alloc_tag
+0000000000000030 000000000000002c T vfcs_log_engine_notifier_boardcast
+0000000000008b88 000000000000002c T vfcs_reserved_block_exit
+0000000000007e0c 000000000000002c t votable_status_open
+0000000000000010 0000000000000030 b data_lock
+00000000000001c8 0000000000000030 b data_lock
+00000000000000e8 0000000000000030 r vfcs_log_engine_get_module_cms_prop.modes
+0000000000000804 0000000000000034 t vfcs_log_engine_notify_work_fn
+0000000000007fc4 0000000000000034 t votable_force_ops_open
+0000000000006cf4 000000000000003c T get_effective_result_locked
+0000000000008ab4 0000000000000040 t vchg_reserved_block_shutdown_callback
+0000000000001648 0000000000000040 d vfcs_attrs
+0000000000004910 0000000000000040 t vfcs_log_engine_suspend
+00000000000049e0 0000000000000044 T vfcs_misc_core_ready
+00000000000004c0 0000000000000048 T vfcs_log_engine_init
+00000000000091c4 0000000000000048 T vfcs_power_supply_sysfs_exit
+0000000000000658 0000000000000050 r VIVO_POWER_SUPPLY_USB_TYPE_TEXT
+00000000000007b0 0000000000000050 t vfcs_log_engine_delayed_work
+0000000000004210 0000000000000050 t vfcs_log_engine_pm_notifier_cb
+00000000000069c8 0000000000000054 T is_override_vote_enabled
+00000000000000b3 0000000000000059 r __UNIQUE_ID_vermagic534
+0000000000001688 0000000000000060 d ex_fg_attrs
+0000000000006c90 0000000000000060 T get_client_vote
+0000000000006b14 0000000000000060 T is_client_vote_enabled
+0000000000006da4 000000000000006c T get_effective_client_locked
+0000000000006d34 000000000000006c T get_effective_result
+00000000000000d8 0000000000000078 B the_misc
+0000000000008674 000000000000007c T vchg_reserved_rw
+0000000000004954 0000000000000088 t vfcs_log_engine_resume
+0000000000008af8 000000000000008c t vchg_reserved_block_pm_notifier
+0000000000007488 0000000000000090 T find_votable
+0000000000006e14 000000000000009c T get_effective_client
+000000000000792c 00000000000000b0 T get_votable_info
+0000000000000200 00000000000000c0 b reserved_block_wake_lock
+0000000000000000 00000000000000c0 r vfcs_log_engine_pm_ops
+0000000000004848 00000000000000c4 t vfcs_engine_key_state_monitor_timer
+0000000000000590 00000000000000c8 r VIVO_POWER_SUPPLY_TYPE_TEXT
+0000000000004a24 00000000000000c8 t get_android_time
+00000000000073b8 00000000000000cc T rerun_election
+0000000000007b0c 00000000000000e4 t force_active_set
+0000000000009d58 00000000000000e8 t usb_show_attrs
+0000000000009e44 00000000000000ec t usb_store_attrs
+00000000000003d0 00000000000000ec T vchg_reserved_bak_write
+0000000000007838 00000000000000f0 T destroy_votable
+000000000000a1dc 00000000000000f0 t ex_fg_store_attrs
+0000000000006a20 00000000000000f0 T is_client_vote_enabled_locked
+00000000000004e8 00000000000000f0 d vfcs_misc_driver
+0000000000000000 00000000000000f0 d vfsc_log_engine_driver
+0000000000000430 0000000000000108 r votable_force_ops
+0000000000000328 0000000000000108 r votable_status_ops
+0000000000006b78 0000000000000114 T get_client_vote_locked
+0000000000009f34 0000000000000114 t vfcs_show_attrs
+0000000000000070 0000000000000118 T vchg_reserved_bak_read
+0000000000007290 0000000000000124 T vote_override
+00000000000079e0 0000000000000128 T force_active_votable
+0000000000005a9c 0000000000000144 t vfcs_misc_remove
+0000000000005d38 000000000000014c t vfcs_misc_resume
+0000000000005be4 0000000000000150 t vfcs_misc_suspend
+0000000000008bb8 0000000000000150 T vfcs_power_supply_sysfs_init
+0000000000000004 0000000000000154 T cleanup_module
+0000000000009058 0000000000000168 t vfcs_power_supply_notifier_call
+0000000000009bd8 000000000000017c t battery_store_attrs
+000000000000a058 0000000000000180 t ex_fg_show_attrs
+0000000000007e3c 0000000000000184 t show_votable_clients
+0000000000000198 0000000000000190 r vfcs_misc_match_table
+0000000000008010 00000000000001c8 T vfcs_asv_reset_params_for_new_device
+0000000000000000 00000000000001f0 r ____version_ext_crcs
+0000000000003ff4 000000000000020c t vfcs_log_engine_nl_recv_msg
+0000000000007bf4 0000000000000214 T get_votable_summary
+0000000000000188 0000000000000244 t vfcs_log_engine_nl_send_msg
+000000000000083c 00000000000002a0 t vfcs_log_engine_event_thread_fn
+000000000000050c 00000000000002a0 t vfcs_log_engine_probe
+000000000000751c 0000000000000318 T create_votable
+0000000000008d0c 0000000000000348 t vfcs_power_supply_attr_register_work
+0000000000005e88 000000000000038c t vfcs_misc_common_lpm_disable_vote_callback
+0000000000006218 000000000000038c t vfcs_misc_pi_lpm_disable_vote_callback
+00000000000065a8 00000000000003ac t vfcs_misc_fchg_lpm_disable_vote_callback
+00000000000086f4 00000000000003bc T vfcs_reserved_block_init
+0000000000006eb4 00000000000003d8 T vote
+0000000000001248 00000000000003e0 d battery_attrs
+00000000000000f0 00000000000003f0 d vfcs_log_engine_device
+0000000000000004 0000000000000434 T init_module
+00000000000081dc 0000000000000494 T _vchg_reserved_rw
+0000000000004264 00000000000005d4 t vfcs_log_engine_notifier_cb
+0000000000000000 0000000000000640 D __this_module
+0000000000000000 0000000000000821 r ____version_ext_names
+0000000000009210 00000000000009c4 t battery_show_attrs
+00000000000005e8 0000000000000c60 d reserved_chg_node
+0000000000004af0 0000000000000fa8 t vfcs_misc_probe
+0000000000000000 0000000000001f00 r ____versions
+0000000000000adc 0000000000003514 t vfcs_log_engine_pollinginfo

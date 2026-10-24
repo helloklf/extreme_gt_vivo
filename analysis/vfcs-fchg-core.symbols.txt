@@ -1,0 +1,66 @@
+0000000000000000 0000000000000000 r __crc_fchg_dev_register
+0000000000000004 0000000000000000 r __crc_fchg_dev_unregister
+0000000000000015 0000000000000000 r __kstrtab_fchg_dev_register
+0000000000000000 0000000000000000 r __kstrtab_fchg_dev_unregister
+0000000000000014 0000000000000000 r __kstrtabns_fchg_dev_register
+0000000000000014 0000000000000000 r __kstrtabns_fchg_dev_unregister
+0000000000000000 0000000000000000 r __ksymtab_fchg_dev_register
+000000000000000c 0000000000000000 r __ksymtab_fchg_dev_unregister
+                                  U __platform_driver_register
+                                  U __stack_chk_fail
+0000000000000000 0000000000000000 D __start_alloc_tags
+0000000000000000 0000000000000000 D __stop_alloc_tags
+                                  U _printk
+                                  U devm_kfree
+                                  U devm_kmalloc
+                                  U devm_power_supply_register
+                                  U ktime_get_real_ts64
+                                  U of_get_next_child
+                                  U of_property_read_string
+                                  U of_property_read_variable_u32_array
+                                  U platform_driver_unregister
+                                  U power_supply_get_drvdata
+                                  U rtc_time64_to_tm
+                                  U scnprintf
+                                  U snprintf
+                                  U strlen
+                                  U strncmp
+                                  U sys_tz
+                                  U vfcs_misc_core_ready
+0000000000000000 0000000000000001 V __llvm_fs_discriminator__
+00000000000000f0 0000000000000004 d __debug_mask
+0000000000000008 0000000000000004 b fchg_dev_register.pos
+00000000000000f4 0000000000000004 d vfcs_fchg_power_props
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_cleanup_module788
+0000000000000000 0000000000000008 d __UNIQUE_ID___addressable_init_module787
+0000000000000000 0000000000000008 b the_chip
+0000000000003ea8 0000000000000008 t vfcs_fchg_property_is_writeable
+0000000000000000 000000000000000f r __UNIQUE_ID_built_with0
+0000000000000059 000000000000000f r __UNIQUE_ID_license791
+0000000000000068 0000000000000014 r __UNIQUE_ID_name534
+000000000000009b 0000000000000017 r __UNIQUE_ID_depends536
+0000000000000000 0000000000000018 r _note_18
+0000000000000018 0000000000000018 r _note_19
+000000000000000c 000000000000001e b __android_time
+000000000000007c 000000000000001f r __UNIQUE_ID_scmversion535
+000000000000000f 0000000000000024 r __UNIQUE_ID_description789
+0000000000000004 0000000000000024 T cleanup_module
+0000000000000033 0000000000000026 r __UNIQUE_ID_import_ns790
+0000000000000004 000000000000002c T init_module
+0000000000000000 0000000000000050 r ____version_ext_crcs
+00000000000000b2 0000000000000059 r __UNIQUE_ID_vermagic534
+00000000000002d8 0000000000000060 r vfcs_fchg_psy_desc
+0000000000000284 00000000000000c8 t get_android_time
+0000000000000000 00000000000000f0 d vfcs_fchg_driver
+000000000000103c 0000000000000144 t vfcs_fchg_shutdown
+0000000000000000 000000000000015b r ____version_ext_names
+0000000000000eac 000000000000018c t vfcs_fchg_remove
+0000000000000148 0000000000000190 r vfcs_fchg_match_table
+0000000000000350 0000000000000210 T fchg_dev_unregister
+0000000000000004 0000000000000280 T fchg_dev_register
+0000000000001180 00000000000002cc t vfcs_fchg_parse_reconfigurable_dt
+0000000000000000 0000000000000500 r ____versions
+0000000000000000 0000000000000640 D __this_module
+0000000000000564 0000000000000944 t vfcs_fchg_probe
+0000000000003148 0000000000000d5c t vfcs_fchg_set_property
+0000000000001450 0000000000001cf4 t vfcs_fchg_get_property

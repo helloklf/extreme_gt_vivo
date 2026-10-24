@@ -1,0 +1,1646 @@
+92(8Q
+~-1")
+QFM}"
+5I#Z)
+4`F`
+4`Z`
+jh8h
+R!yh
+4i2A
+4j2A
+4m2A
+4i2A
+4h2A
+h'@)
+h'@)
+Rjji
+*%K@
+*Y3C
+4Co@
+RCo@
+Tcr@
+Rcr@
+5cr@
+Th:@
+Th&@
+4i&Y
+ThRG
+TiRG
+Tc:@
+Rc:@
+p9h:@
+Ti:@
+RcbF
+7hbF
+4cb@
+Rcb@
+Rc&@
+7hbF
+7hbF
+7hbF
+6Co@
+RCo@
+4hbF
+7hbF
+5hbF
+5cRA
+RcRA
+7hbF
+7hbF
+7hbF
+0q(d
+7hbF
+6cRM
+RcRM
+7hbF
+4c2J
+Rc2J
+6c"K
+Rc"K
+6crK
+RcrK
+0qHK
+6c2O
+Rc2O
+0qh;
+p9hrD
+TirD
+7hbF
+Rc2C
+0q()
+0qH&
+Rc"D
+0qh#
+Rc2A
+4cbL
+RcbL
+7hbF
+5(B;
+"B9h
+ThJB
+5(B;
+h"K9t
+b"K9
+ii8	hj
+<p*?#
+<p*?#
+Rjjh
+iji8J
+^ 7(f
+@ 7hI
+/ 7HA
+P 7hV
+hP 7
+HB 7(
+(3 7
+(> 7(C
+7iBA9?
+4`"@
+7h*@
+T`.@
+4`"@
+6`.@
+@9`.@
+R`.@
+7h*@
+T`.@
+4`"@
+@9`.@
+R`2@
+uZD)`2@
+uZD)`2@
+Tw"B
+Tw"B
+7h&B
+Tt.B
+Th*B
+\7?#
+7h&B
+5h"B
+Tl=A
+@9k!
+Th*B
+Th.B
+Th:A
+7i2B
+Ta6A
+\7?#
+Tb.B
+\7?#
+6!5A
+T*)B
+Tb.B
+Ti*B
+G?C?#
+TKE*
+K)@)J
+Tt6@
+T`:@
+Th>@
+TtB@
+5hB@
+5hF@
+5hJ@
+5hN@
+5hR@
++yhxJ	
+DCHG_DISABLE
+vfcs_loginfo_cache
+NULL
+FFcFv:%-4d 
+3[%s]%s: %s: failed to get fchg-lpm-gpio
+3[%s]%s: %s: extern_lpm_gpio_enable=%d,, extern_lpm_gpio=%d
+vfcs_misc_gpio_init
+3%s: 
+create_votable
+3vfcs_asv_reset_params_for_new_device: set paramB=%lu,paramA=%lu,paramC=%lu,paramD=%lu
+3vfcs-reserved-block: %s: %s: index=%d, drv_sleep, skip!!
+SOC_x100_SCALE_MAX
+battery_capacity_learning_value2__battery0
+fg_r_sensor_calibration_r_value
+SI_BATTERY_PARAM_B_UI_SOC_THRES
+BACKUP_CYCLE_COUNT_FOR_ALGORITHM2
+3vfcs-reserved-block: %s: success
+uisoc_delta_now
+3vfcs-vps: %s: ret=%d, val=%d. Success!!
+verify_fail
+###SYSTEM_ENTER_SUSPEND###
+../soc-repo/drivers/power/supply/vfcs/vfcs-misc/vfcs-logengine.c
+fchg_bypass
+Vcell2:%-4d 
+reqVbus:%-5d 
+FchgEnabled:0x%02x 
+3%s: %s: lpm_ctrl_delay_ms=%d,common_lpm_gpio=%d,pi_lpm_gpio=%d,fchg_lpm_gpio=%d
+vivo,ex-chg-psy-name
+common_lpm_gpio
+3%s: %s: failed to request fchg_lpm_gpio,rc=%d
+3%s: %s: common_lpm_gpio error!
+MISC_COM_FCHG_EVENT
+Write
+battery_capacity_learning_value5__battery0
+battery_capacity_learning_value3__battery1
+low_temp_and_battery_empty_flag
+FIRST_SLAVE_BATTERY_R
+fg_self_calibration_current_spec
+drop_cover_role
+fg__calibration_backup
+RESERVED_VBAT_RISE_UP_BACKUP_VERSION
+new_dev_bak_cycle
+vchg_block_symbol_init
+bat_fcc
+fg_passed_charge
+usb_store_attrs
+fg_shipmode
+Ibus:%-5d 
+vfcs_log_engine_queue_enqueue
+vfcs_misc_core_ready
+3%s: %s:  log engine is not enabled rc=%d
+vivo,fchg-lpm-always-high-enable
+3[%s]%s: %s: failed to request fchg_lpm_gpio,rc=%d
+3%s: %s: lpm_ctrl_delay_ms=%d,pi_lpm_gpio=%d 
+3%s: lpm_ctrl_delay_ms=%d,pi_lpm_gpio=%d 
+vfcs_misc_suspend
+Set_any
+battery_health_fsm
+first_battery_r_value
+RESERVED_VBAT_RISE_UP_DELTA_VBAT
+3vfcs-reserved-block: %s:  g_kallsyms_lookup_name NULL
+3vfcs-vps: %s: register done: bat=%d, usb=%d, cms=%d, vfcs=%d, ex_fg=%d !!!
+primary_board_temp
+fg_raw_soc
+Echo: %s
+###SYSTEM_EXIT_SUSPEND###
+notcharging
+Vbat:%-4d 
+3[%s]%s: %s: start
+3[%s]%s: %s: lpm_ctrl_delay_ms=%d,pi_lpm_gpio=%d 
+3[%s]%s: %s: lpm_ctrl_delay_ms=%d,lpm_ctrl_low_delay_ms=%d,fchg_lpm_gpio=%d 
+3vfcs-voter: Couldn't create debug dir
+battery_health_success_times
+LOW_BATTERY_COUNT
+RESERVED_CHG__CYCLE_FLAG
+battery_capacity_learning_value3__battery0
+_BATTERY_CAPACITY_LEARNING_VALUE_AVG__battery1_first_time
+FIRST_SLAVE_BATTERY_R_NORMALIZED
+FIRST_SLAVE_BATTERY_CYCLE
+ISP_BATTERY1_ACTIVE_COUNT
+soh_current_index
+soh_auto_learning_cnt
+INDEX_MAX
+vchg_reserved_block_pm_notifier
+3vfcs-vps: %s: register battery sysfs done
+USB_C
+KEEP_CHG_SOC
+vfcs_log_engine_notifier_msg_enqueue
+#FFC_CV_TRIGGER!#
+#CHG_STATUS_CHANGE!:%d# 
+Tboard:%-3d 
+Ptype:%-6s 
+vivo,common-lpm-gpio-timeing-special-process
+3%s: %s: extern_lpm_gpio_enable=%d,, extern_lpm_gpio=%d
+3%s: lpm_ctrl_delay_ms=%d,common_lpm_gpio=%d 
+3[%s]%s: %s: pi_lpm_gpio error!
+../soc-repo/drivers/power/supply/vfcs/vfcs-misc/vfcs-voter.c
+battery_capacity_learning_value1__battery0
+COLLECTION_MODE_FLAG
+charger_voltage
+uisoc_hide_enable
+Mains
+USB_CDP
+Wireless
+QC3.0
+3LINFO: %s
+3 %s
+Vcell1:%-4d 
+3[%s]%s: %s: Done
+3%s: %s: exit
+3vfcs-reserved-block: %s: %s: index=%d, is_suspend, skip!!
+fg_curr_offset_calibration_value
+soh_extend_data
+3vfcs-reserved-block: %s: vchg_get_kallsyms failed, ret:%d
+kallsyms_lookup_name
+uisoc_set_delta_max
+vfcs_log_engine_event_thread_fn
+3LINFO: reboot count is %d
+%-30s  vote %-30s  %8d  %seffective: %-30s  %8d 
+HEALTH_ABNORMAL
+Iterm:%-4d 
+FFcIterm:%-4d 
+reqIbus:%-5d 
+3%s: %s: dt.common_lpm_gpio_timing_special_process=%d
+3[%s]%s: %s: failed to request pi_lpm_gpio,rc=%d
+3[%s]%s: %s: fchg_lpm_gpio error!
+last_update_time
+RESERVED_CHG__CYCLE_CNT
+soh_force_learning_cnt
+soh_init_flag
+3vfcs-reserved-block: %s: lookup kernel_read failed.
+3vfcs-vps: %s: EXIT...
+3vfcs-vps: %s: register vfcs sysfs done
+bat_rm
+fg_raw_filtered_soc
+chg_term_volt
+%d,%d
+&x->wait
+ID:%s-%d-%d %s > 
+fchg_wls
+FV:%-4d 
+AdapterT:%-3d 
+vfcs_misc_init
+vivo,extern-lpm-gpio
+vfcs_misc_fchg_lpm_disable_vote_callback
+3%s: %s: fchg_lpm_gpio error!
+%s:%d,
+ISP_BATTERY0_ACTIVE_COUNT
+SI_BATTERY_PARAM_B_COUNT_FLAG
+RESERVED_CHG__SOMETIME_CHG_FULL_CYCLE
+soh_report_data
+filp_open
+APPLE_BRICK_ID
+&engine->info_que_lock
+3LINFO: set reboot count to %d
+#FFC_TERM#
+Stepv:%-5d 
+PassChg:%-5d 
+3[%s]%s: %s: lpm_ctrl_delay_ms=%d,common_lpm_gpio=%d,pi_lpm_gpio=%d,fchg_lpm_gpio=%d
+3%s: %s: lpm_always_high_enable: common=%d,pi=%d,fchg=%d
+vivo,misc-logengine-enable
+MISC_COM_PI_EVENT
+BATTERY_UI_SOC
+SOC_x100_SCALE_MIN
+RESERVED_REBOOT_COUNT
+ADSP_FG_RSNS_K_TRIM
+soh_loss_rebase_cnt
+charging_speed
+batt_therm2
+QC3.5
+3LERR: Failed to create loginfo cache
+vfcs-fchg
+#EXIT_SUSPEND#
+#pdo_num:%d[min_mv,max_mv,ma]:[%d,%d,%d][%d,%d,%d][%d,%d,%d][%d,%d,%d][%d,%d,%d][%d,%d,%d]# 
+UsbOn:%d 
+Health:%#x 
+ChgProto:%-4s 
+BootMode:%#x 
+3[%s]%s: %s: failed to get pi-lpm-gpio
+3[%s]%s: %s: failed to request common_lpm_gpio,rc=%d
+pmic-votable
+3vfcs-voter: Couldn't create status dbg file for %s
+3vfcs_asv_reset_params_for_new_device: volt_mv=%d
+3vfcs-reserved-block: %s:  index=%d, addr=%d error with before point!
+RESERVED_VBAT_RISE_UP_CYCLE
+unlpug_bat_bak_ui_soh
+soh_loss_rebase_true_soh
+USB_PD_DRP
+ex_fg_store_attrs
+%d-%02d-%02d %02d:%02d:%02d.%06d
+full
+mAh:%-4d 
+3[%s]%s: %s: Couldn't gpio init rc=%d
+MISC_DEFAULT_EVENT
+%s:100,
+%s: effective=%s type=%s v=%d
+3vfcs-reserved-block: %s: index=%d > %d. error!!
+POWER_OFF_VOLTAGE_FLAG_SLAVE
+SI_BATTERY_PARAM_H_COUNT_FLAG
+life_loss
+Charge_pump
+3LINFO: READ id:%d name:%s value:%ld
+3LERR: nlmsg_put failed
+NORMAL_CHG_EVENT
+#DCHG_FCC_SET_TO:%d# 
+Stepc:%-5d 
+Cycle:%d 
+3[%s]%s: %s: dt.common_lpm_gpio_timing_special_process=%d
+3%s: %s: failed to request common_lpm_gpio,rc=%d
+3vfcs-voter: Invalid votable_type specified for voter
+status
+3vfcs-voter: ===== votable name:%s, force voter:%s, (%d, %d) =====
+%s: %s:			en=%d v=%d
+3vfcs-reserved-block: %s: vchg_vfs_llseek error, ret=%d.
+3vfcs-reserved-block: %s: done, ret=%d!!
+bat_first_usage_date
+3vfcs-reserved-block: %s: End: is_suspend=%d
+USB_PD
+battery_store_attrs
+vfcs_log_engine_notifier_cb
+fchg_wls_bypass
+pi_lpm_gpio
+3[%s]%s: %s: exit
+SOC_RTC_TIME
+battery_capacity_learning_Flag__battery1
+low_battery_count_for_1percent
+kernel_read
+board_connected_check_vbat_master
+3LERR: Connection refused, PID reset
+%02d:%02d:%02d.%06d
+DISABLE_CHG
+Fchg1Ibus:%-5d 
+VchgState:%s 
+3vfcs-reserved-block: %s: fs API not init,return
+3vfcs-reserved-block: %s: after vchg_filp_open fp:0x%p, error=%ld 
+zero_capacity
+_BATTERY_CAPACITY_LEARNING_VALUE_AVG__battery0_first_time
+chg__icc_calibration_flag
+chg__icc_trim_value
+bat_drop_mark
+3vfcs-vps: %s: register ex_fg sysfs done
+debug_info
+soc_decimal
+3vfcs-vps: %s: error: buf=%s, val=%d
+3LINFO: WRITE id:%d name:%s value:%ld
+ID:%s-%d-%d %.10s %s > 
+SysRsume:%d 
+InTell:%-5d 
+3[%s]%s: %s: vfcs reserved block init fail
+3%s: %s: Couldn't gpio init rc=%d
+PI_LPM_DISABLE
+vfcs_misc_common_lpm_disable_vote_callback
+3%s: %s: lpm_disable=%d,vote_client=%s
+3[%s]%s: %s: 
+battery_capacity_learning_count
+battery_capacity_learning_value_avg__battery0
+FIRST_MASTER_BATTERY_CYCLE
+kernel_write
+6vfcs-reserved-block: %s: lookup for symbol %s
+batt_therm1
+vivo,vfcs-core
+KeepSoc:%d 
+3%s: %s: failed to get common_lpm_gpio
+3%s: %s: 
+DEBUG_FORCE_CLIENT
+3vfcs-voter: Couldn't create debug dir %s
+force_active
+BATTERY_RAW_SOC_x100
+POWER_OFF_VOLTAGE_FLAG_MAIN
+battery_capacity_learning_count__battery0
+fg_curr_offset_calibration_result
+RESERVED_FG__POWER_OFF_VOLTAGE_FLAG_ON_MAINBOARD
+bat_encry_UID
+bat_drop_count
+SI_BATTERY_PARAM_H_UI_SOC_THRES
+3vfcs-reserved-block: %s:  Start: event=%ld
+chg_type
+QC2.0
+MAIN
+3LINFO: probe: %s
+&engine->event_wait_que
+USER_IBAT
+uisoc:%-3d 
+Tbat:%-3d 
+3%s: %s: vfcs power supply sysfs init fail
+MISC_ALWAYS_HIGH_EVENT
+Unkonwn
+reserved_block_wake_lock
+battery_capacity_learning_value_avg
+SHUTDOWN_VOLTAGE
+RESERVED_VBAT_RISE_UP_FSM
+3vfcs-reserved-block: %s: lookup filp_close failed.
+3vfcs-vps: %s: failed to register vfcs sysfs. err: %d
+fg_reg_info_title
+sys_shutdown_volt
+PD_PPS
+DCHG_FCC[%-5d]:%-25s 
+3[%s]%s: %s: Couldn't create votables rc=%d
+vivo,extern-lpm-gpio-enable
+3[%s]%s: %s: ex_chg_psy_name=%s
+vfcs_misc_resume
+3vfcs-reserved-block: %s: start...
+product_version
+rt6160_uv_flag
+SI_BATTERY_PARAM_FIRST_BOOT_FLAG
+3vfcs-vps: %s: register cms sysfs done
+chg_voltage
+online:%s
+PD_DRP
+3LERR: Message too long: %d > %d
+3LINFO: Unknown command: %d
+#ENTER_SUSPEND#
+unknow
+CV:%-4d 
+3%s: vfcs_misc not ready
+vfcs-misc
+vivo,common-lpm-gpio
+vfcs_misc_pi_lpm_disable_vote_callback
+Read
+3vfcs-reserved-block: %s:  index=%d, addr=%d > %d. error!!
+Discharging_SOC_COUNT__last_battery
+battery_capacity_learning_value_update__backup_cycle_count
+battery_capacity_learning_value3
+BATTERY_REINSTALL_STATE
+battery_capacity_learning_value5__battery1
+POWEROFF_RTC_TIME
+battery_health_framework_flag
+3vfcs-vps: %s: failed to register usb sysfs. err: %d
+Floated
+vfcs_log_engine_probe
+#ENTER_FFC_CV#
+St:%-11s 
+Ibat:%-6d 
+3%s: %s: done
+3[%s]%s: %s: Unable to parse DT nodes
+vivo,lpm-ctrl-delay-ms
+vivo,pi-lpm-gpio
+3%s: %s: failed to get fchg-lpm-gpio
+fchg_lpm_gpio
+3%s: lpm_disable=%d,vote_client=%s
+6vfcs-voter: %s
+../soc-repo/drivers/power/supply/vfcs/vfcs-misc/vfcs-power-supply-sysfs.c
+3vfcs-vps: %s: failed to register battery sysfs. err: %d
+fg_bigdata_info
+error
+BrickID
+3vfcs-vps: %s: ret=%d, val=%d. Error!!
+charging
+3%s: %s: Unable to parse DT nodes
+3[%s]%s: %s: device tree info missing
+3%s: %s: device tree info missing
+vivo,fchg-lpm-gpio
+vivo,pi-lpm-always-high-enable
+3%s: %s: common_lpm_gpio_timing_special_processing:do nothing
+force_val
+100,
+battery_capacity_learning_value2
+battery_soc_high_to_low_flag
+fg_raw_true_soc
+fg_reg_info
+USB_DCP
+Parallel
+fast_charging_info
+&engine->lock
+vivo,vfcs-cms
+UI_REPORT_FULL
+UI_REPORT_100
+vivo,misc-version
+3%s: %s: ex_chg_psy_name=%s
+3%s: lpm_ctrl_delay_ms=%d,lpm_ctrl_low_delay_ms=%d,fchg_lpm_gpio=%d 
+3%s: fchg_lpm_gpio error!
+vfcs_misc_exit
+3vfcs-voter: %s:enable=%d,value=%d
+none
+battery_capacity_learning_value1
+CYCLE_COUNT
+bat_drop_depth
+drop_depth_sum
+unlpug_bat_bak_cycle
+soh_consume_learning_cnt
+3vfcs-reserved-block: %s: lookup filp_open failed.
+3vfcs-reserved-block: %s: lookup mem_cgroup_from_id failed.
+3vfcs-reserved-block: %s: Start: pm_event=%ld
+3LINFO: REGISTER_PID:%s: %d
+3LINFO: UFCS_VERIFY: PID=%d ALGO_RET=%s LEN=%d
+three
+BootTime:%d 
+Susp:%d 
+FchgCharging:0x%02x 
+3[%s]%s: %s: failed to get common_lpm_gpio
+3[%s]%s: %s: ex_fg_psy_name=%s
+3%s: %s: ex_fg_psy_name=%s
+3vfcs-voter: Couldn't create force_active dbg file for %s
+/dev/block/by-name/reserved
+FIRST_MASTER_BATTERY_R
+SOMETIME_KEEP_SOC
+3vfcs-reserved-block: %s: lookup vfs_llseek failed.
+vfcs_power_supply_sysfs_init
+3vfcs-vps: %s: Couldn't register psy notifier rc = %d
+3vfcs-vps: %s: register usb sysfs done
+#%s# 
+fchg
+soc:%-3d 
+3[%s]%s: %s: lpm_disable=%d,vote_client=%s
+_vchg_reserved_rw
+3vfcs-reserved-block: %s: EXIT...
+battery_capacity_learning_RTC_TIME
+last_mode_Flag
+TI_FG_SOC_FROM_TYPE
+3vfcs-reserved-block: %s: g_kallsyms_lookup_name not init
+3vfcs-vps: %s: failed to register ex_fg sysfs. err: %d
+3vfcs-vps: %s: USB_usb_otg: ret=%d, val=%d. Success!!
+3LERR: nlmsg_new failed
+USB_ICL
+notifier_cache
+four
+INTELL_CHG_EVENT
+RECOVERY_CHG
+AdapterVbus:%-5d 
+vivo,lpm-ctrl-low-delay-ms
+3[%s]%s: %s: lpm_ctrl_delay_ms=%d,common_lpm_gpio=%d 
+3vfcs-voter: ===== votable name:%s, effective_result:(%d,%d) =====
+vfcs_reserved_block_exit
+battery_capacity_learning_value5
+New_device_Flag
+battery_out_times
+battery_capacity_learning_Flag__battery0
+battery_capacity_learning_value1__battery1
+battery_capacity_learning_value4__battery1
+ADSP_FG_CURR_OFFSET
+unplug_bat_cnt
+filp_close
+vchg_kallsyms_lookup_name
+board_connected_check_vbat_slave2
+vfcs_log_engine_event_%s
+3LERR: %s exits(%d)
+DCHG_FCC
+BYPASS
+Vbus:%-5d 
+Engine:%-1d 
+3LERR: just put data into queue
+3[%s]%s: %s: done
+3vfcs_asv_reset_params_for_new_device: paramA=%lu,paramB=%lu
+battery_capacity_learning_value4
+battery_capacity_learning_value_avg__battery1
+POWEROFF_BATTERY_VOLTAGE
+RESERVED_FG__AFTER_SALE_MAIN_BOARD_STAT
+vfs_llseek
+parallel_board_temp
+chg_term_curr
+usb_otg
+fg_reset
+vfcs_log_engine
+&data_lock
+vivo,fg-common
+3LERR: vfcs_log: kfifo_in failed unexpectedly
+3%s: %s: start
+3[%s]%s: %s: vfcs power supply sysfs init fail
+3%s: %s: lpm_ctrl_delay_ms=%d,common_lpm_gpio=%d 
+3%s: %s: pi_lpm_gpio error!
+3%s: %s: lpm_ctrl_delay_ms=%d,lpm_ctrl_low_delay_ms=%d,fchg_lpm_gpio=%d 
+vfcs_misc_remove
+os_version
+RESERVED_CHG__COLLECTION_MODE_TRIGGER_COUNT
+RESERVED_CHG__SHIPMODE_POWER_ON_FLAG
+fg_self_calibration_result
+soh_report
+vfcs_power_supply_sysfs_exit
+3LERR: Error creating socket, netlink proto=%d
+vfcs_misc_core
+PassDisChg:%-5d 
+vfcs_misc_probe
+3%s: %s: Couldn't create votables rc=%d
+3%s: %s: Done
+vivo,common-lpm-always-high-enable
+3[%s]%s: %s: common_lpm_gpio_timing_special_processing:do nothing
+3%s: pi_lpm_gpio error!
+3vfcs-reserved-block: %s:  index=%d, addr=%d error with after point!
+Discharging_SOC_COUNT
+last_update_cycle
+chg_dam_en
+vfcs_power_supply_attr_register_work
+3LERR: READ timeout id:%d
+3LERR: Send failed after retries: %d
+%02x%02x%02x%02x%02x
+Fchg2Ibus:%-5d 
+UsbConT:%-3d 
+3%s: %s: vfcs reserved block init fail
+vivo,ex-fg-psy-name
+3%s: %s: failed to request pi_lpm_gpio,rc=%d
+&votable->vote_lock
+3vfcs-reserved-block: %s: %s: index=%d, is_sys_shutdown, skip!!
+battery_capacity_learning_Flag
+fg_r_sensor_calibration_current_value
+3vfcs-reserved-block: %s: start
+vchg_get_kallsyms
+fg_bigdata_title
+fg_info
+battery
+discharging
+FB:%-1d 
+3[%s]%s: %s: lpm_always_high_enable: common=%d,pi=%d,fchg=%d
+COMMON_LPM_DISABLE
+3[%s]%s: %s: common_lpm_gpio error!
+battery_health_start_times
+bat_encry_Discharging_SOC_COUNT
+3vfcs-reserved-block: %s: register kprobe failed. ret=%d
+vchg_reserved_block_shutdown_callback
+board_temp_state
+Battery
+TYPE-C
+3LERR: %s vt not registed
+3LINFO: creating socket success!
+verify_ok
+3LINFO: %s:bbk not start for so long time 					, disable logengine
+enable
+#CHARGER_TYPE:%d# 
+3%s: %s: failed to get pi-lpm-gpio
+%lld
+3vfcs-reserved-block: %s: %s,val=0x%lx --> 0x%lX(%ld, %s, size=%ld, mask=0x%lX),index=%d(%s), ret=%d
+charging_when_power_off
+SI_BATTERY_PARAM_RESET_FLAG
+SHIPMODE_ENABLE_FLAG
+battery_capacity_learning_count__battery1
+FIRST_MASTER_BATTERY_R_NORMALIZED
+soh_init_cycle
+3vfcs-vps: %s: done!!
+Unknown
+Float
+disable
+3LINFO: %s:cHARGER_BBKLOG_EN:%d
+USER_IBAT[%-5d]:%-25s 
+USB_ICL[%-5d]:%-25s 
+3[%s]%s: %s:  log engine is not enabled rc=%d
+vfcs_misc_parse_dt
+FCHG_LPM_DISABLE
+3%s: common_lpm_gpio_timing_special_processing:do nothing
+3%s: common_lpm_gpio error!
+3vfcs_asv_reset_params_for_new_device: set RESERVED_FG__SHUTDOWN_VOLTAGE to %lu
+vfcs_reserved_block_init
+battery_capacity_learning_value4__battery0
+battery_capacity_learning_value2__battery1
+bat_rtc_notify_time
+RESERVED_BAT__MANUFACTURE_DATE
+RESERVED_BAT__ID
+board_connected_check_vbat_slave
+USB_ACA
+INVALIED
+vivo,vfcs-misc
+description=vfcs misc
+import_ns=ANDROID_GKI_VFS_EXPORT_ONLY
+license=GPL v2
+import_ns=PWM
+built_with=DDK
+name=vfcs_misc_core
+scmversion=gc623cc86c958-dirty
+depends=vivo_bsp_engine
+vermagic=6.12.23-android16-5-g801ede8ff3b9-4k SMP preempt mod_unload modversions aarch64
+create_votable
+force_active_votable
+ex_fg_bat_model_num
+get_effective_client_locked
+vfcs_asv_reset_params_for_new_device
+vfcs_misc_core_ready
+is_override_vote_enabled_locked
+ex_fg_detect_done
+vchg_reserved_rw
+ex_fg_soc
+vfcs_log_engine_init
+vfcs_log_engine_register_notifier
+ex_fg_ffc_support
+find_votable
+adsp_raw_soc
+ex_fg_power_on_i2c_try_success
+get_client_vote_locked
+get_votable_info
+vchg_reserved_bak_read
+vchg_reserved_bak_write
+last_cable_disconnect_start_time
+is_override_vote_enabled
+vote_override
+vfcs_log_engine_notifier_boardcast
+ex_fg_state
+is_client_vote_enabled_locked
+get_effective_result
+enable_slave_charger
+mtbf_test_mode
+get_effective_result_locked
+destroy_votable
+get_votable_summary
+ex_fg_sha1_verify_result
+battery_cout_counter
+ex_fg_i2c_error_counter
+ex_fg_bat_factory
+get_effective_client
+vbus_smpl_detect
+is_client_vote_enabled
+vote
+ex_fg_i2c_hand_step
+rerun_election
+vbus_connect_start_time
+ex_fg_support
+fake_FULL_ui
+get_client_vote
+fake_cable_connect
+battery_cout_value
+vfcs_misc_core
+raw_notifier_chain_register
+raw_notifier_call_chain
+mutex_lock
+mutex_unlock
+wait_for_completion_timeout
+_printk
+strncpy
+usleep_range_state
+__alloc_skb
+__nlmsg_put
+memcpy
+netlink_unicast
+__const_udelay
+sk_skb_reason_drop
+__platform_driver_register
+platform_device_register
+devm_kmalloc
+__mutex_init
+__init_swait_queue_head
+jiffies
+get_random_bytes
+snprintf
+__init_waitqueue_head
+kthread_create_on_node
+wake_up_process
+delayed_work_timer_fn
+init_timer_key
+__msecs_to_jiffies
+system_wq
+queue_delayed_work_on
+__stack_chk_fail
+sched_set_fifo
+alt_cb_patch_nops
+0UP^
+kthread_should_stop
+__kfifo_out
+kmem_cache_free
+msleep
+init_wait_entry
+prepare_to_wait_event
+finish_wait
+schedule
+power_supply_get_by_name
+of_find_compatible_node
+of_find_device_by_node
+__kmem_cache_create_args
+__kfifo_alloc
+kmem_cache_destroy
+register_pm_notifier
+register_reboot_notifier
+power_supply_reg_notifier
+jiffies_to_msecs
+mod_timer
+init_net
+__netlink_kernel_create
+is_atboot
+em_authorized
+power_off_charging_mode
+bsp_test_mode
+ktime_get_with_offset
+ns_to_timespec64
+ktime_get_real_ts64
+sys_tz
+rtc_time64_to_tm
+_raw_spin_lock_irqsave
+_raw_spin_unlock_irqrestore
+memset
+strcmp
+strnlen
+__fortify_panic
+strchr
+mem_alloc_profiling_key
+kmem_cache_alloc_noprof
+__kfifo_in
+power_supply_set_property
+__wake_up
+complete
+strncmp
+cancel_delayed_work
+queue_work_on
+oWT_
+timer_delete
+timer_reduce
+oWT_
+timer_delete_sync
+cancel_delayed_work_sync
+platform_driver_unregister
+of_property_read_variable_u32_array
+of_get_named_gpio
+of_find_property
+of_property_read_string
+gpio_request
+gpio_to_desc
+gpiod_direction_output_raw
+gpiod_get_raw_value
+kstrdup
+debugfs_create_dir
+kmalloc_caches
+__kmalloc_cache_noprof
+debugfs_create_file
+debugfs_create_u32
+kfree
+debugfs_remove
+__list_add_valid_or_report
+__list_del_entry_valid_or_report
+sprintf
+single_open
+seq_printf
+simple_attr_open
+seq_lseek
+seq_read
+single_release
+debugfs_attr_read
+debugfs_attr_write
+simple_attr_release
+mainboard_state
+__pm_stay_awake
+__pm_relax
+register_kprobe
+unregister_kprobe
+wakeup_source_add
+device_create_file
+device_remove_file
+scnprintf
+kstrtoint
+sscanf
+module_layout
+&@Sb
+WJ(O
+0UP^$
+^LQs
+Y:tM}"
+*X:M
+oWT_
+oWT_[
+l$la
+izKM
+raw_notifier_chain_register
+raw_notifier_call_chain
+mutex_lock
+mutex_unlock
+wait_for_completion_timeout
+_printk
+strncpy
+usleep_range_state
+__alloc_skb
+__nlmsg_put
+memcpy
+netlink_unicast
+__const_udelay
+sk_skb_reason_drop
+__platform_driver_register
+platform_device_register
+devm_kmalloc
+__mutex_init
+__init_swait_queue_head
+jiffies
+get_random_bytes
+snprintf
+__init_waitqueue_head
+kthread_create_on_node
+wake_up_process
+delayed_work_timer_fn
+init_timer_key
+__msecs_to_jiffies
+system_wq
+queue_delayed_work_on
+__stack_chk_fail
+sched_set_fifo
+alt_cb_patch_nops
+kthread_should_stop
+__kfifo_out
+kmem_cache_free
+msleep
+init_wait_entry
+prepare_to_wait_event
+finish_wait
+schedule
+power_supply_get_by_name
+of_find_compatible_node
+of_find_device_by_node
+__kmem_cache_create_args
+__kfifo_alloc
+kmem_cache_destroy
+register_pm_notifier
+register_reboot_notifier
+power_supply_reg_notifier
+jiffies_to_msecs
+mod_timer
+init_net
+__netlink_kernel_create
+is_atboot
+em_authorized
+power_off_charging_mode
+bsp_test_mode
+ktime_get_with_offset
+ns_to_timespec64
+ktime_get_real_ts64
+sys_tz
+rtc_time64_to_tm
+_raw_spin_lock_irqsave
+_raw_spin_unlock_irqrestore
+memset
+strcmp
+strnlen
+__fortify_panic
+strchr
+mem_alloc_profiling_key
+kmem_cache_alloc_noprof
+__kfifo_in
+power_supply_set_property
+__wake_up
+complete
+strncmp
+cancel_delayed_work
+queue_work_on
+timer_delete
+timer_reduce
+timer_delete_sync
+cancel_delayed_work_sync
+platform_driver_unregister
+of_property_read_variable_u32_array
+of_get_named_gpio
+of_find_property
+of_property_read_string
+gpio_request
+gpio_to_desc
+gpiod_direction_output_raw
+gpiod_get_raw_value
+kstrdup
+debugfs_create_dir
+kmalloc_caches
+__kmalloc_cache_noprof
+debugfs_create_file
+debugfs_create_u32
+kfree
+debugfs_remove
+__list_add_valid_or_report
+__list_del_entry_valid_or_report
+sprintf
+single_open
+seq_printf
+simple_attr_open
+seq_lseek
+seq_read
+single_release
+debugfs_attr_read
+debugfs_attr_write
+simple_attr_release
+mainboard_state
+__pm_stay_awake
+__pm_relax
+register_kprobe
+unregister_kprobe
+wakeup_source_add
+device_create_file
+device_remove_file
+scnprintf
+kstrtoint
+sscanf
+module_layout
+Linux
+Linux
+Android (12833971, +pgo, +bolt, +lto, +mlgo, based on r536225) clang version 19.0.1 (https://android.googlesource.com/toolchain/llvm-project b3a530ec6537146650e42be89f1089e9a3588460)
+(&K9:;<B`cf
+knqr
+uvwx
+'-03*,+@
+uvwz}
+WZ]`cdefghijklmnopstuvwxyz{|89
+ #&),/25
+.note.gnu.property
+.note.Linux
+.data..percpu
+.rela.exit.text
+.rela.init.text
+.hyp.text
+.rela.text
+.comment
+.init.plt
+.hyp.bss
+.rela.altinstructions
+__versions
+__ksymtab_strings
+.rela.codetag.alloc_tags
+__version_ext_names
+.hyp.patchable_function_entries
+.hyp.event_ids
+__version_ext_crcs
+.modinfo
+.rela__ksymtab_gpl
+__kcrctab_gpl
+.note.GNU-stack
+.llvm_addrsig
+.text.ftrace_trampoline
+.rela.init.eh_frame
+.rela.gnu.linkonce.this_module
+.rela__jump_table
+.note.gnu.build-id
+.shstrtab
+.strtab
+.rela__ksymtab
+.symtab
+__kcrctab
+.hyp.rodata
+.rela.rodata
+.rela.exit.data
+.rela.init.data
+.hyp.data
+.rela.data
+.rodata.__llvm_fs_discriminator__
+.rodata.str1.1
+sys_tz
+power_supply_set_property
+of_find_property
+init_wait_entry
+__kstrtabns_ex_fg_bat_factory
+__crc_ex_fg_bat_factory
+__kstrtab_ex_fg_bat_factory
+__ksymtab_ex_fg_bat_factory
+__kstrtabns_get_votable_summary
+__crc_get_votable_summary
+__kstrtab_get_votable_summary
+__ksymtab_get_votable_summary
+strncpy
+memcpy
+kmem_cache_destroy
+init_timer_key
+mem_alloc_profiling_key
+vfcs_log_engine_event_init.__key
+vfcs_reserved_block_init.__key
+init_completion.__key
+vfcs_log_engine_init_lock.__key
+create_votable.__key
+vfcs_log_engine_probe.__key
+__kstrtabns_vfcs_misc_core_ready
+__crc_vfcs_misc_core_ready
+__kstrtab_vfcs_misc_core_ready
+__ksymtab_vfcs_misc_core_ready
+of_property_read_variable_u32_array
+__const_udelay
+__pm_relax
+__kstrtabns_vchg_reserved_rw
+__crc_vchg_reserved_rw
+__kstrtab_vchg_reserved_rw
+__ksymtab_vchg_reserved_rw
+gpiod_direction_output_raw
+__nlmsg_put
+wait_for_completion_timeout
+__kfifo_out
+vfcs_log_engine_init_reboot_count.first
+votable_list
+gpio_request
+netlink_unicast
+__kstrtabns_vfcs_log_engine_notifier_boardcast
+__crc_vfcs_log_engine_notifier_boardcast
+__kstrtab_vfcs_log_engine_notifier_boardcast
+__ksymtab_vfcs_log_engine_notifier_boardcast
+__kstrtabns_ex_fg_support
+__crc_ex_fg_support
+__kstrtab_ex_fg_support
+__ksymtab_ex_fg_support
+__kstrtabns_ex_fg_ffc_support
+__crc_ex_fg_ffc_support
+__kstrtab_ex_fg_ffc_support
+__ksymtab_ex_fg_ffc_support
+__list_del_entry_valid_or_report
+__list_add_valid_or_report
+debug_root
+is_atboot
+vfcs_misc_common_lpm_gpio_timing_special_processing.s_count
+kstrtoint
+prepare_to_wait_event
+__kstrtabns_get_effective_client
+__crc_get_effective_client
+__kstrtab_get_effective_client
+__ksymtab_get_effective_client
+__kstrtabns_ex_fg_sha1_verify_result
+__crc_ex_fg_sha1_verify_result
+__kstrtab_ex_fg_sha1_verify_result
+__ksymtab_ex_fg_sha1_verify_result
+__kstrtabns_get_effective_result
+__crc_get_effective_result
+__kstrtab_get_effective_result
+__ksymtab_get_effective_result
+vfcs_power_supply_sysfs_exit
+vfcs_reserved_block_exit
+__mutex_init
+vfcs_power_supply_sysfs_init
+vfcs_reserved_block_init
+__kstrtabns_vfcs_log_engine_init
+__crc_vfcs_log_engine_init
+__kstrtab_vfcs_log_engine_init
+__ksymtab_vfcs_log_engine_init
+finish_wait
+memset
+ktime_get_with_offset
+force_active_set
+init_net
+force_active_get
+__kstrtabns_vbus_smpl_detect
+__crc_vbus_smpl_detect
+__kstrtab_vbus_smpl_detect
+__ksymtab_vbus_smpl_detect
+__kstrtabns_fake_cable_connect
+__crc_fake_cable_connect
+__kstrtab_fake_cable_connect
+__ksymtab_fake_cable_connect
+show_votable_clients
+wake_up_process
+__kstrtabns_ex_fg_power_on_i2c_try_success
+__crc_ex_fg_power_on_i2c_try_success
+__kstrtab_ex_fg_power_on_i2c_try_success
+__ksymtab_ex_fg_power_on_i2c_try_success
+battery_attrs
+battery_show_attrs
+vfcs_show_attrs
+ex_fg_show_attrs
+usb_show_attrs
+vfcs_attrs
+ex_fg_attrs
+battery_store_attrs
+vfcs_store_attrs
+ex_fg_store_attrs
+usb_store_attrs
+usb_attrs
+alt_cb_patch_nops
+votable_status_ops
+vfcs_log_engine_pm_ops
+votable_force_ops
+____versions
+__kmem_cache_create_args
+__start_alloc_tags
+__stop_alloc_tags
+get_random_bytes
+____version_ext_names
+vfcs_log_engine_init_reboot_count.last_jiffies
+vfcs_log_engine_init_reboot_count.start_jiffies
+__msecs_to_jiffies
+vfcs_log_engine_chg_or_dischg_current_integration_algo.last_usb_change_jiffies
+kmalloc_caches
+vfcs_log_engine_get_module_cms_prop.modes
+____version_ext_crcs
+jiffies_to_msecs
+vfcs_power_supply_sysfs_init._alloc_tag_cntr
+vfcs_log_engine_notifier_msg_enqueue._alloc_tag_cntr
+vfcs_log_engine_queue_enqueue._alloc_tag_cntr
+create_votable._alloc_tag_cntr
+debugfs_create_dir
+strchr
+vfsc_log_engine_driver
+vfcs_misc_driver
+platform_driver_unregister
+__platform_driver_register
+raw_notifier_chain_register
+platform_device_register
+__kstrtabns_battery_cout_counter
+__crc_battery_cout_counter
+__kstrtab_battery_cout_counter
+__ksymtab_battery_cout_counter
+__kstrtabns_ex_fg_i2c_error_counter
+__crc_ex_fg_i2c_error_counter
+__kstrtab_ex_fg_i2c_error_counter
+__ksymtab_ex_fg_i2c_error_counter
+vfcs_engine_key_state_monitor_timer
+mod_timer
+register_reboot_notifier
+__kstrtabns_vfcs_log_engine_register_notifier
+__crc_vfcs_log_engine_register_notifier
+__kstrtab_vfcs_log_engine_register_notifier
+__ksymtab_vfcs_log_engine_register_notifier
+register_pm_notifier
+vchg_reserved_block_pm_notifier
+power_supply_reg_notifier
+__kstrtabns_enable_slave_charger
+__crc_enable_slave_charger
+__kstrtab_enable_slave_charger
+__ksymtab_enable_slave_charger
+system_wq
+kstrdup
+__wake_up
+kthread_should_stop
+sk_skb_reason_drop
+strcmp
+strncmp
+__kstrtabns_ex_fg_i2c_hand_step
+__crc_ex_fg_i2c_hand_step
+__kstrtab_ex_fg_i2c_hand_step
+__ksymtab_ex_fg_i2c_hand_step
+msleep
+of_get_named_gpio
+vfcs_log_engine_pollinginfo
+__kstrtabns_get_votable_info
+__crc_get_votable_info
+__kstrtab_get_votable_info
+__ksymtab_get_votable_info
+sched_set_fifo
+is_sys_shutdown
+__kstrtabns_rerun_election
+__crc_rerun_election
+__kstrtab_rerun_election
+__ksymtab_rerun_election
+queue_work_on
+queue_delayed_work_on
+raw_notifier_call_chain
+__kfifo_in
+__kcfi_typeid_delayed_work_timer_fn
+vfcs_log_engine_notify_work_fn
+vfcs_log_engine_event_thread_fn
+votable_status_open
+votable_force_ops_open
+simple_attr_open
+vchg_filp_open
+single_open
+strnlen
+__kstrtabns_ex_fg_bat_model_num
+__crc_ex_fg_bat_model_num
+__kstrtab_ex_fg_bat_model_num
+__ksymtab_ex_fg_bat_model_num
+rtc_time64_to_tm
+vfcs_power_supply_notifier_call
+__stack_chk_fail
+_printk
+__debug_mask
+vfcs_power_supply_attr_register_work
+cancel_delayed_work
+vfcs_log_engine_delayed_work
+vchg_vfs_llseek
+__kcfi_typeid_seq_lseek
+votable_list_slock
+mutex_unlock
+mutex_lock
+reserved_block_wake_lock
+data_lock
+vchg_reserved_block_shutdown_callback
+vfcs_misc_common_lpm_disable_vote_callback
+vfcs_misc_pi_lpm_disable_vote_callback
+vfcs_misc_fchg_lpm_disable_vote_callback
+__kstrtabns_fake_FULL_ui
+__crc_fake_FULL_ui
+__kstrtab_fake_FULL_ui
+__ksymtab_fake_FULL_ui
+vfcs_log_engine_nl_recv_msg
+vfcs_log_engine_nl_send_msg
+of_property_read_string
+vfcs_power_supply_sysfs_init._alloc_tag
+vfcs_log_engine_notifier_msg_enqueue._alloc_tag
+vfcs_log_engine_queue_enqueue._alloc_tag
+create_votable._alloc_tag
+sprintf
+snprintf
+scnprintf
+seq_printf
+__kmalloc_cache_noprof
+kmem_cache_alloc_noprof
+sscanf
+debugfs_remove
+vfcs_misc_remove
+vfcs_misc_pi_lpm_disable_vote_callback.last_force_active
+vfcs_misc_fchg_lpm_disable_vote_callback.last_force_active
+_raw_spin_lock_irqsave
+gpiod_get_raw_value
+__kstrtabns_battery_cout_value
+__crc_battery_cout_value
+__kstrtab_battery_cout_value
+__ksymtab_battery_cout_value
+__kstrtabns_get_client_vote
+__crc_get_client_vote
+__kstrtab_get_client_vote
+__ksymtab_get_client_vote
+__kstrtabns_vote
+__crc_vote
+__kstrtab_vote
+__ksymtab_vote
+__kcfi_typeid_debugfs_attr_write
+vchg_kernel_write
+__kstrtabns_vchg_reserved_bak_write
+__crc_vchg_reserved_bak_write
+__kstrtab_vchg_reserved_bak_write
+__ksymtab_vchg_reserved_bak_write
+complete
+timer_delete
+__kstrtabns_ex_fg_state
+__crc_ex_fg_state
+__kstrtab_ex_fg_state
+__ksymtab_ex_fg_state
+usleep_range_state
+mainboard_state
+vfcs_log_engine_chg_or_dischg_current_integration_algo.last_usb_state
+__netlink_kernel_create
+vchg_filp_close
+__kcfi_typeid_simple_attr_release
+__kcfi_typeid_single_release
+_raw_spin_unlock_irqrestore
+__kstrtabns_ex_fg_detect_done
+__crc_ex_fg_detect_done
+__kstrtab_ex_fg_detect_done
+__ksymtab_ex_fg_detect_done
+vfcs_log_engine_get_engine
+this_engine
+vfcs_log_engine_nl_recv_msg.engine
+vfcs_log_engine_resume
+vfcs_misc_resume
+__kstrtabns_last_cable_disconnect_start_time
+__crc_last_cable_disconnect_start_time
+__kstrtab_last_cable_disconnect_start_time
+__ksymtab_last_cable_disconnect_start_time
+__kstrtabns_vbus_connect_start_time
+__crc_vbus_connect_start_time
+__kstrtab_vbus_connect_start_time
+__ksymtab_vbus_connect_start_time
+get_android_time
+__android_time
+power_supply_get_by_name
+g_kallsyms_lookup_name
+init_module
+__this_module
+cleanup_module
+schedule
+device_remove_file
+debugfs_create_file
+device_create_file
+__kstrtabns_destroy_votable
+__crc_destroy_votable
+__kstrtab_destroy_votable
+__ksymtab_destroy_votable
+unlock_votable
+__kstrtabns_force_active_votable
+__crc_force_active_votable
+__kstrtab_force_active_votable
+__ksymtab_force_active_votable
+__kstrtabns_create_votable
+__crc_create_votable
+__kstrtab_create_votable
+__ksymtab_create_votable
+__kstrtabns_find_votable
+__crc_find_votable
+__kstrtab_find_votable
+__ksymtab_find_votable
+vfcs_misc_match_table
+__pm_stay_awake
+kfree
+kmem_cache_free
+of_find_device_by_node
+kthread_create_on_node
+reserved_chg_node
+of_find_compatible_node
+bsp_test_mode
+__kstrtabns_mtbf_test_mode
+__crc_mtbf_test_mode
+__kstrtab_mtbf_test_mode
+__ksymtab_mtbf_test_mode
+power_off_charging_mode
+__kstrtabns_vote_override
+__crc_vote_override
+__kstrtab_vote_override
+__ksymtab_vote_override
+timer_reduce
+__kstrtabns_vfcs_asv_reset_params_for_new_device
+__crc_vfcs_asv_reset_params_for_new_device
+__kstrtab_vfcs_asv_reset_params_for_new_device
+__ksymtab_vfcs_asv_reset_params_for_new_device
+vfcs_log_engine_device
+unregister_kprobe
+vfcs_log_engine_probe
+vfcs_misc_probe
+is_suspend
+vfcs_log_engine_suspend
+vfcs_misc_suspend
+em_authorized
+vfcs_log_engine_init_reboot_count.inited
+vfcs_log_engine_event_init.inited
+vfcs_log_engine_later_init.inited
+vfcs_log_engine_monitor_timer_init.inited
+vfcs_log_engine_notifier_queue_init.inited
+vfcs_log_engine_queue_init.inited
+vfcs_log_engine_init_lock.inited
+__kstrtabns_is_client_vote_enabled
+__crc_is_client_vote_enabled
+__kstrtab_is_client_vote_enabled
+__ksymtab_is_client_vote_enabled
+__kstrtabns_is_override_vote_enabled
+__crc_is_override_vote_enabled
+__kstrtab_is_override_vote_enabled
+__ksymtab_is_override_vote_enabled
+__kstrtabns_get_effective_client_locked
+__crc_get_effective_client_locked
+__kstrtab_get_effective_client_locked
+__ksymtab_get_effective_client_locked
+__kstrtabns_get_effective_result_locked
+__crc_get_effective_result_locked
+__kstrtab_get_effective_result_locked
+__ksymtab_get_effective_result_locked
+__kstrtabns_get_client_vote_locked
+__crc_get_client_vote_locked
+__kstrtab_get_client_vote_locked
+__ksymtab_get_client_vote_locked
+__kstrtabns_is_client_vote_enabled_locked
+__crc_is_client_vote_enabled_locked
+__kstrtab_is_client_vote_enabled_locked
+__ksymtab_is_client_vote_enabled_locked
+__kstrtabns_is_override_vote_enabled_locked
+__crc_is_override_vote_enabled_locked
+__kstrtab_is_override_vote_enabled_locked
+__ksymtab_is_override_vote_enabled_locked
+vfcs_misc_common_lpm_gpio_timing_special_processing.s_has_finished
+wakeup_source_add
+__kcfi_typeid_debugfs_attr_read
+__kcfi_typeid_seq_read
+vchg_kernel_read
+__kstrtabns_vchg_reserved_bak_read
+__crc_vchg_reserved_bak_read
+__kstrtab_vchg_reserved_bak_read
+__ksymtab_vchg_reserved_bak_read
+engine_notifier_head
+__init_waitqueue_head
+__init_swait_queue_head
+the_misc
+gpio_to_desc
+__kstrtabns_adsp_raw_soc
+__crc_adsp_raw_soc
+__kstrtab_adsp_raw_soc
+__ksymtab_adsp_raw_soc
+__kstrtabns_ex_fg_soc
+__crc_ex_fg_soc
+__kstrtab_ex_fg_soc
+__ksymtab_ex_fg_soc
+devm_kmalloc
+__kfifo_alloc
+cancel_delayed_work_sync
+timer_delete_sync
+__fortify_panic
+__alloc_skb
+vfcs_log_engine_power_supply_notifier_cb
+vfcs_log_engine_reboot_notifier_cb
+vfcs_log_engine_pm_notifier_cb
+vfcs_log_engine_notifier_cb
+__llvm_fs_discriminator__
+VIVO_POWER_SUPPLY_TYPE_TEXT
+VIVO_POWER_SUPPLY_USB_TYPE_TEXT
+$d.99
+$d.89
+$d.79
+$d.69
+$d.59
+$x.49
+$d.49
+$x.39
+$d.39
+$x.29
+$d.29
+_note_19
+vfcs_log_engine_init_lock.__key.19
+$x.19
+$d.19
+$d.109
+$x.9
+$d.9
+$d.88
+__UNIQUE_ID_license678
+$d.78
+$d.68
+$d.58
+$d.48
+$d.38
+$d.28
+_note_18
+$d.18
+$x.8
+$d.8
+$d.97
+$d.87
+__UNIQUE_ID_import_ns677
+$d.77
+$d.67
+$d.57
+$x.47
+$d.47
+$x.37
+$d.37
+$x.27
+$d.27
+$x.17
+$d.17
+$x.7
+$d.7
+$d.96
+$d.86
+__UNIQUE_ID_description676
+$d.76
+$d.66
+$d.56
+$d.46
+__UNIQUE_ID_depends536
+$d.36
+$d.26
+$d.16
+$x.6
+$d.6
+$d.95
+$d.85
+__UNIQUE_ID___addressable_cleanup_module675
+$d.75
+$d.65
+$x.55
+$d.55
+$x.45
+$d.45
+__UNIQUE_ID_scmversion535
+$x.35
+$d.35
+$x.25
+$d.25
+$x.15
+$d.15
+$x.5
+$d.5
+$d.94
+$d.84
+__UNIQUE_ID___addressable_init_module674
+$d.74
+ktime_get_real_ts64
+ns_to_timespec64
+$d.64
+$d.54
+$d.44
+__UNIQUE_ID_name534
+__UNIQUE_ID_vermagic534
+$d.34
+$d.24
+$d.14
+$x.4
+$d.4
+$d.93
+$d.83
+$d.73
+$d.63
+$x.53
+$d.53
+$x.43
+$d.43
+$x.33
+$d.33
+$x.23
+$d.23
+$x.13
+$d.13
+$d.103
+$x.3
+$d.3
+$d.92
+$d.82
+$d.72
+$d.62
+__UNIQUE_ID_import_ns652
+$d.52
+$d.42
+debugfs_create_u32
+$d.32
+$d.22
+$x.12
+$d.12
+$d.102
+$x.2
+$d.2
+$d.91
+$d.81
+$d.71
+$d.61
+$x.51
+$d.51
+$x.41
+$d.41
+$x.31
+$d.31
+$x.21
+$d.21
+$x.11
+$d.11
+$d.101
+$d.1
+__UNIQUE_ID_built_with0
+$d.90
+$d.80
+$d.70
+$d.60
+$d.50
+$d.40
+$d.30
+$d.20
+$x.10
+$d.10
+$d.100

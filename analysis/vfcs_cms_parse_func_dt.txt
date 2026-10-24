@@ -1,0 +1,1770 @@
+000000000004d368 <vfcs_cms_parse_func_dt>:
+   4d368:      	paciasp
+   4d36c:      	sub	sp, sp, #0xf0
+   4d370:      	stp	x29, x30, [sp, #0x90]
+   4d374:      	stp	x28, x27, [sp, #0xa0]
+   4d378:      	stp	x26, x25, [sp, #0xb0]
+   4d37c:      	stp	x24, x23, [sp, #0xc0]
+   4d380:      	stp	x22, x21, [sp, #0xd0]
+   4d384:      	stp	x20, x19, [sp, #0xe0]
+   4d388:      	add	x29, sp, #0x90
+   4d38c:      	mrs	x8, SP_EL0
+   4d390:      	mov	x20, x1
+   4d394:      	mov	w9, #0xb710
+   4d398:      	ldr	x8, [x8, #0x710]
+   4d39c:      	mov	x27, x0
+   4d3a0:      	add	x22, x0, x9
+   4d3a4:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d3a4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x26767 ; 'vivo,usb-conn-vbusoff-gpio'
+   4d3a8:      	add	x1, x1, #0x0
+		000000000004d3a8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x26767 ; 'vivo,usb-conn-vbusoff-gpio'
+   4d3ac:      	mov	x0, x20
+   4d3b0:      	mov	w2, wzr
+   4d3b4:      	stur	x8, [x29, #-0x8]
+   4d3b8:      	bl	0x4d3b8 <vfcs_cms_parse_func_dt+0x50>
+		000000000004d3b8:  R_AARCH64_CALL26	of_get_named_gpio
+   4d3bc:      	str	w0, [x22, #0x56c]
+   4d3c0:      	tbnz	w0, #0x1f, 0x4d414 <vfcs_cms_parse_func_dt+0xac>
+   4d3c4:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d3c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x183cf ; 'usb_conn_vbusoff_gpio'
+   4d3c8:      	add	x1, x1, #0x0
+		000000000004d3c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x183cf ; 'usb_conn_vbusoff_gpio'
+   4d3cc:      	bl	0x4d3cc <vfcs_cms_parse_func_dt+0x64>
+		000000000004d3cc:  R_AARCH64_CALL26	gpio_request
+   4d3d0:      	cbz	w0, 0x4d434 <vfcs_cms_parse_func_dt+0xcc>
+   4d3d4:      	cbz	x27, 0x4e28c <vfcs_cms_parse_func_dt+0xf24>
+   4d3d8:      	ldr	x8, [x27, #0x10]
+   4d3dc:      	cbz	x8, 0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4d3e0:      	ldr	w8, [x8]
+   4d3e4:      	tbnz	w8, #0x4, 0x4e4ac <vfcs_cms_parse_func_dt+0x1144>
+   4d3e8:      	tbz	w8, #0x1, 0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4d3ec:      	ldr	x1, [x27, #0x18]
+   4d3f0:      	ldr	w3, [x22, #0x56c]
+   4d3f4:      	adrp	x8, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d3f4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49c4b ; '\x013%s: %s: usb_conn_vbusoff_gpio: gpio_request failed for %d rc=%d\n'
+   4d3f8:      	add	x8, x8, #0x0
+		000000000004d3f8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49c4b ; '\x013%s: %s: usb_conn_vbusoff_gpio: gpio_request failed for %d rc=%d\n'
+   4d3fc:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d3fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4d400:      	add	x2, x2, #0x0
+		000000000004d400:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4d404:      	mov	w4, w0
+   4d408:      	mov	x0, x8
+   4d40c:      	bl	0x4d40c <vfcs_cms_parse_func_dt+0xa4>
+		000000000004d40c:  R_AARCH64_CALL26	_printk
+   4d410:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4d414:      	cbz	x27, 0x4e2b0 <vfcs_cms_parse_func_dt+0xf48>
+   4d418:      	ldr	x8, [x27, #0x10]
+   4d41c:      	cbz	x8, 0x4d42c <vfcs_cms_parse_func_dt+0xc4>
+   4d420:      	ldr	w8, [x8]
+   4d424:      	tbnz	w8, #0x4, 0x4e4e0 <vfcs_cms_parse_func_dt+0x1178>
+   4d428:      	tbnz	w8, #0x2, 0x4e50c <vfcs_cms_parse_func_dt+0x11a4>
+   4d42c:      	str	wzr, [x22, #0x56c]
+   4d430:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4d434:      	ldr	x0, [x22, #0xc28]
+   4d438:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d438:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x331eb ; 'USB_CONN_VBUSOFF_EVENT'
+   4d43c:      	add	x1, x1, #0x0
+		000000000004d43c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x331eb ; 'USB_CONN_VBUSOFF_EVENT'
+   4d440:      	mov	w2, wzr
+   4d444:      	mov	w3, wzr
+   4d448:      	bl	0x4d448 <vfcs_cms_parse_func_dt+0xe0>
+		000000000004d448:  R_AARCH64_CALL26	vote
+   4d44c:      	cbz	x27, 0x4e484 <vfcs_cms_parse_func_dt+0x111c>
+   4d450:      	ldr	x8, [x27, #0x10]
+   4d454:      	cbz	x8, 0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4d458:      	ldr	w8, [x8]
+   4d45c:      	tbnz	w8, #0x4, 0x4e5ac <vfcs_cms_parse_func_dt+0x1244>
+   4d460:      	tbnz	w8, #0x0, 0x4e5e8 <vfcs_cms_parse_func_dt+0x1280>
+   4d464:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d464:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x112ff ; 'vivo,scene-ctrl-data'
+   4d468:      	add	x2, x2, #0x0
+		000000000004d468:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x112ff ; 'vivo,scene-ctrl-data'
+   4d46c:      	adrp	x4, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d46c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x42589 ; 'vivo,scene-ctrl-rc'
+   4d470:      	add	x4, x4, #0x0
+		000000000004d470:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x42589 ; 'vivo,scene-ctrl-rc'
+   4d474:      	adrp	x6, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d474:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4c0cd ; 'scene-ctrl'
+   4d478:      	add	x6, x6, #0x0
+		000000000004d478:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4c0cd ; 'scene-ctrl'
+   4d47c:      	add	x3, x27, #0x140
+   4d480:      	add	x5, x27, #0x138
+   4d484:      	mov	x0, x27
+   4d488:      	mov	x1, x20
+   4d48c:      	bl	0x4d48c <vfcs_cms_parse_func_dt+0x124>
+		000000000004d48c:  R_AARCH64_CALL26	vfcs_cms_of_get_rc_data_lv2
+   4d490:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d490:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3d6eb ; 'vivo,scene-pro-data'
+   4d494:      	add	x2, x2, #0x0
+		000000000004d494:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3d6eb ; 'vivo,scene-pro-data'
+   4d498:      	adrp	x4, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d498:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11314 ; 'vivo,scene-pro-rc'
+   4d49c:      	add	x4, x4, #0x0
+		000000000004d49c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11314 ; 'vivo,scene-pro-rc'
+   4d4a0:      	adrp	x6, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d4a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x29026 ; 'scene-pro'
+   4d4a4:      	add	x6, x6, #0x0
+		000000000004d4a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x29026 ; 'scene-pro'
+   4d4a8:      	add	x3, x27, #0x150
+   4d4ac:      	add	x5, x27, #0x148
+   4d4b0:      	mov	x0, x27
+   4d4b4:      	mov	x1, x20
+   4d4b8:      	bl	0x4d4b8 <vfcs_cms_parse_func_dt+0x150>
+		000000000004d4b8:  R_AARCH64_CALL26	vfcs_cms_of_get_rc_data_lv2
+   4d4bc:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d4bc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c47c ; 'vivo,scene-chg-data'
+   4d4c0:      	add	x2, x2, #0x0
+		000000000004d4c0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c47c ; 'vivo,scene-chg-data'
+   4d4c4:      	adrp	x4, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d4c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x29030 ; 'vivo,scene-chg-rc'
+   4d4c8:      	add	x4, x4, #0x0
+		000000000004d4c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x29030 ; 'vivo,scene-chg-rc'
+   4d4cc:      	adrp	x6, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d4cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x916b ; 'scene-chg'
+   4d4d0:      	add	x6, x6, #0x0
+		000000000004d4d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x916b ; 'scene-chg'
+   4d4d4:      	add	x3, x27, #0x160
+   4d4d8:      	add	x5, x27, #0x158
+   4d4dc:      	mov	x0, x27
+   4d4e0:      	mov	x1, x20
+   4d4e4:      	bl	0x4d4e4 <vfcs_cms_parse_func_dt+0x17c>
+		000000000004d4e4:  R_AARCH64_CALL26	vfcs_cms_of_get_rc_data_lv2
+   4d4e8:      	mov	x0, x27
+   4d4ec:      	mov	x1, x20
+   4d4f0:      	bl	0x4d4f0 <vfcs_cms_parse_func_dt+0x188>
+		000000000004d4f0:  R_AARCH64_CALL26	vfcs_cms_parse_chg_heating_dt
+   4d4f4:      	add	x21, x27, #0x174
+   4d4f8:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d4f8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c75f ; 'vivo,normal-tc-type'
+   4d4fc:      	add	x1, x1, #0x0
+		000000000004d4fc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c75f ; 'vivo,normal-tc-type'
+   4d500:      	mov	x0, x20
+   4d504:      	mov	x2, x21
+   4d508:      	mov	w3, #0x1
+   4d50c:      	mov	x4, xzr
+   4d510:      	sturh	wzr, [x29, #-0x1c]
+   4d514:      	stur	wzr, [x29, #-0x10]
+   4d518:      	stur	xzr, [x29, #-0x18]
+   4d51c:      	bl	0x4d51c <vfcs_cms_parse_func_dt+0x1b4>
+		000000000004d51c:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4d520:      	tbz	w0, #0x1f, 0x4d528 <vfcs_cms_parse_func_dt+0x1c0>
+   4d524:      	str	wzr, [x21]
+   4d528:      	add	x21, x27, #0x178
+   4d52c:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d52c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbfbf ; 'vivo,normal-tc-step-type'
+   4d530:      	add	x1, x1, #0x0
+		000000000004d530:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbfbf ; 'vivo,normal-tc-step-type'
+   4d534:      	mov	x0, x20
+   4d538:      	mov	x2, x21
+   4d53c:      	mov	w3, #0x1
+   4d540:      	mov	x4, xzr
+   4d544:      	bl	0x4d544 <vfcs_cms_parse_func_dt+0x1dc>
+		000000000004d544:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4d548:      	tbz	w0, #0x1f, 0x4d550 <vfcs_cms_parse_func_dt+0x1e8>
+   4d54c:      	str	wzr, [x21]
+   4d550:      	add	x2, x27, #0x180
+   4d554:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d554:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x38140 ; 'vivo,normal-tc-num'
+   4d558:      	add	x1, x1, #0x0
+		000000000004d558:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x38140 ; 'vivo,normal-tc-num'
+   4d55c:      	mov	x0, x20
+   4d560:      	mov	w3, #0x1
+   4d564:      	mov	x4, xzr
+   4d568:      	str	x2, [sp, #0x30]
+   4d56c:      	mov	w19, #0x1
+   4d570:      	bl	0x4d570 <vfcs_cms_parse_func_dt+0x208>
+		000000000004d570:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4d574:      	tbz	w0, #0x1f, 0x4d580 <vfcs_cms_parse_func_dt+0x218>
+   4d578:      	ldr	x8, [sp, #0x30]
+   4d57c:      	str	w19, [x8]
+   4d580:      	add	x21, x27, #0x17c
+   4d584:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d584:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x45029 ; 'vivo,normal-tc-step-change-temp'
+   4d588:      	add	x1, x1, #0x0
+		000000000004d588:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x45029 ; 'vivo,normal-tc-step-change-temp'
+   4d58c:      	mov	x0, x20
+   4d590:      	mov	x2, x21
+   4d594:      	mov	w3, #0x1
+   4d598:      	mov	x4, xzr
+   4d59c:      	str	x22, [sp, #0x18]
+   4d5a0:      	bl	0x4d5a0 <vfcs_cms_parse_func_dt+0x238>
+		000000000004d5a0:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4d5a4:      	tbz	w0, #0x1f, 0x4d5b0 <vfcs_cms_parse_func_dt+0x248>
+   4d5a8:      	mov	w8, #0x12c
+   4d5ac:      	str	w8, [x21]
+   4d5b0:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d5b0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xe791 ; 'vivo,bat-aging-enable'
+   4d5b4:      	add	x1, x1, #0x0
+		000000000004d5b4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xe791 ; 'vivo,bat-aging-enable'
+   4d5b8:      	mov	x0, x20
+   4d5bc:      	mov	x2, xzr
+   4d5c0:      	bl	0x4d5c0 <vfcs_cms_parse_func_dt+0x258>
+		000000000004d5c0:  R_AARCH64_CALL26	of_find_property
+   4d5c4:      	cmp	x0, #0x0
+   4d5c8:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d5c8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x23fba ; 'vivo,var-bat-tc-enable'
+   4d5cc:      	add	x1, x1, #0x0
+		000000000004d5cc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x23fba ; 'vivo,var-bat-tc-enable'
+   4d5d0:      	cset	w8, ne
+   4d5d4:      	mov	x0, x20
+   4d5d8:      	mov	x2, xzr
+   4d5dc:      	strb	w8, [x27, #0x184]
+   4d5e0:      	bl	0x4d5e0 <vfcs_cms_parse_func_dt+0x278>
+		000000000004d5e0:  R_AARCH64_CALL26	of_find_property
+   4d5e4:      	add	x22, x27, #0x188
+   4d5e8:      	cmp	x0, #0x0
+   4d5ec:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d5ec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c773 ; 'vivo,var-bat-tc-num'
+   4d5f0:      	add	x1, x1, #0x0
+		000000000004d5f0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c773 ; 'vivo,var-bat-tc-num'
+   4d5f4:      	cset	w8, ne
+   4d5f8:      	mov	x0, x20
+   4d5fc:      	mov	x2, x22
+   4d600:      	mov	w3, #0x1
+   4d604:      	mov	x4, xzr
+   4d608:      	strb	w8, [x27, #0x186]
+   4d60c:      	mov	w19, #0x1
+   4d610:      	bl	0x4d610 <vfcs_cms_parse_func_dt+0x2a8>
+		000000000004d610:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4d614:      	tbz	w0, #0x1f, 0x4d61c <vfcs_cms_parse_func_dt+0x2b4>
+   4d618:      	str	w19, [x22]
+   4d61c:      	cbz	x27, 0x4df60 <vfcs_cms_parse_func_dt+0xbf8>
+   4d620:      	ldr	x8, [x27, #0x10]
+   4d624:      	cbz	x8, 0x4d634 <vfcs_cms_parse_func_dt+0x2cc>
+   4d628:      	ldr	w8, [x8]
+   4d62c:      	tbnz	w8, #0x4, 0x4dffc <vfcs_cms_parse_func_dt+0xc94>
+   4d630:      	tbnz	w8, #0x0, 0x4e214 <vfcs_cms_parse_func_dt+0xeac>
+   4d634:      	ldr	x8, [sp, #0x30]
+   4d638:      	ldr	w8, [x8]
+   4d63c:      	cmp	w8, #0x1
+   4d640:      	b.lt	0x4da7c <vfcs_cms_parse_func_dt+0x714>
+   4d644:      	mov	w8, #0x1090
+   4d648:      	add	x9, x27, #0x190
+   4d64c:      	mov	x23, xzr
+   4d650:      	add	x8, x27, x8
+   4d654:      	mov	x19, x27
+   4d658:      	stp	x8, x9, [sp, #0x20]
+   4d65c:      	mov	w8, #0x1f90
+   4d660:      	add	x26, x27, x8
+   4d664:      	mov	w8, #0x6a90
+   4d668:      	add	x24, x27, x8
+   4d66c:      	b	0x4d694 <vfcs_cms_parse_func_dt+0x32c>
+   4d670:      	strb	wzr, [x27, #0x186]
+   4d674:      	ldr	x8, [sp, #0x30]
+   4d678:      	add	x23, x23, #0x1
+   4d67c:      	add	x19, x19, #0xf00
+   4d680:      	add	x24, x24, #0xf00
+   4d684:      	add	x26, x26, #0xf00
+   4d688:      	ldrsw	x8, [x8]
+   4d68c:      	cmp	x23, x8
+   4d690:      	b.ge	0x4da7c <vfcs_cms_parse_func_dt+0x714>
+   4d694:      	sturh	wzr, [x29, #-0x1c]
+   4d698:      	cbz	x23, 0x4d6c0 <vfcs_cms_parse_func_dt+0x358>
+   4d69c:      	sub	x0, x29, #0x1c
+   4d6a0:      	mov	w1, #0x2
+   4d6a4:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d6a4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x356bf ; '%d'
+   4d6a8:      	add	x2, x2, #0x0
+		000000000004d6a8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x356bf ; '%d'
+   4d6ac:      	mov	w3, w23
+   4d6b0:      	bl	0x4d6b0 <vfcs_cms_parse_func_dt+0x348>
+		000000000004d6b0:  R_AARCH64_CALL26	snprintf
+   4d6b4:      	cmp	x23, #0x6
+   4d6b8:      	b.lo	0x4d6c4 <vfcs_cms_parse_func_dt+0x35c>
+   4d6bc:      	b	0x4e7bc <vfcs_cms_parse_func_dt+0x1454>
+   4d6c0:      	sturb	wzr, [x29, #-0x1c]
+   4d6c4:      	mov	w9, #0x300
+   4d6c8:      	ldr	x8, [sp, #0x28]
+   4d6cc:      	sub	x4, x29, #0x1c
+   4d6d0:      	madd	x25, x23, x9, x8
+   4d6d4:      	mov	x0, x27
+   4d6d8:      	mov	x1, x20
+   4d6dc:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d6dc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x131d7 ; ''
+   4d6e0:      	add	x3, x3, #0x0
+		000000000004d6e0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x131d7 ; ''
+   4d6e4:      	mov	x2, x25
+   4d6e8:      	bl	0x55220 <vfcs_cms_parse_normal_tc_dt>
+   4d6ec:      	cbz	w0, 0x4d6f4 <vfcs_cms_parse_func_dt+0x38c>
+   4d6f0:      	strb	wzr, [x27, #0x184]
+   4d6f4:      	ldrb	w8, [x27, #0x16c]
+   4d6f8:      	cmp	w8, #0x1
+   4d6fc:      	b.ne	0x4d768 <vfcs_cms_parse_func_dt+0x400>
+   4d700:      	mov	w9, #0x300
+   4d704:      	ldr	x8, [sp, #0x20]
+   4d708:      	sub	x4, x29, #0x1c
+   4d70c:      	madd	x21, x23, x9, x8
+   4d710:      	mov	x0, x27
+   4d714:      	mov	x1, x20
+   4d718:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d718:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x306fa ; 'wls-'
+   4d71c:      	add	x3, x3, #0x0
+		000000000004d71c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x306fa ; 'wls-'
+   4d720:      	mov	x2, x21
+   4d724:      	bl	0x55220 <vfcs_cms_parse_normal_tc_dt>
+   4d728:      	cmp	x23, #0x5
+   4d72c:      	b.eq	0x4e7bc <vfcs_cms_parse_func_dt+0x1454>
+   4d730:      	ldr	x8, [x21]
+   4d734:      	cbz	x8, 0x4d740 <vfcs_cms_parse_func_dt+0x3d8>
+   4d738:      	ldr	x8, [x21, #0x8]
+   4d73c:      	cbnz	x8, 0x4d768 <vfcs_cms_parse_func_dt+0x400>
+   4d740:      	cbz	x27, 0x4d994 <vfcs_cms_parse_func_dt+0x62c>
+   4d744:      	ldr	x8, [x27, #0x10]
+   4d748:      	cbz	x8, 0x4d758 <vfcs_cms_parse_func_dt+0x3f0>
+   4d74c:      	ldr	w8, [x8]
+   4d750:      	tbnz	w8, #0x4, 0x4d9b0 <vfcs_cms_parse_func_dt+0x648>
+   4d754:      	tbnz	w8, #0x2, 0x4da5c <vfcs_cms_parse_func_dt+0x6f4>
+   4d758:      	mov	x0, x21
+   4d75c:      	mov	x1, x25
+   4d760:      	mov	w2, #0x300
+   4d764:      	bl	0x4d764 <vfcs_cms_parse_func_dt+0x3fc>
+		000000000004d764:  R_AARCH64_CALL26	memcpy
+   4d768:      	ldrb	w8, [x27, #0x186]
+   4d76c:      	cmp	w8, #0x1
+   4d770:      	b.ne	0x4d674 <vfcs_cms_parse_func_dt+0x30c>
+   4d774:      	ldr	w8, [x22]
+   4d778:      	cmp	w8, #0x1
+   4d77c:      	b.lt	0x4d674 <vfcs_cms_parse_func_dt+0x30c>
+   4d780:      	mov	x21, xzr
+   4d784:      	mov	x25, xzr
+   4d788:      	b	0x4d7d8 <vfcs_cms_parse_func_dt+0x470>
+   4d78c:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d78c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x39a1 ; '\x013%s: num=%d,var_num=%d,wls_var_normal_tc NULL,used var_normal_tc\n'
+   4d790:      	add	x0, x0, #0x0
+		000000000004d790:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x39a1 ; '\x013%s: num=%d,var_num=%d,wls_var_normal_tc NULL,used var_normal_tc\n'
+   4d794:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d794:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d798:      	add	x1, x1, #0x0
+		000000000004d798:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d79c:      	mov	w2, w23
+   4d7a0:      	mov	w3, w25
+   4d7a4:      	bl	0x4d7a4 <vfcs_cms_parse_func_dt+0x43c>
+		000000000004d7a4:  R_AARCH64_CALL26	_printk
+   4d7a8:      	mov	w9, #0x6a90
+   4d7ac:      	add	x8, x19, x21
+   4d7b0:      	mov	w2, #0x300
+   4d7b4:      	add	x0, x28, x9
+   4d7b8:      	mov	w9, #0x1f90
+   4d7bc:      	add	x1, x8, x9
+   4d7c0:      	bl	0x4d7c0 <vfcs_cms_parse_func_dt+0x458>
+		000000000004d7c0:  R_AARCH64_CALL26	memcpy
+   4d7c4:      	ldrsw	x8, [x22]
+   4d7c8:      	add	x25, x25, #0x1
+   4d7cc:      	add	x21, x21, #0x300
+   4d7d0:      	cmp	x25, x8
+   4d7d4:      	b.ge	0x4d674 <vfcs_cms_parse_func_dt+0x30c>
+   4d7d8:      	sub	x0, x29, #0x18
+   4d7dc:      	mov	w1, #0xc
+   4d7e0:      	stur	wzr, [x29, #-0x10]
+   4d7e4:      	stur	xzr, [x29, #-0x18]
+   4d7e8:      	cbz	x21, 0x4d810 <vfcs_cms_parse_func_dt+0x4a8>
+   4d7ec:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d7ec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3acb7 ; 'var%d-'
+   4d7f0:      	add	x2, x2, #0x0
+		000000000004d7f0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3acb7 ; 'var%d-'
+   4d7f4:      	mov	w3, w25
+   4d7f8:      	bl	0x4d7f8 <vfcs_cms_parse_func_dt+0x490>
+		000000000004d7f8:  R_AARCH64_CALL26	snprintf
+   4d7fc:      	cmp	x23, #0x5
+   4d800:      	b.eq	0x4e7bc <vfcs_cms_parse_func_dt+0x1454>
+   4d804:      	cmp	x25, #0x6
+   4d808:      	b.lo	0x4d82c <vfcs_cms_parse_func_dt+0x4c4>
+   4d80c:      	b	0x4e7bc <vfcs_cms_parse_func_dt+0x1454>
+   4d810:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d810:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x45049 ; 'var%s-'
+   4d814:      	add	x2, x2, #0x0
+		000000000004d814:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x45049 ; 'var%s-'
+   4d818:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d818:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x131d7 ; ''
+   4d81c:      	add	x3, x3, #0x0
+		000000000004d81c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x131d7 ; ''
+   4d820:      	bl	0x4d820 <vfcs_cms_parse_func_dt+0x4b8>
+		000000000004d820:  R_AARCH64_CALL26	snprintf
+   4d824:      	cmp	x23, #0x5
+   4d828:      	b.eq	0x4e7bc <vfcs_cms_parse_func_dt+0x1454>
+   4d82c:      	add	x2, x26, x21
+   4d830:      	sub	x3, x29, #0x18
+   4d834:      	sub	x4, x29, #0x1c
+   4d838:      	mov	x0, x27
+   4d83c:      	mov	x1, x20
+   4d840:      	bl	0x55220 <vfcs_cms_parse_normal_tc_dt>
+   4d844:      	cbnz	w0, 0x4d670 <vfcs_cms_parse_func_dt+0x308>
+   4d848:      	ldrb	w8, [x27, #0x16c]
+   4d84c:      	cmp	w8, #0x1
+   4d850:      	b.ne	0x4d7c4 <vfcs_cms_parse_func_dt+0x45c>
+   4d854:      	sub	x0, x29, #0x18
+   4d858:      	sub	x3, x29, #0x18
+   4d85c:      	mov	w1, #0xc
+   4d860:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d860:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4e87a ; 'wls-%s'
+   4d864:      	add	x2, x2, #0x0
+		000000000004d864:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4e87a ; 'wls-%s'
+   4d868:      	bl	0x4d868 <vfcs_cms_parse_func_dt+0x500>
+		000000000004d868:  R_AARCH64_CALL26	snprintf
+   4d86c:      	add	x2, x24, x21
+   4d870:      	sub	x3, x29, #0x18
+   4d874:      	sub	x4, x29, #0x1c
+   4d878:      	mov	x0, x27
+   4d87c:      	mov	x1, x20
+   4d880:      	bl	0x55220 <vfcs_cms_parse_normal_tc_dt>
+   4d884:      	cmp	x21, #0xf00
+   4d888:      	b.eq	0x4e7bc <vfcs_cms_parse_func_dt+0x1454>
+   4d88c:      	add	x28, x19, x21
+   4d890:      	mov	w8, #0x6a90
+   4d894:      	ldr	x8, [x28, x8]
+   4d898:      	cbz	x8, 0x4d8a8 <vfcs_cms_parse_func_dt+0x540>
+   4d89c:      	add	x8, x19, x21
+   4d8a0:      	ldr	x8, [x8, #0x6a98]
+   4d8a4:      	cbnz	x8, 0x4d7c4 <vfcs_cms_parse_func_dt+0x45c>
+   4d8a8:      	cbz	x27, 0x4d78c <vfcs_cms_parse_func_dt+0x424>
+   4d8ac:      	ldr	x8, [x27, #0x10]
+   4d8b0:      	cbz	x8, 0x4d7a8 <vfcs_cms_parse_func_dt+0x440>
+   4d8b4:      	ldr	w8, [x8]
+   4d8b8:      	tbnz	w8, #0x4, 0x4d8e4 <vfcs_cms_parse_func_dt+0x57c>
+   4d8bc:      	tbz	w8, #0x2, 0x4d7a8 <vfcs_cms_parse_func_dt+0x440>
+   4d8c0:      	ldr	x1, [x27, #0x18]
+   4d8c4:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d8c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x942a ; '\x013%s: %s: num=%d,var_num=%d,wls_var_normal_tc NULL,used var_normal_tc\n'
+   4d8c8:      	add	x0, x0, #0x0
+		000000000004d8c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x942a ; '\x013%s: %s: num=%d,var_num=%d,wls_var_normal_tc NULL,used var_normal_tc\n'
+   4d8cc:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d8cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d8d0:      	add	x2, x2, #0x0
+		000000000004d8d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d8d4:      	mov	w3, w23
+   4d8d8:      	mov	w4, w25
+   4d8dc:      	bl	0x4d8dc <vfcs_cms_parse_func_dt+0x574>
+		000000000004d8dc:  R_AARCH64_CALL26	_printk
+   4d8e0:      	b	0x4d7a8 <vfcs_cms_parse_func_dt+0x440>
+   4d8e4:      	sub	x0, x29, #0x30
+   4d8e8:      	stp	xzr, xzr, [x29, #-0x30]
+   4d8ec:      	str	wzr, [sp, #0x58]
+   4d8f0:      	stp	xzr, xzr, [sp, #0x48]
+   4d8f4:      	stp	xzr, xzr, [sp, #0x38]
+   4d8f8:      	bl	0x4d8f8 <vfcs_cms_parse_func_dt+0x590>
+		000000000004d8f8:  R_AARCH64_CALL26	ktime_get_real_ts64
+   4d8fc:      	adrp	x8, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d8fc:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   4d900:      	add	x1, sp, #0x38
+   4d904:      	ldr	w8, [x8]
+		000000000004d904:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   4d908:      	lsl	w9, w8, #6
+   4d90c:      	sub	w8, w9, w8, lsl #2
+   4d910:      	ldur	x9, [x29, #-0x30]
+   4d914:      	sub	x0, x9, w8, sxtw
+   4d918:      	stur	x0, [x29, #-0x30]
+   4d91c:      	bl	0x4d91c <vfcs_cms_parse_func_dt+0x5b4>
+		000000000004d91c:  R_AARCH64_CALL26	rtc_time64_to_tm
+   4d920:      	ldur	w8, [x29, #-0x28]
+   4d924:      	mov	w9, #0x4dd3
+   4d928:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d928:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4d92c:      	add	x0, x0, #0x0
+		000000000004d92c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4d930:      	movk	w9, #0x1062, lsl #16
+   4d934:      	mov	w1, #0x1e
+   4d938:      	umull	x8, w8, w9
+   4d93c:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d93c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4d940:      	add	x2, x2, #0x0
+		000000000004d940:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4d944:      	ldp	w10, w9, [sp, #0x48]
+   4d948:      	ldp	w6, w5, [sp, #0x40]
+   4d94c:      	ldp	w11, w7, [sp, #0x38]
+   4d950:      	lsr	x8, x8, #38
+   4d954:      	add	w3, w9, #0x76c
+   4d958:      	add	w4, w10, #0x1
+   4d95c:      	str	w11, [sp]
+   4d960:      	str	w8, [sp, #0x8]
+   4d964:      	bl	0x4d964 <vfcs_cms_parse_func_dt+0x5fc>
+		000000000004d964:  R_AARCH64_CALL26	snprintf
+   4d968:      	ldr	x2, [x27, #0x18]
+   4d96c:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d96c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x47b2d ; '\x013[%s]%s: %s: num=%d,var_num=%d,wls_var_normal_tc NULL,used var_normal_tc\n'
+   4d970:      	add	x0, x0, #0x0
+		000000000004d970:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x47b2d ; '\x013[%s]%s: %s: num=%d,var_num=%d,wls_var_normal_tc NULL,used var_normal_tc\n'
+   4d974:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d974:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4d978:      	add	x1, x1, #0x0
+		000000000004d978:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4d97c:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d97c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d980:      	add	x3, x3, #0x0
+		000000000004d980:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d984:      	mov	w4, w23
+   4d988:      	mov	w5, w25
+   4d98c:      	bl	0x4d98c <vfcs_cms_parse_func_dt+0x624>
+		000000000004d98c:  R_AARCH64_CALL26	_printk
+   4d990:      	b	0x4d7a8 <vfcs_cms_parse_func_dt+0x440>
+   4d994:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d994:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15ef2 ; '\x013%s: num=%d,wls_normal_tc NULL,used normal_tc\n'
+   4d998:      	add	x0, x0, #0x0
+		000000000004d998:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15ef2 ; '\x013%s: num=%d,wls_normal_tc NULL,used normal_tc\n'
+   4d99c:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d99c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d9a0:      	add	x1, x1, #0x0
+		000000000004d9a0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4d9a4:      	mov	w2, w23
+   4d9a8:      	bl	0x4d9a8 <vfcs_cms_parse_func_dt+0x640>
+		000000000004d9a8:  R_AARCH64_CALL26	_printk
+   4d9ac:      	b	0x4d758 <vfcs_cms_parse_func_dt+0x3f0>
+   4d9b0:      	sub	x0, x29, #0x30
+   4d9b4:      	stp	xzr, xzr, [x29, #-0x30]
+   4d9b8:      	str	wzr, [sp, #0x58]
+   4d9bc:      	stp	xzr, xzr, [sp, #0x48]
+   4d9c0:      	stp	xzr, xzr, [sp, #0x38]
+   4d9c4:      	bl	0x4d9c4 <vfcs_cms_parse_func_dt+0x65c>
+		000000000004d9c4:  R_AARCH64_CALL26	ktime_get_real_ts64
+   4d9c8:      	adrp	x8, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d9c8:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   4d9cc:      	add	x1, sp, #0x38
+   4d9d0:      	ldr	w8, [x8]
+		000000000004d9d0:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   4d9d4:      	lsl	w9, w8, #6
+   4d9d8:      	sub	w8, w9, w8, lsl #2
+   4d9dc:      	ldur	x9, [x29, #-0x30]
+   4d9e0:      	sub	x0, x9, w8, sxtw
+   4d9e4:      	stur	x0, [x29, #-0x30]
+   4d9e8:      	bl	0x4d9e8 <vfcs_cms_parse_func_dt+0x680>
+		000000000004d9e8:  R_AARCH64_CALL26	rtc_time64_to_tm
+   4d9ec:      	ldur	w8, [x29, #-0x28]
+   4d9f0:      	mov	w9, #0x4dd3
+   4d9f4:      	adrp	x28, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004d9f4:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4d9f8:      	add	x28, x28, #0x0
+		000000000004d9f8:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4d9fc:      	movk	w9, #0x1062, lsl #16
+   4da00:      	mov	w1, #0x1e
+   4da04:      	umull	x8, w8, w9
+   4da08:      	mov	x0, x28
+   4da0c:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004da0c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4da10:      	add	x2, x2, #0x0
+		000000000004da10:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4da14:      	ldp	w10, w9, [sp, #0x48]
+   4da18:      	ldp	w6, w5, [sp, #0x40]
+   4da1c:      	ldp	w11, w7, [sp, #0x38]
+   4da20:      	lsr	x8, x8, #38
+   4da24:      	add	w3, w9, #0x76c
+   4da28:      	add	w4, w10, #0x1
+   4da2c:      	str	w11, [sp]
+   4da30:      	str	w8, [sp, #0x8]
+   4da34:      	bl	0x4da34 <vfcs_cms_parse_func_dt+0x6cc>
+		000000000004da34:  R_AARCH64_CALL26	snprintf
+   4da38:      	ldr	x2, [x27, #0x18]
+   4da3c:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004da3c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x23fd1 ; '\x013[%s]%s: %s: num=%d,wls_normal_tc NULL,used normal_tc\n'
+   4da40:      	add	x0, x0, #0x0
+		000000000004da40:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x23fd1 ; '\x013[%s]%s: %s: num=%d,wls_normal_tc NULL,used normal_tc\n'
+   4da44:      	mov	x1, x28
+   4da48:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004da48:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4da4c:      	add	x3, x3, #0x0
+		000000000004da4c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4da50:      	mov	w4, w23
+   4da54:      	bl	0x4da54 <vfcs_cms_parse_func_dt+0x6ec>
+		000000000004da54:  R_AARCH64_CALL26	_printk
+   4da58:      	b	0x4d758 <vfcs_cms_parse_func_dt+0x3f0>
+   4da5c:      	ldr	x1, [x27, #0x18]
+   4da60:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004da60:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x93f6 ; '\x013%s: %s: num=%d,wls_normal_tc NULL,used normal_tc\n'
+   4da64:      	add	x0, x0, #0x0
+		000000000004da64:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x93f6 ; '\x013%s: %s: num=%d,wls_normal_tc NULL,used normal_tc\n'
+   4da68:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004da68:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4da6c:      	add	x2, x2, #0x0
+		000000000004da6c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4da70:      	mov	w3, w23
+   4da74:      	bl	0x4da74 <vfcs_cms_parse_func_dt+0x70c>
+		000000000004da74:  R_AARCH64_CALL26	_printk
+   4da78:      	b	0x4d758 <vfcs_cms_parse_func_dt+0x3f0>
+   4da7c:      	mov	w8, #0xb590
+   4da80:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004da80:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x131d7 ; ''
+   4da84:      	add	x3, x3, #0x0
+		000000000004da84:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x131d7 ; ''
+   4da88:      	add	x2, x27, x8
+   4da8c:      	mov	x0, x27
+   4da90:      	mov	x1, x20
+   4da94:      	bl	0x559b8 <vfcs_cms_parse_scene_tc_dt>
+   4da98:      	ldrb	w8, [x27, #0x16c]
+   4da9c:      	cmp	w8, #0x1
+   4daa0:      	b.ne	0x4dac0 <vfcs_cms_parse_func_dt+0x758>
+   4daa4:      	mov	w8, #0xb650
+   4daa8:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004daa8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x306fa ; 'wls-'
+   4daac:      	add	x3, x3, #0x0
+		000000000004daac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x306fa ; 'wls-'
+   4dab0:      	add	x2, x27, x8
+   4dab4:      	mov	x0, x27
+   4dab8:      	mov	x1, x20
+   4dabc:      	bl	0x559b8 <vfcs_cms_parse_scene_tc_dt>
+   4dac0:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dac0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c787 ; 'vivo,intell-chg-enable'
+   4dac4:      	add	x1, x1, #0x0
+		000000000004dac4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c787 ; 'vivo,intell-chg-enable'
+   4dac8:      	mov	x0, x20
+   4dacc:      	mov	x2, xzr
+   4dad0:      	bl	0x4dad0 <vfcs_cms_parse_func_dt+0x768>
+		000000000004dad0:  R_AARCH64_CALL26	of_find_property
+   4dad4:      	cmp	x0, #0x0
+   4dad8:      	ldr	x22, [sp, #0x18]
+   4dadc:      	cset	w8, ne
+   4dae0:      	strb	w8, [x22]
+   4dae4:      	cbz	x0, 0x4db94 <vfcs_cms_parse_func_dt+0x82c>
+   4dae8:      	mov	w8, #0xb718
+   4daec:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004daec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x131d7 ; ''
+   4daf0:      	add	x3, x3, #0x0
+		000000000004daf0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x131d7 ; ''
+   4daf4:      	add	x2, x27, x8
+   4daf8:      	mov	x0, x27
+   4dafc:      	mov	x1, x20
+   4db00:      	bl	0x55c6c <vfcs_cms_parse_intell_tc_dt>
+   4db04:      	ldrb	w8, [x27, #0x16c]
+   4db08:      	cmp	w8, #0x1
+   4db0c:      	b.ne	0x4db2c <vfcs_cms_parse_func_dt+0x7c4>
+   4db10:      	mov	w8, #0xb960
+   4db14:      	adrp	x3, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004db14:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x306fa ; 'wls-'
+   4db18:      	add	x3, x3, #0x0
+		000000000004db18:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x306fa ; 'wls-'
+   4db1c:      	add	x2, x27, x8
+   4db20:      	mov	x0, x27
+   4db24:      	mov	x1, x20
+   4db28:      	bl	0x55c6c <vfcs_cms_parse_intell_tc_dt>
+   4db2c:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004db2c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x130f ; 'vivo,intell-param-bypass-switch-fallback'
+   4db30:      	add	x2, x2, #0x0
+		000000000004db30:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x130f ; 'vivo,intell-param-bypass-switch-fallback'
+   4db34:      	adrp	x7, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004db34:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x36131 ; 'intell-param-bypass-switch-fallback'
+   4db38:      	add	x7, x7, #0x0
+		000000000004db38:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x36131 ; 'intell-param-bypass-switch-fallback'
+   4db3c:      	mov	x0, x27
+   4db40:      	mov	x1, x20
+   4db44:      	mov	w3, #0x1
+   4db48:      	mov	w4, #0x5
+   4db4c:      	mov	w5, #0x1
+   4db50:      	mov	w6, #0x1
+   4db54:      	bl	0x4db54 <vfcs_cms_parse_func_dt+0x7ec>
+		000000000004db54:  R_AARCH64_CALL26	vfcs_cms_of_get_property_data
+   4db58:      	str	x0, [x22, #0x5e0]
+   4db5c:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004db5c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49daf ; 'vivo,intell-chg-use-vir-shell-temp-replace-primary-temp'
+   4db60:      	add	x1, x1, #0x0
+		000000000004db60:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49daf ; 'vivo,intell-chg-use-vir-shell-temp-replace-primary-temp'
+   4db64:      	mov	x0, x20
+   4db68:      	mov	x2, xzr
+   4db6c:      	bl	0x4db6c <vfcs_cms_parse_func_dt+0x804>
+		000000000004db6c:  R_AARCH64_CALL26	of_find_property
+   4db70:      	cmp	x0, #0x0
+   4db74:      	cset	w8, ne
+   4db78:      	strb	w8, [x22, #0x498]
+   4db7c:      	cbz	x27, 0x4dfc4 <vfcs_cms_parse_func_dt+0xc5c>
+   4db80:      	ldr	x8, [x27, #0x10]
+   4db84:      	cbz	x8, 0x4db94 <vfcs_cms_parse_func_dt+0x82c>
+   4db88:      	ldr	w8, [x8]
+   4db8c:      	tbnz	w8, #0x4, 0x4e2c8 <vfcs_cms_parse_func_dt+0xf60>
+   4db90:      	tbnz	w8, #0x0, 0x4e420 <vfcs_cms_parse_func_dt+0x10b8>
+   4db94:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004db94:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3d978 ; 'vivo,wls-epp-thermal-adjust-enable'
+   4db98:      	add	x1, x1, #0x0
+		000000000004db98:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3d978 ; 'vivo,wls-epp-thermal-adjust-enable'
+   4db9c:      	mov	x0, x20
+   4dba0:      	mov	x2, xzr
+   4dba4:      	bl	0x4dba4 <vfcs_cms_parse_func_dt+0x83c>
+		000000000004dba4:  R_AARCH64_CALL26	of_find_property
+   4dba8:      	cmp	x0, #0x0
+   4dbac:      	cset	w8, ne
+   4dbb0:      	strb	w8, [x22, #0x499]
+   4dbb4:      	cbz	x0, 0x4dc58 <vfcs_cms_parse_func_dt+0x8f0>
+   4dbb8:      	mov	w8, #0xbbc0
+   4dbbc:      	mov	w9, #0xbbb8
+   4dbc0:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dbc0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15f22 ; 'vivo,wls-epp-thermal-data'
+   4dbc4:      	add	x2, x2, #0x0
+		000000000004dbc4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15f22 ; 'vivo,wls-epp-thermal-data'
+   4dbc8:      	adrp	x4, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dbc8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x38153 ; 'vivo,wls-epp-thermal-rc'
+   4dbcc:      	add	x4, x4, #0x0
+		000000000004dbcc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x38153 ; 'vivo,wls-epp-thermal-rc'
+   4dbd0:      	adrp	x6, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dbd0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1eef2 ; 'wls-epp-adjust'
+   4dbd4:      	add	x6, x6, #0x0
+		000000000004dbd4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1eef2 ; 'wls-epp-adjust'
+   4dbd8:      	add	x3, x27, x8
+   4dbdc:      	add	x5, x27, x9
+   4dbe0:      	mov	x0, x27
+   4dbe4:      	mov	x1, x20
+   4dbe8:      	bl	0x4dbe8 <vfcs_cms_parse_func_dt+0x880>
+		000000000004dbe8:  R_AARCH64_CALL26	vfcs_cms_of_get_rc_data_lv2
+   4dbec:      	mov	w8, #0xbbd0
+   4dbf0:      	mov	w9, #0xbbc8
+   4dbf4:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dbf4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1338 ; 'vivo,wls-bpp-thermal-data'
+   4dbf8:      	add	x2, x2, #0x0
+		000000000004dbf8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1338 ; 'vivo,wls-bpp-thermal-data'
+   4dbfc:      	adrp	x4, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dbfc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x47b78 ; 'vivo,wls-bpp-thermal-rc'
+   4dc00:      	add	x4, x4, #0x0
+		000000000004dc00:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x47b78 ; 'vivo,wls-bpp-thermal-rc'
+   4dc04:      	adrp	x6, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dc04:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x9471 ; 'wls-bpp-adjust'
+   4dc08:      	add	x6, x6, #0x0
+		000000000004dc08:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x9471 ; 'wls-bpp-adjust'
+   4dc0c:      	add	x3, x27, x8
+   4dc10:      	add	x5, x27, x9
+   4dc14:      	mov	x0, x27
+   4dc18:      	mov	x1, x20
+   4dc1c:      	bl	0x4dc1c <vfcs_cms_parse_func_dt+0x8b4>
+		000000000004dc1c:  R_AARCH64_CALL26	vfcs_cms_of_get_rc_data_lv2
+   4dc20:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dc20:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x45050 ; 'vivo,wls-epp-camera-limit-enable'
+   4dc24:      	add	x1, x1, #0x0
+		000000000004dc24:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x45050 ; 'vivo,wls-epp-camera-limit-enable'
+   4dc28:      	mov	x0, x20
+   4dc2c:      	mov	x2, xzr
+   4dc30:      	bl	0x4dc30 <vfcs_cms_parse_func_dt+0x8c8>
+		000000000004dc30:  R_AARCH64_CALL26	of_find_property
+   4dc34:      	cmp	x0, #0x0
+   4dc38:      	cset	w8, ne
+   4dc3c:      	strb	w8, [x22, #0x49a]
+   4dc40:      	cbz	x27, 0x4dfe0 <vfcs_cms_parse_func_dt+0xc78>
+   4dc44:      	ldr	x8, [x27, #0x10]
+   4dc48:      	cbz	x8, 0x4dc58 <vfcs_cms_parse_func_dt+0x8f0>
+   4dc4c:      	ldr	w8, [x8]
+   4dc50:      	tbnz	w8, #0x4, 0x4e374 <vfcs_cms_parse_func_dt+0x100c>
+   4dc54:      	tbnz	w8, #0x2, 0x4e444 <vfcs_cms_parse_func_dt+0x10dc>
+   4dc58:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dc58:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2dd9a ; 'vivo,ffc-support'
+   4dc5c:      	add	x1, x1, #0x0
+		000000000004dc5c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2dd9a ; 'vivo,ffc-support'
+   4dc60:      	mov	x0, x20
+   4dc64:      	mov	x2, xzr
+   4dc68:      	bl	0x4dc68 <vfcs_cms_parse_func_dt+0x900>
+		000000000004dc68:  R_AARCH64_CALL26	of_find_property
+   4dc6c:      	cmp	x0, #0x0
+   4dc70:      	cset	w8, ne
+   4dc74:      	strb	w8, [x22, #0x569]
+   4dc78:      	cbz	x27, 0x4df8c <vfcs_cms_parse_func_dt+0xc24>
+   4dc7c:      	ldr	x8, [x27, #0x10]
+   4dc80:      	cbz	x8, 0x4dc90 <vfcs_cms_parse_func_dt+0x928>
+   4dc84:      	ldr	w8, [x8]
+   4dc88:      	tbnz	w8, #0x4, 0x4e0bc <vfcs_cms_parse_func_dt+0xd54>
+   4dc8c:      	tbnz	w8, #0x0, 0x4e244 <vfcs_cms_parse_func_dt+0xedc>
+   4dc90:      	add	x21, x22, #0x4c8
+   4dc94:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dc94:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3fe25 ; 'vivo,step-chg-soc-thr'
+   4dc98:      	add	x1, x1, #0x0
+		000000000004dc98:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3fe25 ; 'vivo,step-chg-soc-thr'
+   4dc9c:      	mov	x0, x20
+   4dca0:      	mov	x2, x21
+   4dca4:      	mov	w3, #0x1
+   4dca8:      	mov	x4, xzr
+   4dcac:      	bl	0x4dcac <vfcs_cms_parse_func_dt+0x944>
+		000000000004dcac:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4dcb0:      	tbz	w0, #0x1f, 0x4dcb8 <vfcs_cms_parse_func_dt+0x950>
+   4dcb4:      	str	wzr, [x21]
+   4dcb8:      	add	x21, x22, #0x4cc
+   4dcbc:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dcbc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c490 ; 'vivo,step-chg-cur-factor-ma'
+   4dcc0:      	add	x1, x1, #0x0
+		000000000004dcc0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c490 ; 'vivo,step-chg-cur-factor-ma'
+   4dcc4:      	mov	x0, x20
+   4dcc8:      	mov	x2, x21
+   4dccc:      	mov	w3, #0x1
+   4dcd0:      	mov	x4, xzr
+   4dcd4:      	bl	0x4dcd4 <vfcs_cms_parse_func_dt+0x96c>
+		000000000004dcd4:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4dcd8:      	tbz	w0, #0x1f, 0x4dce0 <vfcs_cms_parse_func_dt+0x978>
+   4dcdc:      	str	wzr, [x21]
+   4dce0:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dce0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x643a ; 'vivo,pmic-vbat-vcell-enable'
+   4dce4:      	add	x1, x1, #0x0
+		000000000004dce4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x643a ; 'vivo,pmic-vbat-vcell-enable'
+   4dce8:      	mov	x0, x20
+   4dcec:      	mov	x2, xzr
+   4dcf0:      	bl	0x4dcf0 <vfcs_cms_parse_func_dt+0x988>
+		000000000004dcf0:  R_AARCH64_CALL26	of_find_property
+   4dcf4:      	cmp	x0, #0x0
+   4dcf8:      	cset	w8, ne
+   4dcfc:      	strb	w8, [x22, #0x4d0]
+   4dd00:      	cbz	x27, 0x4dfa8 <vfcs_cms_parse_func_dt+0xc40>
+   4dd04:      	ldr	x8, [x27, #0x10]
+   4dd08:      	cbz	x8, 0x4dd18 <vfcs_cms_parse_func_dt+0x9b0>
+   4dd0c:      	ldr	w8, [x8]
+   4dd10:      	tbnz	w8, #0x4, 0x4e168 <vfcs_cms_parse_func_dt+0xe00>
+   4dd14:      	tbnz	w8, #0x2, 0x4e268 <vfcs_cms_parse_func_dt+0xf00>
+   4dd18:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dd18:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x29042 ; 'vivo,r-comp'
+   4dd1c:      	add	x2, x2, #0x0
+		000000000004dd1c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x29042 ; 'vivo,r-comp'
+   4dd20:      	adrp	x7, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dd20:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c4ac ; 'r-comp'
+   4dd24:      	add	x7, x7, #0x0
+		000000000004dd24:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c4ac ; 'r-comp'
+   4dd28:      	mov	x0, x27
+   4dd2c:      	mov	x1, x20
+   4dd30:      	mov	w3, #0x1
+   4dd34:      	mov	w4, #0x3
+   4dd38:      	mov	w5, #0x1
+   4dd3c:      	mov	w6, #0x1
+   4dd40:      	mov	w19, #0x1
+   4dd44:      	bl	0x4dd44 <vfcs_cms_parse_func_dt+0x9dc>
+		000000000004dd44:  R_AARCH64_CALL26	vfcs_cms_of_get_property_data
+   4dd48:      	cmp	x0, #0x0
+   4dd4c:      	adrp	x8, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dd4c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15f0 ; _r_comp_default
+   4dd50:      	add	x8, x8, #0x0
+		000000000004dd50:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15f0 ; _r_comp_default
+   4dd54:      	add	x21, x22, #0x4d4
+   4dd58:      	csel	x8, x8, x0, eq
+   4dd5c:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dd5c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x36c5 ; 'vivo,phone-holster-type'
+   4dd60:      	add	x1, x1, #0x0
+		000000000004dd60:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x36c5 ; 'vivo,phone-holster-type'
+   4dd64:      	mov	x0, x20
+   4dd68:      	mov	x2, x21
+   4dd6c:      	mov	w3, #0x1
+   4dd70:      	mov	x4, xzr
+   4dd74:      	str	x8, [x22, #0x520]
+   4dd78:      	bl	0x4dd78 <vfcs_cms_parse_func_dt+0xa10>
+		000000000004dd78:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4dd7c:      	tbz	w0, #0x1f, 0x4dd84 <vfcs_cms_parse_func_dt+0xa1c>
+   4dd80:      	str	w19, [x21]
+   4dd84:      	add	x21, x22, #0xb80
+   4dd88:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dd88:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1eb3b ; 'vivo,fbon-discharge-temp'
+   4dd8c:      	add	x1, x1, #0x0
+		000000000004dd8c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1eb3b ; 'vivo,fbon-discharge-temp'
+   4dd90:      	mov	x0, x20
+   4dd94:      	mov	x2, x21
+   4dd98:      	mov	w3, #0x1
+   4dd9c:      	mov	x4, xzr
+   4dda0:      	bl	0x4dda0 <vfcs_cms_parse_func_dt+0xa38>
+		000000000004dda0:  R_AARCH64_CALL26	of_property_read_variable_u32_array
+   4dda4:      	tbz	w0, #0x1f, 0x4ddb0 <vfcs_cms_parse_func_dt+0xa48>
+   4dda8:      	mov	w8, #0x186
+   4ddac:      	str	w8, [x21]
+   4ddb0:      	ldr	w8, [x27, #0x170]
+   4ddb4:      	cmp	w8, #0x3
+   4ddb8:      	b.ne	0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4ddbc:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004ddbc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4788e ; 'vivo,dpb-pmos-short-detect-enable'
+   4ddc0:      	add	x1, x1, #0x0
+		000000000004ddc0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4788e ; 'vivo,dpb-pmos-short-detect-enable'
+   4ddc4:      	mov	x0, x20
+   4ddc8:      	mov	x2, xzr
+   4ddcc:      	bl	0x4ddcc <vfcs_cms_parse_func_dt+0xa64>
+		000000000004ddcc:  R_AARCH64_CALL26	of_find_property
+   4ddd0:      	ldr	x8, [x27]
+   4ddd4:      	cmp	x0, #0x0
+   4ddd8:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004ddd8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1eb54 ; 'slave_bat_connect_pwm'
+   4dddc:      	add	x1, x1, #0x0
+		000000000004dddc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1eb54 ; 'slave_bat_connect_pwm'
+   4dde0:      	cset	w9, ne
+   4dde4:      	mov	x0, x8
+   4dde8:      	strb	w9, [x22, #0x580]
+   4ddec:      	bl	0x4ddec <vfcs_cms_parse_func_dt+0xa84>
+		000000000004ddec:  R_AARCH64_CALL26	devm_pwm_get
+   4ddf0:      	cmn	x0, #0xfff
+   4ddf4:      	str	x0, [x22, #0x578]
+   4ddf8:      	b.lo	0x4de24 <vfcs_cms_parse_func_dt+0xabc>
+   4ddfc:      	cmn	w0, #0x205
+   4de00:      	b.eq	0x4de1c <vfcs_cms_parse_func_dt+0xab4>
+   4de04:      	cbz	x27, 0x4e618 <vfcs_cms_parse_func_dt+0x12b0>
+   4de08:      	ldr	x8, [x27, #0x10]
+   4de0c:      	cbz	x8, 0x4de1c <vfcs_cms_parse_func_dt+0xab4>
+   4de10:      	ldr	w8, [x8]
+   4de14:      	tbnz	w8, #0x4, 0x4e6e4 <vfcs_cms_parse_func_dt+0x137c>
+   4de18:      	tbnz	w8, #0x1, 0x4e718 <vfcs_cms_parse_func_dt+0x13b0>
+   4de1c:      	str	xzr, [x22, #0x578]
+   4de20:      	b	0x4de80 <vfcs_cms_parse_func_dt+0xb18>
+   4de24:      	ldr	x8, [x0, #0x20]
+   4de28:      	mov	w9, #0x4240
+   4de2c:      	movk	w9, #0xf, lsl #16
+   4de30:      	cmp	x8, #0x0
+   4de34:      	csel	x3, x9, x8, eq
+   4de38:      	mov	w8, #0xb
+   4de3c:      	mov	x9, #0xf5c3
+   4de40:      	mul	x8, x3, x8
+   4de44:      	movk	x9, #0x5c28, lsl #16
+   4de48:      	movk	x9, #0xc28f, lsl #32
+   4de4c:      	movk	x9, #0x28f5, lsl #48
+   4de50:      	lsr	x8, x8, #2
+   4de54:      	umulh	x8, x8, x9
+   4de58:      	mov	w9, #0xd7f0
+   4de5c:      	add	x19, x27, x9
+   4de60:      	lsr	x8, x8, #2
+   4de64:      	stp	x3, x8, [x19]
+   4de68:      	cbz	x27, 0x4e468 <vfcs_cms_parse_func_dt+0x1100>
+   4de6c:      	ldr	x8, [x27, #0x10]
+   4de70:      	cbz	x8, 0x4de80 <vfcs_cms_parse_func_dt+0xb18>
+   4de74:      	ldr	w8, [x8]
+   4de78:      	tbnz	w8, #0x4, 0x4e564 <vfcs_cms_parse_func_dt+0x11fc>
+   4de7c:      	tbnz	w8, #0x0, 0x4e590 <vfcs_cms_parse_func_dt+0x1228>
+   4de80:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004de80:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49c8e ; 'vivo,slave-bat-connect-gpio'
+   4de84:      	add	x1, x1, #0x0
+		000000000004de84:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49c8e ; 'vivo,slave-bat-connect-gpio'
+   4de88:      	mov	x0, x20
+   4de8c:      	mov	w2, wzr
+   4de90:      	bl	0x4de90 <vfcs_cms_parse_func_dt+0xb28>
+		000000000004de90:  R_AARCH64_CALL26	of_get_named_gpio
+   4de94:      	str	w0, [x22, #0x570]
+   4de98:      	tbnz	w0, #0x1f, 0x4def0 <vfcs_cms_parse_func_dt+0xb88>
+   4de9c:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004de9c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49caa ; 'dpb_slave_bat_connect_gpio'
+   4dea0:      	add	x1, x1, #0x0
+		000000000004dea0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49caa ; 'dpb_slave_bat_connect_gpio'
+   4dea4:      	bl	0x4dea4 <vfcs_cms_parse_func_dt+0xb3c>
+		000000000004dea4:  R_AARCH64_CALL26	gpio_request
+   4dea8:      	cbz	w0, 0x4df10 <vfcs_cms_parse_func_dt+0xba8>
+   4deac:      	str	wzr, [x22, #0x570]
+   4deb0:      	cbz	x27, 0x4e52c <vfcs_cms_parse_func_dt+0x11c4>
+   4deb4:      	ldr	x8, [x27, #0x10]
+   4deb8:      	cbz	x8, 0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4debc:      	ldr	w8, [x8]
+   4dec0:      	tbnz	w8, #0x4, 0x4e668 <vfcs_cms_parse_func_dt+0x1300>
+   4dec4:      	tbz	w8, #0x1, 0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4dec8:      	ldr	x1, [x27, #0x18]
+   4decc:      	adrp	x8, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004decc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15cbb ; '\x013%s: %s: dpb_slave_bat_connect_gpio: gpio_request failed for %d rc=%d\n'
+   4ded0:      	add	x8, x8, #0x0
+		000000000004ded0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15cbb ; '\x013%s: %s: dpb_slave_bat_connect_gpio: gpio_request failed for %d rc=%d\n'
+   4ded4:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004ded4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4ded8:      	add	x2, x2, #0x0
+		000000000004ded8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4dedc:      	mov	w4, w0
+   4dee0:      	mov	x0, x8
+   4dee4:      	mov	w3, wzr
+   4dee8:      	bl	0x4dee8 <vfcs_cms_parse_func_dt+0xb80>
+		000000000004dee8:  R_AARCH64_CALL26	_printk
+   4deec:      	b	0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4def0:      	cbz	x27, 0x4e54c <vfcs_cms_parse_func_dt+0x11e4>
+   4def4:      	ldr	x8, [x27, #0x10]
+   4def8:      	cbz	x8, 0x4df08 <vfcs_cms_parse_func_dt+0xba0>
+   4defc:      	ldr	w8, [x8]
+   4df00:      	tbnz	w8, #0x4, 0x4e698 <vfcs_cms_parse_func_dt+0x1330>
+   4df04:      	tbnz	w8, #0x2, 0x4e6c4 <vfcs_cms_parse_func_dt+0x135c>
+   4df08:      	str	wzr, [x22, #0x570]
+   4df0c:      	b	0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4df10:      	cbz	x27, 0x4e638 <vfcs_cms_parse_func_dt+0x12d0>
+   4df14:      	ldr	x8, [x27, #0x10]
+   4df18:      	cbz	x8, 0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4df1c:      	ldr	w8, [x8]
+   4df20:      	tbnz	w8, #0x4, 0x4e740 <vfcs_cms_parse_func_dt+0x13d8>
+   4df24:      	tbz	w8, #0x0, 0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4df28:      	ldr	w20, [x22, #0x570]
+   4df2c:      	ldr	x19, [x27, #0x18]
+   4df30:      	mov	w0, w20
+   4df34:      	bl	0x4df34 <vfcs_cms_parse_func_dt+0xbcc>
+		000000000004df34:  R_AARCH64_CALL26	gpio_to_desc
+   4df38:      	bl	0x4df38 <vfcs_cms_parse_func_dt+0xbd0>
+		000000000004df38:  R_AARCH64_CALL26	gpiod_get_raw_value
+   4df3c:      	mov	w4, w0
+   4df40:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004df40:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1eb6a ; '\x013%s: %s: gpio_request success: dpb_slave_bat_connect_gpio=%d,val=%d\n'
+   4df44:      	add	x0, x0, #0x0
+		000000000004df44:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1eb6a ; '\x013%s: %s: gpio_request success: dpb_slave_bat_connect_gpio=%d,val=%d\n'
+   4df48:      	adrp	x2, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004df48:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4df4c:      	add	x2, x2, #0x0
+		000000000004df4c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4df50:      	mov	x1, x19
+   4df54:      	mov	w3, w20
+   4df58:      	bl	0x4df58 <vfcs_cms_parse_func_dt+0xbf0>
+		000000000004df58:  R_AARCH64_CALL26	_printk
+   4df5c:      	b	0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4df60:      	ldr	w2, [x27, #0x174]
+   4df64:      	ldr	w3, [x27, #0x180]
+   4df68:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004df68:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1ee8d ; '\x013%s: normal_tc_type=%d,normal_tc_num=%d,bat_aging_enable=%d,var_bat_tc_enable=%d,var_bat_tc_num=%d\n'
+   4df6c:      	add	x0, x0, #0x0
+		000000000004df6c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1ee8d ; '\x013%s: normal_tc_type=%d,normal_tc_num=%d,bat_aging_enable=%d,var_bat_tc_enable=%d,var_bat_tc_num=%d\n'
+   4df70:      	ldrb	w4, [x27, #0x184]
+   4df74:      	ldrb	w5, [x27, #0x186]
+   4df78:      	ldr	w6, [x27, #0x188]
+   4df7c:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004df7c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4df80:      	add	x1, x1, #0x0
+		000000000004df80:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4df84:      	bl	0x4df84 <vfcs_cms_parse_func_dt+0xc1c>
+		000000000004df84:  R_AARCH64_CALL26	_printk
+   4df88:      	b	0x4d634 <vfcs_cms_parse_func_dt+0x2cc>
+   4df8c:      	cset	w2, ne
+   4df90:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004df90:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3d6ff ; '\x013%s: ffc_support=%d\n'
+   4df94:      	add	x0, x0, #0x0
+		000000000004df94:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3d6ff ; '\x013%s: ffc_support=%d\n'
+   4df98:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004df98:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4df9c:      	add	x1, x1, #0x0
+		000000000004df9c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4dfa0:      	bl	0x4dfa0 <vfcs_cms_parse_func_dt+0xc38>
+		000000000004dfa0:  R_AARCH64_CALL26	_printk
+   4dfa4:      	b	0x4dc90 <vfcs_cms_parse_func_dt+0x928>
+   4dfa8:      	cset	w2, ne
+   4dfac:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dfac:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x214b3 ; '\x013%s: pmic_vbat_vcell_enable=%d.\n'
+   4dfb0:      	add	x0, x0, #0x0
+		000000000004dfb0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x214b3 ; '\x013%s: pmic_vbat_vcell_enable=%d.\n'
+   4dfb4:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dfb4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4dfb8:      	add	x1, x1, #0x0
+		000000000004dfb8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4dfbc:      	bl	0x4dfbc <vfcs_cms_parse_func_dt+0xc54>
+		000000000004dfbc:  R_AARCH64_CALL26	_printk
+   4dfc0:      	b	0x4dd18 <vfcs_cms_parse_func_dt+0x9b0>
+   4dfc4:      	cset	w2, ne
+   4dfc8:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dfc8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x42657 ; '\x013%s: intell_chg_use_vir_shell_temp_replace_primary_temp=%d\n'
+   4dfcc:      	add	x0, x0, #0x0
+		000000000004dfcc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x42657 ; '\x013%s: intell_chg_use_vir_shell_temp_replace_primary_temp=%d\n'
+   4dfd0:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dfd0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4dfd4:      	add	x1, x1, #0x0
+		000000000004dfd4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4dfd8:      	bl	0x4dfd8 <vfcs_cms_parse_func_dt+0xc70>
+		000000000004dfd8:  R_AARCH64_CALL26	_printk
+   4dfdc:      	b	0x4db94 <vfcs_cms_parse_func_dt+0x82c>
+   4dfe0:      	cset	w2, ne
+   4dfe4:      	adrp	x0, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dfe4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49de7 ; '\x013%s: wls_epp_camera_limit_enable=%d\n'
+   4dfe8:      	add	x0, x0, #0x0
+		000000000004dfe8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49de7 ; '\x013%s: wls_epp_camera_limit_enable=%d\n'
+   4dfec:      	adrp	x1, 0x4d000 <vfcs_cms_parse_chg_heating_dt+0x428>
+		000000000004dfec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4dff0:      	add	x1, x1, #0x0
+		000000000004dff0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4dff4:      	bl	0x4dff4 <vfcs_cms_parse_func_dt+0xc8c>
+		000000000004dff4:  R_AARCH64_CALL26	_printk
+   4dff8:      	b	0x4dc58 <vfcs_cms_parse_func_dt+0x8f0>
+   4dffc:      	sub	x0, x29, #0x30
+   4e000:      	stp	xzr, xzr, [x29, #-0x30]
+   4e004:      	str	wzr, [sp, #0x58]
+   4e008:      	stp	xzr, xzr, [sp, #0x48]
+   4e00c:      	stp	xzr, xzr, [sp, #0x38]
+   4e010:      	bl	0x4e010 <vfcs_cms_parse_func_dt+0xca8>
+		000000000004e010:  R_AARCH64_CALL26	ktime_get_real_ts64
+   4e014:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e014:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   4e018:      	add	x1, sp, #0x38
+   4e01c:      	ldr	w8, [x8]
+		000000000004e01c:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   4e020:      	lsl	w9, w8, #6
+   4e024:      	sub	w8, w9, w8, lsl #2
+   4e028:      	ldur	x9, [x29, #-0x30]
+   4e02c:      	sub	x0, x9, w8, sxtw
+   4e030:      	stur	x0, [x29, #-0x30]
+   4e034:      	bl	0x4e034 <vfcs_cms_parse_func_dt+0xccc>
+		000000000004e034:  R_AARCH64_CALL26	rtc_time64_to_tm
+   4e038:      	ldur	w8, [x29, #-0x28]
+   4e03c:      	mov	w9, #0x4dd3
+   4e040:      	adrp	x21, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e040:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e044:      	add	x21, x21, #0x0
+		000000000004e044:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e048:      	movk	w9, #0x1062, lsl #16
+   4e04c:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e04c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e050:      	add	x2, x2, #0x0
+		000000000004e050:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e054:      	umull	x8, w8, w9
+   4e058:      	mov	x0, x21
+   4e05c:      	ldp	w10, w9, [sp, #0x48]
+   4e060:      	ldp	w6, w5, [sp, #0x40]
+   4e064:      	ldp	w11, w7, [sp, #0x38]
+   4e068:      	lsr	x8, x8, #38
+   4e06c:      	add	w3, w9, #0x76c
+   4e070:      	add	w4, w10, #0x1
+   4e074:      	mov	w1, #0x1e
+   4e078:      	str	w11, [sp]
+   4e07c:      	str	w8, [sp, #0x8]
+   4e080:      	bl	0x4e080 <vfcs_cms_parse_func_dt+0xd18>
+		000000000004e080:  R_AARCH64_CALL26	snprintf
+   4e084:      	ldr	x2, [x27, #0x18]
+   4e088:      	ldr	w4, [x27, #0x174]
+   4e08c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e08c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x215ad ; '\x013[%s]%s: %s: normal_tc_type=%d,normal_tc_num=%d,bat_aging_enable=%d,var_bat_tc_enable=%d,var_bat_tc_num=%d\n'
+   4e090:      	add	x0, x0, #0x0
+		000000000004e090:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x215ad ; '\x013[%s]%s: %s: normal_tc_type=%d,normal_tc_num=%d,bat_aging_enable=%d,var_bat_tc_enable=%d,var_bat_tc_num=%d\n'
+   4e094:      	ldr	w5, [x27, #0x180]
+   4e098:      	ldrb	w6, [x27, #0x184]
+   4e09c:      	ldrb	w7, [x27, #0x186]
+   4e0a0:      	ldr	w8, [x27, #0x188]
+   4e0a4:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e0a4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e0a8:      	add	x3, x3, #0x0
+		000000000004e0a8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e0ac:      	mov	x1, x21
+   4e0b0:      	str	w8, [sp]
+   4e0b4:      	bl	0x4e0b4 <vfcs_cms_parse_func_dt+0xd4c>
+		000000000004e0b4:  R_AARCH64_CALL26	_printk
+   4e0b8:      	b	0x4d634 <vfcs_cms_parse_func_dt+0x2cc>
+   4e0bc:      	sub	x0, x29, #0x30
+   4e0c0:      	stp	xzr, xzr, [x29, #-0x30]
+   4e0c4:      	str	wzr, [sp, #0x58]
+   4e0c8:      	stp	xzr, xzr, [sp, #0x48]
+   4e0cc:      	stp	xzr, xzr, [sp, #0x38]
+   4e0d0:      	bl	0x4e0d0 <vfcs_cms_parse_func_dt+0xd68>
+		000000000004e0d0:  R_AARCH64_CALL26	ktime_get_real_ts64
+   4e0d4:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e0d4:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   4e0d8:      	add	x1, sp, #0x38
+   4e0dc:      	ldr	w8, [x8]
+		000000000004e0dc:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   4e0e0:      	lsl	w9, w8, #6
+   4e0e4:      	sub	w8, w9, w8, lsl #2
+   4e0e8:      	ldur	x9, [x29, #-0x30]
+   4e0ec:      	sub	x0, x9, w8, sxtw
+   4e0f0:      	stur	x0, [x29, #-0x30]
+   4e0f4:      	bl	0x4e0f4 <vfcs_cms_parse_func_dt+0xd8c>
+		000000000004e0f4:  R_AARCH64_CALL26	rtc_time64_to_tm
+   4e0f8:      	ldur	w8, [x29, #-0x28]
+   4e0fc:      	mov	w9, #0x4dd3
+   4e100:      	adrp	x21, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e100:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e104:      	add	x21, x21, #0x0
+		000000000004e104:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e108:      	movk	w9, #0x1062, lsl #16
+   4e10c:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e10c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e110:      	add	x2, x2, #0x0
+		000000000004e110:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e114:      	umull	x8, w8, w9
+   4e118:      	mov	x0, x21
+   4e11c:      	ldp	w10, w9, [sp, #0x48]
+   4e120:      	ldp	w6, w5, [sp, #0x40]
+   4e124:      	ldp	w11, w7, [sp, #0x38]
+   4e128:      	lsr	x8, x8, #38
+   4e12c:      	add	w3, w9, #0x76c
+   4e130:      	add	w4, w10, #0x1
+   4e134:      	mov	w1, #0x1e
+   4e138:      	str	w11, [sp]
+   4e13c:      	str	w8, [sp, #0x8]
+   4e140:      	bl	0x4e140 <vfcs_cms_parse_func_dt+0xdd8>
+		000000000004e140:  R_AARCH64_CALL26	snprintf
+   4e144:      	ldr	x2, [x27, #0x18]
+   4e148:      	ldrb	w4, [x22, #0x569]
+   4e14c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e14c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x183e5 ; '\x013[%s]%s: %s: ffc_support=%d\n'
+   4e150:      	add	x0, x0, #0x0
+		000000000004e150:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x183e5 ; '\x013[%s]%s: %s: ffc_support=%d\n'
+   4e154:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e154:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e158:      	add	x3, x3, #0x0
+		000000000004e158:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e15c:      	mov	x1, x21
+   4e160:      	bl	0x4e160 <vfcs_cms_parse_func_dt+0xdf8>
+		000000000004e160:  R_AARCH64_CALL26	_printk
+   4e164:      	b	0x4dc90 <vfcs_cms_parse_func_dt+0x928>
+   4e168:      	sub	x0, x29, #0x30
+   4e16c:      	stp	xzr, xzr, [x29, #-0x30]
+   4e170:      	str	wzr, [sp, #0x58]
+   4e174:      	stp	xzr, xzr, [sp, #0x48]
+   4e178:      	stp	xzr, xzr, [sp, #0x38]
+   4e17c:      	bl	0x4e17c <vfcs_cms_parse_func_dt+0xe14>
+		000000000004e17c:  R_AARCH64_CALL26	ktime_get_real_ts64
+   4e180:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e180:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   4e184:      	add	x1, sp, #0x38
+   4e188:      	ldr	w8, [x8]
+		000000000004e188:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   4e18c:      	lsl	w9, w8, #6
+   4e190:      	sub	w8, w9, w8, lsl #2
+   4e194:      	ldur	x9, [x29, #-0x30]
+   4e198:      	sub	x0, x9, w8, sxtw
+   4e19c:      	stur	x0, [x29, #-0x30]
+   4e1a0:      	bl	0x4e1a0 <vfcs_cms_parse_func_dt+0xe38>
+		000000000004e1a0:  R_AARCH64_CALL26	rtc_time64_to_tm
+   4e1a4:      	ldur	w8, [x29, #-0x28]
+   4e1a8:      	mov	w9, #0x4dd3
+   4e1ac:      	adrp	x21, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e1ac:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e1b0:      	add	x21, x21, #0x0
+		000000000004e1b0:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e1b4:      	movk	w9, #0x1062, lsl #16
+   4e1b8:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e1b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e1bc:      	add	x2, x2, #0x0
+		000000000004e1bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e1c0:      	umull	x8, w8, w9
+   4e1c4:      	mov	x0, x21
+   4e1c8:      	ldp	w10, w9, [sp, #0x48]
+   4e1cc:      	ldp	w6, w5, [sp, #0x40]
+   4e1d0:      	ldp	w11, w7, [sp, #0x38]
+   4e1d4:      	lsr	x8, x8, #38
+   4e1d8:      	add	w3, w9, #0x76c
+   4e1dc:      	add	w4, w10, #0x1
+   4e1e0:      	mov	w1, #0x1e
+   4e1e4:      	str	w11, [sp]
+   4e1e8:      	str	w8, [sp, #0x8]
+   4e1ec:      	bl	0x4e1ec <vfcs_cms_parse_func_dt+0xe84>
+		000000000004e1ec:  R_AARCH64_CALL26	snprintf
+   4e1f0:      	ldr	x2, [x27, #0x18]
+   4e1f4:      	ldrb	w4, [x22, #0x4d0]
+   4e1f8:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e1f8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x47864 ; '\x013[%s]%s: %s: pmic_vbat_vcell_enable=%d.\n'
+   4e1fc:      	add	x0, x0, #0x0
+		000000000004e1fc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x47864 ; '\x013[%s]%s: %s: pmic_vbat_vcell_enable=%d.\n'
+   4e200:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e200:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e204:      	add	x3, x3, #0x0
+		000000000004e204:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e208:      	mov	x1, x21
+   4e20c:      	bl	0x4e20c <vfcs_cms_parse_func_dt+0xea4>
+		000000000004e20c:  R_AARCH64_CALL26	_printk
+   4e210:      	b	0x4dd18 <vfcs_cms_parse_func_dt+0x9b0>
+   4e214:      	ldr	x1, [x27, #0x18]
+   4e218:      	ldr	w3, [x27, #0x174]
+   4e21c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e21c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x18638 ; '\x013%s: %s: normal_tc_type=%d,normal_tc_num=%d,bat_aging_enable=%d,var_bat_tc_enable=%d,var_bat_tc_num=%d\n'
+   4e220:      	add	x0, x0, #0x0
+		000000000004e220:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x18638 ; '\x013%s: %s: normal_tc_type=%d,normal_tc_num=%d,bat_aging_enable=%d,var_bat_tc_enable=%d,var_bat_tc_num=%d\n'
+   4e224:      	ldr	w4, [x27, #0x180]
+   4e228:      	ldrb	w5, [x27, #0x184]
+   4e22c:      	ldrb	w6, [x27, #0x186]
+   4e230:      	ldr	w7, [x27, #0x188]
+   4e234:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e234:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e238:      	add	x2, x2, #0x0
+		000000000004e238:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e23c:      	bl	0x4e23c <vfcs_cms_parse_func_dt+0xed4>
+		000000000004e23c:  R_AARCH64_CALL26	_printk
+   4e240:      	b	0x4d634 <vfcs_cms_parse_func_dt+0x2cc>
+   4e244:      	cmp	x0, #0x0
+   4e248:      	ldr	x1, [x27, #0x18]
+   4e24c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e24c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4259c ; '\x013%s: %s: ffc_support=%d\n'
+   4e250:      	add	x0, x0, #0x0
+		000000000004e250:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4259c ; '\x013%s: %s: ffc_support=%d\n'
+   4e254:      	cset	w3, ne
+   4e258:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e258:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e25c:      	add	x2, x2, #0x0
+		000000000004e25c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e260:      	bl	0x4e260 <vfcs_cms_parse_func_dt+0xef8>
+		000000000004e260:  R_AARCH64_CALL26	_printk
+   4e264:      	b	0x4dc90 <vfcs_cms_parse_func_dt+0x928>
+   4e268:      	cmp	x0, #0x0
+   4e26c:      	ldr	x1, [x27, #0x18]
+   4e270:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e270:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4e65a ; '\x013%s: %s: pmic_vbat_vcell_enable=%d.\n'
+   4e274:      	add	x0, x0, #0x0
+		000000000004e274:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4e65a ; '\x013%s: %s: pmic_vbat_vcell_enable=%d.\n'
+   4e278:      	cset	w3, ne
+   4e27c:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e27c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e280:      	add	x2, x2, #0x0
+		000000000004e280:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e284:      	bl	0x4e284 <vfcs_cms_parse_func_dt+0xf1c>
+		000000000004e284:  R_AARCH64_CALL26	_printk
+   4e288:      	b	0x4dd18 <vfcs_cms_parse_func_dt+0x9b0>
+   4e28c:      	ldr	w2, [x22, #0x56c]
+   4e290:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e290:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x112c0 ; '\x013%s: usb_conn_vbusoff_gpio: gpio_request failed for %d rc=%d\n'
+   4e294:      	add	x8, x8, #0x0
+		000000000004e294:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x112c0 ; '\x013%s: usb_conn_vbusoff_gpio: gpio_request failed for %d rc=%d\n'
+   4e298:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e298:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e29c:      	add	x1, x1, #0x0
+		000000000004e29c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e2a0:      	mov	w3, w0
+   4e2a4:      	mov	x0, x8
+   4e2a8:      	bl	0x4e2a8 <vfcs_cms_parse_func_dt+0xf40>
+		000000000004e2a8:  R_AARCH64_CALL26	_printk
+   4e2ac:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4e2b0:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e2b0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4252a ; '\x013%s: usb_conn_vbusoff_gpio not defined\n'
+   4e2b4:      	add	x0, x0, #0x0
+		000000000004e2b4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4252a ; '\x013%s: usb_conn_vbusoff_gpio not defined\n'
+   4e2b8:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e2b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e2bc:      	add	x1, x1, #0x0
+		000000000004e2bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e2c0:      	bl	0x4e2c0 <vfcs_cms_parse_func_dt+0xf58>
+		000000000004e2c0:  R_AARCH64_CALL26	_printk
+   4e2c4:      	b	0x4d42c <vfcs_cms_parse_func_dt+0xc4>
+   4e2c8:      	sub	x0, x29, #0x30
+   4e2cc:      	stp	xzr, xzr, [x29, #-0x30]
+   4e2d0:      	str	wzr, [sp, #0x58]
+   4e2d4:      	stp	xzr, xzr, [sp, #0x48]
+   4e2d8:      	stp	xzr, xzr, [sp, #0x38]
+   4e2dc:      	bl	0x4e2dc <vfcs_cms_parse_func_dt+0xf74>
+		000000000004e2dc:  R_AARCH64_CALL26	ktime_get_real_ts64
+   4e2e0:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e2e0:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   4e2e4:      	add	x1, sp, #0x38
+   4e2e8:      	ldr	w8, [x8]
+		000000000004e2e8:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   4e2ec:      	lsl	w9, w8, #6
+   4e2f0:      	sub	w8, w9, w8, lsl #2
+   4e2f4:      	ldur	x9, [x29, #-0x30]
+   4e2f8:      	sub	x0, x9, w8, sxtw
+   4e2fc:      	stur	x0, [x29, #-0x30]
+   4e300:      	bl	0x4e300 <vfcs_cms_parse_func_dt+0xf98>
+		000000000004e300:  R_AARCH64_CALL26	rtc_time64_to_tm
+   4e304:      	ldur	w8, [x29, #-0x28]
+   4e308:      	mov	w9, #0x4dd3
+   4e30c:      	adrp	x21, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e30c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e310:      	add	x21, x21, #0x0
+		000000000004e310:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e314:      	movk	w9, #0x1062, lsl #16
+   4e318:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e318:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e31c:      	add	x2, x2, #0x0
+		000000000004e31c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e320:      	umull	x8, w8, w9
+   4e324:      	mov	x0, x21
+   4e328:      	ldp	w10, w9, [sp, #0x48]
+   4e32c:      	ldp	w6, w5, [sp, #0x40]
+   4e330:      	ldp	w11, w7, [sp, #0x38]
+   4e334:      	lsr	x8, x8, #38
+   4e338:      	add	w3, w9, #0x76c
+   4e33c:      	add	w4, w10, #0x1
+   4e340:      	mov	w1, #0x1e
+   4e344:      	str	w11, [sp]
+   4e348:      	str	w8, [sp, #0x8]
+   4e34c:      	bl	0x4e34c <vfcs_cms_parse_func_dt+0xfe4>
+		000000000004e34c:  R_AARCH64_CALL26	snprintf
+   4e350:      	ldr	x2, [x27, #0x18]
+   4e354:      	ldrb	w4, [x22, #0x498]
+   4e358:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e358:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbfd8 ; '\x013[%s]%s: %s: intell_chg_use_vir_shell_temp_replace_primary_temp=%d\n'
+   4e35c:      	add	x0, x0, #0x0
+		000000000004e35c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbfd8 ; '\x013[%s]%s: %s: intell_chg_use_vir_shell_temp_replace_primary_temp=%d\n'
+   4e360:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e360:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e364:      	add	x3, x3, #0x0
+		000000000004e364:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e368:      	mov	x1, x21
+   4e36c:      	bl	0x4e36c <vfcs_cms_parse_func_dt+0x1004>
+		000000000004e36c:  R_AARCH64_CALL26	_printk
+   4e370:      	b	0x4db94 <vfcs_cms_parse_func_dt+0x82c>
+   4e374:      	sub	x0, x29, #0x30
+   4e378:      	stp	xzr, xzr, [x29, #-0x30]
+   4e37c:      	str	wzr, [sp, #0x58]
+   4e380:      	stp	xzr, xzr, [sp, #0x48]
+   4e384:      	stp	xzr, xzr, [sp, #0x38]
+   4e388:      	bl	0x4e388 <vfcs_cms_parse_func_dt+0x1020>
+		000000000004e388:  R_AARCH64_CALL26	ktime_get_real_ts64
+   4e38c:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e38c:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   4e390:      	add	x1, sp, #0x38
+   4e394:      	ldr	w8, [x8]
+		000000000004e394:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   4e398:      	lsl	w9, w8, #6
+   4e39c:      	sub	w8, w9, w8, lsl #2
+   4e3a0:      	ldur	x9, [x29, #-0x30]
+   4e3a4:      	sub	x0, x9, w8, sxtw
+   4e3a8:      	stur	x0, [x29, #-0x30]
+   4e3ac:      	bl	0x4e3ac <vfcs_cms_parse_func_dt+0x1044>
+		000000000004e3ac:  R_AARCH64_CALL26	rtc_time64_to_tm
+   4e3b0:      	ldur	w8, [x29, #-0x28]
+   4e3b4:      	mov	w9, #0x4dd3
+   4e3b8:      	adrp	x21, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e3b8:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e3bc:      	add	x21, x21, #0x0
+		000000000004e3bc:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e3c0:      	movk	w9, #0x1062, lsl #16
+   4e3c4:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e3c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e3c8:      	add	x2, x2, #0x0
+		000000000004e3c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   4e3cc:      	umull	x8, w8, w9
+   4e3d0:      	mov	x0, x21
+   4e3d4:      	ldp	w10, w9, [sp, #0x48]
+   4e3d8:      	ldp	w6, w5, [sp, #0x40]
+   4e3dc:      	ldp	w11, w7, [sp, #0x38]
+   4e3e0:      	lsr	x8, x8, #38
+   4e3e4:      	add	w3, w9, #0x76c
+   4e3e8:      	add	w4, w10, #0x1
+   4e3ec:      	mov	w1, #0x1e
+   4e3f0:      	str	w11, [sp]
+   4e3f4:      	str	w8, [sp, #0x8]
+   4e3f8:      	bl	0x4e3f8 <vfcs_cms_parse_func_dt+0x1090>
+		000000000004e3f8:  R_AARCH64_CALL26	snprintf
+   4e3fc:      	ldr	x2, [x27, #0x18]
+   4e400:      	ldrb	w4, [x22, #0x49a]
+   4e404:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e404:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1ef01 ; '\x013[%s]%s: %s: wls_epp_camera_limit_enable=%d\n'
+   4e408:      	add	x0, x0, #0x0
+		000000000004e408:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1ef01 ; '\x013[%s]%s: %s: wls_epp_camera_limit_enable=%d\n'
+   4e40c:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e40c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e410:      	add	x3, x3, #0x0
+		000000000004e410:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e414:      	mov	x1, x21
+   4e418:      	bl	0x4e418 <vfcs_cms_parse_func_dt+0x10b0>
+		000000000004e418:  R_AARCH64_CALL26	_printk
+   4e41c:      	b	0x4dc58 <vfcs_cms_parse_func_dt+0x8f0>
+   4e420:      	cmp	x0, #0x0
+   4e424:      	ldr	x1, [x27, #0x18]
+   4e428:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e428:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3d937 ; '\x013%s: %s: intell_chg_use_vir_shell_temp_replace_primary_temp=%d\n'
+   4e42c:      	add	x0, x0, #0x0
+		000000000004e42c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3d937 ; '\x013%s: %s: intell_chg_use_vir_shell_temp_replace_primary_temp=%d\n'
+   4e430:      	cset	w3, ne
+   4e434:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e434:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e438:      	add	x2, x2, #0x0
+		000000000004e438:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e43c:      	bl	0x4e43c <vfcs_cms_parse_func_dt+0x10d4>
+		000000000004e43c:  R_AARCH64_CALL26	_printk
+   4e440:      	b	0x4db94 <vfcs_cms_parse_func_dt+0x82c>
+   4e444:      	cmp	x0, #0x0
+   4e448:      	ldr	x1, [x27, #0x18]
+   4e44c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e44c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x42694 ; '\x013%s: %s: wls_epp_camera_limit_enable=%d\n'
+   4e450:      	add	x0, x0, #0x0
+		000000000004e450:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x42694 ; '\x013%s: %s: wls_epp_camera_limit_enable=%d\n'
+   4e454:      	cset	w3, ne
+   4e458:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e458:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e45c:      	add	x2, x2, #0x0
+		000000000004e45c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e07b ; 'vfcs_cms_parse_tc_param_dt'
+   4e460:      	bl	0x4e460 <vfcs_cms_parse_func_dt+0x10f8>
+		000000000004e460:  R_AARCH64_CALL26	_printk
+   4e464:      	b	0x4dc58 <vfcs_cms_parse_func_dt+0x8f0>
+   4e468:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e468:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2904e ; '\x013%s: get pwm_dev success, period_ns=%llu\n'
+   4e46c:      	add	x0, x0, #0x0
+		000000000004e46c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2904e ; '\x013%s: get pwm_dev success, period_ns=%llu\n'
+   4e470:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e470:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e474:      	add	x1, x1, #0x0
+		000000000004e474:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e478:      	mov	x2, x3
+   4e47c:      	bl	0x4e47c <vfcs_cms_parse_func_dt+0x1114>
+		000000000004e47c:  R_AARCH64_CALL26	_printk
+   4e480:      	b	0x4de80 <vfcs_cms_parse_func_dt+0xb18>
+   4e484:      	ldr	w0, [x22, #0x56c]
+   4e488:      	bl	0x4e488 <vfcs_cms_parse_func_dt+0x1120>
+		000000000004e488:  R_AARCH64_CALL26	gpio_to_desc
+   4e48c:      	bl	0x4e48c <vfcs_cms_parse_func_dt+0x1124>
+		000000000004e48c:  R_AARCH64_CALL26	gpiod_get_raw_value
+   4e490:      	mov	w2, w0
+   4e494:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e494:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x42553 ; '\x013%s: gpio_request success: usb_conn_vbusoff_gpio=%d\n'
+   4e498:      	add	x0, x0, #0x0
+		000000000004e498:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x42553 ; '\x013%s: gpio_request success: usb_conn_vbusoff_gpio=%d\n'
+   4e49c:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e49c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e4a0:      	add	x1, x1, #0x0
+		000000000004e4a0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e4a4:      	bl	0x4e4a4 <vfcs_cms_parse_func_dt+0x113c>
+		000000000004e4a4:  R_AARCH64_CALL26	_printk
+   4e4a8:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4e4ac:      	mov	w21, w0
+   4e4b0:      	bl	0x48bfc <get_android_time>
+   4e4b4:      	ldr	x2, [x27, #0x18]
+   4e4b8:      	ldr	w4, [x22, #0x56c]
+   4e4bc:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e4bc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x23e18 ; '\x013[%s]%s: %s: usb_conn_vbusoff_gpio: gpio_request failed for %d rc=%d\n'
+   4e4c0:      	add	x0, x0, #0x0
+		000000000004e4c0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x23e18 ; '\x013[%s]%s: %s: usb_conn_vbusoff_gpio: gpio_request failed for %d rc=%d\n'
+   4e4c4:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e4c4:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e4c8:      	add	x1, x1, #0x0
+		000000000004e4c8:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e4cc:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e4cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e4d0:      	add	x3, x3, #0x0
+		000000000004e4d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e4d4:      	mov	w5, w21
+   4e4d8:      	bl	0x4e4d8 <vfcs_cms_parse_func_dt+0x1170>
+		000000000004e4d8:  R_AARCH64_CALL26	_printk
+   4e4dc:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4e4e0:      	bl	0x48bfc <get_android_time>
+   4e4e4:      	ldr	x2, [x27, #0x18]
+   4e4e8:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e4e8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x331ba ; '\x013[%s]%s: %s: usb_conn_vbusoff_gpio not defined\n'
+   4e4ec:      	add	x0, x0, #0x0
+		000000000004e4ec:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x331ba ; '\x013[%s]%s: %s: usb_conn_vbusoff_gpio not defined\n'
+   4e4f0:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e4f0:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e4f4:      	add	x1, x1, #0x0
+		000000000004e4f4:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e4f8:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e4f8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e4fc:      	add	x3, x3, #0x0
+		000000000004e4fc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e500:      	bl	0x4e500 <vfcs_cms_parse_func_dt+0x1198>
+		000000000004e500:  R_AARCH64_CALL26	_printk
+   4e504:      	str	wzr, [x22, #0x56c]
+   4e508:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4e50c:      	ldr	x1, [x27, #0x18]
+   4e510:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e510:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4c0a0 ; '\x013%s: %s: usb_conn_vbusoff_gpio not defined\n'
+   4e514:      	add	x0, x0, #0x0
+		000000000004e514:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4c0a0 ; '\x013%s: %s: usb_conn_vbusoff_gpio not defined\n'
+   4e518:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e518:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e51c:      	add	x2, x2, #0x0
+		000000000004e51c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e520:      	bl	0x4e520 <vfcs_cms_parse_func_dt+0x11b8>
+		000000000004e520:  R_AARCH64_CALL26	_printk
+   4e524:      	str	wzr, [x22, #0x56c]
+   4e528:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4e52c:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e52c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11326 ; '\x013%s: dpb_slave_bat_connect_gpio: gpio_request failed for %d rc=%d\n'
+   4e530:      	add	x8, x8, #0x0
+		000000000004e530:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11326 ; '\x013%s: dpb_slave_bat_connect_gpio: gpio_request failed for %d rc=%d\n'
+   4e534:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e534:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e538:      	add	x1, x1, #0x0
+		000000000004e538:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e53c:      	mov	w3, w0
+   4e540:      	mov	x0, x8
+   4e544:      	mov	w2, wzr
+   4e548:      	b	0x4e660 <vfcs_cms_parse_func_dt+0x12f8>
+   4e54c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e54c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3042b ; '\x013%s: dpb_slave_bat_connect_gpio not defined\n'
+   4e550:      	add	x0, x0, #0x0
+		000000000004e550:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3042b ; '\x013%s: dpb_slave_bat_connect_gpio not defined\n'
+   4e554:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e554:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e558:      	add	x1, x1, #0x0
+		000000000004e558:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e55c:      	bl	0x4e55c <vfcs_cms_parse_func_dt+0x11f4>
+		000000000004e55c:  R_AARCH64_CALL26	_printk
+   4e560:      	b	0x4df08 <vfcs_cms_parse_func_dt+0xba0>
+   4e564:      	bl	0x48bfc <get_android_time>
+   4e568:      	ldr	x2, [x27, #0x18]
+   4e56c:      	ldr	x4, [x19]
+   4e570:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e570:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1c4b3 ; '\x013[%s]%s: %s: get pwm_dev success, period_ns=%llu\n'
+   4e574:      	add	x0, x0, #0x0
+		000000000004e574:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1c4b3 ; '\x013[%s]%s: %s: get pwm_dev success, period_ns=%llu\n'
+   4e578:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e578:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e57c:      	add	x1, x1, #0x0
+		000000000004e57c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e580:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e580:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e584:      	add	x3, x3, #0x0
+		000000000004e584:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e588:      	bl	0x4e588 <vfcs_cms_parse_func_dt+0x1220>
+		000000000004e588:  R_AARCH64_CALL26	_printk
+   4e58c:      	b	0x4de80 <vfcs_cms_parse_func_dt+0xb18>
+   4e590:      	ldr	x1, [x27, #0x18]
+   4e594:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e594:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3718 ; '\x013%s: %s: get pwm_dev success, period_ns=%llu\n'
+   4e598:      	add	x0, x0, #0x0
+		000000000004e598:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3718 ; '\x013%s: %s: get pwm_dev success, period_ns=%llu\n'
+   4e59c:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e59c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e5a0:      	add	x2, x2, #0x0
+		000000000004e5a0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e5a4:      	bl	0x4e5a4 <vfcs_cms_parse_func_dt+0x123c>
+		000000000004e5a4:  R_AARCH64_CALL26	_printk
+   4e5a8:      	b	0x4de80 <vfcs_cms_parse_func_dt+0xb18>
+   4e5ac:      	bl	0x48bfc <get_android_time>
+   4e5b0:      	ldr	w0, [x22, #0x56c]
+   4e5b4:      	ldr	x21, [x27, #0x18]
+   4e5b8:      	bl	0x4e5b8 <vfcs_cms_parse_func_dt+0x1250>
+		000000000004e5b8:  R_AARCH64_CALL26	gpio_to_desc
+   4e5bc:      	bl	0x4e5bc <vfcs_cms_parse_func_dt+0x1254>
+		000000000004e5bc:  R_AARCH64_CALL26	gpiod_get_raw_value
+   4e5c0:      	mov	w4, w0
+   4e5c4:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e5c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xe509 ; '\x013[%s]%s: %s: gpio_request success: usb_conn_vbusoff_gpio=%d\n'
+   4e5c8:      	add	x0, x0, #0x0
+		000000000004e5c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xe509 ; '\x013[%s]%s: %s: gpio_request success: usb_conn_vbusoff_gpio=%d\n'
+   4e5cc:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e5cc:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e5d0:      	add	x1, x1, #0x0
+		000000000004e5d0:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e5d4:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e5d4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e5d8:      	add	x3, x3, #0x0
+		000000000004e5d8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e5dc:      	mov	x2, x21
+   4e5e0:      	bl	0x4e5e0 <vfcs_cms_parse_func_dt+0x1278>
+		000000000004e5e0:  R_AARCH64_CALL26	_printk
+   4e5e4:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4e5e8:      	ldr	w0, [x22, #0x56c]
+   4e5ec:      	ldr	x21, [x27, #0x18]
+   4e5f0:      	bl	0x4e5f0 <vfcs_cms_parse_func_dt+0x1288>
+		000000000004e5f0:  R_AARCH64_CALL26	gpio_to_desc
+   4e5f4:      	bl	0x4e5f4 <vfcs_cms_parse_func_dt+0x128c>
+		000000000004e5f4:  R_AARCH64_CALL26	gpiod_get_raw_value
+   4e5f8:      	mov	w3, w0
+   4e5fc:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e5fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xe547 ; '\x013%s: %s: gpio_request success: usb_conn_vbusoff_gpio=%d\n'
+   4e600:      	add	x0, x0, #0x0
+		000000000004e600:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xe547 ; '\x013%s: %s: gpio_request success: usb_conn_vbusoff_gpio=%d\n'
+   4e604:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e604:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e608:      	add	x2, x2, #0x0
+		000000000004e608:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e60c:      	mov	x1, x21
+   4e610:      	bl	0x4e610 <vfcs_cms_parse_func_dt+0x12a8>
+		000000000004e610:  R_AARCH64_CALL26	_printk
+   4e614:      	b	0x4d464 <vfcs_cms_parse_func_dt+0xfc>
+   4e618:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e618:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x18403 ; '\x013%s: get slave_battery_connect_pwm_dev failed, rc=%d\n'
+   4e61c:      	add	x8, x8, #0x0
+		000000000004e61c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x18403 ; '\x013%s: get slave_battery_connect_pwm_dev failed, rc=%d\n'
+   4e620:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e620:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e624:      	add	x1, x1, #0x0
+		000000000004e624:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e628:      	mov	x2, x0
+   4e62c:      	mov	x0, x8
+   4e630:      	bl	0x4e630 <vfcs_cms_parse_func_dt+0x12c8>
+		000000000004e630:  R_AARCH64_CALL26	_printk
+   4e634:      	b	0x4de1c <vfcs_cms_parse_func_dt+0xab4>
+   4e638:      	ldr	w19, [x22, #0x570]
+   4e63c:      	mov	w0, w19
+   4e640:      	bl	0x4e640 <vfcs_cms_parse_func_dt+0x12d8>
+		000000000004e640:  R_AARCH64_CALL26	gpio_to_desc
+   4e644:      	bl	0x4e644 <vfcs_cms_parse_func_dt+0x12dc>
+		000000000004e644:  R_AARCH64_CALL26	gpiod_get_raw_value
+   4e648:      	mov	w3, w0
+   4e64c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e64c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1ebb0 ; '\x013%s: gpio_request success: dpb_slave_bat_connect_gpio=%d,val=%d\n'
+   4e650:      	add	x0, x0, #0x0
+		000000000004e650:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1ebb0 ; '\x013%s: gpio_request success: dpb_slave_bat_connect_gpio=%d,val=%d\n'
+   4e654:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e654:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e658:      	add	x1, x1, #0x0
+		000000000004e658:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e65c:      	mov	w2, w19
+   4e660:      	bl	0x4e660 <vfcs_cms_parse_func_dt+0x12f8>
+		000000000004e660:  R_AARCH64_CALL26	_printk
+   4e664:      	b	0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4e668:      	mov	w20, w0
+   4e66c:      	bl	0x48bfc <get_android_time>
+   4e670:      	ldr	x2, [x27, #0x18]
+   4e674:      	ldr	w4, [x22, #0x570]
+   4e678:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e678:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x30459 ; '\x013[%s]%s: %s: dpb_slave_bat_connect_gpio: gpio_request failed for %d rc=%d\n'
+   4e67c:      	add	x0, x0, #0x0
+		000000000004e67c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x30459 ; '\x013[%s]%s: %s: dpb_slave_bat_connect_gpio: gpio_request failed for %d rc=%d\n'
+   4e680:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e680:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e684:      	add	x1, x1, #0x0
+		000000000004e684:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e688:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e688:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e68c:      	add	x3, x3, #0x0
+		000000000004e68c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e690:      	mov	w5, w20
+   4e694:      	b	0x4e77c <vfcs_cms_parse_func_dt+0x1414>
+   4e698:      	bl	0x48bfc <get_android_time>
+   4e69c:      	ldr	x2, [x27, #0x18]
+   4e6a0:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e6a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3fe3b ; '\x013[%s]%s: %s: dpb_slave_bat_connect_gpio not defined\n'
+   4e6a4:      	add	x0, x0, #0x0
+		000000000004e6a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3fe3b ; '\x013[%s]%s: %s: dpb_slave_bat_connect_gpio not defined\n'
+   4e6a8:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e6a8:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e6ac:      	add	x1, x1, #0x0
+		000000000004e6ac:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e6b0:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e6b0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e6b4:      	add	x3, x3, #0x0
+		000000000004e6b4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e6b8:      	bl	0x4e6b8 <vfcs_cms_parse_func_dt+0x1350>
+		000000000004e6b8:  R_AARCH64_CALL26	_printk
+   4e6bc:      	str	wzr, [x22, #0x570]
+   4e6c0:      	b	0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4e6c4:      	ldr	x1, [x27, #0x18]
+   4e6c8:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e6c8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbdb1 ; '\x013%s: %s: dpb_slave_bat_connect_gpio not defined\n'
+   4e6cc:      	add	x0, x0, #0x0
+		000000000004e6cc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbdb1 ; '\x013%s: %s: dpb_slave_bat_connect_gpio not defined\n'
+   4e6d0:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e6d0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e6d4:      	add	x2, x2, #0x0
+		000000000004e6d4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e6d8:      	bl	0x4e6d8 <vfcs_cms_parse_func_dt+0x1370>
+		000000000004e6d8:  R_AARCH64_CALL26	_printk
+   4e6dc:      	str	wzr, [x22, #0x570]
+   4e6e0:      	b	0x4e780 <vfcs_cms_parse_func_dt+0x1418>
+   4e6e4:      	mov	x21, x0
+   4e6e8:      	bl	0x48bfc <get_android_time>
+   4e6ec:      	ldr	x2, [x27, #0x18]
+   4e6f0:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e6f0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3d715 ; '\x013[%s]%s: %s: get slave_battery_connect_pwm_dev failed, rc=%d\n'
+   4e6f4:      	add	x0, x0, #0x0
+		000000000004e6f4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3d715 ; '\x013[%s]%s: %s: get slave_battery_connect_pwm_dev failed, rc=%d\n'
+   4e6f8:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e6f8:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e6fc:      	add	x1, x1, #0x0
+		000000000004e6fc:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e700:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e700:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e704:      	add	x3, x3, #0x0
+		000000000004e704:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e708:      	mov	w4, w21
+   4e70c:      	bl	0x4e70c <vfcs_cms_parse_func_dt+0x13a4>
+		000000000004e70c:  R_AARCH64_CALL26	_printk
+   4e710:      	str	xzr, [x22, #0x578]
+   4e714:      	b	0x4de80 <vfcs_cms_parse_func_dt+0xb18>
+   4e718:      	ldr	x1, [x27, #0x18]
+   4e71c:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e71c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x36dd ; '\x013%s: %s: get slave_battery_connect_pwm_dev failed, rc=%d\n'
+   4e720:      	add	x8, x8, #0x0
+		000000000004e720:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x36dd ; '\x013%s: %s: get slave_battery_connect_pwm_dev failed, rc=%d\n'
+   4e724:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e724:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e728:      	add	x2, x2, #0x0
+		000000000004e728:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e72c:      	mov	x3, x0
+   4e730:      	mov	x0, x8
+   4e734:      	bl	0x4e734 <vfcs_cms_parse_func_dt+0x13cc>
+		000000000004e734:  R_AARCH64_CALL26	_printk
+   4e738:      	str	xzr, [x22, #0x578]
+   4e73c:      	b	0x4de80 <vfcs_cms_parse_func_dt+0xb18>
+   4e740:      	bl	0x48bfc <get_android_time>
+   4e744:      	ldr	w20, [x22, #0x570]
+   4e748:      	ldr	x19, [x27, #0x18]
+   4e74c:      	mov	w0, w20
+   4e750:      	bl	0x4e750 <vfcs_cms_parse_func_dt+0x13e8>
+		000000000004e750:  R_AARCH64_CALL26	gpio_to_desc
+   4e754:      	bl	0x4e754 <vfcs_cms_parse_func_dt+0x13ec>
+		000000000004e754:  R_AARCH64_CALL26	gpiod_get_raw_value
+   4e758:      	mov	w5, w0
+   4e75c:      	adrp	x0, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e75c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2ddab ; '\x013[%s]%s: %s: gpio_request success: dpb_slave_bat_connect_gpio=%d,val=%d\n'
+   4e760:      	add	x0, x0, #0x0
+		000000000004e760:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2ddab ; '\x013[%s]%s: %s: gpio_request success: dpb_slave_bat_connect_gpio=%d,val=%d\n'
+   4e764:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e764:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   4e768:      	add	x1, x1, #0x0
+		000000000004e768:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   4e76c:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e76c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e770:      	add	x3, x3, #0x0
+		000000000004e770:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xbd9a ; 'vfcs_cms_parse_func_dt'
+   4e774:      	mov	x2, x19
+   4e778:      	mov	w4, w20
+   4e77c:      	bl	0x4e77c <vfcs_cms_parse_func_dt+0x1414>
+		000000000004e77c:  R_AARCH64_CALL26	_printk
+   4e780:      	mrs	x8, SP_EL0
+   4e784:      	ldr	x8, [x8, #0x710]
+   4e788:      	ldur	x9, [x29, #-0x8]
+   4e78c:      	cmp	x8, x9
+   4e790:      	b.ne	0x4e7c0 <vfcs_cms_parse_func_dt+0x1458>
+   4e794:      	mov	w0, wzr
+   4e798:      	ldp	x20, x19, [sp, #0xe0]
+   4e79c:      	ldp	x22, x21, [sp, #0xd0]
+   4e7a0:      	ldp	x24, x23, [sp, #0xc0]
+   4e7a4:      	ldp	x26, x25, [sp, #0xb0]
+   4e7a8:      	ldp	x28, x27, [sp, #0xa0]
+   4e7ac:      	ldp	x29, x30, [sp, #0x90]
+   4e7b0:      	add	sp, sp, #0xf0
+   4e7b4:      	autiasp
+   4e7b8:      	ret
+   4e7bc:      	brk	#0x5512
+   4e7c0:      	bl	0x4e7c0 <vfcs_cms_parse_func_dt+0x1458>
+		000000000004e7c0:  R_AARCH64_CALL26	__stack_chk_fail
+

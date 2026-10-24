@@ -1,0 +1,265 @@
+0000000000064974 <vfcs_cms_scene_chg_debug_chg_cur_cb>:
+   64974:      	paciasp
+   64978:      	stp	x29, x30, [sp, #-0x30]!
+   6497c:      	str	x21, [sp, #0x10]
+   64980:      	stp	x20, x19, [sp, #0x20]
+   64984:      	mov	x29, sp
+   64988:      	ldr	w8, [x0, #0x24]
+   6498c:      	cbz	w8, 0x649ec <vfcs_cms_scene_chg_debug_chg_cur_cb+0x78>
+   64990:      	cbz	x1, 0x64a14 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xa0>
+   64994:      	cmp	w2, #0x2
+   64998:      	b.le	0x64a14 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xa0>
+   6499c:      	add	x19, x0, #0xc, lsl #12  // =0xc000
+   649a0:      	cbz	x0, 0x64a98 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x124>
+   649a4:      	ldr	x8, [x0, #0x10]
+   649a8:      	cbz	x8, 0x649b8 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x44>
+   649ac:      	ldr	w8, [x8]
+   649b0:      	tbnz	w8, #0x4, 0x64b68 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x1f4>
+   649b4:      	tbnz	w8, #0x0, 0x64ba0 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x22c>
+   649b8:      	ldr	w8, [x1]
+   649bc:      	cbz	w8, 0x64be0 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x26c>
+   649c0:      	ldr	w8, [x19, #0xa40]
+   649c4:      	cbz	w8, 0x64ad0 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x15c>
+   649c8:      	ldr	x8, [x0, #0x10]
+   649cc:      	cbz	x8, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   649d0:      	ldr	w8, [x8]
+   649d4:      	tbnz	w8, #0x4, 0x64c10 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x29c>
+   649d8:      	tbz	w8, #0x2, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   649dc:      	ldr	x1, [x0, #0x18]
+   649e0:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		00000000000649e0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x185c ; "\x013%s: %s: scene chg debug_chg_cur isn't priority!\n"
+   649e4:      	add	x0, x0, #0x0
+		00000000000649e4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x185c ; "\x013%s: %s: scene chg debug_chg_cur isn't priority!\n"
+   649e8:      	b	0x64c00 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x28c>
+   649ec:      	cbz	x0, 0x64a58 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xe4>
+   649f0:      	ldr	x8, [x0, #0x10]
+   649f4:      	cbz	x8, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   649f8:      	ldr	w8, [x8]
+   649fc:      	tbnz	w8, #0x4, 0x64b0c <vfcs_cms_scene_chg_debug_chg_cur_cb+0x198>
+   64a00:      	tbz	w8, #0x2, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64a04:      	ldr	x1, [x0, #0x18]
+   64a08:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064a08:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   64a0c:      	add	x0, x0, #0x0
+		0000000000064a0c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   64a10:      	b	0x64c00 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x28c>
+   64a14:      	cbz	x0, 0x64a70 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xfc>
+   64a18:      	ldr	x8, [x0, #0x10]
+   64a1c:      	cbz	x8, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64a20:      	ldr	w8, [x8]
+   64a24:      	tbnz	w8, #0x4, 0x64b24 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x1b0>
+   64a28:      	tbz	w8, #0x1, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64a2c:      	cmp	w2, #0x3
+   64a30:      	adrp	x2, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064a30:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64a34:      	add	x2, x2, #0x0
+		0000000000064a34:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64a38:      	cset	w4, lt
+   64a3c:      	cmp	x1, #0x0
+   64a40:      	ldr	x1, [x0, #0x18]
+   64a44:      	cset	w3, eq
+   64a48:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064a48:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x38495 ; '\x013%s: %s: scene chg debug_chg_cur data(%d %d) param error,return\n'
+   64a4c:      	add	x0, x0, #0x0
+		0000000000064a4c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x38495 ; '\x013%s: %s: scene chg debug_chg_cur data(%d %d) param error,return\n'
+   64a50:      	bl	0x64a50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xdc>
+		0000000000064a50:  R_AARCH64_CALL26	_printk
+   64a54:      	b	0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64a58:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064a58:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   64a5c:      	add	x0, x0, #0x0
+		0000000000064a5c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   64a60:      	adrp	x1, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064a60:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64a64:      	add	x1, x1, #0x0
+		0000000000064a64:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64a68:      	bl	0x64a68 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xf4>
+		0000000000064a68:  R_AARCH64_CALL26	_printk
+   64a6c:      	b	0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64a70:      	cmp	w2, #0x3
+   64a74:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064a74:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4a1f0 ; '\x013%s: scene chg debug_chg_cur data(%d %d) param error,return\n'
+   64a78:      	add	x0, x0, #0x0
+		0000000000064a78:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4a1f0 ; '\x013%s: scene chg debug_chg_cur data(%d %d) param error,return\n'
+   64a7c:      	cset	w3, lt
+   64a80:      	cmp	x1, #0x0
+   64a84:      	adrp	x1, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064a84:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64a88:      	add	x1, x1, #0x0
+		0000000000064a88:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64a8c:      	cset	w2, eq
+   64a90:      	bl	0x64a90 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x11c>
+		0000000000064a90:  R_AARCH64_CALL26	_printk
+   64a94:      	b	0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64a98:      	ldp	w2, w3, [x1]
+   64a9c:      	ldr	w4, [x1, #0x8]
+   64aa0:      	adrp	x8, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064aa0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64aa4:      	add	x8, x8, #0x0
+		0000000000064aa4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64aa8:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064aa8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x18a2b ; '\x013%s: scene chg debug_chg_cur data:(%d %d %d)\n'
+   64aac:      	add	x0, x0, #0x0
+		0000000000064aac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x18a2b ; '\x013%s: scene chg debug_chg_cur data:(%d %d %d)\n'
+   64ab0:      	mov	x20, x1
+   64ab4:      	mov	x1, x8
+   64ab8:      	bl	0x64ab8 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x144>
+		0000000000064ab8:  R_AARCH64_CALL26	_printk
+   64abc:      	ldr	w8, [x20]
+   64ac0:      	cbz	w8, 0x64c68 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2f4>
+   64ac4:      	mov	w8, #0xca40
+   64ac8:      	ldr	w8, [x8]
+   64acc:      	cbnz	w8, 0x64c74 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x300>
+   64ad0:      	ldrb	w8, [x19, #0xcac]
+   64ad4:      	ldr	x0, [x19, #0x300]
+   64ad8:      	cmp	w8, #0x1
+   64adc:      	b.ne	0x64af4 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x180>
+   64ae0:      	ldr	w3, [x19, #0xcb0]
+   64ae4:      	adrp	x1, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064ae4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x7b4 ; 'DEBUG_CHG_CUR_EVENT'
+   64ae8:      	add	x1, x1, #0x0
+		0000000000064ae8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x7b4 ; 'DEBUG_CHG_CUR_EVENT'
+   64aec:      	mov	w2, #0x1
+   64af0:      	b	0x64b04 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x190>
+   64af4:      	adrp	x1, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064af4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x7b4 ; 'DEBUG_CHG_CUR_EVENT'
+   64af8:      	add	x1, x1, #0x0
+		0000000000064af8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x7b4 ; 'DEBUG_CHG_CUR_EVENT'
+   64afc:      	mov	w2, wzr
+   64b00:      	mov	w3, wzr
+   64b04:      	bl	0x64b04 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x190>
+		0000000000064b04:  R_AARCH64_CALL26	vote
+   64b08:      	b	0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64b0c:      	mov	x19, x0
+   64b10:      	bl	0x48bfc <get_android_time>
+   64b14:      	ldr	x2, [x19, #0x18]
+   64b18:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064b18:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   64b1c:      	add	x0, x0, #0x0
+		0000000000064b1c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   64b20:      	b	0x64c3c <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2c8>
+   64b24:      	cmp	w2, #0x3
+   64b28:      	mov	x21, x0
+   64b2c:      	cset	w19, lt
+   64b30:      	cmp	x1, #0x0
+   64b34:      	cset	w20, eq
+   64b38:      	bl	0x48bfc <get_android_time>
+   64b3c:      	ldr	x2, [x21, #0x18]
+   64b40:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064b40:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x14046 ; '\x013[%s]%s: %s: scene chg debug_chg_cur data(%d %d) param error,return\n'
+   64b44:      	add	x0, x0, #0x0
+		0000000000064b44:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x14046 ; '\x013[%s]%s: %s: scene chg debug_chg_cur data(%d %d) param error,return\n'
+   64b48:      	adrp	x1, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064b48:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   64b4c:      	add	x1, x1, #0x0
+		0000000000064b4c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   64b50:      	adrp	x3, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064b50:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64b54:      	add	x3, x3, #0x0
+		0000000000064b54:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64b58:      	mov	w4, w20
+   64b5c:      	mov	w5, w19
+   64b60:      	bl	0x64b60 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x1ec>
+		0000000000064b60:  R_AARCH64_CALL26	_printk
+   64b64:      	b	0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64b68:      	mov	x20, x0
+   64b6c:      	mov	x21, x1
+   64b70:      	bl	0x48bfc <get_android_time>
+   64b74:      	ldp	w4, w5, [x21]
+   64b78:      	ldr	x2, [x20, #0x18]
+   64b7c:      	ldr	w6, [x21, #0x8]
+   64b80:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064b80:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2e418 ; '\x013[%s]%s: %s: scene chg debug_chg_cur data:(%d %d %d)\n'
+   64b84:      	add	x0, x0, #0x0
+		0000000000064b84:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2e418 ; '\x013[%s]%s: %s: scene chg debug_chg_cur data:(%d %d %d)\n'
+   64b88:      	adrp	x1, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064b88:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   64b8c:      	add	x1, x1, #0x0
+		0000000000064b8c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   64b90:      	adrp	x3, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064b90:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64b94:      	add	x3, x3, #0x0
+		0000000000064b94:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64b98:      	bl	0x64b98 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x224>
+		0000000000064b98:  R_AARCH64_CALL26	_printk
+   64b9c:      	b	0x64bd0 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x25c>
+   64ba0:      	ldr	x8, [x0, #0x18]
+   64ba4:      	ldr	w5, [x1, #0x8]
+   64ba8:      	adrp	x9, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064ba8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x404fc ; '\x013%s: %s: scene chg debug_chg_cur data:(%d %d %d)\n'
+   64bac:      	add	x9, x9, #0x0
+		0000000000064bac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x404fc ; '\x013%s: %s: scene chg debug_chg_cur data:(%d %d %d)\n'
+   64bb0:      	adrp	x2, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064bb0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64bb4:      	add	x2, x2, #0x0
+		0000000000064bb4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64bb8:      	ldp	w3, w4, [x1]
+   64bbc:      	mov	x20, x0
+   64bc0:      	mov	x0, x9
+   64bc4:      	mov	x21, x1
+   64bc8:      	mov	x1, x8
+   64bcc:      	bl	0x64bcc <vfcs_cms_scene_chg_debug_chg_cur_cb+0x258>
+		0000000000064bcc:  R_AARCH64_CALL26	_printk
+   64bd0:      	mov	x1, x21
+   64bd4:      	mov	x0, x20
+   64bd8:      	ldr	w8, [x1]
+   64bdc:      	cbnz	w8, 0x649c0 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x4c>
+   64be0:      	ldr	x8, [x0, #0x10]
+   64be4:      	cbz	x8, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64be8:      	ldr	w8, [x8]
+   64bec:      	tbnz	w8, #0x4, 0x64c28 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2b4>
+   64bf0:      	tbz	w8, #0x1, 0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64bf4:      	ldr	x1, [x0, #0x18]
+   64bf8:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064bf8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3de4a ; "\x013%s: %s: scene chg debug_chg_cur isn't enabled!\n"
+   64bfc:      	add	x0, x0, #0x0
+		0000000000064bfc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3de4a ; "\x013%s: %s: scene chg debug_chg_cur isn't enabled!\n"
+   64c00:      	adrp	x2, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064c00:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64c04:      	add	x2, x2, #0x0
+		0000000000064c04:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64c08:      	bl	0x64c08 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x294>
+		0000000000064c08:  R_AARCH64_CALL26	_printk
+   64c0c:      	b	0x64c50 <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2dc>
+   64c10:      	mov	x19, x0
+   64c14:      	bl	0x48bfc <get_android_time>
+   64c18:      	ldr	x2, [x19, #0x18]
+   64c1c:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064c1c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2472d ; "\x013[%s]%s: %s: scene chg debug_chg_cur isn't priority!\n"
+   64c20:      	add	x0, x0, #0x0
+		0000000000064c20:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2472d ; "\x013[%s]%s: %s: scene chg debug_chg_cur isn't priority!\n"
+   64c24:      	b	0x64c3c <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2c8>
+   64c28:      	mov	x19, x0
+   64c2c:      	bl	0x48bfc <get_android_time>
+   64c30:      	ldr	x2, [x19, #0x18]
+   64c34:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064c34:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x30dba ; "\x013[%s]%s: %s: scene chg debug_chg_cur isn't enabled!\n"
+   64c38:      	add	x0, x0, #0x0
+		0000000000064c38:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x30dba ; "\x013[%s]%s: %s: scene chg debug_chg_cur isn't enabled!\n"
+   64c3c:      	adrp	x1, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064c3c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   64c40:      	add	x1, x1, #0x0
+		0000000000064c40:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   64c44:      	adrp	x3, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064c44:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64c48:      	add	x3, x3, #0x0
+		0000000000064c48:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11c20 ; 'vfcs_cms_scene_chg_debug_chg_cur_cb'
+   64c4c:      	bl	0x64c4c <vfcs_cms_scene_chg_debug_chg_cur_cb+0x2d8>
+		0000000000064c4c:  R_AARCH64_CALL26	_printk
+   64c50:      	mov	w0, wzr
+   64c54:      	ldp	x20, x19, [sp, #0x20]
+   64c58:      	ldr	x21, [sp, #0x10]
+   64c5c:      	ldp	x29, x30, [sp], #0x30
+   64c60:      	autiasp
+   64c64:      	ret
+   64c68:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064c68:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x7010 ; "\x013%s: scene chg debug_chg_cur isn't enabled!\n"
+   64c6c:      	add	x0, x0, #0x0
+		0000000000064c6c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x7010 ; "\x013%s: scene chg debug_chg_cur isn't enabled!\n"
+   64c70:      	b	0x64a60 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xec>
+   64c74:      	adrp	x0, 0x64000 <vfcs_cms_scene_chg_factory_mode_cb+0x3c4>
+		0000000000064c74:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4a22e ; "\x013%s: scene chg debug_chg_cur isn't priority!\n"
+   64c78:      	add	x0, x0, #0x0
+		0000000000064c78:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4a22e ; "\x013%s: scene chg debug_chg_cur isn't priority!\n"
+   64c7c:      	b	0x64a60 <vfcs_cms_scene_chg_debug_chg_cur_cb+0xec>
+

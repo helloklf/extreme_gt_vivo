@@ -1,0 +1,1013 @@
+0000000000010a8c <vfcs_cms_main_work>:
+   10a8c:      	paciasp
+   10a90:      	sub	sp, sp, #0xf0
+   10a94:      	stp	x29, x30, [sp, #0x90]
+   10a98:      	stp	x28, x27, [sp, #0xa0]
+   10a9c:      	stp	x26, x25, [sp, #0xb0]
+   10aa0:      	stp	x24, x23, [sp, #0xc0]
+   10aa4:      	stp	x22, x21, [sp, #0xd0]
+   10aa8:      	stp	x20, x19, [sp, #0xe0]
+   10aac:      	add	x29, sp, #0x90
+   10ab0:      	mrs	x8, SP_EL0
+   10ab4:      	mov	x9, #-0xc988
+   10ab8:      	mov	x19, x0
+   10abc:      	ldr	x8, [x8, #0x710]
+   10ac0:      	adds	x20, x0, x9
+   10ac4:      	stur	x8, [x29, #-0x8]
+   10ac8:      	b.eq	0x10de4 <vfcs_cms_main_work+0x358>
+   10acc:      	mov	x22, #-0xc978
+   10ad0:      	ldr	x8, [x19, x22]
+   10ad4:      	cbz	x8, 0x10ae4 <vfcs_cms_main_work+0x58>
+   10ad8:      	ldr	w8, [x8]
+   10adc:      	tbnz	w8, #0x4, 0x10e24 <vfcs_cms_main_work+0x398>
+   10ae0:      	tbnz	w8, #0x0, 0x10ed0 <vfcs_cms_main_work+0x444>
+   10ae4:      	mov	x8, #-0xc964
+   10ae8:      	add	x27, x19, x8
+   10aec:      	ldr	w8, [x27]
+   10af0:      	cbz	w8, 0x10c00 <vfcs_cms_main_work+0x174>
+   10af4:      	mov	x0, x20
+   10af8:      	bl	0x10af8 <vfcs_cms_main_work+0x6c>
+		0000000000010af8:  R_AARCH64_CALL26	vfcs_cms_ensure_psy_available
+   10afc:      	sub	x24, x19, #0x1c0
+   10b00:      	ldr	x8, [x24]
+   10b04:      	cbz	x8, 0x10bc4 <vfcs_cms_main_work+0x138>
+   10b08:      	sub	x8, x19, #0x1b8
+   10b0c:      	ldr	x8, [x8]
+   10b10:      	cbz	x8, 0x10bc4 <vfcs_cms_main_work+0x138>
+   10b14:      	mov	w8, #0x7d0
+   10b18:      	sub	x9, x19, #0xd48
+   10b1c:      	sub	x0, x29, #0x18
+   10b20:      	str	w8, [x19, #0x74]
+   10b24:      	sub	x8, x19, #0xd44
+   10b28:      	ldr	w9, [x9]
+   10b2c:      	ldr	w8, [x8]
+   10b30:      	stp	xzr, xzr, [sp, #0x40]
+   10b34:      	add	x25, x19, #0x6, lsl #12 // =0x6000
+   10b38:      	str	w9, [x19, #0x178]
+   10b3c:      	str	w8, [x19, #0x17c]
+   10b40:      	stp	xzr, xzr, [x29, #-0x18]
+   10b44:      	stur	wzr, [x29, #-0x20]
+   10b48:      	stp	xzr, xzr, [x29, #-0x30]
+   10b4c:      	stp	xzr, xzr, [x29, #-0x40]
+   10b50:      	bl	0x10b50 <vfcs_cms_main_work+0xc4>
+		0000000000010b50:  R_AARCH64_CALL26	ktime_get_real_ts64
+   10b54:      	adrp	x8, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010b54:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   10b58:      	sub	x1, x29, #0x40
+   10b5c:      	ldr	w8, [x8]
+		0000000000010b5c:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   10b60:      	lsl	w9, w8, #6
+   10b64:      	sub	w8, w9, w8, lsl #2
+   10b68:      	ldur	x9, [x29, #-0x18]
+   10b6c:      	sub	x0, x9, w8, sxtw
+   10b70:      	stur	x0, [x29, #-0x18]
+   10b74:      	bl	0x10b74 <vfcs_cms_main_work+0xe8>
+		0000000000010b74:  R_AARCH64_CALL26	rtc_time64_to_tm
+   10b78:      	ldr	w8, [x25, #0x174]
+   10b7c:      	ldr	w9, [x25, #0x178]
+   10b80:      	cmp	w8, w9
+   10b84:      	b.ne	0x10c38 <vfcs_cms_main_work+0x1ac>
+   10b88:      	cbz	x20, 0x11524 <vfcs_cms_main_work+0xa98>
+   10b8c:      	mov	x8, #-0xc978
+   10b90:      	ldr	x8, [x19, x8]
+   10b94:      	cbz	x8, 0x11034 <vfcs_cms_main_work+0x5a8>
+   10b98:      	ldr	w8, [x8]
+   10b9c:      	tbnz	w8, #0x4, 0x11548 <vfcs_cms_main_work+0xabc>
+   10ba0:      	tbz	w8, #0x0, 0x11034 <vfcs_cms_main_work+0x5a8>
+   10ba4:      	mov	x8, #-0xc970
+   10ba8:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010ba8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49084 ; '\x013%s: %s: no need os_upgrades\n'
+   10bac:      	add	x0, x0, #0x0
+		0000000000010bac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49084 ; '\x013%s: %s: no need os_upgrades\n'
+   10bb0:      	ldr	x1, [x19, x8]
+   10bb4:      	adrp	x2, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010bb4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   10bb8:      	add	x2, x2, #0x0
+		0000000000010bb8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   10bbc:      	bl	0x10bbc <vfcs_cms_main_work+0x130>
+		0000000000010bbc:  R_AARCH64_CALL26	_printk
+   10bc0:      	b	0x11034 <vfcs_cms_main_work+0x5a8>
+   10bc4:      	cbz	x20, 0x10f64 <vfcs_cms_main_work+0x4d8>
+   10bc8:      	mov	x8, #-0xc978
+   10bcc:      	ldr	x8, [x19, x8]
+   10bd0:      	cbz	x8, 0x11190 <vfcs_cms_main_work+0x704>
+   10bd4:      	ldr	w8, [x8]
+   10bd8:      	tbnz	w8, #0x4, 0x11168 <vfcs_cms_main_work+0x6dc>
+   10bdc:      	tbz	w8, #0x2, 0x11190 <vfcs_cms_main_work+0x704>
+   10be0:      	mov	x8, #-0xc970
+   10be4:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010be4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17a1c ; "\x013%s: %s: bat or usb psy isn't exist\n"
+   10be8:      	add	x0, x0, #0x0
+		0000000000010be8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17a1c ; "\x013%s: %s: bat or usb psy isn't exist\n"
+   10bec:      	ldr	x1, [x19, x8]
+   10bf0:      	adrp	x2, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010bf0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10bf4:      	add	x2, x2, #0x0
+		0000000000010bf4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10bf8:      	bl	0x10bf8 <vfcs_cms_main_work+0x16c>
+		0000000000010bf8:  R_AARCH64_CALL26	_printk
+   10bfc:      	b	0x11190 <vfcs_cms_main_work+0x704>
+   10c00:      	ldr	x8, [x19, x22]
+   10c04:      	strb	wzr, [x19, #0x70]
+   10c08:      	cbz	x8, 0x11208 <vfcs_cms_main_work+0x77c>
+   10c0c:      	ldr	w8, [x8]
+   10c10:      	tbnz	w8, #0x4, 0x114f8 <vfcs_cms_main_work+0xa6c>
+   10c14:      	tbz	w8, #0x2, 0x11208 <vfcs_cms_main_work+0x77c>
+   10c18:      	mov	x8, #-0xc970
+   10c1c:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010c1c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3cc80 ; "\x013%s: %s: usb isn't online\n"
+   10c20:      	add	x0, x0, #0x0
+		0000000000010c20:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3cc80 ; "\x013%s: %s: usb isn't online\n"
+   10c24:      	ldr	x1, [x19, x8]
+   10c28:      	adrp	x2, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010c28:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10c2c:      	add	x2, x2, #0x0
+		0000000000010c2c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10c30:      	bl	0x10c30 <vfcs_cms_main_work+0x1a4>
+		0000000000010c30:  R_AARCH64_CALL26	_printk
+   10c34:      	b	0x11208 <vfcs_cms_main_work+0x77c>
+   10c38:      	add	x1, sp, #0x40
+   10c3c:      	mov	w0, #0x1
+   10c40:      	mov	w2, #0x18
+   10c44:      	str	xzr, [sp, #0x40]
+   10c48:      	bl	0x10c48 <vfcs_cms_main_work+0x1bc>
+		0000000000010c48:  R_AARCH64_CALL26	vchg_reserved_rw
+   10c4c:      	ldr	x8, [sp, #0x40]
+   10c50:      	ldrsw	x9, [x25, #0x174]
+   10c54:      	cmp	x8, x9
+   10c58:      	b.ne	0x10d78 <vfcs_cms_main_work+0x2ec>
+   10c5c:      	add	x1, sp, #0x40
+   10c60:      	mov	w0, #0x1
+   10c64:      	mov	w2, #0x18
+   10c68:      	str	xzr, [sp, #0x40]
+   10c6c:      	bl	0x10c6c <vfcs_cms_main_work+0x1e0>
+		0000000000010c6c:  R_AARCH64_CALL26	vchg_reserved_rw
+   10c70:      	ldr	x21, [sp, #0x40]
+   10c74:      	cbz	x20, 0x115f8 <vfcs_cms_main_work+0xb6c>
+   10c78:      	mov	x8, #-0xc978
+   10c7c:      	ldr	x8, [x19, x8]
+   10c80:      	cbz	x8, 0x10c90 <vfcs_cms_main_work+0x204>
+   10c84:      	ldr	w8, [x8]
+   10c88:      	tbnz	w8, #0x4, 0x11628 <vfcs_cms_main_work+0xb9c>
+   10c8c:      	tbnz	w8, #0x0, 0x11658 <vfcs_cms_main_work+0xbcc>
+   10c90:      	ldrsw	x8, [x25, #0x174]
+   10c94:      	cmp	x21, x8
+   10c98:      	b.ne	0x10ef0 <vfcs_cms_main_work+0x464>
+   10c9c:      	ldp	w8, w9, [x29, #-0x30]
+   10ca0:      	mov	w10, #0x1e
+   10ca4:      	ldur	w11, [x29, #-0x34]
+   10ca8:      	mov	w12, #0x16d
+   10cac:      	add	x1, sp, #0x40
+   10cb0:      	mov	w0, #0x1
+   10cb4:      	mov	w2, #0x19
+   10cb8:      	mul	w8, w8, w10
+   10cbc:      	str	xzr, [sp, #0x40]
+   10cc0:      	mov	w26, #0x1
+   10cc4:      	madd	w8, w9, w12, w8
+   10cc8:      	add	w9, w11, #0xa9, lsl #12 // =0xa9000
+   10ccc:      	add	w9, w9, #0x51a
+   10cd0:      	add	w21, w8, w9
+   10cd4:      	bl	0x10cd4 <vfcs_cms_main_work+0x248>
+		0000000000010cd4:  R_AARCH64_CALL26	vchg_reserved_rw
+   10cd8:      	ldr	x8, [sp, #0x40]
+   10cdc:      	add	x1, sp, #0x40
+   10ce0:      	mov	w0, #0x1
+   10ce4:      	mov	w2, #0x1a
+   10ce8:      	str	xzr, [sp, #0x40]
+   10cec:      	str	w8, [x25, #0x17c]
+   10cf0:      	bl	0x10cf0 <vfcs_cms_main_work+0x264>
+		0000000000010cf0:  R_AARCH64_CALL26	vchg_reserved_rw
+   10cf4:      	ldr	w8, [x25, #0x17c]
+   10cf8:      	ldr	w22, [sp, #0x40]
+   10cfc:      	sub	x28, x19, #0x1c8
+   10d00:      	sub	w23, w21, w8
+   10d04:      	str	w22, [x25, #0x180]
+   10d08:      	cmp	w23, #0x2d
+   10d0c:      	b.hi	0x11000 <vfcs_cms_main_work+0x574>
+   10d10:      	ldr	x0, [x28]
+   10d14:      	add	x2, sp, #0x48
+   10d18:      	mov	w1, #0x7
+   10d1c:      	str	w22, [sp, #0x48]
+   10d20:      	bl	0x10d20 <vfcs_cms_main_work+0x294>
+		0000000000010d20:  R_AARCH64_CALL26	power_supply_set_property
+   10d24:      	ldr	x0, [x28]
+   10d28:      	add	x2, sp, #0x48
+   10d2c:      	mov	w1, #0x1e6
+   10d30:      	str	w26, [sp, #0x48]
+   10d34:      	bl	0x10d34 <vfcs_cms_main_work+0x2a8>
+		0000000000010d34:  R_AARCH64_CALL26	power_supply_set_property
+   10d38:      	cbz	x20, 0x1167c <vfcs_cms_main_work+0xbf0>
+   10d3c:      	mov	x8, #-0xc978
+   10d40:      	ldr	x8, [x19, x8]
+   10d44:      	cbz	x8, 0x1101c <vfcs_cms_main_work+0x590>
+   10d48:      	ldr	w8, [x8]
+   10d4c:      	tbnz	w8, #0x4, 0x116d0 <vfcs_cms_main_work+0xc44>
+   10d50:      	tbz	w8, #0x0, 0x1101c <vfcs_cms_main_work+0x590>
+   10d54:      	mov	x8, #-0xc970
+   10d58:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010d58:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x46bf7 ; '\x013%s: %s: now is os_upgrades,cur_cycle = %d\n'
+   10d5c:      	add	x0, x0, #0x0
+		0000000000010d5c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x46bf7 ; '\x013%s: %s: now is os_upgrades,cur_cycle = %d\n'
+   10d60:      	ldr	x1, [x19, x8]
+   10d64:      	adrp	x2, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010d64:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   10d68:      	add	x2, x2, #0x0
+		0000000000010d68:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   10d6c:      	mov	w3, w22
+   10d70:      	bl	0x10d70 <vfcs_cms_main_work+0x2e4>
+		0000000000010d70:  R_AARCH64_CALL26	_printk
+   10d74:      	b	0x1101c <vfcs_cms_main_work+0x590>
+   10d78:      	sub	x8, x19, #0x1c8
+   10d7c:      	ldr	x0, [x8]
+   10d80:      	ldr	w8, [x0, #0x458]
+   10d84:      	cmp	w8, #0x1
+   10d88:      	b.lt	0x10db8 <vfcs_cms_main_work+0x32c>
+   10d8c:      	ldr	x8, [x0]
+   10d90:      	add	x2, sp, #0x48
+   10d94:      	mov	w1, #0x18e
+   10d98:      	ldr	x8, [x8, #0x28]
+   10d9c:      	ldur	w16, [x8, #-0x4]
+   10da0:      	movk	w17, #0xcd3
+   10da4:      	movk	w17, #0xe899, lsl #16
+   10da8:      	cmp	w16, w17
+   10dac:      	b.eq	0x10db4 <vfcs_cms_main_work+0x328>
+   10db0:      	brk	#0x8228
+   10db4:      	blr	x8
+   10db8:      	ldr	w8, [sp, #0x48]
+   10dbc:      	cmp	w8, #0x1
+   10dc0:      	b.lt	0x10efc <vfcs_cms_main_work+0x470>
+   10dc4:      	ldr	x0, [x24]
+   10dc8:      	cbnz	x0, 0x10f24 <vfcs_cms_main_work+0x498>
+   10dcc:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010dcc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x48ea4 ; 'battery'
+   10dd0:      	add	x0, x0, #0x0
+		0000000000010dd0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x48ea4 ; 'battery'
+   10dd4:      	bl	0x10dd4 <vfcs_cms_main_work+0x348>
+		0000000000010dd4:  R_AARCH64_CALL26	power_supply_get_by_name
+   10dd8:      	str	x0, [x24]
+   10ddc:      	cbnz	x0, 0x10f24 <vfcs_cms_main_work+0x498>
+   10de0:      	b	0x10f7c <vfcs_cms_main_work+0x4f0>
+   10de4:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010de4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3516d ; '\x013%s: **********************cms main loop**********************\n'
+   10de8:      	add	x0, x0, #0x0
+		0000000000010de8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3516d ; '\x013%s: **********************cms main loop**********************\n'
+   10dec:      	adrp	x1, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010dec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10df0:      	add	x1, x1, #0x0
+		0000000000010df0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10df4:      	bl	0x10df4 <vfcs_cms_main_work+0x368>
+		0000000000010df4:  R_AARCH64_CALL26	_printk
+   10df8:      	mov	x8, #-0xc964
+   10dfc:      	add	x27, x19, x8
+   10e00:      	ldr	w8, [x27]
+   10e04:      	cbnz	w8, 0x10af4 <vfcs_cms_main_work+0x68>
+   10e08:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010e08:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x322aa ; "\x013%s: usb isn't online\n"
+   10e0c:      	add	x0, x0, #0x0
+		0000000000010e0c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x322aa ; "\x013%s: usb isn't online\n"
+   10e10:      	adrp	x1, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010e10:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10e14:      	add	x1, x1, #0x0
+		0000000000010e14:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10e18:      	strb	wzr, [x19, #0x70]
+   10e1c:      	bl	0x10e1c <vfcs_cms_main_work+0x390>
+		0000000000010e1c:  R_AARCH64_CALL26	_printk
+   10e20:      	b	0x11208 <vfcs_cms_main_work+0x77c>
+   10e24:      	sub	x0, x29, #0x18
+   10e28:      	stp	xzr, xzr, [x29, #-0x18]
+   10e2c:      	stur	wzr, [x29, #-0x20]
+   10e30:      	stp	xzr, xzr, [x29, #-0x30]
+   10e34:      	stp	xzr, xzr, [x29, #-0x40]
+   10e38:      	bl	0x10e38 <vfcs_cms_main_work+0x3ac>
+		0000000000010e38:  R_AARCH64_CALL26	ktime_get_real_ts64
+   10e3c:      	adrp	x8, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010e3c:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   10e40:      	sub	x1, x29, #0x40
+   10e44:      	ldr	w8, [x8]
+		0000000000010e44:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   10e48:      	lsl	w9, w8, #6
+   10e4c:      	sub	w8, w9, w8, lsl #2
+   10e50:      	ldur	x9, [x29, #-0x18]
+   10e54:      	sub	x0, x9, w8, sxtw
+   10e58:      	stur	x0, [x29, #-0x18]
+   10e5c:      	bl	0x10e5c <vfcs_cms_main_work+0x3d0>
+		0000000000010e5c:  R_AARCH64_CALL26	rtc_time64_to_tm
+   10e60:      	ldur	w8, [x29, #-0x10]
+   10e64:      	mov	w9, #0x4dd3
+   10e68:      	adrp	x21, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010e68:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   10e6c:      	add	x21, x21, #0x0
+		0000000000010e6c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   10e70:      	movk	w9, #0x1062, lsl #16
+   10e74:      	adrp	x2, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010e74:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   10e78:      	add	x2, x2, #0x0
+		0000000000010e78:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   10e7c:      	umull	x8, w8, w9
+   10e80:      	mov	x0, x21
+   10e84:      	ldp	w10, w9, [x29, #-0x30]
+   10e88:      	ldp	w6, w5, [x29, #-0x38]
+   10e8c:      	ldp	w11, w7, [x29, #-0x40]
+   10e90:      	lsr	x8, x8, #38
+   10e94:      	add	w3, w9, #0x76c
+   10e98:      	add	w4, w10, #0x1
+   10e9c:      	mov	w1, #0x1e
+   10ea0:      	str	w11, [sp]
+   10ea4:      	str	w8, [sp, #0x8]
+   10ea8:      	bl	0x10ea8 <vfcs_cms_main_work+0x41c>
+		0000000000010ea8:  R_AARCH64_CALL26	snprintf
+   10eac:      	mov	x8, #-0xc970
+   10eb0:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010eb0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x20718 ; '\x013[%s]%s: %s: **********************cms main loop**********************\n'
+   10eb4:      	add	x0, x0, #0x0
+		0000000000010eb4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x20718 ; '\x013[%s]%s: %s: **********************cms main loop**********************\n'
+   10eb8:      	ldr	x2, [x19, x8]
+   10ebc:      	adrp	x3, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010ebc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10ec0:      	add	x3, x3, #0x0
+		0000000000010ec0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10ec4:      	mov	x1, x21
+   10ec8:      	bl	0x10ec8 <vfcs_cms_main_work+0x43c>
+		0000000000010ec8:  R_AARCH64_CALL26	_printk
+   10ecc:      	b	0x10ae4 <vfcs_cms_main_work+0x58>
+   10ed0:      	mov	x8, #-0xc970
+   10ed4:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010ed4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x28300 ; '\x013%s: %s: **********************cms main loop**********************\n'
+   10ed8:      	add	x0, x0, #0x0
+		0000000000010ed8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x28300 ; '\x013%s: %s: **********************cms main loop**********************\n'
+   10edc:      	ldr	x1, [x19, x8]
+   10ee0:      	adrp	x2, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010ee0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10ee4:      	add	x2, x2, #0x0
+		0000000000010ee4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10ee8:      	bl	0x10ee8 <vfcs_cms_main_work+0x45c>
+		0000000000010ee8:  R_AARCH64_CALL26	_printk
+   10eec:      	b	0x10ae4 <vfcs_cms_main_work+0x58>
+   10ef0:      	mov	w21, wzr
+   10ef4:      	mov	w23, wzr
+   10ef8:      	b	0x11014 <vfcs_cms_main_work+0x588>
+   10efc:      	sub	x8, x19, #0xd38
+   10f00:      	ldr	x8, [x8]
+   10f04:      	cbz	x8, 0x10f7c <vfcs_cms_main_work+0x4f0>
+   10f08:      	sub	x21, x19, #0x1b0
+   10f0c:      	ldr	x0, [x21]
+   10f10:      	cbnz	x0, 0x10f24 <vfcs_cms_main_work+0x498>
+   10f14:      	mov	x0, x8
+   10f18:      	bl	0x10f18 <vfcs_cms_main_work+0x48c>
+		0000000000010f18:  R_AARCH64_CALL26	power_supply_get_by_name
+   10f1c:      	str	x0, [x21]
+   10f20:      	cbz	x0, 0x10f7c <vfcs_cms_main_work+0x4f0>
+   10f24:      	ldr	w8, [x0, #0x458]
+   10f28:      	cmp	w8, #0x1
+   10f2c:      	b.lt	0x10f5c <vfcs_cms_main_work+0x4d0>
+   10f30:      	ldr	x8, [x0]
+   10f34:      	add	x2, sp, #0x48
+   10f38:      	mov	w1, #0x7
+   10f3c:      	ldr	x8, [x8, #0x28]
+   10f40:      	ldur	w16, [x8, #-0x4]
+   10f44:      	movk	w17, #0xcd3
+   10f48:      	movk	w17, #0xe899, lsl #16
+   10f4c:      	cmp	w16, w17
+   10f50:      	b.eq	0x10f58 <vfcs_cms_main_work+0x4cc>
+   10f54:      	brk	#0x8228
+   10f58:      	blr	x8
+   10f5c:      	ldr	w22, [sp, #0x48]
+   10f60:      	b	0x10f80 <vfcs_cms_main_work+0x4f4>
+   10f64:      	adrp	x0, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010f64:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d1ec ; "\x013%s: bat or usb psy isn't exist\n"
+   10f68:      	add	x0, x0, #0x0
+		0000000000010f68:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d1ec ; "\x013%s: bat or usb psy isn't exist\n"
+   10f6c:      	adrp	x1, 0x10000 <vfcs_cms_bat_id_det_work+0x3c0>
+		0000000000010f6c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10f70:      	add	x1, x1, #0x0
+		0000000000010f70:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   10f74:      	bl	0x10f74 <vfcs_cms_main_work+0x4e8>
+		0000000000010f74:  R_AARCH64_CALL26	_printk
+   10f78:      	b	0x11190 <vfcs_cms_main_work+0x704>
+   10f7c:      	mov	w22, wzr
+   10f80:      	ldp	w8, w9, [x29, #-0x30]
+   10f84:      	mov	w10, #0x1e
+   10f88:      	ldur	w11, [x29, #-0x34]
+   10f8c:      	mov	w12, #0x16d
+   10f90:      	add	x1, sp, #0x40
+   10f94:      	mov	w0, wzr
+   10f98:      	mov	w2, #0x18
+   10f9c:      	mul	w8, w8, w10
+   10fa0:      	ldrsw	x10, [x25, #0x174]
+   10fa4:      	str	w22, [x25, #0x180]
+   10fa8:      	madd	w8, w9, w12, w8
+   10fac:      	add	w9, w11, #0xa9, lsl #12 // =0xa9000
+   10fb0:      	add	w9, w9, #0x51a
+   10fb4:      	str	x10, [sp, #0x40]
+   10fb8:      	add	w21, w8, w9
+   10fbc:      	str	w21, [x25, #0x17c]
+   10fc0:      	bl	0x10fc0 <vfcs_cms_main_work+0x534>
+		0000000000010fc0:  R_AARCH64_CALL26	vchg_reserved_rw
+   10fc4:      	ldrsw	x8, [x25, #0x17c]
+   10fc8:      	add	x1, sp, #0x40
+   10fcc:      	mov	w0, wzr
+   10fd0:      	mov	w2, #0x19
+   10fd4:      	str	x8, [sp, #0x40]
+   10fd8:      	bl	0x10fd8 <vfcs_cms_main_work+0x54c>
+		0000000000010fd8:  R_AARCH64_CALL26	vchg_reserved_rw
+   10fdc:      	ldrsw	x8, [x25, #0x180]
+   10fe0:      	add	x1, sp, #0x40
+   10fe4:      	mov	w0, wzr
+   10fe8:      	mov	w2, #0x1a
+   10fec:      	str	x8, [sp, #0x40]
+   10ff0:      	bl	0x10ff0 <vfcs_cms_main_work+0x564>
+		0000000000010ff0:  R_AARCH64_CALL26	vchg_reserved_rw
+   10ff4:      	mov	w23, wzr
+   10ff8:      	cbnz	x20, 0x1101c <vfcs_cms_main_work+0x590>
+   10ffc:      	b	0x11694 <vfcs_cms_main_work+0xc08>
+   11000:      	ldr	x0, [x28]
+   11004:      	add	x2, sp, #0x48
+   11008:      	mov	w1, #0x1e6
+   1100c:      	str	wzr, [sp, #0x48]
+   11010:      	bl	0x11010 <vfcs_cms_main_work+0x584>
+		0000000000011010:  R_AARCH64_CALL26	power_supply_set_property
+   11014:      	mov	w22, wzr
+   11018:      	cbz	x20, 0x11694 <vfcs_cms_main_work+0xc08>
+   1101c:      	mov	x8, #-0xc978
+   11020:      	ldr	x8, [x19, x8]
+   11024:      	cbz	x8, 0x11034 <vfcs_cms_main_work+0x5a8>
+   11028:      	ldr	w8, [x8]
+   1102c:      	tbnz	w8, #0x4, 0x11574 <vfcs_cms_main_work+0xae8>
+   11030:      	tbnz	w8, #0x0, 0x115bc <vfcs_cms_main_work+0xb30>
+   11034:      	mov	x0, x20
+   11038:      	bl	0x11038 <vfcs_cms_main_work+0x5ac>
+		0000000000011038:  R_AARCH64_CALL26	vfcs_cms_get_ap_state_info
+   1103c:      	sub	x8, x19, #0xda0
+   11040:      	ldr	w8, [x8]
+   11044:      	cmp	w8, #0x1
+   11048:      	b.ne	0x11088 <vfcs_cms_main_work+0x5fc>
+   1104c:      	sub	x8, x19, #0xd9c
+   11050:      	ldr	w8, [x8]
+   11054:      	cmp	w8, #0x1
+   11058:      	b.ne	0x11088 <vfcs_cms_main_work+0x5fc>
+   1105c:      	sub	x8, x19, #0xd38
+   11060:      	ldr	x0, [x8]
+   11064:      	cbz	x0, 0x11080 <vfcs_cms_main_work+0x5f4>
+   11068:      	sub	x21, x19, #0x1b0
+   1106c:      	ldr	x8, [x21]
+   11070:      	cbnz	x8, 0x11088 <vfcs_cms_main_work+0x5fc>
+   11074:      	bl	0x11074 <vfcs_cms_main_work+0x5e8>
+		0000000000011074:  R_AARCH64_CALL26	power_supply_get_by_name
+   11078:      	str	x0, [x21]
+   1107c:      	cbnz	x0, 0x11088 <vfcs_cms_main_work+0x5fc>
+   11080:      	mov	x0, x20
+   11084:      	bl	0x11084 <vfcs_cms_main_work+0x5f8>
+		0000000000011084:  R_AARCH64_CALL26	vfcs_cms_adsp_fg_update_to_fg_common
+   11088:      	sub	x8, x19, #0x590
+   1108c:      	ldr	w8, [x8]
+   11090:      	cbz	w8, 0x1113c <vfcs_cms_main_work+0x6b0>
+   11094:      	mov	x0, x20
+   11098:      	bl	0x11098 <vfcs_cms_main_work+0x60c>
+		0000000000011098:  R_AARCH64_CALL26	vfcs_cms_check_scene_content
+   1109c:      	mov	x0, x20
+   110a0:      	bl	0x110a0 <vfcs_cms_main_work+0x614>
+		00000000000110a0:  R_AARCH64_CALL26	vfcs_cms_check_tc_chg_content
+   110a4:      	mov	x0, x20
+   110a8:      	bl	0x110a8 <vfcs_cms_main_work+0x61c>
+		00000000000110a8:  R_AARCH64_CALL26	vfcs_cms_check_chg_term_content
+   110ac:      	mov	x0, x20
+   110b0:      	bl	0x110b0 <vfcs_cms_main_work+0x624>
+		00000000000110b0:  R_AARCH64_CALL26	vfcs_cms_check_dpb_chg_content
+   110b4:      	mov	x0, x20
+   110b8:      	bl	0x13e84 <vfcs_cms_check_fchg_current>
+   110bc:      	mov	x9, #0x6db7
+   110c0:      	ldr	x8, [x19, #0x68]
+   110c4:      	mov	x10, #0x2492
+   110c8:      	movk	x9, #0xb6db, lsl #16
+   110cc:      	movk	x10, #0x9249, lsl #16
+   110d0:      	movk	x9, #0xdb6d, lsl #32
+   110d4:      	movk	x10, #0x4924, lsl #32
+   110d8:      	movk	x9, #0x6db6, lsl #48
+   110dc:      	movk	x10, #0x2492, lsl #48
+   110e0:      	mul	x9, x8, x9
+   110e4:      	cmp	x9, x10
+   110e8:      	b.hi	0x1112c <vfcs_cms_main_work+0x6a0>
+   110ec:      	sub	x8, x19, #0x678
+   110f0:      	sub	x21, x19, #0x688
+   110f4:      	ldr	x0, [x8]
+   110f8:      	bl	0x110f8 <vfcs_cms_main_work+0x66c>
+		00000000000110f8:  R_AARCH64_CALL26	get_votable_info
+   110fc:      	sub	x8, x19, #0x680
+   11100:      	ldr	x0, [x8]
+   11104:      	bl	0x11104 <vfcs_cms_main_work+0x678>
+		0000000000011104:  R_AARCH64_CALL26	get_votable_info
+   11108:      	ldr	x0, [x21]
+   1110c:      	bl	0x1110c <vfcs_cms_main_work+0x680>
+		000000000001110c:  R_AARCH64_CALL26	get_votable_info
+   11110:      	sub	x8, x19, #0x660
+   11114:      	ldr	x0, [x8]
+   11118:      	bl	0x11118 <vfcs_cms_main_work+0x68c>
+		0000000000011118:  R_AARCH64_CALL26	get_votable_info
+   1111c:      	sub	x8, x19, #0x658
+   11120:      	ldr	x0, [x8]
+   11124:      	bl	0x11124 <vfcs_cms_main_work+0x698>
+		0000000000011124:  R_AARCH64_CALL26	get_votable_info
+   11128:      	ldr	x8, [x19, #0x68]
+   1112c:      	cmn	x8, #0x3
+   11130:      	csinc	x8, xzr, x8, hi
+   11134:      	str	x8, [x19, #0x68]
+   11138:      	b	0x11190 <vfcs_cms_main_work+0x704>
+   1113c:      	cbz	x20, 0x1153c <vfcs_cms_main_work+0xab0>
+   11140:      	mov	x8, #-0xc978
+   11144:      	ldr	x8, [x19, x8]
+   11148:      	cbz	x8, 0x11190 <vfcs_cms_main_work+0x704>
+   1114c:      	ldr	w8, [x8]
+   11150:      	tbnz	w8, #0x4, 0x11614 <vfcs_cms_main_work+0xb88>
+   11154:      	tbz	w8, #0x0, 0x11190 <vfcs_cms_main_work+0x704>
+   11158:      	mov	x8, #-0xc970
+   1115c:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001115c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x46bce ; "\x013%s: %s: pmi_status isn't readly!,wait\n"
+   11160:      	add	x0, x0, #0x0
+		0000000000011160:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x46bce ; "\x013%s: %s: pmi_status isn't readly!,wait\n"
+   11164:      	b	0x10bec <vfcs_cms_main_work+0x160>
+   11168:      	bl	0x4ec <get_android_time>
+   1116c:      	mov	x8, #-0xc970
+   11170:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011170:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x20761 ; "\x013[%s]%s: %s: bat or usb psy isn't exist\n"
+   11174:      	add	x0, x0, #0x0
+		0000000000011174:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x20761 ; "\x013[%s]%s: %s: bat or usb psy isn't exist\n"
+   11178:      	ldr	x2, [x19, x8]
+   1117c:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001117c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   11180:      	add	x1, x1, #0x0
+		0000000000011180:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   11184:      	adrp	x3, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011184:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   11188:      	add	x3, x3, #0x0
+		0000000000011188:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   1118c:      	bl	0x1118c <vfcs_cms_main_work+0x700>
+		000000000001118c:  R_AARCH64_CALL26	_printk
+   11190:      	ldr	x8, [x19, #0x68]
+   11194:      	and	x8, x8, #0xfffffffffffffffe
+   11198:      	cmp	x8, #0x2
+   1119c:      	b.ne	0x111a8 <vfcs_cms_main_work+0x71c>
+   111a0:      	ldr	x0, [x24]
+   111a4:      	bl	0x111a4 <vfcs_cms_main_work+0x718>
+		00000000000111a4:  R_AARCH64_CALL26	power_supply_changed
+   111a8:      	cbz	x20, 0x11240 <vfcs_cms_main_work+0x7b4>
+   111ac:      	mov	x8, #-0xc978
+   111b0:      	ldr	x8, [x19, x8]
+   111b4:      	cbz	x8, 0x111c4 <vfcs_cms_main_work+0x738>
+   111b8:      	ldr	w8, [x8]
+   111bc:      	tbnz	w8, #0x4, 0x112fc <vfcs_cms_main_work+0x870>
+   111c0:      	tbnz	w8, #0x0, 0x11440 <vfcs_cms_main_work+0x9b4>
+   111c4:      	add	x0, x19, #0x78
+   111c8:      	bl	0x111c8 <vfcs_cms_main_work+0x73c>
+		00000000000111c8:  R_AARCH64_CALL26	mutex_lock
+   111cc:      	mov	x8, #-0xc968
+   111d0:      	ldr	w8, [x19, x8]
+   111d4:      	cbz	w8, 0x11200 <vfcs_cms_main_work+0x774>
+   111d8:      	ldr	w8, [x27]
+   111dc:      	cbz	w8, 0x11200 <vfcs_cms_main_work+0x774>
+   111e0:      	ldr	w0, [x19, #0x74]
+   111e4:      	bl	0x111e4 <vfcs_cms_main_work+0x758>
+		00000000000111e4:  R_AARCH64_CALL26	__msecs_to_jiffies
+   111e8:      	adrp	x8, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000111e8:  R_AARCH64_ADR_PREL_PG_HI21	system_wq
+   111ec:      	mov	x3, x0
+   111f0:      	mov	w0, #0x20
+   111f4:      	ldr	x1, [x8]
+		00000000000111f4:  R_AARCH64_LDST64_ABS_LO12_NC	system_wq
+   111f8:      	mov	x2, x19
+   111fc:      	bl	0x111fc <vfcs_cms_main_work+0x770>
+		00000000000111fc:  R_AARCH64_CALL26	queue_delayed_work_on
+   11200:      	add	x0, x19, #0x78
+   11204:      	bl	0x11204 <vfcs_cms_main_work+0x778>
+		0000000000011204:  R_AARCH64_CALL26	mutex_unlock
+   11208:      	mrs	x8, SP_EL0
+   1120c:      	ldr	x8, [x8, #0x710]
+   11210:      	ldur	x9, [x29, #-0x8]
+   11214:      	cmp	x8, x9
+   11218:      	b.ne	0x11700 <vfcs_cms_main_work+0xc74>
+   1121c:      	ldp	x20, x19, [sp, #0xe0]
+   11220:      	ldp	x22, x21, [sp, #0xd0]
+   11224:      	ldp	x24, x23, [sp, #0xc0]
+   11228:      	ldp	x26, x25, [sp, #0xb0]
+   1122c:      	ldp	x28, x27, [sp, #0xa0]
+   11230:      	ldp	x29, x30, [sp, #0x90]
+   11234:      	add	sp, sp, #0xf0
+   11238:      	autiasp
+   1123c:      	ret
+   11240:      	mov	w22, #0xc308
+   11244:      	mov	w8, #0xc9fc
+   11248:      	ldr	x20, [x19, #0x68]
+   1124c:      	ldr	x0, [x22]
+   11250:      	ldr	w21, [x8]
+   11254:      	bl	0x11254 <vfcs_cms_main_work+0x7c8>
+		0000000000011254:  R_AARCH64_CALL26	get_effective_client
+   11258:      	ldr	x8, [x22]
+   1125c:      	mov	x22, x0
+   11260:      	mov	x0, x8
+   11264:      	bl	0x11264 <vfcs_cms_main_work+0x7d8>
+		0000000000011264:  R_AARCH64_CALL26	get_effective_result
+   11268:      	mov	w24, #0xc300
+   1126c:      	mov	w23, w0
+   11270:      	ldr	x8, [x24]
+   11274:      	mov	x0, x8
+   11278:      	bl	0x11278 <vfcs_cms_main_work+0x7ec>
+		0000000000011278:  R_AARCH64_CALL26	get_effective_client
+   1127c:      	ldr	x8, [x24]
+   11280:      	mov	x24, x0
+   11284:      	mov	x0, x8
+   11288:      	bl	0x11288 <vfcs_cms_main_work+0x7fc>
+		0000000000011288:  R_AARCH64_CALL26	get_effective_result
+   1128c:      	mov	w9, #0x2700
+   11290:      	mov	w8, #0xc938
+   11294:      	adrp	x10, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011294:  R_AARCH64_ADR_PREL_PG_HI21	bsp_test_mode
+   11298:      	movk	w9, #0x1, lsl #16
+   1129c:      	mov	w11, #0xc3f0
+   112a0:      	mov	w12, #0xca9c
+   112a4:      	ldr	w8, [x8]
+   112a8:      	ldr	x9, [x9]
+   112ac:      	ldr	w10, [x10]
+		00000000000112ac:  R_AARCH64_LDST32_ABS_LO12_NC	bsp_test_mode
+   112b0:      	ldr	w11, [x11]
+   112b4:      	ldr	w12, [x12]
+   112b8:      	mov	w7, w0
+   112bc:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000112bc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x5706 ; '\x013%s: count=%lu,work_period=%d,ibus_vote(%s)=%d,ibat_vote(%s)=%d,bat_id=%d,health=0x%X,bsptest=%d,vchg_state=%d,aging_stage=%d\n'
+   112c0:      	add	x0, x0, #0x0
+		00000000000112c0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x5706 ; '\x013%s: count=%lu,work_period=%d,ibus_vote(%s)=%d,ibat_vote(%s)=%d,bat_id=%d,health=0x%X,bsptest=%d,vchg_state=%d,aging_stage=%d\n'
+   112c4:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000112c4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   112c8:      	add	x1, x1, #0x0
+		00000000000112c8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   112cc:      	mov	x2, x20
+   112d0:      	mov	w3, w21
+   112d4:      	mov	x4, x22
+   112d8:      	mov	w5, w23
+   112dc:      	mov	x6, x24
+   112e0:      	str	w12, [sp, #0x20]
+   112e4:      	str	w11, [sp, #0x18]
+   112e8:      	str	w10, [sp, #0x10]
+   112ec:      	str	w9, [sp, #0x8]
+   112f0:      	str	w8, [sp]
+   112f4:      	bl	0x112f4 <vfcs_cms_main_work+0x868>
+		00000000000112f4:  R_AARCH64_CALL26	_printk
+   112f8:      	b	0x111c4 <vfcs_cms_main_work+0x738>
+   112fc:      	sub	x0, x29, #0x18
+   11300:      	stp	xzr, xzr, [x29, #-0x18]
+   11304:      	stur	wzr, [x29, #-0x20]
+   11308:      	stp	xzr, xzr, [x29, #-0x30]
+   1130c:      	stp	xzr, xzr, [x29, #-0x40]
+   11310:      	bl	0x11310 <vfcs_cms_main_work+0x884>
+		0000000000011310:  R_AARCH64_CALL26	ktime_get_real_ts64
+   11314:      	adrp	x8, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011314:  R_AARCH64_ADR_PREL_PG_HI21	sys_tz
+   11318:      	sub	x1, x29, #0x40
+   1131c:      	ldr	w8, [x8]
+		000000000001131c:  R_AARCH64_LDST32_ABS_LO12_NC	sys_tz
+   11320:      	lsl	w9, w8, #6
+   11324:      	sub	w8, w9, w8, lsl #2
+   11328:      	ldur	x9, [x29, #-0x18]
+   1132c:      	sub	x0, x9, w8, sxtw
+   11330:      	stur	x0, [x29, #-0x18]
+   11334:      	bl	0x11334 <vfcs_cms_main_work+0x8a8>
+		0000000000011334:  R_AARCH64_CALL26	rtc_time64_to_tm
+   11338:      	ldur	w8, [x29, #-0x10]
+   1133c:      	mov	w9, #0x4dd3
+   11340:      	adrp	x20, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011340:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   11344:      	add	x20, x20, #0x0
+		0000000000011344:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   11348:      	movk	w9, #0x1062, lsl #16
+   1134c:      	adrp	x2, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001134c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   11350:      	add	x2, x2, #0x0
+		0000000000011350:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x198e0 ; '%d-%02d-%02d %02d:%02d:%02d.%06d'
+   11354:      	umull	x8, w8, w9
+   11358:      	mov	x0, x20
+   1135c:      	ldp	w10, w9, [x29, #-0x30]
+   11360:      	ldp	w6, w5, [x29, #-0x38]
+   11364:      	ldp	w11, w7, [x29, #-0x40]
+   11368:      	lsr	x8, x8, #38
+   1136c:      	add	w3, w9, #0x76c
+   11370:      	add	w4, w10, #0x1
+   11374:      	mov	w1, #0x1e
+   11378:      	str	w11, [sp]
+   1137c:      	str	w8, [sp, #0x8]
+   11380:      	bl	0x11380 <vfcs_cms_main_work+0x8f4>
+		0000000000011380:  R_AARCH64_CALL26	snprintf
+   11384:      	sub	x24, x19, #0x680
+   11388:      	mov	x8, #-0xc970
+   1138c:      	ldr	x22, [x19, #0x68]
+   11390:      	ldr	x0, [x24]
+   11394:      	ldr	x21, [x19, x8]
+   11398:      	ldr	w23, [x19, #0x74]
+   1139c:      	sub	x26, x19, #0x688
+   113a0:      	bl	0x113a0 <vfcs_cms_main_work+0x914>
+		00000000000113a0:  R_AARCH64_CALL26	get_effective_client
+   113a4:      	ldr	x8, [x24]
+   113a8:      	mov	x24, x0
+   113ac:      	mov	x0, x8
+   113b0:      	bl	0x113b0 <vfcs_cms_main_work+0x924>
+		00000000000113b0:  R_AARCH64_CALL26	get_effective_result
+   113b4:      	ldr	x8, [x26]
+   113b8:      	mov	w25, w0
+   113bc:      	mov	x0, x8
+   113c0:      	bl	0x113c0 <vfcs_cms_main_work+0x934>
+		00000000000113c0:  R_AARCH64_CALL26	get_effective_client
+   113c4:      	ldr	x8, [x26]
+   113c8:      	mov	x26, x0
+   113cc:      	mov	x0, x8
+   113d0:      	bl	0x113d0 <vfcs_cms_main_work+0x944>
+		00000000000113d0:  R_AARCH64_CALL26	get_effective_result
+   113d4:      	adrp	x8, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000113d4:  R_AARCH64_ADR_PREL_PG_HI21	bsp_test_mode
+   113d8:      	sub	x11, x19, #0x598
+   113dc:      	ldur	w9, [x19, #-0x50]
+   113e0:      	ldr	w8, [x8]
+		00000000000113e0:  R_AARCH64_LDST32_ABS_LO12_NC	bsp_test_mode
+   113e4:      	ldr	x10, [x19, #0x5d78]
+   113e8:      	ldr	w11, [x11]
+   113ec:      	ldr	w12, [x19, #0x114]
+   113f0:      	adrp	x3, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000113f0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   113f4:      	add	x3, x3, #0x0
+		00000000000113f4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   113f8:      	str	w8, [sp, #0x20]
+   113fc:      	adrp	x8, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000113fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4d83b ; '\x013[%s]%s: %s: count=%lu,work_period=%d,ibus_vote(%s)=%d,ibat_vote(%s)=%d,bat_id=%d,health=0x%X,bsptest=%d,vchg_state=%d,aging_stage=%d\n'
+   11400:      	add	x8, x8, #0x0
+		0000000000011400:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4d83b ; '\x013[%s]%s: %s: count=%lu,work_period=%d,ibus_vote(%s)=%d,ibat_vote(%s)=%d,bat_id=%d,health=0x%X,bsptest=%d,vchg_state=%d,aging_stage=%d\n'
+   11404:      	str	w0, [sp, #0x8]
+   11408:      	mov	x0, x8
+   1140c:      	mov	x1, x20
+   11410:      	mov	x2, x21
+   11414:      	mov	x4, x22
+   11418:      	mov	w5, w23
+   1141c:      	mov	x6, x24
+   11420:      	mov	w7, w25
+   11424:      	str	w12, [sp, #0x30]
+   11428:      	str	w11, [sp, #0x28]
+   1142c:      	str	w10, [sp, #0x18]
+   11430:      	str	w9, [sp, #0x10]
+   11434:      	str	x26, [sp]
+   11438:      	bl	0x11438 <vfcs_cms_main_work+0x9ac>
+		0000000000011438:  R_AARCH64_CALL26	_printk
+   1143c:      	b	0x111c4 <vfcs_cms_main_work+0x738>
+   11440:      	sub	x23, x19, #0x680
+   11444:      	mov	x8, #-0xc970
+   11448:      	ldr	x21, [x19, #0x68]
+   1144c:      	ldr	x0, [x23]
+   11450:      	ldr	x20, [x19, x8]
+   11454:      	ldr	w22, [x19, #0x74]
+   11458:      	sub	x25, x19, #0x688
+   1145c:      	bl	0x1145c <vfcs_cms_main_work+0x9d0>
+		000000000001145c:  R_AARCH64_CALL26	get_effective_client
+   11460:      	ldr	x8, [x23]
+   11464:      	mov	x23, x0
+   11468:      	mov	x0, x8
+   1146c:      	bl	0x1146c <vfcs_cms_main_work+0x9e0>
+		000000000001146c:  R_AARCH64_CALL26	get_effective_result
+   11470:      	ldr	x8, [x25]
+   11474:      	mov	w24, w0
+   11478:      	mov	x0, x8
+   1147c:      	bl	0x1147c <vfcs_cms_main_work+0x9f0>
+		000000000001147c:  R_AARCH64_CALL26	get_effective_client
+   11480:      	ldr	x8, [x25]
+   11484:      	mov	x25, x0
+   11488:      	mov	x0, x8
+   1148c:      	bl	0x1148c <vfcs_cms_main_work+0xa00>
+		000000000001148c:  R_AARCH64_CALL26	get_effective_result
+   11490:      	adrp	x8, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011490:  R_AARCH64_ADR_PREL_PG_HI21	bsp_test_mode
+   11494:      	sub	x11, x19, #0x598
+   11498:      	ldur	w9, [x19, #-0x50]
+   1149c:      	ldr	x10, [x19, #0x5d78]
+   114a0:      	ldr	w12, [x8]
+		00000000000114a0:  R_AARCH64_LDST32_ABS_LO12_NC	bsp_test_mode
+   114a4:      	ldr	w11, [x11]
+   114a8:      	ldr	w13, [x19, #0x114]
+   114ac:      	mov	w8, w0
+   114b0:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000114b0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xaf6f ; '\x013%s: %s: count=%lu,work_period=%d,ibus_vote(%s)=%d,ibat_vote(%s)=%d,bat_id=%d,health=0x%X,bsptest=%d,vchg_state=%d,aging_stage=%d\n'
+   114b4:      	add	x0, x0, #0x0
+		00000000000114b4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xaf6f ; '\x013%s: %s: count=%lu,work_period=%d,ibus_vote(%s)=%d,ibat_vote(%s)=%d,bat_id=%d,health=0x%X,bsptest=%d,vchg_state=%d,aging_stage=%d\n'
+   114b8:      	adrp	x2, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000114b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   114bc:      	add	x2, x2, #0x0
+		00000000000114bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   114c0:      	mov	x1, x20
+   114c4:      	mov	x3, x21
+   114c8:      	mov	w4, w22
+   114cc:      	mov	x5, x23
+   114d0:      	mov	w6, w24
+   114d4:      	mov	x7, x25
+   114d8:      	str	w13, [sp, #0x28]
+   114dc:      	str	w11, [sp, #0x20]
+   114e0:      	str	w12, [sp, #0x18]
+   114e4:      	str	w10, [sp, #0x10]
+   114e8:      	str	w9, [sp, #0x8]
+   114ec:      	str	w8, [sp]
+   114f0:      	bl	0x114f0 <vfcs_cms_main_work+0xa64>
+		00000000000114f0:  R_AARCH64_CALL26	_printk
+   114f4:      	b	0x111c4 <vfcs_cms_main_work+0x738>
+   114f8:      	bl	0x4ec <get_android_time>
+   114fc:      	mov	x8, #-0xc970
+   11500:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011500:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x49064 ; "\x013[%s]%s: %s: usb isn't online\n"
+   11504:      	add	x0, x0, #0x0
+		0000000000011504:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x49064 ; "\x013[%s]%s: %s: usb isn't online\n"
+   11508:      	ldr	x2, [x19, x8]
+   1150c:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001150c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   11510:      	add	x1, x1, #0x0
+		0000000000011510:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   11514:      	adrp	x3, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011514:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   11518:      	add	x3, x3, #0x0
+		0000000000011518:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x8647 ; 'vfcs_cms_main_work'
+   1151c:      	bl	0x1151c <vfcs_cms_main_work+0xa90>
+		000000000001151c:  R_AARCH64_CALL26	_printk
+   11520:      	b	0x11208 <vfcs_cms_main_work+0x77c>
+   11524:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011524:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x351ae ; '\x013%s: no need os_upgrades\n'
+   11528:      	add	x0, x0, #0x0
+		0000000000011528:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x351ae ; '\x013%s: no need os_upgrades\n'
+   1152c:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001152c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11530:      	add	x1, x1, #0x0
+		0000000000011530:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11534:      	bl	0x11534 <vfcs_cms_main_work+0xaa8>
+		0000000000011534:  R_AARCH64_CALL26	_printk
+   11538:      	b	0x11034 <vfcs_cms_main_work+0x5a8>
+   1153c:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001153c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2f434 ; "\x013%s: pmi_status isn't readly!,wait\n"
+   11540:      	add	x0, x0, #0x0
+		0000000000011540:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2f434 ; "\x013%s: pmi_status isn't readly!,wait\n"
+   11544:      	b	0x10f6c <vfcs_cms_main_work+0x4e0>
+   11548:      	bl	0x4ec <get_android_time>
+   1154c:      	mov	x8, #-0xc970
+   11550:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011550:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x19a0f ; '\x013[%s]%s: %s: no need os_upgrades\n'
+   11554:      	add	x0, x0, #0x0
+		0000000000011554:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x19a0f ; '\x013[%s]%s: %s: no need os_upgrades\n'
+   11558:      	ldr	x2, [x19, x8]
+   1155c:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001155c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   11560:      	add	x1, x1, #0x0
+		0000000000011560:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   11564:      	adrp	x3, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011564:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11568:      	add	x3, x3, #0x0
+		0000000000011568:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   1156c:      	bl	0x1156c <vfcs_cms_main_work+0xae0>
+		000000000001156c:  R_AARCH64_CALL26	_printk
+   11570:      	b	0x11034 <vfcs_cms_main_work+0x5a8>
+   11574:      	bl	0x4ec <get_android_time>
+   11578:      	mov	x8, #-0xc970
+   1157c:      	ldr	w4, [x25, #0x174]
+   11580:      	ldr	w5, [x25, #0x178]
+   11584:      	ldr	x2, [x19, x8]
+   11588:      	ldr	w6, [x25, #0x17c]
+   1158c:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001158c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4d8c3 ; '\x013[%s]%s: %s: os_version=%d,fist_os_version=%d,last_update_time=%d,last_update_cycle=%d,cur_time_now=%d,cycle_diff=%d,cur_cycle=%d\n'
+   11590:      	add	x0, x0, #0x0
+		0000000000011590:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4d8c3 ; '\x013[%s]%s: %s: os_version=%d,fist_os_version=%d,last_update_time=%d,last_update_cycle=%d,cur_time_now=%d,cycle_diff=%d,cur_cycle=%d\n'
+   11594:      	ldr	w7, [x25, #0x180]
+   11598:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011598:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   1159c:      	add	x1, x1, #0x0
+		000000000001159c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   115a0:      	adrp	x3, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000115a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   115a4:      	add	x3, x3, #0x0
+		00000000000115a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   115a8:      	str	w22, [sp, #0x10]
+   115ac:      	str	w23, [sp, #0x8]
+   115b0:      	str	w21, [sp]
+   115b4:      	bl	0x115b4 <vfcs_cms_main_work+0xb28>
+		00000000000115b4:  R_AARCH64_CALL26	_printk
+   115b8:      	b	0x11034 <vfcs_cms_main_work+0x5a8>
+   115bc:      	mov	x8, #-0xc970
+   115c0:      	ldr	w3, [x25, #0x174]
+   115c4:      	ldr	w4, [x25, #0x178]
+   115c8:      	ldr	x1, [x19, x8]
+   115cc:      	ldr	w5, [x25, #0x17c]
+   115d0:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000115d0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1050e ; '\x013%s: %s: os_version=%d,fist_os_version=%d,last_update_time=%d,last_update_cycle=%d,cur_time_now=%d,cycle_diff=%d,cur_cycle=%d\n'
+   115d4:      	add	x0, x0, #0x0
+		00000000000115d4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1050e ; '\x013%s: %s: os_version=%d,fist_os_version=%d,last_update_time=%d,last_update_cycle=%d,cur_time_now=%d,cycle_diff=%d,cur_cycle=%d\n'
+   115d8:      	ldr	w6, [x25, #0x180]
+   115dc:      	adrp	x2, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000115dc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   115e0:      	add	x2, x2, #0x0
+		00000000000115e0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   115e4:      	mov	w7, w21
+   115e8:      	str	w22, [sp, #0x8]
+   115ec:      	str	w23, [sp]
+   115f0:      	bl	0x115f0 <vfcs_cms_main_work+0xb64>
+		00000000000115f0:  R_AARCH64_CALL26	_printk
+   115f4:      	b	0x11034 <vfcs_cms_main_work+0x5a8>
+   115f8:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000115f8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x44128 ; '\x013%s: read reserved_val = %lu\n'
+   115fc:      	add	x0, x0, #0x0
+		00000000000115fc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x44128 ; '\x013%s: read reserved_val = %lu\n'
+   11600:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011600:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11604:      	add	x1, x1, #0x0
+		0000000000011604:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11608:      	mov	x2, x21
+   1160c:      	bl	0x1160c <vfcs_cms_main_work+0xb80>
+		000000000001160c:  R_AARCH64_CALL26	_printk
+   11610:      	b	0x10c90 <vfcs_cms_main_work+0x204>
+   11614:      	bl	0x4ec <get_android_time>
+   11618:      	mov	x8, #-0xc970
+   1161c:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001161c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1dede ; "\x013[%s]%s: %s: pmi_status isn't readly!,wait\n"
+   11620:      	add	x0, x0, #0x0
+		0000000000011620:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1dede ; "\x013[%s]%s: %s: pmi_status isn't readly!,wait\n"
+   11624:      	b	0x11178 <vfcs_cms_main_work+0x6ec>
+   11628:      	bl	0x4ec <get_android_time>
+   1162c:      	mov	x8, #-0xc970
+   11630:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011630:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x25c28 ; '\x013[%s]%s: %s: read reserved_val = %lu\n'
+   11634:      	add	x0, x0, #0x0
+		0000000000011634:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x25c28 ; '\x013[%s]%s: %s: read reserved_val = %lu\n'
+   11638:      	ldr	x2, [x19, x8]
+   1163c:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001163c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   11640:      	add	x1, x1, #0x0
+		0000000000011640:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   11644:      	adrp	x3, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011644:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11648:      	add	x3, x3, #0x0
+		0000000000011648:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   1164c:      	mov	x4, x21
+   11650:      	bl	0x11650 <vfcs_cms_main_work+0xbc4>
+		0000000000011650:  R_AARCH64_CALL26	_printk
+   11654:      	b	0x10c90 <vfcs_cms_main_work+0x204>
+   11658:      	mov	x8, #-0xc970
+   1165c:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001165c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4b5db ; '\x013%s: %s: read reserved_val = %lu\n'
+   11660:      	add	x0, x0, #0x0
+		0000000000011660:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4b5db ; '\x013%s: %s: read reserved_val = %lu\n'
+   11664:      	ldr	x1, [x19, x8]
+   11668:      	adrp	x2, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011668:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   1166c:      	add	x2, x2, #0x0
+		000000000001166c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11670:      	mov	x3, x21
+   11674:      	bl	0x11674 <vfcs_cms_main_work+0xbe8>
+		0000000000011674:  R_AARCH64_CALL26	_printk
+   11678:      	b	0x10c90 <vfcs_cms_main_work+0x204>
+   1167c:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		000000000001167c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x17a42 ; '\x013%s: now is os_upgrades,cur_cycle = %d\n'
+   11680:      	add	x0, x0, #0x0
+		0000000000011680:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x17a42 ; '\x013%s: now is os_upgrades,cur_cycle = %d\n'
+   11684:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		0000000000011684:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   11688:      	add	x1, x1, #0x0
+		0000000000011688:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   1168c:      	mov	w2, w22
+   11690:      	bl	0x11690 <vfcs_cms_main_work+0xc04>
+		0000000000011690:  R_AARCH64_CALL26	_printk
+   11694:      	mov	w8, #0x2700
+   11698:      	ldr	w2, [x25, #0x174]
+   1169c:      	ldr	w3, [x25, #0x178]
+   116a0:      	movk	w8, #0x1, lsl #16
+   116a4:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000116a4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x865a ; '\x013%s: os_version=%d,fist_os_version=%d,last_update_time=%d,last_update_cycle=%d,cur_time_now=%d,cycle_diff=%d,cur_cycle=%d\n'
+   116a8:      	add	x0, x0, #0x0
+		00000000000116a8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x865a ; '\x013%s: os_version=%d,fist_os_version=%d,last_update_time=%d,last_update_cycle=%d,cur_time_now=%d,cycle_diff=%d,cur_cycle=%d\n'
+   116ac:      	ldr	w4, [x8, #0x404]
+   116b0:      	ldr	w5, [x8, #0x408]
+   116b4:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000116b4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   116b8:      	add	x1, x1, #0x0
+		00000000000116b8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   116bc:      	mov	w6, w21
+   116c0:      	mov	w7, w23
+   116c4:      	str	w22, [sp]
+   116c8:      	bl	0x116c8 <vfcs_cms_main_work+0xc3c>
+		00000000000116c8:  R_AARCH64_CALL26	_printk
+   116cc:      	b	0x11034 <vfcs_cms_main_work+0x5a8>
+   116d0:      	bl	0x4ec <get_android_time>
+   116d4:      	mov	x8, #-0xc970
+   116d8:      	adrp	x0, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000116d8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x417d8 ; '\x013[%s]%s: %s: now is os_upgrades,cur_cycle = %d\n'
+   116dc:      	add	x0, x0, #0x0
+		00000000000116dc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x417d8 ; '\x013[%s]%s: %s: now is os_upgrades,cur_cycle = %d\n'
+   116e0:      	ldr	x2, [x19, x8]
+   116e4:      	adrp	x1, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000116e4:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x20 ; __android_time
+   116e8:      	add	x1, x1, #0x0
+		00000000000116e8:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x20 ; __android_time
+   116ec:      	adrp	x3, 0x11000 <vfcs_cms_main_work+0x574>
+		00000000000116ec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   116f0:      	add	x3, x3, #0x0
+		00000000000116f0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d20e ; 'cms_check_os_upgrades'
+   116f4:      	mov	w4, w22
+   116f8:      	bl	0x116f8 <vfcs_cms_main_work+0xc6c>
+		00000000000116f8:  R_AARCH64_CALL26	_printk
+   116fc:      	b	0x1101c <vfcs_cms_main_work+0x590>
+   11700:      	bl	0x11700 <vfcs_cms_main_work+0xc74>
+		0000000000011700:  R_AARCH64_CALL26	__stack_chk_fail
+

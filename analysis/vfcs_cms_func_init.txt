@@ -1,0 +1,507 @@
+000000000004e7c8 <vfcs_cms_func_init>:
+   4e7c8:      	paciasp
+   4e7cc:      	stp	x29, x30, [sp, #-0x40]!
+   4e7d0:      	stp	x24, x23, [sp, #0x10]
+   4e7d4:      	stp	x22, x21, [sp, #0x20]
+   4e7d8:      	stp	x20, x19, [sp, #0x30]
+   4e7dc:      	mov	x29, sp
+   4e7e0:      	mov	w8, #0xc410
+   4e7e4:      	mov	x23, #0xfffffffe00000
+   4e7e8:      	mov	w10, #0xd440
+   4e7ec:      	add	x22, x0, x8
+   4e7f0:      	add	x8, x0, #0x12, lsl #12  // =0x12000
+   4e7f4:      	adrp	x21, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e7f4:  R_AARCH64_ADR_PREL_PG_HI21	delayed_work_timer_fn
+   4e7f8:      	add	x21, x21, #0x0
+		000000000004e7f8:  R_AARCH64_ADD_ABS_LO12_NC	delayed_work_timer_fn
+   4e7fc:      	add	x9, x22, #0xf00
+   4e800:      	add	x20, x8, #0xa18
+   4e804:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e804:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x4ed1c ; vfcs_cms_usb_conn_vbusoff_work
+   4e808:      	add	x8, x8, #0x0
+		000000000004e808:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x4ed1c ; vfcs_cms_usb_conn_vbusoff_work
+   4e80c:      	str	x23, [x22, #0xef8]
+   4e810:      	str	x9, [x22, #0xf00]
+   4e814:      	mov	x19, x0
+   4e818:      	add	x24, x0, x10
+   4e81c:      	str	x9, [x22, #0xf08]
+   4e820:      	mov	x1, x21
+   4e824:      	mov	w2, #0x200000
+   4e828:      	str	x8, [x22, #0xf10]
+   4e82c:      	mov	w8, #0xd328
+   4e830:      	mov	x3, xzr
+   4e834:      	add	x0, x0, x8
+   4e838:      	mov	x4, xzr
+   4e83c:      	bl	0x4e83c <vfcs_cms_func_init+0x74>
+		000000000004e83c:  R_AARCH64_CALL26	init_timer_key
+   4e840:      	add	x8, x24, #0x8
+   4e844:      	mov	w9, #0xd460
+   4e848:      	str	x23, [x24]
+   4e84c:      	str	x8, [x24, #0x8]
+   4e850:      	add	x0, x19, x9
+   4e854:      	mov	x1, x21
+   4e858:      	str	x8, [x24, #0x10]
+   4e85c:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e85c:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x4fda4 ; vfcs_cms_usb_conn_slope_pro_work
+   4e860:      	add	x8, x8, #0x0
+		000000000004e860:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x4fda4 ; vfcs_cms_usb_conn_slope_pro_work
+   4e864:      	mov	w2, #0x200000
+   4e868:      	mov	x3, xzr
+   4e86c:      	mov	x4, xzr
+   4e870:      	str	x8, [x24, #0x18]
+   4e874:      	bl	0x4e874 <vfcs_cms_func_init+0xac>
+		000000000004e874:  R_AARCH64_CALL26	init_timer_key
+   4e878:      	add	x8, x20, #0x8
+   4e87c:      	str	x23, [x20]
+   4e880:      	mov	x1, x21
+   4e884:      	str	x8, [x20, #0x8]
+   4e888:      	mov	w2, #0x200000
+   4e88c:      	mov	x3, xzr
+   4e890:      	str	x8, [x20, #0x10]
+   4e894:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e894:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x50954 ; vfcs_cms_sometime_param_save_work
+   4e898:      	add	x8, x8, #0x0
+		000000000004e898:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x50954 ; vfcs_cms_sometime_param_save_work
+   4e89c:      	str	x8, [x20, #0x18]
+   4e8a0:      	add	x8, x19, #0x12, lsl #12 // =0x12000
+   4e8a4:      	mov	x4, xzr
+   4e8a8:      	add	x0, x8, #0xa38
+   4e8ac:      	bl	0x4e8ac <vfcs_cms_func_init+0xe4>
+		000000000004e8ac:  R_AARCH64_CALL26	init_timer_key
+   4e8b0:      	str	x23, [x20, #0x68]!
+   4e8b4:      	add	x8, x20, #0x8
+   4e8b8:      	str	x8, [x20, #0x8]
+   4e8bc:      	mov	x1, x21
+   4e8c0:      	mov	w2, #0x200000
+   4e8c4:      	str	x8, [x20, #0x10]
+   4e8c8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e8c8:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x50be8 ; vfcs_cms_sometime_keep_soc_init_work
+   4e8cc:      	add	x8, x8, #0x0
+		000000000004e8cc:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x50be8 ; vfcs_cms_sometime_keep_soc_init_work
+   4e8d0:      	str	x8, [x20, #0x18]
+   4e8d4:      	add	x8, x19, #0x12, lsl #12 // =0x12000
+   4e8d8:      	mov	x3, xzr
+   4e8dc:      	add	x0, x8, #0xaa0
+   4e8e0:      	mov	x4, xzr
+   4e8e4:      	bl	0x4e8e4 <vfcs_cms_func_init+0x11c>
+		000000000004e8e4:  R_AARCH64_CALL26	init_timer_key
+   4e8e8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e8e8:  R_AARCH64_ADR_PREL_PG_HI21	system_wq
+   4e8ec:      	mov	w0, #0x20
+   4e8f0:      	mov	x2, x20
+   4e8f4:      	ldr	x1, [x8]
+		000000000004e8f4:  R_AARCH64_LDST64_ABS_LO12_NC	system_wq
+   4e8f8:      	mov	w3, #0xea6
+   4e8fc:      	bl	0x4e8fc <vfcs_cms_func_init+0x134>
+		000000000004e8fc:  R_AARCH64_CALL26	queue_delayed_work_on
+   4e900:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e900:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f0d1 ; 'BSP_KEEP_SOC'
+   4e904:      	add	x8, x8, #0x0
+		000000000004e904:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f0d1 ; 'BSP_KEEP_SOC'
+   4e908:      	adrp	x9, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e908:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xb023 ; 'KEEP_CHG_SOC'
+   4e90c:      	add	x9, x9, #0x0
+		000000000004e90c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xb023 ; 'KEEP_CHG_SOC'
+   4e910:      	str	x8, [x22]
+   4e914:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e914:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x564a4 ; vfcs_cms_scene_ctrl_bsp_keep_soc_cb
+   4e918:      	add	x8, x8, #0x0
+		000000000004e918:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x564a4 ; vfcs_cms_scene_ctrl_bsp_keep_soc_cb
+   4e91c:      	adrp	x10, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e91c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1183e ; 'FFC_FULL_RECHARGE'
+   4e920:      	add	x10, x10, #0x0
+		000000000004e920:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1183e ; 'FFC_FULL_RECHARGE'
+   4e924:      	stp	x8, x9, [x22, #0x10]
+   4e928:      	mov	w8, #0x1
+   4e92c:      	adrp	x9, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e92c:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x56a24 ; vfcs_cms_scene_ctrl_keep_chg_soc_cb
+   4e930:      	add	x9, x9, #0x0
+		000000000004e930:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x56a24 ; vfcs_cms_scene_ctrl_keep_chg_soc_cb
+   4e934:      	str	w8, [x22, #0x20]
+   4e938:      	adrp	x11, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e938:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x16023 ; 'SOMETIME_CHARGE_FULL'
+   4e93c:      	add	x11, x11, #0x0
+		000000000004e93c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x16023 ; 'SOMETIME_CHARGE_FULL'
+   4e940:      	str	w8, [x22, #0xe0]
+   4e944:      	adrp	x12, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e944:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3816b ; 'EU_LAW'
+   4e948:      	add	x12, x12, #0x0
+		000000000004e948:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3816b ; 'EU_LAW'
+   4e94c:      	str	w8, [x22, #0x260]
+   4e950:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e950:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x61248 ; vfcs_cms_scene_chg_switch_cb
+   4e954:      	add	x8, x8, #0x0
+		000000000004e954:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x61248 ; vfcs_cms_scene_chg_switch_cb
+   4e958:      	stp	x9, x10, [x22, #0x28]
+   4e95c:      	adrp	x10, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e95c:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5702c ; vfcs_cms_scene_ctrl_ffc_full_recharge_cb
+   4e960:      	add	x10, x10, #0x0
+		000000000004e960:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5702c ; vfcs_cms_scene_ctrl_ffc_full_recharge_cb
+   4e964:      	str	x8, [x22, #0x268]
+   4e968:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e968:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f57c ; 'AI_SWITCH'
+   4e96c:      	add	x8, x8, #0x0
+		000000000004e96c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f57c ; 'AI_SWITCH'
+   4e970:      	stp	x10, x11, [x22, #0x40]
+   4e974:      	adrp	x11, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e974:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x57b98 ; vfcs_cms_sometime_charge_full_cb
+   4e978:      	add	x11, x11, #0x0
+		000000000004e978:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x57b98 ; vfcs_cms_sometime_charge_full_cb
+   4e97c:      	str	x8, [x22, #0x270]
+   4e980:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e980:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x6168c ; vfcs_cms_scene_chg_ai_switch_cb
+   4e984:      	add	x8, x8, #0x0
+		000000000004e984:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x6168c ; vfcs_cms_scene_chg_ai_switch_cb
+   4e988:      	stp	x11, x12, [x22, #0x58]
+   4e98c:      	adrp	x12, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e98c:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x593d0 ; vfcs_cms_eu_law_cb
+   4e990:      	add	x12, x12, #0x0
+		000000000004e990:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x593d0 ; vfcs_cms_eu_law_cb
+   4e994:      	str	x8, [x22, #0x280]
+   4e998:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e998:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4a174 ; 'CALLING'
+   4e99c:      	add	x8, x8, #0x0
+		000000000004e99c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4a174 ; 'CALLING'
+   4e9a0:      	adrp	x13, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3ffc2 ; 'NCHG_RECHARGE'
+   4e9a4:      	add	x13, x13, #0x0
+		000000000004e9a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3ffc2 ; 'NCHG_RECHARGE'
+   4e9a8:      	str	x8, [x22, #0x288]
+   4e9ac:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9ac:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x61b74 ; vfcs_cms_scene_chg_calling_cb
+   4e9b0:      	add	x8, x8, #0x0
+		000000000004e9b0:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x61b74 ; vfcs_cms_scene_chg_calling_cb
+   4e9b4:      	str	x8, [x22, #0x298]
+   4e9b8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9b8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x364e1 ; 'WEIXIN'
+   4e9bc:      	add	x8, x8, #0x0
+		000000000004e9bc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x364e1 ; 'WEIXIN'
+   4e9c0:      	str	x8, [x22, #0x2a0]
+   4e9c4:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9c4:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x6209c ; vfcs_cms_scene_chg_weixin_cb
+   4e9c8:      	add	x8, x8, #0x0
+		000000000004e9c8:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x6209c ; vfcs_cms_scene_chg_weixin_cb
+   4e9cc:      	str	x8, [x22, #0x2b0]
+   4e9d0:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9d0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4ebd1 ; 'EASY_SHARE'
+   4e9d4:      	add	x8, x8, #0x0
+		000000000004e9d4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4ebd1 ; 'EASY_SHARE'
+   4e9d8:      	str	x8, [x22, #0x2b8]
+   4e9dc:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9dc:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x62560 ; vfcs_cms_scene_chg_easy_share_cb
+   4e9e0:      	add	x8, x8, #0x0
+		000000000004e9e0:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x62560 ; vfcs_cms_scene_chg_easy_share_cb
+   4e9e4:      	str	x8, [x22, #0x2c8]
+   4e9e8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9e8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4c84c ; 'CARLIFE'
+   4e9ec:      	add	x8, x8, #0x0
+		000000000004e9ec:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4c84c ; 'CARLIFE'
+   4e9f0:      	stp	x12, x13, [x22, #0x70]
+   4e9f4:      	adrp	x13, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9f4:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x59a88 ; vfcs_cms_scene_nchg_recharge_cb
+   4e9f8:      	add	x13, x13, #0x0
+		000000000004e9f8:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x59a88 ; vfcs_cms_scene_nchg_recharge_cb
+   4e9fc:      	adrp	x14, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004e9fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2b803 ; 'TIMER_RECHARGE'
+   4ea00:      	add	x14, x14, #0x0
+		000000000004ea00:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2b803 ; 'TIMER_RECHARGE'
+   4ea04:      	str	x8, [x22, #0x2d0]
+   4ea08:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea08:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x62a40 ; vfcs_cms_scene_chg_carlife_cb
+   4ea0c:      	add	x8, x8, #0x0
+		000000000004ea0c:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x62a40 ; vfcs_cms_scene_chg_carlife_cb
+   4ea10:      	stp	x13, x14, [x22, #0x88]
+   4ea14:      	adrp	x14, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea14:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5a458 ; vfcs_cms_scene_ctrl_timer_recharge_cb
+   4ea18:      	add	x14, x14, #0x0
+		000000000004ea18:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5a458 ; vfcs_cms_scene_ctrl_timer_recharge_cb
+   4ea1c:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea1c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11850 ; 'CHG_HEATING'
+   4ea20:      	add	x15, x15, #0x0
+		000000000004ea20:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11850 ; 'CHG_HEATING'
+   4ea24:      	str	x8, [x22, #0x2e0]
+   4ea28:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea28:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1abb9 ; 'EXHIBITION'
+   4ea2c:      	add	x8, x8, #0x0
+		000000000004ea2c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1abb9 ; 'EXHIBITION'
+   4ea30:      	stp	x14, x15, [x22, #0xa0]
+   4ea34:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea34:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5ab2c ; vfcs_cms_chg_heating_cb
+   4ea38:      	add	x15, x15, #0x0
+		000000000004ea38:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5ab2c ; vfcs_cms_chg_heating_cb
+   4ea3c:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea3c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x429a0 ; 'GENERAL_EXCEPTION'
+   4ea40:      	add	x16, x16, #0x0
+		000000000004ea40:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x429a0 ; 'GENERAL_EXCEPTION'
+   4ea44:      	str	x8, [x22, #0x2e8]
+   4ea48:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea48:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x62e40 ; vfcs_cms_scene_chg_exhibition_cb
+   4ea4c:      	add	x8, x8, #0x0
+		000000000004ea4c:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x62e40 ; vfcs_cms_scene_chg_exhibition_cb
+   4ea50:      	stp	x15, x16, [x22, #0xb8]
+   4ea54:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea54:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5b134 ; vfcs_cms_scene_pro_general_exception_cb
+   4ea58:      	add	x15, x15, #0x0
+		000000000004ea58:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5b134 ; vfcs_cms_scene_pro_general_exception_cb
+   4ea5c:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea5c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x30a7e ; 'NTC_ERROR'
+   4ea60:      	add	x16, x16, #0x0
+		000000000004ea60:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x30a7e ; 'NTC_ERROR'
+   4ea64:      	str	x8, [x22, #0x2f8]
+   4ea68:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea68:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1abc4 ; 'SYSTEM_UPDATE'
+   4ea6c:      	add	x8, x8, #0x0
+		000000000004ea6c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1abc4 ; 'SYSTEM_UPDATE'
+   4ea70:      	stp	x15, x16, [x22, #0xd0]
+   4ea74:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea74:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5bacc ; vfcs_cms_scene_pro_ntc_error_cb
+   4ea78:      	add	x15, x15, #0x0
+		000000000004ea78:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5bacc ; vfcs_cms_scene_pro_ntc_error_cb
+   4ea7c:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea7c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x30a88 ; 'CHG_TIMEOUT'
+   4ea80:      	add	x16, x16, #0x0
+		000000000004ea80:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x30a88 ; 'CHG_TIMEOUT'
+   4ea84:      	str	x8, [x22, #0x300]
+   4ea88:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea88:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x632a8 ; vfcs_cms_scene_chg_system_udpate_cb
+   4ea8c:      	add	x8, x8, #0x0
+		000000000004ea8c:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x632a8 ; vfcs_cms_scene_chg_system_udpate_cb
+   4ea90:      	stp	x15, x16, [x22, #0xe8]
+   4ea94:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea94:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5bf90 ; vfcs_cms_scene_pro_chg_timeout_cb
+   4ea98:      	add	x15, x15, #0x0
+		000000000004ea98:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5bf90 ; vfcs_cms_scene_pro_chg_timeout_cb
+   4ea9c:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ea9c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x429b2 ; 'HTCCC'
+   4eaa0:      	add	x16, x16, #0x0
+		000000000004eaa0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x429b2 ; 'HTCCC'
+   4eaa4:      	str	x8, [x22, #0x310]
+   4eaa8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eaa8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xc678 ; 'PKG_PRO'
+   4eaac:      	add	x8, x8, #0x0
+		000000000004eaac:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xc678 ; 'PKG_PRO'
+   4eab0:      	stp	x15, x16, [x22, #0x100]
+   4eab4:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eab4:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5c664 ; vfcs_cms_scene_pro_htccc_cb
+   4eab8:      	add	x15, x15, #0x0
+		000000000004eab8:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5c664 ; vfcs_cms_scene_pro_htccc_cb
+   4eabc:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eabc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x47ea3 ; 'WLS_HTCCC'
+   4eac0:      	add	x16, x16, #0x0
+		000000000004eac0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x47ea3 ; 'WLS_HTCCC'
+   4eac4:      	str	x8, [x22, #0x318]
+   4eac8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eac8:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x63690 ; vfcs_cms_scene_chg_pkg_pro_cb
+   4eacc:      	add	x8, x8, #0x0
+		000000000004eacc:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x63690 ; vfcs_cms_scene_chg_pkg_pro_cb
+   4ead0:      	stp	x15, x16, [x22, #0x118]
+   4ead4:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ead4:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5cc18 ; vfcs_cms_scene_pro_wls_htccc_cb
+   4ead8:      	add	x15, x15, #0x0
+		000000000004ead8:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5cc18 ; vfcs_cms_scene_pro_wls_htccc_cb
+   4eadc:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eadc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2436c ; 'USBID_WATER'
+   4eae0:      	add	x16, x16, #0x0
+		000000000004eae0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2436c ; 'USBID_WATER'
+   4eae4:      	str	x8, [x22, #0x328]
+   4eae8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eae8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x21ad9 ; 'FACTORY_MODE'
+   4eaec:      	add	x8, x8, #0x0
+		000000000004eaec:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x21ad9 ; 'FACTORY_MODE'
+   4eaf0:      	stp	x15, x16, [x22, #0x130]
+   4eaf4:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eaf4:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5d004 ; vfcs_cms_scene_pro_usbid_water_cb
+   4eaf8:      	add	x15, x15, #0x0
+		000000000004eaf8:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5d004 ; vfcs_cms_scene_pro_usbid_water_cb
+   4eafc:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eafc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f35f ; 'USB_CONN_HEAT'
+   4eb00:      	add	x16, x16, #0x0
+		000000000004eb00:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f35f ; 'USB_CONN_HEAT'
+   4eb04:      	str	x8, [x22, #0x330]
+   4eb08:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb08:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x63c3c ; vfcs_cms_scene_chg_factory_mode_cb
+   4eb0c:      	add	x8, x8, #0x0
+		000000000004eb0c:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x63c3c ; vfcs_cms_scene_chg_factory_mode_cb
+   4eb10:      	stp	x15, x16, [x22, #0x148]
+   4eb14:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb14:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5d52c ; vfcs_cms_scene_pro_usb_conn_heat_cb
+   4eb18:      	add	x15, x15, #0x0
+		000000000004eb18:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5d52c ; vfcs_cms_scene_pro_usb_conn_heat_cb
+   4eb1c:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb1c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x965e ; 'USB_CONN_VBUSOFF'
+   4eb20:      	add	x16, x16, #0x0
+		000000000004eb20:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x965e ; 'USB_CONN_VBUSOFF'
+   4eb24:      	str	x8, [x22, #0x340]
+   4eb28:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb28:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4ebdc ; 'MAX_POWER_LIMIT'
+   4eb2c:      	add	x8, x8, #0x0
+		000000000004eb2c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4ebdc ; 'MAX_POWER_LIMIT'
+   4eb30:      	stp	x15, x16, [x22, #0x160]
+   4eb34:      	adrp	x15, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb34:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5db48 ; vfcs_cms_scene_pro_usb_conn_vbusoff_cb
+   4eb38:      	add	x15, x15, #0x0
+		000000000004eb38:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5db48 ; vfcs_cms_scene_pro_usb_conn_vbusoff_cb
+   4eb3c:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb3c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4c706 ; 'ADPT_POWER_DERATE'
+   4eb40:      	add	x16, x16, #0x0
+		000000000004eb40:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4c706 ; 'ADPT_POWER_DERATE'
+   4eb44:      	str	x8, [x22, #0x348]
+   4eb48:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb48:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x64214 ; vfcs_cms_scene_chg_max_power_limit_cb
+   4eb4c:      	add	x8, x8, #0x0
+		000000000004eb4c:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x64214 ; vfcs_cms_scene_chg_max_power_limit_cb
+   4eb50:      	stp	x15, x16, [x22, #0x178]
+   4eb54:      	adrp	x16, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb54:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5def4 ; vfcs_cms_scene_pro_adpt_power_derate_cb
+   4eb58:      	add	x16, x16, #0x0
+		000000000004eb58:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5def4 ; vfcs_cms_scene_pro_adpt_power_derate_cb
+   4eb5c:      	adrp	x17, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb5c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xe825 ; 'FCHG_TEMP'
+   4eb60:      	add	x17, x17, #0x0
+		000000000004eb60:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xe825 ; 'FCHG_TEMP'
+   4eb64:      	adrp	x4, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb64:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x429b8 ; 'SCENE_PRO_FCHG_CLK_ADJUST'
+   4eb68:      	add	x4, x4, #0x0
+		000000000004eb68:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x429b8 ; 'SCENE_PRO_FCHG_CLK_ADJUST'
+   4eb6c:      	str	x8, [x22, #0x358]
+   4eb70:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb70:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x189a9 ; 'DEBUG_CHG_CUR'
+   4eb74:      	add	x8, x8, #0x0
+		000000000004eb74:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x189a9 ; 'DEBUG_CHG_CUR'
+   4eb78:      	stp	x16, x17, [x22, #0x190]
+   4eb7c:      	adrp	x17, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb7c:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5e7e0 ; vfcs_cms_scene_pro_fchg_temp_cb
+   4eb80:      	add	x17, x17, #0x0
+		000000000004eb80:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5e7e0 ; vfcs_cms_scene_pro_fchg_temp_cb
+   4eb84:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb84:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2190c ; 'VCELL_HIGH'
+   4eb88:      	add	x1, x1, #0x0
+		000000000004eb88:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2190c ; 'VCELL_HIGH'
+   4eb8c:      	str	x4, [x22, #0x210]
+   4eb90:      	adrp	x4, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb90:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5ff68 ; vfcs_cms_scene_pro_fchg_clk_adjust_cb
+   4eb94:      	add	x4, x4, #0x0
+		000000000004eb94:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5ff68 ; vfcs_cms_scene_pro_fchg_clk_adjust_cb
+   4eb98:      	str	x8, [x22, #0x360]
+   4eb9c:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eb9c:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x64974 ; vfcs_cms_scene_chg_debug_chg_cur_cb
+   4eba0:      	add	x8, x8, #0x0
+		000000000004eba0:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x64974 ; vfcs_cms_scene_chg_debug_chg_cur_cb
+   4eba4:      	stp	x17, x1, [x22, #0x1a8]
+   4eba8:      	adrp	x1, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004eba8:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5e7ec ; vfcs_cms_scene_pro_vcell_high_cb
+   4ebac:      	add	x1, x1, #0x0
+		000000000004ebac:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5e7ec ; vfcs_cms_scene_pro_vcell_high_cb
+   4ebb0:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ebb0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xe82f ; 'NTC_HIGH'
+   4ebb4:      	add	x2, x2, #0x0
+		000000000004ebb4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xe82f ; 'NTC_HIGH'
+   4ebb8:      	str	x4, [x22, #0x220]
+   4ebbc:      	adrp	x4, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ebbc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1abad ; 'fbon'
+   4ebc0:      	add	x4, x4, #0x0
+		000000000004ebc0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1abad ; 'fbon'
+   4ebc4:      	str	x8, [x22, #0x370]
+   4ebc8:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ebc8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4c854 ; 'GAME_BYPASS_CHARGE'
+   4ebcc:      	add	x8, x8, #0x0
+		000000000004ebcc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4c854 ; 'GAME_BYPASS_CHARGE'
+   4ebd0:      	stp	x1, x2, [x22, #0x1c0]
+   4ebd4:      	adrp	x2, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ebd4:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x5f68c ; vfcs_cms_scene_pro_ntc_high_cb
+   4ebd8:      	add	x2, x2, #0x0
+		000000000004ebd8:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x5f68c ; vfcs_cms_scene_pro_ntc_high_cb
+   4ebdc:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ebdc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x30a94 ; 'USB_CONN_SLOPE'
+   4ebe0:      	add	x3, x3, #0x0
+		000000000004ebe0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x30a94 ; 'USB_CONN_SLOPE'
+   4ebe4:      	str	x4, [x22, #0x240]
+   4ebe8:      	adrp	x4, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ebe8:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x60d78 ; vfcs_cms_scene_chg_fbon_cb
+   4ebec:      	add	x4, x4, #0x0
+		000000000004ebec:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x60d78 ; vfcs_cms_scene_chg_fbon_cb
+   4ebf0:      	str	x8, [x22, #0x378]
+   4ebf4:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ebf4:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x64c84 ; vfcs_cms_scene_chg_game_bypass_charge_cb
+   4ebf8:      	add	x8, x8, #0x0
+		000000000004ebf8:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x64c84 ; vfcs_cms_scene_chg_game_bypass_charge_cb
+   4ebfc:      	stp	x2, x3, [x22, #0x1d8]
+   4ec00:      	adrp	x3, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ec00:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f36d ; 'EXHIBITION_THR_ADJUST'
+   4ec04:      	add	x3, x3, #0x0
+		000000000004ec04:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f36d ; 'EXHIBITION_THR_ADJUST'
+   4ec08:      	str	x4, [x22, #0x250]
+   4ec0c:      	adrp	x4, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ec0c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1abb2 ; 'SWITCH'
+   4ec10:      	add	x4, x4, #0x0
+		000000000004ec10:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1abb2 ; 'SWITCH'
+   4ec14:      	str	x8, [x22, #0x388]
+   4ec18:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ec18:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xea88 ; 'VBAT_LIMIT'
+   4ec1c:      	add	x8, x8, #0x0
+		000000000004ec1c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xea88 ; 'VBAT_LIMIT'
+   4ec20:      	mov	w9, #0x2
+   4ec24:      	mov	w10, #0x3
+   4ec28:      	mov	w11, #0x4
+   4ec2c:      	mov	w12, #0x5
+   4ec30:      	mov	w13, #0x6
+   4ec34:      	mov	w14, #0x7
+   4ec38:      	mov	w15, #0x8
+   4ec3c:      	mov	w16, #0x9
+   4ec40:      	mov	w17, #0xa
+   4ec44:      	mov	w1, #0xb
+   4ec48:      	mov	w2, #0xc
+   4ec4c:      	stp	xzr, x3, [x22, #0x1f0]
+   4ec50:      	mov	w3, #0xd
+   4ec54:      	str	x4, [x22, #0x258]
+   4ec58:      	mov	w4, #0xe
+   4ec5c:      	mov	w0, wzr
+   4ec60:      	str	x8, [x22, #0x390]
+   4ec64:      	adrp	x8, 0x4e000 <vfcs_cms_parse_func_dt+0xc98>
+		000000000004ec64:  R_AARCH64_ADR_PREL_PG_HI21	.text+0x6527c ; vfcs_cms_scene_chg_vbat_limit_cb
+   4ec68:      	add	x8, x8, #0x0
+		000000000004ec68:  R_AARCH64_ADD_ABS_LO12_NC	.text+0x6527c ; vfcs_cms_scene_chg_vbat_limit_cb
+   4ec6c:      	str	wzr, [x22, #0x8]
+   4ec70:      	str	w9, [x22, #0x38]
+   4ec74:      	str	w10, [x22, #0x50]
+   4ec78:      	str	w11, [x22, #0x68]
+   4ec7c:      	str	w12, [x22, #0x80]
+   4ec80:      	str	w13, [x22, #0x98]
+   4ec84:      	str	w14, [x22, #0xb0]
+   4ec88:      	str	wzr, [x22, #0xc8]
+   4ec8c:      	str	w9, [x22, #0xf8]
+   4ec90:      	str	w10, [x22, #0x110]
+   4ec94:      	str	w11, [x22, #0x128]
+   4ec98:      	str	w12, [x22, #0x140]
+   4ec9c:      	str	w13, [x22, #0x158]
+   4eca0:      	str	w14, [x22, #0x170]
+   4eca4:      	str	w15, [x22, #0x188]
+   4eca8:      	str	w16, [x22, #0x1a0]
+   4ecac:      	str	w17, [x22, #0x1b8]
+   4ecb0:      	str	w1, [x22, #0x1d0]
+   4ecb4:      	str	w2, [x22, #0x1e8]
+   4ecb8:      	str	w3, [x22, #0x200]
+   4ecbc:      	str	xzr, [x22, #0x208]
+   4ecc0:      	str	w4, [x22, #0x218]
+   4ecc4:      	str	wzr, [x22, #0x248]
+   4ecc8:      	str	w9, [x22, #0x278]
+   4eccc:      	str	w10, [x22, #0x290]
+   4ecd0:      	str	w11, [x22, #0x2a8]
+   4ecd4:      	str	w12, [x22, #0x2c0]
+   4ecd8:      	str	w13, [x22, #0x2d8]
+   4ecdc:      	str	w14, [x22, #0x2f0]
+   4ece0:      	str	w15, [x22, #0x308]
+   4ece4:      	str	w16, [x22, #0x320]
+   4ece8:      	str	w17, [x22, #0x338]
+   4ecec:      	str	w1, [x22, #0x350]
+   4ecf0:      	str	w2, [x22, #0x368]
+   4ecf4:      	str	w3, [x22, #0x380]
+   4ecf8:      	str	w4, [x22, #0x398]
+   4ecfc:      	str	x8, [x22, #0x3a0]
+   4ed00:      	ldp	x20, x19, [sp, #0x30]
+   4ed04:      	ldp	x22, x21, [sp, #0x20]
+   4ed08:      	ldp	x24, x23, [sp, #0x10]
+   4ed0c:      	ldp	x29, x30, [sp], #0x40
+   4ed10:      	autiasp
+   4ed14:      	ret
+

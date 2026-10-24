@@ -1,0 +1,1212 @@
+[M}"
+bn?#
+T E0
+T E0
+ X9h
+	qW9
+ivW9
+hzW9
+ThrW9
+ThvW9
+hvW9
+5ivW9i
+i~W9	
+hvW9
+ThvW9
+ThvW9
+hvW9
+hvW9
+*`.B
+T`.B
+T`.B
+4h"W9
+Th"W9h
+bjP9
+h2D9
+Ti"_)
+hrN9
++ih8J	
+	kb	
+e4`H?#
+ThvK9(
+ThjD9
+@9h	
+T	-B
+	qW9?
++yhxJ	
++yhxJ	
+#q")
+TQ9I
+BM9)
+BM9	
+BM9h
+TQ9I
+M9)Z
+fP9z
+BZ9h
+BM9	
+BM9h
+M9(+
+TQ9I
+rW9h
+fP9w
+r	})
+	kC	
+TK|}
+	KJ}+
+F	qA
+pW9i
+	|O9s
+rh~(
+	k)U
+	kJ2
+	q!0
+bBM9
+	kJU
+T E0
+T E0
+TQ9I
+6i~O9h
+T E0
+UQ9I
+i~O9h
+T E0
+hvO9?
+UQ9I
+"5q`
+TQ9I
+vO9?
+3@9I
+3@9I
+h.Ayi*Ay
+A	*	
+3@9	b
+R	M+
+qcom,battery-charger
+built_with=DDK
+description=QTI Glink battery charger driver
+license=GPL
+name=qti_battery_charger
+scmversion=gc623cc86c958-dirty
+depends=vfcs-bigdata-core,qti_pmic_glink,panel_event_notifier,vfcs-misc-core,vivo_bsp_engine
+vermagic=6.12.23-android16-5-g801ede8ff3b9-4k SMP preempt mod_unload modversions aarch64
+3BATTERY_CHG: %s: last_online:%d 
+3BATTERY_CHG: %s: no usb psy found
+wls_set_enable_otg_boost_ctrl
+extern_boost_regulator_is_enable
+3BATTERY_CHG: %s: usb_adap_type: %u
+vivo,otg-ocp-int-gpio
+3BATTERY_CHG: %s: otg_ctrl_en_gpio=%d
+3BATTERY_CHG: %s: failed to request otg_ocp_int_gpio. rc=%d
+wls_rx
+3BATTERY_CHG: %s: step:%d --> %d: keep_charging=%d
+3BATTERY_CHG: %s: couldn't get chg_status,rc=%d
+HVDCP_3
+extern_boost_regulator_init
+usb_psy_get_prop
+3BATTERY_CHG: %s: wlsin_vout_voltage = %d 
+3BATTERY_CHG: %s: otg_boost_en_gpio:[%s], otg_boost_en=%d, otg_ctrl=%d
+3BATTERY_CHG: %s: Battery SOC is > 0
+3BATTERY_CHG: %s: state: %d
+qcom,ship-mode-immediate
+vivo,otg-boost-ctrl-enable
+6BATTERY_CHG: %s: ui_soc_delta_time_s=%d, FULL status, but soc drop %d!!!
+3BATTERY_CHG: %s: FW size: %zu version: %#x
+3BATTERY_CHG: %s: Error, timed out updating firmware
+wireless_fw_send_firmware
+ship_mode_en
+Parallel battery cell count (available/total): %lu/%lu
+wireless
+wls_tx_pmic_vbus_is_enabled
+wls_set_enable_otg_boost_ctrl__waitting_mcu_prepare
+3BATTERY_CHG: %s: usb_adap_type update: %u, but wls_rx_online, so we skip it.
+validate_message
+battery_chg_ship_mode
+3BATTERY_CHG: %s: ex_fg_psy_name=%s.
+vivo,equalizing-chg-tboard-limit
+3BATTERY_CHG: %s: failed to request otg_boost_en_gpio,rc=%d
+bat_encryptor
+3BATTERY_CHG: %s: get bq chg voltage_now error, try to qcom_pm again.
+3BATTERY_CHG: %s: Invalid RTC time (%s): %d
+3BATTERY_CHG: %s: ## fixed_temp=%d ##
+3BATTERY_CHG: %s: ### POWER_SUPPLY_PROP_FFC_CHARGE_FULL_TIME_START %d ###
+3BATTERY_CHG: %s: wls psy no found
+wls_get_usb_psy
+wls_get_enable_b2b_mos
+3BATTERY_CHG: %s: No property id for property %d in psy %s
+3BATTERY_CHG: %s: Failed to read prop BATT_CHG_CTRL_LIM_MAX, rc=%d
+ap_mos_ctl
+3BATTERY_CHG: %s: failed to request ap_mos_ctl_gpio,rc=%d
+3BATTERY_CHG: %s: %s: unable to open rtc device (%s)
+3BATTERY_CHG: %s: ### POWER_SUPPLY_PROP_FFC_CHARGE_EARLY_EXIT %d. ###
+moisture_detection_status
+3BATTERY_CHG: %s: Battery SOC should be at least 50%% or connect charger
+wls_plugin_init
+3BATTERY_CHG: %s: Error, timed out sending message
+3BATTERY_CHG: %s: [usb,otg,wls,wls_tx]=[%d,%d,%d,%d]
+wls_set_enable_b2b_mos
+3BATTERY_CHG: %s: Failed to set FCC %u, rc=%d
+0BATTERY_CHG: %s: Attempting kernel_power_off: Battery voltage low
+3BATTERY_CHG: %s: Incorrect response length %zu for opcode %#x
+3BATTERY_CHG: %s: extern ship mode finish,ex_ship_mode_gpio=%d
+vivo,wls-wlsin-enable
+3BATTERY_CHG: %s: fake_soc:%d
+3BATTERY_CHG: %s: ### POWER_SUPPLY_PROP_CHARGER_REMOVE %d. ###
+restrict_chg
+3BATTERY_CHG: %s: Incorrect num_thermal_levels
+3BATTERY_CHG: %s: usb psy no found 
+wls_get_enable_ap_ctrl_mos_sleep_en
+3BATTERY_CHG: %s: enable Extern_boost!!!
+3BATTERY_CHG: %s: [otg_boost_en, otg_ctrl_en]=[%d, %d], otg_online=%d
+3BATTERY_CHG: %s: usb_adap_type update: %u, but FAKE_CHARGING_UI or wls online, so keep wireless type.
+3BATTERY_CHG: %s: rerun apsd, keep last usb_adap_type[%u, %u]
+3BATTERY_CHG: %s: delta time: %lums
+3BATTERY_CHG: %s: Unknown opcode: %u
+vivo,otg-use-usbin-vout-enable
+3BATTERY_CHG: %s: ex-fg init error or not ready, fg_soc_ready=%d
+battery_psy_get_prop_batt_charging_speed
+3BATTERY_CHG: %s: Failed to set charge control end threshold %u, rc=%d
+3BATTERY_CHG: %s: sending FW chunk %u
+3BATTERY_CHG: %s: Failed to create charger debugfs directory, rc=%d
+3BATTERY_CHG: %s: usb_present, skip otg enable...
+3BATTERY_CHG: %s: haptic_boost_enable=%d
+vivo,equalizing-chg-tbat-limit
+vivo,vbat-from-vfcs-fchg-ic-enable
+3BATTERY_CHG: %s: failed to request otg_ocp_int. rc=%d
+3BATTERY_CHG: %s: get batt block id error, try to qcom_pm again.
+3BATTERY_CHG: %s: Error reading rtc device (%s) : %d
+3BATTERY_CHG: %s: Wireless FW update not needed, rc=%d
+3BATTERY_CHG: %s: wire high priority
+3BATTERY_CHG: %s: Couldn't set POWER_SUPPLY_PROP_CHARGE_MODE rc=%d
+3BATTERY_CHG: %s: wire high priority 2
+3BATTERY_CHG: %s: %s power_supply not found
+3BATTERY_CHG: %s: otg_compatible_feature: otg enabled
+Failed to create battery_class rc=%d
+&x->wait
+__battery_psy_set_charge_current
+3BATTERY_CHG: %s: usb_adap_type update: %u, but alternate_charger using, so we skip it.
+usb_psy_set_prop
+3BATTERY_CHG: %s: Incorrect response length %zu for wls_fw_update_status_resp
+qcom,thermal-mitigation-step
+vivo,otg-compatible-feature
+battery_psy_set_charge_start_threshold
+3BATTERY_CHG: %s: Set fake soc to %d
+3BATTERY_CHG: %s: Failed to send FW chunk, rc=%d
+3BATTERY_CHG: %s: usb_online = %d, adsp_usb_online = %d, wls_rx_online = %d, wls_pdet_save_online=%d, haptic_boost_enable = %d, disable_chg_ui__because_otg_online=%d, FAKE_CHARGING_UI=%d 
+battery_chg_callback
+vivo,fake-vbus-regulator
+otg_ctrl_en
+extern_boost_otg_ocp_irq_handler
+6BATTERY_CHG: %s: ui_soc(%d) <= 0, use soc(%d) init ui_soc 
+battery_psy_get_alternate_charger_status
+3BATTERY_CHG: %s: ui soc is exception!
+3BATTERY_CHG: %s: Waiting for fw_update_ack
+restrict_cur
+charge_control_en_store
+battery_chg_add_debugfs
+wls_tx_pmic_vbus_enable
+3BATTERY_CHG: %s: delay 200ms 
+battery_chg_probe
+3BATTERY_CHG: %s: Failed to set ICL (%u uA) rc=%d
+3BATTERY_CHG: %s: is_atboot, otg_enable=%d
+Debug_Board
+3BATTERY_CHG: %s: Error in response for opcode %#x prop_id %u, rc=%d
+3BATTERY_CHG: %s: ex_ship_mode_enable=%d,ex_ship_mode_gpio[%d]
+3BATTERY_CHG: %s: otg_boost_en_gpio,otg_boost_ctrl_en_gpio=[%d,%d] 
+get_current_time
+3BATTERY_CHG: %s: step=%d
+resistance
+4BATTERY_CHG: %s: Wireless FW update not required
+3BATTERY_CHG: %s: is_atboot
+&bcdev->otg_boost_lock
+3BATTERY_CHG: %s: Failed to set FCC (%u uA), rc=%d
+3BATTERY_CHG: %s: Failed to read prop USB_ADAP_TYPE, rc=%d
+3BATTERY_CHG: %s: Battery is charging
+handle_notification
+battery_chg_state_cb
+otg_ocp_int
+3BATTERY_CHG: %s: step:%d --> %d: FAKE_CHARGING_UI=%d
+3BATTERY_CHG: %s: get fg vcell2 error, try to qcom_pm again.
+3BATTERY_CHG: %s: Couldn't get fcc rc=%d
+3BATTERY_CHG: %s: ### POWER_SUPPLY_PROP_ENGINE %d ###
+wireless_boost_en
+3BATTERY_CHG: %s: Failed to read USB_ADAP_TYPE rc=%d
+3BATTERY_CHG: %s: ex_ship_mode_gpio not defined
+3BATTERY_CHG: %s: usb_online=%d,last_status=%d,cs_flag[%d,%d,%d,%d,%d,%d],qcom_cs=%d,vivo_cs=%d
+3BATTERY_CHG: %s: get fg voltage_now error, try to qcom_pm again.
+3BATTERY_CHG: %s: get soc error from ex_fg. rc = %d,  ex_fg_i2_error=%d, ex_fg_fg_soc_ready=0x%x
+vivo_battery_handle_ui_soc
+wireless_fw_version_show
+HVDCP
+wls_chargre_monitor
+3BATTERY_CHG: %s: cms psy not found!
+wls_plugin_deinit
+3BATTERY_CHG: %s: otg preapre, waitting mcu init done...
+3BATTERY_CHG: %s: bc1p2_type=%d, usb_type=%d set type SDP
+3BATTERY_CHG: %s: Incorrect response length %zu for wls_fw_check_update
+3BATTERY_CHG: %s: Failed to send shutdown notification rc=%d
+3BATTERY_CHG: %s: Thermal levels should be in descending order
+3BATTERY_CHG: %s: Error in reading qcom,thermal-mitigation, rc=%d
+3BATTERY_CHG: %s: otg_ocp detect, otg_online=%d, otg_ocp_gpio_value=%d, otg_boost_en_gpio_value=%d, otg_ctrl_en_gpio=%d
+3BATTERY_CHG: %s: bsp_test_mode prop_id = %d, pst->prop[prop_id] = %d
+3BATTERY_CHG: %s: fchg ic volt is not ok, use platform volt: get_property_id error
+3BATTERY_CHG: %s: ### POWER_SUPPLY_PROP_FFC_CHARGE_FULL %d. ###
+fake_soc_store
+battery_psy_set_charge_current
+OTG reg failed, rc=%d
+3BATTERY_CHG: %s: %s:[%d,%d], wls_extern_boost_enable_for_dchg=%d
+Couldn't initialize extern boost otg regulator rc=%d
+3BATTERY_CHG: %s: Incorrect response length %zu
+0BATTERY_CHG: %s: Failed to write ship mode: %d
+battery_chg_parse_dt
+vivo,equalizing-chg-tbat-quit-limit
+otg_boost_en
+3BATTERY_CHG: %s: step:%d --> %d: battery_resistor_detect_state=%d
+HVDCP_3P5
+3BATTERY_CHG: %s: Set ICL to %u
+vivo,soc-decimal-enable
+vivo,ap-mos-ctl-gpio
+wls_chg_gpio_init
+3BATTERY_CHG: %s: Failed to register wireless power supply, rc=%d
+3BATTERY_CHG: %s: VFG: capacity changed = %d --> %d.
+3BATTERY_CHG: %s: get soc error from ex_fg. rc = %d,  ex_fg_i2_error=%d, ex_fg_fg_soc_ready=0x%x. no ready
+3BATTERY_CHG: %s: target_soc: %u delta_soc: %u
+idt9412
+3BATTERY_CHG: %s: vchg:write to reserved partition failed.ret=%d
+usb_typec_compliant
+3BATTERY_CHG: %s: wire and otg conflict 
+3BATTERY_CHG: %s: no wls psy found
+qti_battery_charger
+Failed to register thermal cooling device rc=%d
+3BATTERY_CHG: %s: not vivo power_supply prop.
+3BATTERY_CHG: %s: set POWER_SUPPLY_PROP_USB_OTG=%d.
+3BATTERY_CHG: %s: delay_power_supply_changed
+3BATTERY_CHG: %s: hBoost is clamped at %u mV
+vivo,ex-ship-mode-enable
+3BATTERY_CHG: %s: thermal_fcc_step %d is invalid
+wls_psy_get_prop
+3BATTERY_CHG: %s: step:%d --> %d: wls_rx_online=%d
+3BATTERY_CHG: %s: step:%d --> %d
+3BATTERY_CHG: %s: POWER_SUPPLY_PROP_CHARGE_COUNTER = %d 
+battery_psy_set_general_func
+3BATTERY_CHG: %s: wls_tx_pmic_vbus_is_enabled=%d
+3BATTERY_CHG: %s: otg preapre done!! enable otg now!
+&bcdev->rw_lock
+&bcdev->state_sem
+3BATTERY_CHG: %s: Failed to set ICL(%u uA), rc=%d
+3BATTERY_CHG: %s: psy: %s prop_id: %u val: %u
+3BATTERY_CHG: %s: update POWER_SUPPLY_PROP_TYPE: %d -> %d
+3BATTERY_CHG: %s: normal boot, otg_enable=%d, skip.
+3BATTERY_CHG: %s: Failed to read BATT_STATUS, rc=%d
+3BATTERY_CHG: %s: use_vir_bat_temp=%d
+3BATTERY_CHG: %s: use_cms_batt_thermal=%d
+3BATTERY_CHG: %s: coul[%d],batt_soc=%d,decimal[%d],soc_decimal[%d,%d],mah=%d,battery_capacity_is_exception=%d,vbus_change_delta_time_s=%d
+battery_chg_fw_write
+3BATTERY_CHG: %s: set battery_chg_ship_mode
+PD_PPS
+battery_chg_notify_enable
+get_power_supply
+3BATTERY_CHG: %s: successful
+3BATTERY_CHG: %s: wlsin_vout_voltage flag wls_rx_online.intval = %d 
+battery_chg_delay_power_supply_changed_work
+3BATTERY_CHG: %s: alternate_charger_psy_name=%s.
+qcom,wireless-fw-name
+vivo,otg-ctrl-en-gpio
+ex_fg_get_batt_capacity
+vivo_battery_handle_ui_decimal_soc
+display
+3BATTERY_CHG: %s: batt_soc=%d
+moisture_detection_en
+wireless_fw_crc
+3BATTERY_CHG: %s: vchg:write %d to reserved partition ok
+PD_DRP
+3BATTERY_CHG: %s: wls and wls reverse conflict 
+usb_psy_set_icl
+3BATTERY_CHG: %s: set wls_dchg_status=%d 
+battery_chg_check_status_work
+3BATTERY_CHG: %s: Incorrect response length %zu for wls_fw_push_buf_resp
+qcom,thermal-mitigation
+vivo,otg-waitting-mcu-prepare
+fg_common
+3BATTERY_CHG: %s: step:%d --> %d: soh_learning_dischg=%d
+3BATTERY_CHG: %s: cms_ai_switch_keep_soc_state = %d, health_status = 0x%X
+3BATTERY_CHG: %s: Waited for %d ms
+3BATTERY_CHG: %s: Failed to set charge_control_en, rc=%d
+3BATTERY_CHG: %s: get charge mode failed 
+extern_boost_regulator_disable
+3BATTERY_CHG: %s: Set FCC to %u uA
+3BATTERY_CHG: %s: USB_PRESENT: adsp=%d, wls_rx_online = %d 
+handle_message
+battery_chg_extern_ship_mode_enable
+battery_chg_init_psy
+vfcs_fg_common_support
+4BATTERY_CHG: %s: ui_soc_delta_time_s=%d,soc_smooth_time_limit=%d
+battery_psy_get_prop_batt_soc_decimal
+3BATTERY_CHG: %s: ### POWER_SUPPLY_PROP_VCELLX_TOO_HIGH %d. ###
+3BATTERY_CHG: %s: set ai charge state: ai_disable_charge_state=%d
+3BATTERY_CHG: %s: Failed to set charge_control thresholds, rc=%d
+3BATTERY_CHG: %s: Charge control end_threshold should be within [%u %u]
+wireless_type
+BrickID
+battery_chg_set_cur_charge_cntl_limit
+3BATTERY_CHG: %s: glink state is down
+3BATTERY_CHG: %s: otg enabled:[b2b_mos_enable,rx_chip_en,ap_p9415_en]=[%d,%d,%d]
+3BATTERY_CHG: %s: last usb_adap_type: %u
+vivo,use-vir-bat-temp
+battery_psy_set_prop_batt_soc_decimal
+wireless_fw_version
+wls_get_enable_rx_chip_en
+3BATTERY_CHG: %s: Failed to read USB_PRESENT rc=%d
+3BATTERY_CHG: %s: Failed to read BATT_VOLT_NOW, rc=%d
+3BATTERY_CHG: %s: Incorrect response length %zu for wls_fw_get_version
+vivo,div-psy-name
+3BATTERY_CHG: %s: get fg current_now error, try to qcom_pm again.
+3BATTERY_CHG: %s: adsp_health=%d, force to health_good; CMS driver will handle the health action.
+rtc0
+3BATTERY_CHG: %s: RTC read failed
+3BATTERY_CHG: %s: Failed to set charge control start threshold %u, rc=%d
+3BATTERY_CHG: %s: Couldn't get firmware rc=%d
+3BATTERY_CHG: %s: Invalid firmware
+block_tx
+smblib_get_rx_mode_enable
+3BATTERY_CHG: %s: Couldn't enable OTG rc=%d
+smblib_get_wls_reverse_switch_on
+3BATTERY_CHG: %s: delay 1200ms 
+battery_chg_reboot_notify
+3BATTERY_CHG: %s: vivo,soc-decimal-enable:: soc_decimal_enable=%d
+vivo,ex-ship-mode-gpio
+3BATTERY_CHG: %s: otg_ctrl_en_gpio not defined
+3BATTERY_CHG: %s: ap_mos_ctl_gpio not defined
+3BATTERY_CHG: %s: pmic vbat need double=%d mV
+3BATTERY_CHG: %s: batt recharge=%d to adsp
+6BATTERY_CHG: %s: WLS_PDET_EN:%d,wls_pdet_save_chg_status=%d
+3BATTERY_CHG: %s: super flashcharge result soc_decimal:%d,ui_soc=%d,chg.ui_soc=%d, high_soc__skip_decimal=%d
+3BATTERY_CHG: %s: Updating FW...
+3BATTERY_CHG: %s: regualtor name = %s, ret=%d,
+battery_chg_write
+3BATTERY_CHG: %s: switch is %s
+3BATTERY_CHG: %s: disable Extern_boost!!!
+vivo,otg-waitting-delay-wls-enable
+3BATTERY_CHG: %s: otg_ocp_int_gpio not defined
+3BATTERY_CHG: %s: otg_boost_en_gpio=%d
+3BATTERY_CHG: %s: Failed to register USB power supply, rc=%d
+3BATTERY_CHG: %s: set POWER_SUPPLY_STATUS_FULL
+6BATTERY_CHG: %s: stay last ui_soc
+calculate_delta_time
+adsp_fg_get_batt_capacity
+3BATTERY_CHG: %s: #### set factory_mode_state=%d
+3BATTERY_CHG: %s: Charge control start_threshold should be within [%u %u]
+ti,extern-boost-otg-vbus
+wls_set_enable_ap_ctrl_mos_sleep_en
+3BATTERY_CHG: %s: Failed to read BATT_CAPACITY, rc=%d
+3BATTERY_CHG: %s: Wireless FW update not done %d
+vivo,wls-charge-enable
+wls_chg_parse_dt
+3BATTERY_CHG: %s: ## ffc_keep_charging_ui=%d ##
+6BATTERY_CHG: %s: Wireless FW update done
+ship_mode_en_store
+battery_get_equalizing_chg_temp_state
+Error in registering with pmic_glink %d
+6BATTERY_CHG: %s: WLS_PDET_EN:%d,wls_pdet_save_engine=%d
+3BATTERY_CHG: %s: equalizing_chg_tbat_quit_limit=%d, equalizing_chg_tboard_quit_limit=%d
+qcom,shutdown-voltage
+3BATTERY_CHG: %s: failed to request otg_ocp_irq hander. rc=%d
+3BATTERY_CHG: %s: request extern_boost_otg_ocp_irq_handler done.
+3BATTERY_CHG: %s: VFG: detect: fg_common_present=%d.
+3BATTERY_CHG: %s: fg_common support, report soc=%d.
+6BATTERY_CHG: %s: ui_soc_delta_time_s=%d,chg_status=%d,chg.ui_soc=%d,soc=%d, vbat=%dmV, soc_decimal_from_user=%d, battery_capacity_is_exception=%d
+3BATTERY_CHG: %s: Couldn't get alternate_charger_psy status, rc=%d
+3BATTERY_CHG: %s: bat_soc=%d,ui_soc=%d,decimal=%d,chg->soc_decimal=%d
+fake_soc
+3BATTERY_CHG: %s: Invalid firmware size %zu
+3BATTERY_CHG: %s: system ui get board temperature status=%d [%d,%d,%d,%d,%d,%d] switch_state_value.intval = %d
+3BATTERY_CHG: %s: last_online=0x%02x,[b2b_mos_enable,rx_chip_en,otg_boost_en_gpio]=[%d,%d,%d]
+wls_get_charge_mode
+qcom-battery
+otg_use_usbin_vout
+vivo,use-cms-batt-thermal
+vivo,otg-boost-en-gpio
+3BATTERY_CHG: %s: ffc_charge_full_early_exit: so force adsp=full -> charging, wait timeout.
+3BATTERY_CHG: %s: fchg ic volt is not ok, use platform volt: read_property_id error
+../soc-repo/drivers/power/supply/vivo-qti_battery_charger.c
+3BATTERY_CHG: %s: tbat=%d, batt_soc=%d, decimal=%d, step=%d
+battery_psy_set_charge_threshold
+3BATTERY_CHG: %s: Set prop_id %d : value to %u
+extern_boost_otg_vbus
+3BATTERY_CHG: %s: psy name is NULL, error!!!
+3BATTERY_CHG: %s: otg_online:%d
+3BATTERY_CHG: %s: usb_online=%d, adsp_usb_online=%d, usb_type=%d
+battery_psy_get_prop
+3BATTERY_CHG: %s: get_STATUS_EX: Force return FULL, because : pval=%d, ffc_charge_full=%d, vcellx_too_high=%d, fake_ffc_full=%d.
+3BATTERY_CHG: %s: get bms CHARGE_COUNTER error, try to qcom_pm again.
+3BATTERY_CHG: %s: set ui_soc=%d
+battery_psy_set_charge_end_threshold
+wireless_fw_force_update
+3BATTERY_CHG: %s: Failed to get FW version rc=%d
+3BATTERY_CHG: %s: Failed to enable notification rc=%d
+battery_chg_update_usb_type_work
+4BATTERY_CHG: %s: Driver not initialized, pmic_glink state %d
+vivo,ex-fg-psy-name
+3BATTERY_CHG: %s: ap_mos_ctl_gpio=%d
+otg_ocp_irq
+3BATTERY_CHG: %s: shipmode_enable = %d, ship_mode_immediate=%d.
+battery
+wls_set_enable_rx_chip_en
+3BATTERY_CHG: %s: otg disabled:[b2b_mos_enable,rx_chip_en, ap_p9415_en]=[%d,%d, %d]
+write_property_id
+3BATTERY_CHG: %s: set ok_to_pd=%d
+3BATTERY_CHG: %s: Battery voltage is > %d mV
+3BATTERY_CHG: %s: Driver initialization failed: Dropping glink callback message: state %d
+3BATTERY_CHG: %s: failed to request otg_ctrl_en_gpio,rc=%d
+3BATTERY_CHG: %s: Failed to register battery power supply, rc=%d
+3BATTERY_CHG: %s: charge_status:[%d-%d-%d-%d-%d-%d]
+battery_psy_set_prop
+charge_control_en
+battery_parallel_cell_count
+3BATTERY_CHG: %s: fake_vbus_regulator=%d...
+3BATTERY_CHG: %s: %d
+3BATTERY_CHG: %s: POWER_SUPPLY_PROP_WLS_PMIC_VBUS_EN read error.
+3BATTERY_CHG: %s: enable:%d
+wls_get_wls_psy
+3BATTERY_CHG: %s: %s
+enable
+extern_boost_regulator_enable
+Failed to parse dt rc=%d
+get_property_id
+vivo,equalizing-chg-tboard-quit-limit
+3BATTERY_CHG: %s: otg_boost_en_gpio not defined
+3BATTERY_CHG: %s: otg_ocp detect, disable OTG directly, maybe 1.5~1.6A OCP occur!!
+3BATTERY_CHG: %s: cannot get usb_psy's POWER_SUPPLY_PROP_PRESENT
+3BATTERY_CHG: %s: ### learning_cycle_count %d. ###
+wireless_fw_update
+Unknown
+disable
+3BATTERY_CHG: %s: start
+battery_charger
+battery_chg_subsys_up_work
+0BATTERY_CHG: %s: Initiating a shutdown in 100 ms
+vivo,alternate_charger_name
+3BATTERY_CHG: %s: div_psy_name=%s.
+3BATTERY_CHG: %s: equalizing_chg_tbat_limit=%d, equalizing_chg_tboard_limit=%d
+3BATTERY_CHG: %s: bsp_test_mode i = %d, j = %d, pm8350bhs_vcell_mv = %d, pval->intval =  %d
+3BATTERY_CHG: %s: get fg vcell1 error, try to qcom_pm again.
+3BATTERY_CHG: %s: usb_online.intval = %d
+6BATTERY_CHG: %s: ui_change_durtion_ms=%lu, ui_soc_delta_time_s=%d[%d],chg_status=%d,chg.ui_soc=%d,soc=%d, vbat=%dmV, soc_decimal_from_user=%d, battery_capacity_is_exception=%d,engine=%d
+3BATTERY_CHG: %s: ## keep_ui=%d ##
+3BATTERY_CHG: %s: super flashcharge result soc_decimal:%d,ui_soc=%d,chg.ui_soc=%d
+3BATTERY_CHG: %s: wireless FW name is not specified
+3BATTERY_CHG: %s: sending partial FW chunk %u
+wireless_fw_update_time_ms
+usb_real_type
+register_hboost_event_notifier
+qti_battery_charger_get_prop
+unregister_hboost_event_notifier
+qti_battery_charger
+raw_notifier_chain_register
+raw_notifier_chain_unregister
+strcmp
+power_supply_get_by_name
+power_supply_get_drvdata
+power_supply_put
+__stack_chk_fail
+_printk
+fuelsummary_collect_value_v2
+power_supply_set_property
+msleep
+mutex_lock
+gpio_to_desc
+gpiod_direction_output_raw
+mutex_unlock
+gpiod_get_raw_value
+power_supply_changed
+system_wq
+queue_work_on
+rdev_get_drvdata
+cancel_delayed_work
+__platform_driver_register
+platform_driver_unregister
+down_read
+up_read
+pmic_glink_write
+wait_for_completion_timeout
+queue_delayed_work_on
+devm_kmalloc
+__mutex_init
+__init_rwsem
+__init_swait_queue_head
+delayed_work_timer_fn
+init_timer_key
+pmic_glink_register_client
+down_write
+up_write
+register_reboot_notifier
+of_property_read_string
+_dev_err
+of_find_property
+of_property_read_variable_u32_array
+of_get_named_gpio
+of_property_count_elems_of_size
+of_property_read_u32_index
+gpio_request
+gpiod_direction_input
+gpiod_to_irq
+devm_request_threaded_irq
+irq_set_irq_wake
+:/.I
+devm_power_supply_register
+cancel_work_sync
+complete
+unregister_reboot_notifier
+panel_event_notifier_unregister
+pmic_glink_unregister_client
+class_register
+devm_thermal_of_cooling_device_register
+device_set_wakeup_capable
+device_wakeup_enable
+class_unregister
+device_wakeup_disable
+debugfs_remove
+fake_cable_connect
+vbus_smpl_detect
+jiffies
+last_cable_disconnect_start_time
+kernel_power_off
+pm_wakeup_dev_event
+___ratelimit
+raw_notifier_call_chain
+usleep_range_state
+debugfs_create_dir
+debugfs_create_bool
+devm_regulator_register
+jiffies_to_msecs
+power_supply_get_property
+bsp_test_mode
+fake_FULL_ui
+vbus_connect_start_time
+sched_clock
+ktime_get_with_offset
+ns_to_timespec64
+rtc_class_open
+rtc_read_time
+rtc_valid_tm
+rtc_tm_to_time64
+rtc_class_close
+scnprintf
+kstrtobool
+kstrtoint
+pm_stay_awake
+pm_relax
+firmware_request_nowarn
+release_firmware
+__msecs_to_jiffies
+strstr
+memcpy
+memset
+kstrtou16
+kstrtouint
+vchg_reserved_rw
+module_layout
+mJ(O
+&@Sb
+(QM}"
+:/.I[
+}M}"
+OHRB
+R\J8
+bqlq
+raw_notifier_chain_register
+raw_notifier_chain_unregister
+strcmp
+power_supply_get_by_name
+power_supply_get_drvdata
+power_supply_put
+__stack_chk_fail
+_printk
+fuelsummary_collect_value_v2
+power_supply_set_property
+msleep
+mutex_lock
+gpio_to_desc
+gpiod_direction_output_raw
+mutex_unlock
+gpiod_get_raw_value
+power_supply_changed
+system_wq
+queue_work_on
+rdev_get_drvdata
+cancel_delayed_work
+__platform_driver_register
+platform_driver_unregister
+down_read
+up_read
+pmic_glink_write
+wait_for_completion_timeout
+queue_delayed_work_on
+devm_kmalloc
+__mutex_init
+__init_rwsem
+__init_swait_queue_head
+delayed_work_timer_fn
+init_timer_key
+pmic_glink_register_client
+down_write
+up_write
+register_reboot_notifier
+of_property_read_string
+_dev_err
+of_find_property
+of_property_read_variable_u32_array
+of_get_named_gpio
+of_property_count_elems_of_size
+of_property_read_u32_index
+gpio_request
+gpiod_direction_input
+gpiod_to_irq
+devm_request_threaded_irq
+irq_set_irq_wake
+devm_power_supply_register
+cancel_work_sync
+complete
+unregister_reboot_notifier
+panel_event_notifier_unregister
+pmic_glink_unregister_client
+class_register
+devm_thermal_of_cooling_device_register
+device_set_wakeup_capable
+device_wakeup_enable
+class_unregister
+device_wakeup_disable
+debugfs_remove
+fake_cable_connect
+vbus_smpl_detect
+jiffies
+last_cable_disconnect_start_time
+kernel_power_off
+pm_wakeup_dev_event
+___ratelimit
+raw_notifier_call_chain
+usleep_range_state
+debugfs_create_dir
+debugfs_create_bool
+devm_regulator_register
+jiffies_to_msecs
+power_supply_get_property
+bsp_test_mode
+fake_FULL_ui
+vbus_connect_start_time
+sched_clock
+ktime_get_with_offset
+ns_to_timespec64
+rtc_class_open
+rtc_read_time
+rtc_valid_tm
+rtc_tm_to_time64
+rtc_class_close
+scnprintf
+kstrtobool
+kstrtoint
+pm_stay_awake
+pm_relax
+firmware_request_nowarn
+release_firmware
+__msecs_to_jiffies
+strstr
+memcpy
+memset
+kstrtou16
+kstrtouint
+vchg_reserved_rw
+module_layout
+Linux
+Linux
+Android (12833971, +pgo, +bolt, +lto, +mlgo, based on r536225) clang version 19.0.1 (https://android.googlesource.com/toolchain/llvm-project b3a530ec6537146650e42be89f1089e9a3588460)
+)147:=
+GcPQRS
+TUVW|
+CJKLMNY^_O
+.note.gnu.property
+.note.Linux
+.rela.exit.text
+.rela.init.text
+.hyp.text
+.rela.text
+.comment
+.init.plt
+.hyp.bss
+__versions
+__ksymtab_strings
+.codetag.alloc_tags
+__version_ext_names
+.hyp.patchable_function_entries
+.hyp.event_ids
+__version_ext_crcs
+.modinfo
+.note.GNU-stack
+.llvm_addrsig
+.text.ftrace_trampoline
+.rela.init.eh_frame
+.rela.gnu.linkonce.this_module
+.note.gnu.build-id
+.shstrtab
+.strtab
+.rela__ksymtab
+.symtab
+__kcrctab
+.hyp.rodata
+.rela.rodata
+.rela.exit.data
+.rela.init.data
+.hyp.data
+.rela.data
+.rodata.__llvm_fs_discriminator__
+.rodata.str1.1
+power_supply_set_property
+power_supply_get_property
+of_find_property
+ex_fg_get_batt_capacity
+adsp_fg_get_batt_capacity
+is_panel_backlight_on.display_psy
+wls_get_wls_psy
+memcpy
+get_power_supply
+battery_chg_reboot_notify
+init_timer_key
+init_completion.__key
+battery_chg_probe.__key
+of_property_read_variable_u32_array
+of_property_read_u32_index
+pm_relax
+vchg_reserved_rw
+battery_parallel_cell_count_show
+usb_typec_compliant_show
+moisture_detection_status_show
+wireless_fw_update_time_ms_show
+restrict_cur_show
+wireless_fw_version_show
+wireless_boost_en_show
+moisture_detection_en_show
+charge_control_en_show
+ship_mode_en_show
+soh_show
+restrict_chg_show
+wireless_type_show
+usb_real_type_show
+resistance_show
+fake_soc_show
+gpiod_direction_output_raw
+qc_power_supply_wls_type_text
+qc_power_supply_usb_type_text
+gpiod_direction_input
+power_supply_put
+otg_use_usbin_vout
+wait_for_completion_timeout
+gpio_request
+vfcs_fg_common_support
+class_attr_battery_parallel_cell_count
+battery_psy_get_prop.last_usb_online_count
+kstrtouint
+kstrtoint
+pm_wakeup_dev_event
+wls_plugin_event
+vfcs_fg_common_support.fg_common_present
+pmic_glink_unregister_client
+pmic_glink_register_client
+class_attr_usb_typec_compliant
+wls_plugin_deinit
+__mutex_init
+extern_boost_regulator_init
+wls_plugin_init
+___ratelimit
+battery_chg_get_max_charge_cntl_limit
+battery_chg_set_cur_charge_cntl_limit
+battery_chg_get_cur_charge_cntl_limit
+memset
+ktime_get_with_offset
+wireless_fw_version_get
+vbus_smpl_detect
+fake_cable_connect
+battery_psy_get_prop.last_status
+battery_psy_get_alternate_charger_status
+battery_psy_get_prop.last_adsp_status
+class_attr_moisture_detection_status
+battery_psy_get_prop.last_pdet_charge_status
+battery_class_attrs
+validate_message._rs
+battery_class_groups
+battery_props
+wls_props
+usb_props
+extern_boost_regulator_ops
+battery_tcd_ops
+extern_boost_regulator_FAKE_ops
+wls_set_enable_b2b_mos
+wls_get_enable_b2b_mos
+____versions
+class_attr_wireless_fw_update_time_ms
+vivo_battery_handle_ui_decimal_soc.last_ui_change_time_ms
+__start_alloc_tags
+__stop_alloc_tags
+battery_chg_add_debugfs
+____version_ext_names
+__msecs_to_jiffies
+____version_ext_crcs
+jiffies_to_msecs
+vivo_battery_handle_ui_decimal_soc.last_ui_soc_delta_time_s
+vivo_battery_handle_ui_soc.last_ui_soc_delta_time_s
+class_attr_restrict_cur
+strstr
+_dev_err
+wls_chargre_monitor
+debugfs_create_dir
+battery_chg_driver
+class_unregister
+platform_driver_unregister
+panel_event_notifier_unregister
+raw_notifier_chain_unregister
+devm_power_supply_register
+class_register
+devm_regulator_register
+__platform_driver_register
+raw_notifier_chain_register
+devm_thermal_of_cooling_device_register
+extern_boost_otg_ocp_irq_handler
+hboost_notifier
+unregister_reboot_notifier
+__kstrtabns_unregister_hboost_event_notifier
+__crc_unregister_hboost_event_notifier
+__kstrtab_unregister_hboost_event_notifier
+__ksymtab_unregister_hboost_event_notifier
+__kstrtabns_register_hboost_event_notifier
+__crc_register_hboost_event_notifier
+__kstrtab_register_hboost_event_notifier
+__ksymtab_register_hboost_event_notifier
+system_wq
+gpiod_to_irq
+devm_request_threaded_irq
+battery_class_group
+battery_psy_set_prop
+wls_psy_set_prop
+usb_psy_set_prop
+battery_psy_get_prop
+wls_psy_get_prop
+usb_psy_get_prop
+__kstrtabns_qti_battery_charger_get_prop
+__crc_qti_battery_charger_get_prop
+__kstrtab_qti_battery_charger_get_prop
+__ksymtab_qti_battery_charger_get_prop
+strcmp
+msleep
+battery_prop_map
+wls_prop_map
+usb_prop_map
+usb_psy_supplied_to
+of_get_named_gpio
+firmware_request_nowarn
+class_attr_wireless_fw_version
+is_panel_backlight_on
+queue_work_on
+queue_delayed_work_on
+smblib_get_wls_reverse_switch_on
+raw_notifier_call_chain
+__kcfi_typeid_delayed_work_timer_fn
+rtc_class_open
+class_attr_wireless_boost_en
+wls_set_enable_rx_chip_en
+wls_get_enable_rx_chip_en
+wls_set_enable_ap_ctrl_mos_sleep_en
+wls_get_enable_ap_ctrl_mos_sleep_en
+class_attr_moisture_detection_en
+class_attr_charge_control_en
+class_attr_ship_mode_en
+rtc_valid_tm
+__init_rwsem
+wls_set_enable_otg_boost_ctrl
+kstrtobool
+debugfs_create_bool
+__stack_chk_fail
+usb_psy_set_icl
+_printk
+battery_chg_check_status_work
+battery_chg_subsys_up_work
+extern_boost_regulator_prepare_work
+battery_chg_update_usb_type_work
+cancel_delayed_work
+battery_chg_delay_power_supply_changed_work
+mutex_unlock
+sched_clock
+mutex_lock
+battery_chg_callback
+fake_FULL_ui
+vivo_battery_handle_ui_decimal_soc.skip_discharging_smooth
+vivo_battery_handle_ui_soc.skip_discharging_smooth
+class_attr_soh
+of_property_read_string
+class_attr_restrict_chg
+battery_get_equalizing_chg_temp_state.super_high_temp_box_flag
+scnprintf
+kernel_power_off
+of_property_count_elems_of_size
+debugfs_remove
+battery_chg_remove
+gpiod_get_raw_value
+battery_chg_fw_write
+up_write
+down_write
+pmic_glink_write
+battery_chg_write
+complete
+battery_get_equalizing_chg_temp_state
+usleep_range_state
+class_attr_wireless_fw_update
+wireless_fw_check_for_update
+class_attr_wireless_fw_force_update
+rtc_class_close
+wireless_fw_update_time_ms_store
+restrict_cur_store
+wireless_boost_en_store
+moisture_detection_en_store
+charge_control_en_store
+ship_mode_en_store
+restrict_chg_store
+wireless_fw_update_store
+wireless_fw_force_update_store
+wireless_fw_crc_store
+fake_soc_store
+release_firmware
+wireless_fw_send_firmware
+wls_set_enable_otg_boost_ctrl__waitting_mcu_prepare
+class_attr_wireless_type
+battery_chg_update_usb_type_work.last_adap_type
+class_attr_usb_real_type
+last_cable_disconnect_start_time
+vbus_connect_start_time
+handle_notification.last_notification_start_time
+get_current_time
+rtc_read_time
+calculate_delta_time
+power_supply_get_by_name
+init_module
+__this_module
+cleanup_module
+battery_chg_match_table
+extern_boost_regulator_disable
+device_wakeup_disable
+extern_boost_regulator_FAKE_disable
+device_set_wakeup_capable
+battery_chg_notify_enable
+smblib_get_wls_reverse_tx_enable
+wls_tx_pmic_vbus_enable
+extern_boost_regulator_is_enable
+extern_boost_regulator_FAKE_is_enable
+extern_boost_regulator_enable
+device_wakeup_enable
+smblib_get_rx_mode_enable
+extern_boost_regulator_FAKE_enable
+battery_psy_prop_is_writeable
+wls_psy_prop_is_writeable
+usb_psy_prop_is_writeable
+pm_stay_awake
+irq_set_irq_wake
+soc_volatge
+bsp_test_mode
+battery_chg_ship_mode
+wls_get_charge_mode
+class_attr_resistance
+battery_chg_probe
+get_property_id
+wls_tx_pmic_vbus_is_enabled
+power_supply_changed
+up_read
+down_read
+__init_swait_queue_head
+batt_psy_desc
+wls_psy_desc
+usb_psy_desc
+gpio_to_desc
+class_attr_wireless_fw_crc
+vivo_battery_handle_ui_decimal_soc
+vivo_battery_handle_ui_decimal_soc.last_ui_soc
+vivo_battery_handle_ui_soc.last_ui_soc
+vivo_battery_handle_ui_soc
+class_attr_fake_soc
+devm_kmalloc
+cancel_work_sync
+battery_psy_set_general_func
+battery_chg_state_cb
+power_supply_get_drvdata
+rdev_get_drvdata
+__llvm_fs_discriminator__
+_VCHG_CHARGE_MODE
+$d.99
+$d.89
+$d.79
+$d.69
+$d.159
+$d.59
+$d.149
+$x.49
+$d.139
+$x.39
+$d.129
+$x.29
+_note_19
+$d.119
+$x.19
+$d.19
+$d.109
+$x.9
+$d.9
+$x.98
+$x.88
+$x.78
+$x.68
+$d.158
+$x.58
+$d.148
+$d.48
+$x.138
+$d.38
+$x.128
+$d.28
+_note_18
+$x.118
+$d.18
+$x.108
+$d.8
+$d.97
+$d.87
+$d.77
+$d.67
+$d.57
+$d.147
+$x.47
+$d.137
+$x.37
+$d.127
+$x.27
+__UNIQUE_ID_license817
+$d.117
+$x.17
+$d.107
+$x.7
+$d.7
+$x.96
+$x.86
+$x.76
+$x.66
+$d.56
+$d.146
+$d.46
+__UNIQUE_ID_depends536
+$x.136
+$d.36
+$x.126
+$d.26
+kstrtou16
+__UNIQUE_ID_description816
+$x.116
+$d.16
+$x.106
+$d.6
+$d.95
+$d.85
+$d.75
+$d.65
+$x.55
+$x.45
+__UNIQUE_ID_scmversion535
+$d.135
+$x.35
+$d.125
+$x.25
+__UNIQUE_ID___addressable_cleanup_module815
+$d.115
+$x.15
+$d.105
+$x.5
+$d.5
+$x.94
+$x.84
+$x.74
+rtc_tm_to_time64
+ns_to_timespec64
+$x.64
+$d.54
+$d.44
+__UNIQUE_ID_name534
+__UNIQUE_ID_vermagic534
+$x.134
+$d.34
+$x.124
+$d.24
+__UNIQUE_ID___addressable_init_module814
+$x.114
+$d.14
+$x.104
+$d.4
+$d.93
+$d.83
+$d.73
+battery_chg_probe.__key.63
+$d.63
+battery_chg_probe.__key.53
+$x.53
+$d.143
+$x.43
+$d.133
+$x.33
+$d.123
+$x.23
+$d.113
+$x.13
+$d.13
+$d.103
+$x.3
+$d.3
+fuelsummary_collect_value_v2
+$x.92
+$x.82
+$x.72
+$x.62
+$d.52
+$d.42
+$x.132
+$d.32
+$x.122
+$d.22
+$x.112
+$d.12
+$x.102
+$d.2
+$d.91
+$d.81
+$d.71
+$d.61
+$x.51
+$d.141
+$x.41
+$d.131
+$x.31
+$d.121
+$x.21
+$d.111
+$x.11
+$d.11
+$d.101
+$d.1
+__UNIQUE_ID_built_with0
+$x.90
+$x.80
+$x.70
+$x.60
+$d.150
+$d.50
+$x.140
+$d.40
+$x.130
+$d.30
+$x.120
+$d.20
+$x.110
+$d.10
+$x.100

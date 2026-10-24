@@ -1,0 +1,216 @@
+0000000000048cc8 <vfcs_cms_check_scene_content>:
+   48cc8:      	paciasp
+   48ccc:      	stp	x29, x30, [sp, #-0x30]!
+   48cd0:      	str	x21, [sp, #0x10]
+   48cd4:      	stp	x20, x19, [sp, #0x20]
+   48cd8:      	mov	x29, sp
+   48cdc:      	ldr	x10, [x0, #0x140]
+   48ce0:      	mov	x19, x0
+   48ce4:      	cbz	x10, 0x48d44 <vfcs_cms_check_scene_content+0x7c>
+   48ce8:      	ldr	x8, [x19, #0x138]
+   48cec:      	cbz	x8, 0x48d44 <vfcs_cms_check_scene_content+0x7c>
+   48cf0:      	ldr	w9, [x8]
+   48cf4:      	cmp	w9, #0x1
+   48cf8:      	b.lt	0x48d44 <vfcs_cms_check_scene_content+0x7c>
+   48cfc:      	add	x20, x19, #0xc, lsl #12 // =0xc000
+   48d00:      	ldr	x11, [x20, #0x420]
+   48d04:      	cbz	x11, 0x48e44 <vfcs_cms_check_scene_content+0x17c>
+   48d08:      	ldr	x1, [x10]
+   48d0c:      	ldr	w2, [x8, #0x4]
+   48d10:      	mov	x0, x19
+   48d14:      	ldur	w16, [x11, #-0x4]
+   48d18:      	movk	w17, #0xe034
+   48d1c:      	movk	w17, #0x4dd7, lsl #16
+   48d20:      	cmp	w16, w17
+   48d24:      	b.eq	0x48d2c <vfcs_cms_check_scene_content+0x64>
+   48d28:      	brk	#0x822b
+   48d2c:      	blr	x11
+   48d30:      	ldr	x8, [x19, #0x138]
+   48d34:      	ldr	w9, [x8]
+   48d38:      	cmp	w9, #0x2
+   48d3c:      	b.ge	0x48e50 <vfcs_cms_check_scene_content+0x188>
+   48d40:      	b	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48d44:      	mov	w0, wzr
+   48d48:      	ldr	x8, [x19, #0x150]
+   48d4c:      	cbz	x8, 0x48dbc <vfcs_cms_check_scene_content+0xf4>
+   48d50:      	ldr	x8, [x19, #0x148]
+   48d54:      	cbz	x8, 0x48dbc <vfcs_cms_check_scene_content+0xf4>
+   48d58:      	mov	x20, xzr
+   48d5c:      	mov	w21, #0xc4e0
+   48d60:      	b	0x48d74 <vfcs_cms_check_scene_content+0xac>
+   48d64:      	add	x20, x20, #0x1
+   48d68:      	add	x21, x21, #0x18
+   48d6c:      	cmp	x20, #0x10
+   48d70:      	b.eq	0x48dbc <vfcs_cms_check_scene_content+0xf4>
+   48d74:      	ldr	x9, [x19, #0x148]
+   48d78:      	ldrsw	x8, [x9]
+   48d7c:      	cmp	x20, x8
+   48d80:      	b.ge	0x48dbc <vfcs_cms_check_scene_content+0xf4>
+   48d84:      	ldr	x8, [x19, x21]
+   48d88:      	cbz	x8, 0x48d64 <vfcs_cms_check_scene_content+0x9c>
+   48d8c:      	ldr	x10, [x19, #0x150]
+   48d90:      	ldr	w2, [x9, #0x4]
+   48d94:      	mov	x0, x19
+   48d98:      	ldr	x1, [x10, x20, lsl #3]
+   48d9c:      	ldur	w16, [x8, #-0x4]
+   48da0:      	movk	w17, #0xe034
+   48da4:      	movk	w17, #0x4dd7, lsl #16
+   48da8:      	cmp	w16, w17
+   48dac:      	b.eq	0x48db4 <vfcs_cms_check_scene_content+0xec>
+   48db0:      	brk	#0x8228
+   48db4:      	blr	x8
+   48db8:      	b	0x48d64 <vfcs_cms_check_scene_content+0x9c>
+   48dbc:      	ldr	x8, [x19, #0x160]
+   48dc0:      	cbz	x8, 0x48e30 <vfcs_cms_check_scene_content+0x168>
+   48dc4:      	ldr	x8, [x19, #0x158]
+   48dc8:      	cbz	x8, 0x48e30 <vfcs_cms_check_scene_content+0x168>
+   48dcc:      	mov	x20, xzr
+   48dd0:      	mov	w21, #0xc660
+   48dd4:      	b	0x48de8 <vfcs_cms_check_scene_content+0x120>
+   48dd8:      	add	x20, x20, #0x1
+   48ddc:      	add	x21, x21, #0x18
+   48de0:      	cmp	x20, #0xf
+   48de4:      	b.eq	0x48e30 <vfcs_cms_check_scene_content+0x168>
+   48de8:      	ldr	x9, [x19, #0x158]
+   48dec:      	ldrsw	x8, [x9]
+   48df0:      	cmp	x20, x8
+   48df4:      	b.ge	0x48e30 <vfcs_cms_check_scene_content+0x168>
+   48df8:      	ldr	x8, [x19, x21]
+   48dfc:      	cbz	x8, 0x48dd8 <vfcs_cms_check_scene_content+0x110>
+   48e00:      	ldr	x10, [x19, #0x160]
+   48e04:      	ldr	w2, [x9, #0x4]
+   48e08:      	mov	x0, x19
+   48e0c:      	ldr	x1, [x10, x20, lsl #3]
+   48e10:      	ldur	w16, [x8, #-0x4]
+   48e14:      	movk	w17, #0xe034
+   48e18:      	movk	w17, #0x4dd7, lsl #16
+   48e1c:      	cmp	w16, w17
+   48e20:      	b.eq	0x48e28 <vfcs_cms_check_scene_content+0x160>
+   48e24:      	brk	#0x8228
+   48e28:      	blr	x8
+   48e2c:      	b	0x48dd8 <vfcs_cms_check_scene_content+0x110>
+   48e30:      	ldp	x20, x19, [sp, #0x20]
+   48e34:      	ldr	x21, [sp, #0x10]
+   48e38:      	ldp	x29, x30, [sp], #0x30
+   48e3c:      	autiasp
+   48e40:      	ret
+   48e44:      	mov	w0, wzr
+   48e48:      	cmp	w9, #0x2
+   48e4c:      	b.lt	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48e50:      	ldr	x10, [x20, #0x438]
+   48e54:      	cbz	x10, 0x48e8c <vfcs_cms_check_scene_content+0x1c4>
+   48e58:      	ldr	x9, [x19, #0x140]
+   48e5c:      	ldr	w2, [x8, #0x4]
+   48e60:      	mov	x0, x19
+   48e64:      	ldr	x1, [x9, #0x8]
+   48e68:      	ldur	w16, [x10, #-0x4]
+   48e6c:      	movk	w17, #0xe034
+   48e70:      	movk	w17, #0x4dd7, lsl #16
+   48e74:      	cmp	w16, w17
+   48e78:      	b.eq	0x48e80 <vfcs_cms_check_scene_content+0x1b8>
+   48e7c:      	brk	#0x822a
+   48e80:      	blr	x10
+   48e84:      	ldr	x8, [x19, #0x138]
+   48e88:      	ldr	w9, [x8]
+   48e8c:      	cmp	w9, #0x3
+   48e90:      	b.lt	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48e94:      	ldr	x10, [x20, #0x450]
+   48e98:      	cbz	x10, 0x48ed0 <vfcs_cms_check_scene_content+0x208>
+   48e9c:      	ldr	x9, [x19, #0x140]
+   48ea0:      	ldr	w2, [x8, #0x4]
+   48ea4:      	mov	x0, x19
+   48ea8:      	ldr	x1, [x9, #0x10]
+   48eac:      	ldur	w16, [x10, #-0x4]
+   48eb0:      	movk	w17, #0xe034
+   48eb4:      	movk	w17, #0x4dd7, lsl #16
+   48eb8:      	cmp	w16, w17
+   48ebc:      	b.eq	0x48ec4 <vfcs_cms_check_scene_content+0x1fc>
+   48ec0:      	brk	#0x822a
+   48ec4:      	blr	x10
+   48ec8:      	ldr	x8, [x19, #0x138]
+   48ecc:      	ldr	w9, [x8]
+   48ed0:      	cmp	w9, #0x4
+   48ed4:      	b.lt	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48ed8:      	ldr	x10, [x20, #0x468]
+   48edc:      	cbz	x10, 0x48f14 <vfcs_cms_check_scene_content+0x24c>
+   48ee0:      	ldr	x9, [x19, #0x140]
+   48ee4:      	ldr	w2, [x8, #0x4]
+   48ee8:      	mov	x0, x19
+   48eec:      	ldr	x1, [x9, #0x18]
+   48ef0:      	ldur	w16, [x10, #-0x4]
+   48ef4:      	movk	w17, #0xe034
+   48ef8:      	movk	w17, #0x4dd7, lsl #16
+   48efc:      	cmp	w16, w17
+   48f00:      	b.eq	0x48f08 <vfcs_cms_check_scene_content+0x240>
+   48f04:      	brk	#0x822a
+   48f08:      	blr	x10
+   48f0c:      	ldr	x8, [x19, #0x138]
+   48f10:      	ldr	w9, [x8]
+   48f14:      	cmp	w9, #0x5
+   48f18:      	b.lt	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48f1c:      	ldr	x10, [x20, #0x480]
+   48f20:      	cbz	x10, 0x48f58 <vfcs_cms_check_scene_content+0x290>
+   48f24:      	ldr	x9, [x19, #0x140]
+   48f28:      	ldr	w2, [x8, #0x4]
+   48f2c:      	mov	x0, x19
+   48f30:      	ldr	x1, [x9, #0x20]
+   48f34:      	ldur	w16, [x10, #-0x4]
+   48f38:      	movk	w17, #0xe034
+   48f3c:      	movk	w17, #0x4dd7, lsl #16
+   48f40:      	cmp	w16, w17
+   48f44:      	b.eq	0x48f4c <vfcs_cms_check_scene_content+0x284>
+   48f48:      	brk	#0x822a
+   48f4c:      	blr	x10
+   48f50:      	ldr	x8, [x19, #0x138]
+   48f54:      	ldr	w9, [x8]
+   48f58:      	cmp	w9, #0x6
+   48f5c:      	b.lt	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48f60:      	ldr	x10, [x20, #0x498]
+   48f64:      	cbz	x10, 0x48f9c <vfcs_cms_check_scene_content+0x2d4>
+   48f68:      	ldr	x9, [x19, #0x140]
+   48f6c:      	ldr	w2, [x8, #0x4]
+   48f70:      	mov	x0, x19
+   48f74:      	ldr	x1, [x9, #0x28]
+   48f78:      	ldur	w16, [x10, #-0x4]
+   48f7c:      	movk	w17, #0xe034
+   48f80:      	movk	w17, #0x4dd7, lsl #16
+   48f84:      	cmp	w16, w17
+   48f88:      	b.eq	0x48f90 <vfcs_cms_check_scene_content+0x2c8>
+   48f8c:      	brk	#0x822a
+   48f90:      	blr	x10
+   48f94:      	ldr	x8, [x19, #0x138]
+   48f98:      	ldr	w9, [x8]
+   48f9c:      	cmp	w9, #0x7
+   48fa0:      	b.lt	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48fa4:      	ldr	x10, [x20, #0x4b0]
+   48fa8:      	cbz	x10, 0x48fe0 <vfcs_cms_check_scene_content+0x318>
+   48fac:      	ldr	x9, [x19, #0x140]
+   48fb0:      	ldr	w2, [x8, #0x4]
+   48fb4:      	mov	x0, x19
+   48fb8:      	ldr	x1, [x9, #0x30]
+   48fbc:      	ldur	w16, [x10, #-0x4]
+   48fc0:      	movk	w17, #0xe034
+   48fc4:      	movk	w17, #0x4dd7, lsl #16
+   48fc8:      	cmp	w16, w17
+   48fcc:      	b.eq	0x48fd4 <vfcs_cms_check_scene_content+0x30c>
+   48fd0:      	brk	#0x822a
+   48fd4:      	blr	x10
+   48fd8:      	ldr	x8, [x19, #0x138]
+   48fdc:      	ldr	w9, [x8]
+   48fe0:      	cmp	w9, #0x8
+   48fe4:      	b.lt	0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48fe8:      	ldr	x9, [x20, #0x4c8]
+   48fec:      	cbz	x9, 0x48d48 <vfcs_cms_check_scene_content+0x80>
+   48ff0:      	ldr	x10, [x19, #0x140]
+   48ff4:      	ldr	w2, [x8, #0x4]
+   48ff8:      	mov	x0, x19
+   48ffc:      	ldr	x1, [x10, #0x38]
+   49000:      	ldur	w16, [x9, #-0x4]
+   49004:      	movk	w17, #0xe034
+   49008:      	movk	w17, #0x4dd7, lsl #16
+   4900c:      	cmp	w16, w17
+   49010:      	b.eq	0x49018 <vfcs_cms_check_scene_content+0x350>
+   49014:      	brk	#0x8229
+   49018:      	blr	x9
+   4901c:      	b	0x48d48 <vfcs_cms_check_scene_content+0x80>
+

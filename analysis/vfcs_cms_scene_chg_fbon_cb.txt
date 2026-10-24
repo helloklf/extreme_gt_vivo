@@ -1,0 +1,428 @@
+0000000000060d78 <vfcs_cms_scene_chg_fbon_cb>:
+   60d78:      	paciasp
+   60d7c:      	stp	x29, x30, [sp, #-0x30]!
+   60d80:      	str	x21, [sp, #0x10]
+   60d84:      	stp	x20, x19, [sp, #0x20]
+   60d88:      	mov	x29, sp
+   60d8c:      	ldr	w8, [x0, #0x24]
+   60d90:      	cbz	w8, 0x60e10 <vfcs_cms_scene_chg_fbon_cb+0x98>
+   60d94:      	cbz	x1, 0x60e4c <vfcs_cms_scene_chg_fbon_cb+0xd4>
+   60d98:      	cmp	w2, #0x3
+   60d9c:      	b.le	0x60e4c <vfcs_cms_scene_chg_fbon_cb+0xd4>
+   60da0:      	cbz	x0, 0x60fb0 <vfcs_cms_scene_chg_fbon_cb+0x238>
+   60da4:      	ldr	x8, [x0, #0x10]
+   60da8:      	cbz	x8, 0x60db8 <vfcs_cms_scene_chg_fbon_cb+0x40>
+   60dac:      	ldr	w8, [x8]
+   60db0:      	tbnz	w8, #0x4, 0x61054 <vfcs_cms_scene_chg_fbon_cb+0x2dc>
+   60db4:      	tbnz	w8, #0x0, 0x6108c <vfcs_cms_scene_chg_fbon_cb+0x314>
+   60db8:      	ldr	w8, [x1]
+   60dbc:      	cbz	w8, 0x610cc <vfcs_cms_scene_chg_fbon_cb+0x354>
+   60dc0:      	add	x20, x0, #0xc, lsl #12  // =0xc000
+   60dc4:      	adrp	x9, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060dc4:  R_AARCH64_ADR_PREL_PG_HI21	.data+0x2654 ; vfcs_cms_scene_chg_fbon_cb.last_fb_state
+   60dc8:      	ldr	x8, [x20, #0x9f0]
+   60dcc:      	cbz	x8, 0x60e90 <vfcs_cms_scene_chg_fbon_cb+0x118>
+   60dd0:      	ldr	w11, [x9]
+		0000000000060dd0:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0x2654 ; vfcs_cms_scene_chg_fbon_cb.last_fb_state
+   60dd4:      	ldr	w10, [x20, #0x3f4]
+   60dd8:      	cmp	w11, w10
+   60ddc:      	b.ne	0x60e94 <vfcs_cms_scene_chg_fbon_cb+0x11c>
+   60de0:      	ldr	w9, [x20, #0xa40]
+   60de4:      	cbz	w9, 0x60eac <vfcs_cms_scene_chg_fbon_cb+0x134>
+   60de8:      	cbz	x0, 0x610fc <vfcs_cms_scene_chg_fbon_cb+0x384>
+   60dec:      	ldr	x8, [x0, #0x10]
+   60df0:      	cbz	x8, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60df4:      	ldr	w8, [x8]
+   60df8:      	tbnz	w8, #0x4, 0x61114 <vfcs_cms_scene_chg_fbon_cb+0x39c>
+   60dfc:      	tbz	w8, #0x2, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60e00:      	ldr	x1, [x0, #0x18]
+   60e04:      	adrp	x0, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060e04:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11a45 ; "\x013%s: %s: scene chg fbon isn't priority!\n"
+   60e08:      	add	x0, x0, #0x0
+		0000000000060e08:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11a45 ; "\x013%s: %s: scene chg fbon isn't priority!\n"
+   60e0c:      	b	0x610ec <vfcs_cms_scene_chg_fbon_cb+0x374>
+   60e10:      	adrp	x8, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060e10:  R_AARCH64_ADR_PREL_PG_HI21	.data+0x2654 ; vfcs_cms_scene_chg_fbon_cb.last_fb_state
+   60e14:      	mov	w9, #-0x1
+   60e18:      	adrp	x10, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060e18:  R_AARCH64_ADR_PREL_PG_HI21	.data+0x2658 ; vfcs_cms_scene_chg_fbon_cb.last_count
+   60e1c:      	str	w9, [x8]
+		0000000000060e1c:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0x2654 ; vfcs_cms_scene_chg_fbon_cb.last_fb_state
+   60e20:      	str	w9, [x10]
+		0000000000060e20:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0x2658 ; vfcs_cms_scene_chg_fbon_cb.last_count
+   60e24:      	cbz	x0, 0x60f7c <vfcs_cms_scene_chg_fbon_cb+0x204>
+   60e28:      	ldr	x8, [x0, #0x10]
+   60e2c:      	cbz	x8, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60e30:      	ldr	w8, [x8]
+   60e34:      	tbnz	w8, #0x4, 0x60ff8 <vfcs_cms_scene_chg_fbon_cb+0x280>
+   60e38:      	tbz	w8, #0x1, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60e3c:      	ldr	x1, [x0, #0x18]
+   60e40:      	adrp	x0, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060e40:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   60e44:      	add	x0, x0, #0x0
+		0000000000060e44:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304c6 ; "\x013%s: %s: usb isn't online!\n"
+   60e48:      	b	0x610ec <vfcs_cms_scene_chg_fbon_cb+0x374>
+   60e4c:      	cbz	x0, 0x60f88 <vfcs_cms_scene_chg_fbon_cb+0x210>
+   60e50:      	ldr	x8, [x0, #0x10]
+   60e54:      	cbz	x8, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60e58:      	ldr	w8, [x8]
+   60e5c:      	tbnz	w8, #0x4, 0x61010 <vfcs_cms_scene_chg_fbon_cb+0x298>
+   60e60:      	tbz	w8, #0x1, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60e64:      	cmp	w2, #0x4
+   60e68:      	adrp	x2, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060e68:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   60e6c:      	add	x2, x2, #0x0
+		0000000000060e6c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   60e70:      	cset	w4, lt
+   60e74:      	cmp	x1, #0x0
+   60e78:      	ldr	x1, [x0, #0x18]
+   60e7c:      	cset	w3, eq
+   60e80:      	adrp	x0, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060e80:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x97b7 ; '\x013%s: %s: scene chg fbon data(%d %d) param error,return\n'
+   60e84:      	add	x0, x0, #0x0
+		0000000000060e84:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x97b7 ; '\x013%s: %s: scene chg fbon data(%d %d) param error,return\n'
+   60e88:      	bl	0x60e88 <vfcs_cms_scene_chg_fbon_cb+0x110>
+		0000000000060e88:  R_AARCH64_CALL26	_printk
+   60e8c:      	b	0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60e90:      	ldr	w10, [x20, #0x3f4]
+   60e94:      	adrp	x11, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060e94:  R_AARCH64_ADR_PREL_PG_HI21	.data+0x2658 ; vfcs_cms_scene_chg_fbon_cb.last_count
+   60e98:      	str	w10, [x9]
+		0000000000060e98:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0x2654 ; vfcs_cms_scene_chg_fbon_cb.last_fb_state
+   60e9c:      	str	w8, [x11]
+		0000000000060e9c:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0x2658 ; vfcs_cms_scene_chg_fbon_cb.last_count
+   60ea0:      	mov	w11, w10
+   60ea4:      	ldr	w9, [x20, #0xa40]
+   60ea8:      	cbnz	w9, 0x60de8 <vfcs_cms_scene_chg_fbon_cb+0x70>
+   60eac:      	cbz	w11, 0x60f30 <vfcs_cms_scene_chg_fbon_cb+0x1b8>
+   60eb0:      	adrp	x9, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060eb0:  R_AARCH64_ADR_PREL_PG_HI21	.data+0x2658 ; vfcs_cms_scene_chg_fbon_cb.last_count
+   60eb4:      	ldrsw	x10, [x1, #0xc]
+   60eb8:      	ldrsw	x9, [x9]
+		0000000000060eb8:  R_AARCH64_LDST32_ABS_LO12_NC	.data+0x2658 ; vfcs_cms_scene_chg_fbon_cb.last_count
+   60ebc:      	sub	x8, x8, x9
+   60ec0:      	cmp	x8, x10
+   60ec4:      	b.ls	0x60f30 <vfcs_cms_scene_chg_fbon_cb+0x1b8>
+   60ec8:      	adrp	x8, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060ec8:  R_AARCH64_ADR_PREL_PG_HI21	power_off_charging_mode
+   60ecc:      	ldr	w8, [x8]
+		0000000000060ecc:  R_AARCH64_LDST32_ABS_LO12_NC	power_off_charging_mode
+   60ed0:      	cbnz	w8, 0x60f30 <vfcs_cms_scene_chg_fbon_cb+0x1b8>
+   60ed4:      	cbz	x0, 0x611cc <vfcs_cms_scene_chg_fbon_cb+0x454>
+   60ed8:      	ldr	x8, [x0, #0x10]
+   60edc:      	cbz	x8, 0x60eec <vfcs_cms_scene_chg_fbon_cb+0x174>
+   60ee0:      	ldr	w8, [x8]
+   60ee4:      	tbnz	w8, #0x4, 0x611ec <vfcs_cms_scene_chg_fbon_cb+0x474>
+   60ee8:      	tbnz	w8, #0x0, 0x6121c <vfcs_cms_scene_chg_fbon_cb+0x4a4>
+   60eec:      	ldr	x0, [x20, #0x300]
+   60ef0:      	ldr	w3, [x1, #0x8]
+   60ef4:      	adrp	x8, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060ef4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3a1bf ; 'FBON_EVENT'
+   60ef8:      	add	x8, x8, #0x0
+		0000000000060ef8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3a1bf ; 'FBON_EVENT'
+   60efc:      	mov	x19, x1
+   60f00:      	mov	w2, #0x1
+   60f04:      	mov	x1, x8
+   60f08:      	bl	0x60f08 <vfcs_cms_scene_chg_fbon_cb+0x190>
+		0000000000060f08:  R_AARCH64_CALL26	vote
+   60f0c:      	ldr	w9, [x20, #0x380]
+   60f10:      	cmp	w9, #0x6
+   60f14:      	b.lt	0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60f18:      	ldr	x0, [x20, #0x308]
+   60f1c:      	ldr	w3, [x19, #0x4]
+   60f20:      	adrp	x1, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060f20:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3a1bf ; 'FBON_EVENT'
+   60f24:      	add	x1, x1, #0x0
+		0000000000060f24:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3a1bf ; 'FBON_EVENT'
+   60f28:      	mov	w2, #0x1
+   60f2c:      	b	0x60f74 <vfcs_cms_scene_chg_fbon_cb+0x1fc>
+   60f30:      	cbz	x0, 0x6116c <vfcs_cms_scene_chg_fbon_cb+0x3f4>
+   60f34:      	ldr	x8, [x0, #0x10]
+   60f38:      	cbz	x8, 0x60f48 <vfcs_cms_scene_chg_fbon_cb+0x1d0>
+   60f3c:      	ldr	w8, [x8]
+   60f40:      	tbnz	w8, #0x4, 0x61184 <vfcs_cms_scene_chg_fbon_cb+0x40c>
+   60f44:      	tbnz	w8, #0x0, 0x611b0 <vfcs_cms_scene_chg_fbon_cb+0x438>
+   60f48:      	ldr	x0, [x20, #0x300]
+   60f4c:      	adrp	x19, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060f4c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3a1bf ; 'FBON_EVENT'
+   60f50:      	add	x19, x19, #0x0
+		0000000000060f50:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3a1bf ; 'FBON_EVENT'
+   60f54:      	mov	x1, x19
+   60f58:      	mov	w2, wzr
+   60f5c:      	mov	w3, wzr
+   60f60:      	bl	0x60f60 <vfcs_cms_scene_chg_fbon_cb+0x1e8>
+		0000000000060f60:  R_AARCH64_CALL26	vote
+   60f64:      	ldr	x0, [x20, #0x308]
+   60f68:      	mov	x1, x19
+   60f6c:      	mov	w2, wzr
+   60f70:      	mov	w3, wzr
+   60f74:      	bl	0x60f74 <vfcs_cms_scene_chg_fbon_cb+0x1fc>
+		0000000000060f74:  R_AARCH64_CALL26	vote
+   60f78:      	b	0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60f7c:      	adrp	x0, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060f7c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   60f80:      	add	x0, x0, #0x0
+		0000000000060f80:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x15d0e ; "\x013%s: usb isn't online!\n"
+   60f84:      	b	0x61104 <vfcs_cms_scene_chg_fbon_cb+0x38c>
+   60f88:      	cmp	w2, #0x4
+   60f8c:      	adrp	x0, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060f8c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3ecc ; '\x013%s: scene chg fbon data(%d %d) param error,return\n'
+   60f90:      	add	x0, x0, #0x0
+		0000000000060f90:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3ecc ; '\x013%s: scene chg fbon data(%d %d) param error,return\n'
+   60f94:      	cset	w3, lt
+   60f98:      	cmp	x1, #0x0
+   60f9c:      	adrp	x1, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060f9c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   60fa0:      	add	x1, x1, #0x0
+		0000000000060fa0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   60fa4:      	cset	w2, eq
+   60fa8:      	bl	0x60fa8 <vfcs_cms_scene_chg_fbon_cb+0x230>
+		0000000000060fa8:  R_AARCH64_CALL26	_printk
+   60fac:      	b	0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   60fb0:      	ldp	w2, w3, [x1]
+   60fb4:      	ldp	w4, w5, [x1, #0x8]
+   60fb8:      	adrp	x8, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060fb8:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x26d36 ; '\x013%s: scene chg fbon data:(%d %d %d %d)\n'
+   60fbc:      	add	x8, x8, #0x0
+		0000000000060fbc:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x26d36 ; '\x013%s: scene chg fbon data:(%d %d %d %d)\n'
+   60fc0:      	adrp	x9, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060fc0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   60fc4:      	add	x9, x9, #0x0
+		0000000000060fc4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   60fc8:      	mov	x19, x0
+   60fcc:      	mov	x0, x8
+   60fd0:      	mov	x20, x1
+   60fd4:      	mov	x1, x9
+   60fd8:      	bl	0x60fd8 <vfcs_cms_scene_chg_fbon_cb+0x260>
+		0000000000060fd8:  R_AARCH64_CALL26	_printk
+   60fdc:      	ldr	w8, [x20]
+   60fe0:      	mov	x1, x20
+   60fe4:      	mov	x0, x19
+   60fe8:      	cbnz	w8, 0x60dc0 <vfcs_cms_scene_chg_fbon_cb+0x48>
+   60fec:      	adrp	x0, 0x60000 <vfcs_cms_scene_pro_fchg_clk_adjust_cb+0x98>
+		0000000000060fec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2bd64 ; "\x013%s: scene chg fbon isn't enabled!\n"
+   60ff0:      	add	x0, x0, #0x0
+		0000000000060ff0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2bd64 ; "\x013%s: scene chg fbon isn't enabled!\n"
+   60ff4:      	b	0x61104 <vfcs_cms_scene_chg_fbon_cb+0x38c>
+   60ff8:      	mov	x19, x0
+   60ffc:      	bl	0x48bfc <get_android_time>
+   61000:      	ldr	x2, [x19, #0x18]
+   61004:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061004:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   61008:      	add	x0, x0, #0x0
+		0000000000061008:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x304a5 ; "\x013[%s]%s: %s: usb isn't online!\n"
+   6100c:      	b	0x61140 <vfcs_cms_scene_chg_fbon_cb+0x3c8>
+   61010:      	cmp	w2, #0x4
+   61014:      	mov	x21, x0
+   61018:      	cset	w19, lt
+   6101c:      	cmp	x1, #0x0
+   61020:      	cset	w20, eq
+   61024:      	bl	0x48bfc <get_android_time>
+   61028:      	ldr	x2, [x21, #0x18]
+   6102c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006102c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3dd39 ; '\x013[%s]%s: %s: scene chg fbon data(%d %d) param error,return\n'
+   61030:      	add	x0, x0, #0x0
+		0000000000061030:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3dd39 ; '\x013[%s]%s: %s: scene chg fbon data(%d %d) param error,return\n'
+   61034:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061034:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   61038:      	add	x1, x1, #0x0
+		0000000000061038:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   6103c:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006103c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61040:      	add	x3, x3, #0x0
+		0000000000061040:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61044:      	mov	w4, w20
+   61048:      	mov	w5, w19
+   6104c:      	bl	0x6104c <vfcs_cms_scene_chg_fbon_cb+0x2d4>
+		000000000006104c:  R_AARCH64_CALL26	_printk
+   61050:      	b	0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   61054:      	mov	x19, x0
+   61058:      	mov	x20, x1
+   6105c:      	bl	0x48bfc <get_android_time>
+   61060:      	ldp	w4, w5, [x20]
+   61064:      	ldp	w6, w7, [x20, #0x8]
+   61068:      	ldr	x2, [x19, #0x18]
+   6106c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006106c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x4a17c ; '\x013[%s]%s: %s: scene chg fbon data:(%d %d %d %d)\n'
+   61070:      	add	x0, x0, #0x0
+		0000000000061070:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x4a17c ; '\x013[%s]%s: %s: scene chg fbon data:(%d %d %d %d)\n'
+   61074:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061074:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   61078:      	add	x1, x1, #0x0
+		0000000000061078:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   6107c:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006107c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61080:      	add	x3, x3, #0x0
+		0000000000061080:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61084:      	bl	0x61084 <vfcs_cms_scene_chg_fbon_cb+0x30c>
+		0000000000061084:  R_AARCH64_CALL26	_printk
+   61088:      	b	0x610bc <vfcs_cms_scene_chg_fbon_cb+0x344>
+   6108c:      	ldr	x8, [x0, #0x18]
+   61090:      	adrp	x9, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061090:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x30ca3 ; '\x013%s: %s: scene chg fbon data:(%d %d %d %d)\n'
+   61094:      	add	x9, x9, #0x0
+		0000000000061094:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x30ca3 ; '\x013%s: %s: scene chg fbon data:(%d %d %d %d)\n'
+   61098:      	ldp	w3, w4, [x1]
+   6109c:      	ldp	w5, w6, [x1, #0x8]
+   610a0:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000610a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   610a4:      	add	x2, x2, #0x0
+		00000000000610a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   610a8:      	mov	x19, x0
+   610ac:      	mov	x0, x9
+   610b0:      	mov	x20, x1
+   610b4:      	mov	x1, x8
+   610b8:      	bl	0x610b8 <vfcs_cms_scene_chg_fbon_cb+0x340>
+		00000000000610b8:  R_AARCH64_CALL26	_printk
+   610bc:      	mov	x1, x20
+   610c0:      	mov	x0, x19
+   610c4:      	ldr	w8, [x1]
+   610c8:      	cbnz	w8, 0x60dc0 <vfcs_cms_scene_chg_fbon_cb+0x48>
+   610cc:      	ldr	x8, [x0, #0x10]
+   610d0:      	cbz	x8, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   610d4:      	ldr	w8, [x8]
+   610d8:      	tbnz	w8, #0x4, 0x6112c <vfcs_cms_scene_chg_fbon_cb+0x3b4>
+   610dc:      	tbz	w8, #0x1, 0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   610e0:      	ldr	x1, [x0, #0x18]
+   610e4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000610e4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1abd2 ; "\x013%s: %s: scene chg fbon isn't enabled!\n"
+   610e8:      	add	x0, x0, #0x0
+		00000000000610e8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1abd2 ; "\x013%s: %s: scene chg fbon isn't enabled!\n"
+   610ec:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000610ec:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   610f0:      	add	x2, x2, #0x0
+		00000000000610f0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   610f4:      	bl	0x610f4 <vfcs_cms_scene_chg_fbon_cb+0x37c>
+		00000000000610f4:  R_AARCH64_CALL26	_printk
+   610f8:      	b	0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   610fc:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000610fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x21b14 ; "\x013%s: scene chg fbon isn't priority!\n"
+   61100:      	add	x0, x0, #0x0
+		0000000000061100:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x21b14 ; "\x013%s: scene chg fbon isn't priority!\n"
+   61104:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061104:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61108:      	add	x1, x1, #0x0
+		0000000000061108:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   6110c:      	bl	0x6110c <vfcs_cms_scene_chg_fbon_cb+0x394>
+		000000000006110c:  R_AARCH64_CALL26	_printk
+   61110:      	b	0x61154 <vfcs_cms_scene_chg_fbon_cb+0x3dc>
+   61114:      	mov	x19, x0
+   61118:      	bl	0x48bfc <get_android_time>
+   6111c:      	ldr	x2, [x19, #0x18]
+   61120:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061120:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x21ae6 ; "\x013[%s]%s: %s: scene chg fbon isn't priority!\n"
+   61124:      	add	x0, x0, #0x0
+		0000000000061124:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x21ae6 ; "\x013[%s]%s: %s: scene chg fbon isn't priority!\n"
+   61128:      	b	0x61140 <vfcs_cms_scene_chg_fbon_cb+0x3c8>
+   6112c:      	mov	x19, x0
+   61130:      	bl	0x48bfc <get_android_time>
+   61134:      	ldr	x2, [x19, #0x18]
+   61138:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061138:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0xea93 ; "\x013[%s]%s: %s: scene chg fbon isn't enabled!\n"
+   6113c:      	add	x0, x0, #0x0
+		000000000006113c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0xea93 ; "\x013[%s]%s: %s: scene chg fbon isn't enabled!\n"
+   61140:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061140:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   61144:      	add	x1, x1, #0x0
+		0000000000061144:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   61148:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061148:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   6114c:      	add	x3, x3, #0x0
+		000000000006114c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61150:      	bl	0x61150 <vfcs_cms_scene_chg_fbon_cb+0x3d8>
+		0000000000061150:  R_AARCH64_CALL26	_printk
+   61154:      	mov	w0, wzr
+   61158:      	ldp	x20, x19, [sp, #0x20]
+   6115c:      	ldr	x21, [sp, #0x10]
+   61160:      	ldp	x29, x30, [sp], #0x30
+   61164:      	autiasp
+   61168:      	ret
+   6116c:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006116c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2453e ; '\x013%s: fbon cancel vote\n'
+   61170:      	add	x0, x0, #0x0
+		0000000000061170:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2453e ; '\x013%s: fbon cancel vote\n'
+   61174:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061174:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61178:      	add	x1, x1, #0x0
+		0000000000061178:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   6117c:      	bl	0x6117c <vfcs_cms_scene_chg_fbon_cb+0x404>
+		000000000006117c:  R_AARCH64_CALL26	_printk
+   61180:      	b	0x60f48 <vfcs_cms_scene_chg_fbon_cb+0x1d0>
+   61184:      	mov	x19, x0
+   61188:      	bl	0x48bfc <get_android_time>
+   6118c:      	ldr	x2, [x19, #0x18]
+   61190:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061190:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x26d5f ; '\x013[%s]%s: %s: fbon cancel vote\n'
+   61194:      	add	x0, x0, #0x0
+		0000000000061194:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x26d5f ; '\x013[%s]%s: %s: fbon cancel vote\n'
+   61198:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061198:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   6119c:      	add	x1, x1, #0x0
+		000000000006119c:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   611a0:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000611a0:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   611a4:      	add	x3, x3, #0x0
+		00000000000611a4:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   611a8:      	bl	0x611a8 <vfcs_cms_scene_chg_fbon_cb+0x430>
+		00000000000611a8:  R_AARCH64_CALL26	_printk
+   611ac:      	b	0x60f48 <vfcs_cms_scene_chg_fbon_cb+0x1d0>
+   611b0:      	ldr	x1, [x0, #0x18]
+   611b4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000611b4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x339b6 ; '\x013%s: %s: fbon cancel vote\n'
+   611b8:      	add	x0, x0, #0x0
+		00000000000611b8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x339b6 ; '\x013%s: %s: fbon cancel vote\n'
+   611bc:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000611bc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   611c0:      	add	x2, x2, #0x0
+		00000000000611c0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   611c4:      	bl	0x611c4 <vfcs_cms_scene_chg_fbon_cb+0x44c>
+		00000000000611c4:  R_AARCH64_CALL26	_printk
+   611c8:      	b	0x60f48 <vfcs_cms_scene_chg_fbon_cb+0x1d0>
+   611cc:      	adrp	x8, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000611cc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   611d0:      	add	x8, x8, #0x0
+		00000000000611d0:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   611d4:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000611d4:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x3b37c ; '\x013%s: fbon vote\n'
+   611d8:      	add	x0, x0, #0x0
+		00000000000611d8:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x3b37c ; '\x013%s: fbon vote\n'
+   611dc:      	mov	x19, x1
+   611e0:      	mov	x1, x8
+   611e4:      	bl	0x611e4 <vfcs_cms_scene_chg_fbon_cb+0x46c>
+		00000000000611e4:  R_AARCH64_CALL26	_printk
+   611e8:      	b	0x6123c <vfcs_cms_scene_chg_fbon_cb+0x4c4>
+   611ec:      	mov	x21, x0
+   611f0:      	mov	x19, x1
+   611f4:      	bl	0x48bfc <get_android_time>
+   611f8:      	ldr	x2, [x21, #0x18]
+   611fc:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		00000000000611fc:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x29662 ; '\x013[%s]%s: %s: fbon vote\n'
+   61200:      	add	x0, x0, #0x0
+		0000000000061200:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x29662 ; '\x013[%s]%s: %s: fbon vote\n'
+   61204:      	adrp	x1, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061204:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15fc ; __android_time
+   61208:      	add	x1, x1, #0x0
+		0000000000061208:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15fc ; __android_time
+   6120c:      	adrp	x3, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		000000000006120c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61210:      	add	x3, x3, #0x0
+		0000000000061210:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61214:      	bl	0x61214 <vfcs_cms_scene_chg_fbon_cb+0x49c>
+		0000000000061214:  R_AARCH64_CALL26	_printk
+   61218:      	b	0x6123c <vfcs_cms_scene_chg_fbon_cb+0x4c4>
+   6121c:      	ldr	x8, [x0, #0x18]
+   61220:      	adrp	x0, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061220:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x11a6f ; '\x013%s: %s: fbon vote\n'
+   61224:      	add	x0, x0, #0x0
+		0000000000061224:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x11a6f ; '\x013%s: %s: fbon vote\n'
+   61228:      	adrp	x2, 0x61000 <vfcs_cms_scene_chg_fbon_cb+0x288>
+		0000000000061228:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   6122c:      	add	x2, x2, #0x0
+		000000000006122c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x1f586 ; 'vfcs_cms_scene_chg_fbon_cb'
+   61230:      	mov	x19, x1
+   61234:      	mov	x1, x8
+   61238:      	bl	0x61238 <vfcs_cms_scene_chg_fbon_cb+0x4c0>
+		0000000000061238:  R_AARCH64_CALL26	_printk
+   6123c:      	mov	x1, x19
+   61240:      	b	0x60eec <vfcs_cms_scene_chg_fbon_cb+0x174>
+

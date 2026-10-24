@@ -1,0 +1,82 @@
+000000000002cd74 <vfcs_cms_set_module_data>:
+   2cd74:      	paciasp
+   2cd78:      	sub	sp, sp, #0x30
+   2cd7c:      	stp	x29, x30, [sp, #0x10]
+   2cd80:      	str	x19, [sp, #0x20]
+   2cd84:      	add	x29, sp, #0x10
+   2cd88:      	mrs	x9, SP_EL0
+   2cd8c:      	ldr	x9, [x9, #0x710]
+   2cd90:      	str	x9, [sp, #0x8]
+   2cd94:      	str	xzr, [sp]
+   2cd98:      	cbz	x1, 0x2cdb8 <vfcs_cms_set_module_data+0x44>
+   2cd9c:      	mov	w8, w2
+   2cda0:      	mov	x2, sp
+   2cda4:      	mov	x0, x1
+   2cda8:      	mov	w1, w8
+   2cdac:      	str	w3, [sp]
+   2cdb0:      	bl	0x2cdb0 <vfcs_cms_set_module_data+0x3c>
+		000000000002cdb0:  R_AARCH64_CALL26	power_supply_set_property
+   2cdb4:      	b	0x2cddc <vfcs_cms_set_module_data+0x68>
+   2cdb8:      	mov	x19, x0
+   2cdbc:      	bl	0x2cdbc <vfcs_cms_set_module_data+0x48>
+		000000000002cdbc:  R_AARCH64_CALL26	vfcs_cms_ensure_psy_available
+   2cdc0:      	cbz	x19, 0x2ce04 <vfcs_cms_set_module_data+0x90>
+   2cdc4:      	ldr	x8, [x19, #0x10]
+   2cdc8:      	cbz	x8, 0x2cdd8 <vfcs_cms_set_module_data+0x64>
+   2cdcc:      	ldr	w8, [x8]
+   2cdd0:      	tbnz	w8, #0x4, 0x2ce1c <vfcs_cms_set_module_data+0xa8>
+   2cdd4:      	tbnz	w8, #0x1, 0x2ce44 <vfcs_cms_set_module_data+0xd0>
+   2cdd8:      	mov	w0, #-0x13
+   2cddc:      	mrs	x8, SP_EL0
+   2cde0:      	ldr	x8, [x8, #0x710]
+   2cde4:      	ldr	x9, [sp, #0x8]
+   2cde8:      	cmp	x8, x9
+   2cdec:      	b.ne	0x2ce60 <vfcs_cms_set_module_data+0xec>
+   2cdf0:      	ldp	x29, x30, [sp, #0x10]
+   2cdf4:      	ldr	x19, [sp, #0x20]
+   2cdf8:      	add	sp, sp, #0x30
+   2cdfc:      	autiasp
+   2ce00:      	ret
+   2ce04:      	adrp	x0, 0x2c000 <vfcs_cms_zps_adjust_shutdown_volt_work+0x128>
+		000000000002ce04:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x2d8d0 ; '\x013%s: psy not found!\n'
+   2ce08:      	add	x0, x0, #0x0
+		000000000002ce08:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x2d8d0 ; '\x013%s: psy not found!\n'
+   2ce0c:      	adrp	x1, 0x2c000 <vfcs_cms_zps_adjust_shutdown_volt_work+0x128>
+		000000000002ce0c:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x10c4a ; 'vfcs_cms_set_module_data'
+   2ce10:      	add	x1, x1, #0x0
+		000000000002ce10:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x10c4a ; 'vfcs_cms_set_module_data'
+   2ce14:      	bl	0x2ce14 <vfcs_cms_set_module_data+0xa0>
+		000000000002ce14:  R_AARCH64_CALL26	_printk
+   2ce18:      	b	0x2cdd8 <vfcs_cms_set_module_data+0x64>
+   2ce1c:      	bl	0x2ca3c <get_android_time>
+   2ce20:      	ldr	x2, [x19, #0x18]
+   2ce24:      	adrp	x0, 0x2c000 <vfcs_cms_zps_adjust_shutdown_volt_work+0x128>
+		000000000002ce24:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x5f4c ; '\x013[%s]%s: %s: psy not found!\n'
+   2ce28:      	add	x0, x0, #0x0
+		000000000002ce28:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x5f4c ; '\x013[%s]%s: %s: psy not found!\n'
+   2ce2c:      	adrp	x1, 0x2c000 <vfcs_cms_zps_adjust_shutdown_volt_work+0x128>
+		000000000002ce2c:  R_AARCH64_ADR_PREL_PG_HI21	.bss+0x15b0 ; __android_time
+   2ce30:      	add	x1, x1, #0x0
+		000000000002ce30:  R_AARCH64_ADD_ABS_LO12_NC	.bss+0x15b0 ; __android_time
+   2ce34:      	adrp	x3, 0x2c000 <vfcs_cms_zps_adjust_shutdown_volt_work+0x128>
+		000000000002ce34:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x10c4a ; 'vfcs_cms_set_module_data'
+   2ce38:      	add	x3, x3, #0x0
+		000000000002ce38:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x10c4a ; 'vfcs_cms_set_module_data'
+   2ce3c:      	bl	0x2ce3c <vfcs_cms_set_module_data+0xc8>
+		000000000002ce3c:  R_AARCH64_CALL26	_printk
+   2ce40:      	b	0x2cdd8 <vfcs_cms_set_module_data+0x64>
+   2ce44:      	ldr	x1, [x19, #0x18]
+   2ce48:      	adrp	x0, 0x2c000 <vfcs_cms_zps_adjust_shutdown_volt_work+0x128>
+		000000000002ce48:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x449e3 ; '\x013%s: %s: psy not found!\n'
+   2ce4c:      	add	x0, x0, #0x0
+		000000000002ce4c:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x449e3 ; '\x013%s: %s: psy not found!\n'
+   2ce50:      	adrp	x2, 0x2c000 <vfcs_cms_zps_adjust_shutdown_volt_work+0x128>
+		000000000002ce50:  R_AARCH64_ADR_PREL_PG_HI21	.rodata.str1.1+0x10c4a ; 'vfcs_cms_set_module_data'
+   2ce54:      	add	x2, x2, #0x0
+		000000000002ce54:  R_AARCH64_ADD_ABS_LO12_NC	.rodata.str1.1+0x10c4a ; 'vfcs_cms_set_module_data'
+   2ce58:      	bl	0x2ce58 <vfcs_cms_set_module_data+0xe4>
+		000000000002ce58:  R_AARCH64_CALL26	_printk
+   2ce5c:      	b	0x2cdd8 <vfcs_cms_set_module_data+0x64>
+   2ce60:      	bl	0x2ce60 <vfcs_cms_set_module_data+0xec>
+		000000000002ce60:  R_AARCH64_CALL26	__stack_chk_fail
+
