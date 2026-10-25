@@ -206,14 +206,138 @@ def read_dt_table(serial, node, prop):
     return list(struct.unpack('>%di' % (len(data) // 4), data))
 
 
+
+def read_dt_table_file(path):
+    """Read a DT table either as raw big-endian-u32 property file or as
+    a text file of ints (comma/space/newline separated)."""
+    data = open(path, 'rb').read()
+    try:
+        txt = data.decode('ascii')
+        if all(c in '0123456789-, \t\n' for c in txt):
+            return [int(x) for x in re.split(r'[\s,]+', txt.strip()) if x]
+    except UnicodeDecodeError:
+        pass
+    if len(data) % 4:
+        return None
+    return list(struct.unpack('>%di' % (len(data) // 4), data))
+
+
+def offline_main(args):
+    """Build fbpat.ko from pre-collected files, no adb involved."""
+    d = args.from_dir
+    if not os.path.isdir(d):
+        sys.exit('not a directory: ' + d)
+    os.makedirs(WORK, exist_ok=True)
+
+    # template module
+    tmpl = None
+    for f in sorted(os.listdir(d)):
+        if f.endswith('.ko') and 'cms' in f:
+            tmpl = os.path.join(d, f)
+            break
+    if not tmpl:
+        sys.exit('no *cms*.ko in %s' % d)
+    print('[*] template', tmpl)
+
+    # config (optional but recommended)
+    cfg = ''
+    for f in ('config.gz', 'config.txt', 'config'):
+        p = os.path.join(d, f)
+        if os.path.exists(p):
+            cfg = parse_config(p) if f.endswith('.gz') else open(
+                p, errors='replace').read()
+            break
+    if not cfg:
+        print('[!] no config(.gz/.txt) in dir; assuming CFI enforced and '
+              'signatures not forced')
+    if 'CONFIG_MODULE_SIG_FORCE=y' in cfg:
+        sys.exit('kernel forces module signatures, cannot load custom module')
+    cfi = ('# CONFIG_CFI_CLANG is not set' not in cfg
+           and 'CONFIG_CFI_PERMISSIVE=y' not in cfg)
+    # without config we do not know: default to inserting hashes (harmless
+    # when CFI is off, fatal to omit when on)
+    if 'CONFIG_CFI_CLANG=y' in cfg or not cfg:
+        cfi = True
+    print('[*] cfi=%s' % cfi)
+
+    h_init = h_cleanup = None
+    if cfi:
+        h_init, h_cleanup = extract_hashes(tmpl)
+        if h_init is None:
+            print('[!] template has no CFI hash prefix; building without')
+            cfi = False
+        else:
+            print('[*] cfi hashes: init=%08x cleanup=%08x'
+                  % (h_init, h_cleanup or 0))
+
+    # tables: plain files, or inside a tar of the cms DT node (e.g. cmsdt.tar)
+    tables = {}
+    tars = [os.path.join(d, f) for f in os.listdir(d) if f.endswith('.tar')]
+    tar_data = {}
+    for tp in tars:
+        import tarfile
+        try:
+            with tarfile.open(tp) as tf:
+                for m in tf.getmembers():
+                    base = os.path.basename(m.name)
+                    if base in TABLE_PROPS and m.isfile():
+                        tar_data[base] = tf.extractfile(m).read()
+        except tarfile.TarError:
+            continue
+    for prop in TABLE_PROPS:
+        for cand in (os.path.join(d, prop), os.path.join(d, prop + '.txt')):
+            if os.path.exists(cand):
+                t = read_dt_table_file(cand)
+                if t:
+                    tables[prop] = t
+                break
+        if prop not in tables and prop in tar_data:
+            data = tar_data[prop]
+            if not len(data) % 4:
+                tables[prop] = list(struct.unpack('>%di' % (len(data) // 4),
+                                                  data))
+    if tar_data:
+        print('[*] read %d table(s) from tar' % len(tar_data))
+    fbon0 = tables.get('vivo,sp-primary-fbon-tc-data')
+    fboff = tables.get('vivo,sp-primary-fboff-tc-data')
+    fbon1 = tables.get('vivo,eq-primary-fbon-tc-data') or []
+    if fbon1 == fbon0:
+        fbon1 = []
+    if not (fbon0 and fboff):
+        sys.exit('missing fbon/fboff table files - patch not applicable '
+                 'to this device/firmware')
+    if len(fboff) > len(fbon0) or (fbon1 and len(fboff) > len(fbon1)):
+        sys.exit('fboff longer than fbon, cannot overwrite in place')
+    print('[*] tables: fbon0=%d ints, fboff=%d ints, fbon1=%d ints'
+          % (len(fbon0), len(fboff), len(fbon1)))
+
+    offs = extract_offsets(tmpl)
+    print('[*] candidate table offsets:', [hex(o) for o in offs])
+    if len(offs) < 4:
+        sys.exit('offset extraction failed (got %d) - manual analysis needed'
+                 % len(offs))
+
+    write_and_build(fbon0, fboff, fbon1, offs, tmpl, cfi, h_init, h_cleanup)
+    print('[+] built %s' % os.path.join(WORK, 'fbpat.ko'))
+    print('    push & load on target device:')
+    print('    adb push %s /data/local/tmp/fbpat.ko' % os.path.join(WORK,
+                                                                  'fbpat.ko'))
+    print("    adb shell su -c 'insmod /data/local/tmp/fbpat.ko'")
+    print("    check: adb shell su -c 'dmesg | grep fbpat'")
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--serial')
     ap.add_argument('--hello', action='store_true')
-    ap.add_argument('--scan-lo', default='0x9000')
-    ap.add_argument('--scan-hi', default='0xe000')
-    ap.add_argument('--expect', type=int, default=2)
+    ap.add_argument('--from-dir', metavar='DIR',
+                    help='offline build: DIR holds vfcs-cms-core.ko, config.gz '
+                         'and the four *-primary-fbon/fboff-tc-data files')
     args = ap.parse_args()
+    if args.from_dir:
+        offline_main(args)
+        return
 
     devs = [l.split()[0] for l in
             sh(['adb', 'devices']).stdout.decode().splitlines()[1:]

@@ -47,14 +47,23 @@ adb shell su -c 'grep effective $(grep -m1 debugfs /proc/mounts | cut -d" " -f2)
 同架构新固件用一键脚本重新生成：
 
 ```bash
+# 在线：设备连着 adb（需 root），全流程自动
 py -3 make-patch.py --serial <adb序列号>
+
+# 离线：帮别人构建，让对方提供文件放进一个目录即可
+py -3 make-patch.py --from-dir <目录>
 ```
 
-流程：拉取设备上的 cms 模块（作模板）与 `/proc/config.gz` → 判断 CFI/签名策略 → 从模板提取
-CFI 哈希 → 从设备树读取 fbon/fboff 表 → 反汇编 `vfcs_cms_get_intell_chg_current`
-提取表指针偏移 → 生成并加载补丁 → 验证。
+离线目录内容（root 后从设备拉取，或从全量固件包的 vendor_dlkm.img/dtbo 解开）：
 
-依赖：Python3 + pyelftools、NDK（clang、llvm-objdump）、设备已 root 且内核允许加载无签名模块
+- `vfcs-cms-core.ko`——模板与偏移来源（必须）
+- `config.gz`（即 `/proc/config.gz`）——CFI/签名策略判断（缺省按最坏情况处理）
+- `cmsdt.tar`——`/sys/firmware/devicetree/base` 下 cms_v* 节点的 tar 包（推荐），
+  或单独放四个表属性文件：`vivo,sp-primary-fbon-tc-data`、`vivo,sp-primary-fboff-tc-data`、
+  `vivo,eq-primary-fbon-tc-data`、`vivo,eq-primary-fboff-tc-data`（原始二进制或同名逗号分隔 .txt）
+
+依赖：Python3 + pyelftools、NDK（clang、llvm-objdump，用 `ANDROID_NDK_HOME` 环境变量或默认
+`D:/Android/SDK/ndk` 路径探测）、设备已 root 且内核允许加载无签名模块
 （`CONFIG_MODULE_SIG_FORCE` 未开）。
 
 **不适用会自动拒绝，不会写任何内存。** 已知不适用：MTK 平台老架构（cms_v2，无亮灭屏分表）。
