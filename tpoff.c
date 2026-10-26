@@ -5,6 +5,7 @@
  * Only fakes while a charger is attached (usb or wls online); on unplug,
  * read failure, or SIGTERM/SIGINT, restores: fixed_temp <- 0 (disable fake),
  * primary_board_temp <- real board temp from battery psy.
+ * Faking is also disabled (and restored) while game_bypass_charge_flag >= 1.
  */
 typedef long s64;
 typedef unsigned long u64;
@@ -22,6 +23,7 @@ typedef unsigned long u64;
 #define FIXED_NODE "/sys/class/cms_class/fixed_temp"
 #define BATT_NODE  "/sys/class/cms_class/main_batt_temp"
 #define REAL_NODE  "/sys/class/power_supply/battery/primary_board_temp"
+#define GAME_BYPASS_FLAG "/sys/class/cms_class/game_bypass_charge_flag"
 #define USB_ONLINE "/sys/class/power_supply/usb/online"
 #define WLS_ONLINE "/sys/class/power_supply/wls/online"
 #define LOG_PATH   "/data/local/tmp/tpoff.log"
@@ -142,7 +144,8 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     for (;;) {
         int plugged = rd(USB_ONLINE, 0) == 1 || rd(WLS_ONLINE, 0) == 1;
         long batt = rd(BATT_NODE, -10000);
-        if (plugged && batt > -10000) {
+        long gb = rd(GAME_BYPASS_FLAG, 0);
+        if (plugged && batt > -10000 && gb < 1) {
             long fake = batt + off;
             /* hard cap: fake battery temps above ~55C make the battery
              * over-temp protection report to Android thermal service and
@@ -158,7 +161,8 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         } else if (faking) {
             faking = 0;
             restore();
-            log_msg("tpoff: unplug or read fail, restored\n");
+            log_msg(gb >= 1 ? "tpoff: game bypass active, faking disabled, restored\n"
+                            : "tpoff: unplug or read fail, restored\n");
         }
         {
             long ts[2] = { 5, 0 };

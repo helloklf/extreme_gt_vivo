@@ -26,7 +26,8 @@ adb shell su -c 'insmod /data/local/tmp/fbpat.ko'
 adb push fbres.ko /data/local/tmp/
 adb shell su -c 'insmod /data/local/tmp/fbres.ko'
 
-# 2. 温度偏移（默认降温 5°C，插电才生效，拔线/被 kill 自动还原）
+# 2. 温度偏移（默认降温 5°C，插电才生效，拔线/被 kill 自动还原；
+#    game_bypass_charge_flag >= 1 时暂停伪装并还原）
 adb push tpoff /data/local/tmp/
 adb shell su -c 'chmod 755 /data/local/tmp/tpoff; nohup /data/local/tmp/tpoff >/dev/null 2>&1 &'
 adb shell su -c 'killall tpoff'    # 停止并还原
