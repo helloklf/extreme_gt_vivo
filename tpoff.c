@@ -1,5 +1,8 @@
 /* tpoff (raw-syscall, no libc) - sync CMS temp overrides while charging:
- *   primary_board_temp / fixed_temp = main_batt_temp + offset  (0.1°C units)
+ *   primary_board_temp / fixed_temp = batt_source + offset  (0.1°C units)
+ * batt_source: probed at startup - write 299 to fixed_temp, read back
+ * main_batt_temp; if it matches (fixed_temp shadows main_batt_temp on this
+ * device), use bat_btb_temp instead, since it is not shadowed by fixed_temp.
  * offset: signed, clamped to [-150, 150]; default -50 (fake 5.0°C cooler).
  *         positive values simulate warming. "tpoff 0" exits immediately.
  * Only fakes while a charger is attached (usb or wls online); on unplug,
@@ -22,6 +25,7 @@ typedef unsigned long u64;
 #define BOARD_NODE "/sys/class/cms_class/primary_board_temp"
 #define FIXED_NODE "/sys/class/cms_class/fixed_temp"
 #define BATT_NODE  "/sys/class/cms_class/main_batt_temp"
+#define BTB_NODE  "/sys/class/cms_class/bat_btb_temp"
 #define REAL_NODE  "/sys/class/power_supply/battery/primary_board_temp"
 #define GAME_BYPASS_FLAG "/sys/class/cms_class/game_bypass_charge_flag"
 #define USB_ONLINE "/sys/class/power_supply/usb/online"
@@ -127,6 +131,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
 {
     long off = -50;
     int faking = 0;
+    const char *batt_node = BATT_NODE;
 
     if (argc > 1) {
         off = parse_long(argv[1]);
@@ -141,9 +146,19 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     setsig(15, on_exit);   /* SIGTERM */
     setsig(2, on_exit);    /* SIGINT  */
 
+    /* startup probe: does fixed_temp shadow main_batt_temp? */
+    wr(FIXED_NODE, 299);
+    if (rd(BATT_NODE, -10000) == 299) {
+        batt_node = BTB_NODE;
+        log_msg("tpoff: main_batt_temp shadowed by fixed_temp, using bat_btb_temp\n");
+    } else {
+        log_msg("tpoff: main_batt_temp independent, using it\n");
+    }
+    wr(FIXED_NODE, 0);
+
     for (;;) {
         int plugged = rd(USB_ONLINE, 0) == 1 || rd(WLS_ONLINE, 0) == 1;
-        long batt = rd(BATT_NODE, -10000);
+        long batt = rd(batt_node, -10000);
         long gb = rd(GAME_BYPASS_FLAG, 0);
         if (plugged && batt > -10000 && gb < 1) {
             long fake = batt + off;
