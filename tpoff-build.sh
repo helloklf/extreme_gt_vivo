@@ -57,9 +57,11 @@ if NDK_CLANG=$(find_ndk_clang); then
 else
     echo "[*] 使用系统 clang"
     command -v clang >/dev/null || { echo "错误: 找不到 clang"; exit 1; }
-    LLD=$(find_ndk_lld)
+    LLD=$(find_ndk_lld || true)
     if [ -n "$LLD" ]; then
         clang --target=$TARGET $CFLAGS -fuse-ld="$LLD" -o tpoff tpoff.c
+    elif command -v aarch64-linux-gnu-ld >/dev/null; then
+        clang --target=$TARGET $CFLAGS --ld-path="$(command -v aarch64-linux-gnu-ld)" -o tpoff tpoff.c
     else
         clang --target=$TARGET $CFLAGS -o tpoff tpoff.c
     fi
@@ -68,5 +70,6 @@ fi
 
 "$STRIP" -s tpoff
 file tpoff
-ls -la tpoff
+ls -lha tpoff
+mv tpoff ./ExtremeGT_vivo/tpoff
 echo "[*] 完成"

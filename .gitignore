@@ -1,2 +1,5 @@
 .venv
 out/
+./tpoff
+./fbpat.ko
+./fbres.ko
