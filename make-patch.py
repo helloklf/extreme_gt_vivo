@@ -60,6 +60,15 @@ static int match(const s32 *t, const s32 *ref, int n)
     return 1;
 }
 
+static int seen(s32 **bufs, int n, s32 *p)
+{
+    int i;
+    for (i = 0; i < n; i++)
+        if (bufs[i] == p)
+            return 1;
+    return 0;
+}
+
 int init_module(void)
 {
     struct power_supply *psy = power_supply_get_by_name("cms");
@@ -83,8 +92,30 @@ int init_module(void)
                 (fbon1_len && match(t, fbon1, fbon1_len))) {
                 _printk("fbpat: fbon table at %px (off %x idx %d)\n",
                         (void *)t, data_offs[o], i);
-                if (n < 8)
+                if (!seen(bufs, n, t) && n < 8)
                     bufs[n++] = t;
+            }
+        }
+    }
+    if (n != 2) {
+        int span = 0x20000 / 8;
+        _printk("fbpat: offset scan found %d, trying fallback scan\n", n);
+        n = 0;
+        for (i = 0; i < span; i++) {
+            u64 p = *(volatile u64 *)(chip + i * 8);
+            s32 *t;
+            if (!kptr_ok(p))
+                continue;
+            t = (s32 *)(u64)p;
+            if (match(t, fbon0, fbon0_len) ||
+                (fbon1_len && match(t, fbon1, fbon1_len))) {
+                if (!seen(bufs, n, t) && n < 8) {
+                    _printk("fbpat: fallback match %px at +0x%x\n",
+                            (void *)t, i * 8);
+                    bufs[n++] = t;
+                    if (n == 2)
+                        break;
+                }
             }
         }
     }
@@ -182,20 +213,66 @@ def find_llvm_objdump():
 
 
 def extract_offsets(ko_path):
-    """Table-pointer struct offsets: immediates of mov w8-w13 in
-    vfcs_cms_get_intell_chg_current (the per-(param,fb) 6-table clusters)."""
+    """Extract table-pointer struct offsets from either CMS function variant."""
     objdump = find_llvm_objdump()
-    r = sh([objdump, '-d',
-            '--disassemble-symbols=vfcs_cms_get_intell_chg_current', ko_path])
-    if r.returncode:
-        return []
+    def disassemble(symbol):
+        r = sh([objdump, '-d', '--disassemble-symbols=' + symbol, ko_path])
+        if r.returncode:
+            return ''
+        return r.stdout.decode(errors='replace')
+
+    text = disassemble('vfcs_cms_get_intell_chg_current')
     offs = set()
     for m in re.finditer(r'mov\s+w(?:8|9|1[0-3]), #(0x[0-9a-f]+|\d+)',
-                         r.stdout.decode(errors='replace')):
+                         text):
         v = int(m.group(1), 0)
         if 0x8000 <= v < 0x14000:
             offs.add(v)
-    return sorted(offs)
+    if len(offs) >= 4:
+        return sorted(offs)
+
+    # Some module builds use the check function name and a smaller chip
+    # structure. Keep only constants actually added to that structure base.
+    text = disassemble('vfcs_cms_check_intell_chg_current')
+    if not text:
+        return sorted(offs)
+
+    base_offsets = set()
+    immediates = {}
+    for line in text.splitlines():
+        m = re.search(
+            r'\badd\s+x\d+,\s*x13,\s*#(0x[0-9a-f]+|\d+)'
+            r'(?:,\s*lsl\s*#(\d+))?', line)
+        if m:
+            offset = int(m.group(1), 0)
+            if m.group(2):
+                offset <<= int(m.group(2))
+            base_offsets.add(offset)
+        m = re.search(r'\badd\s+x\d+,\s*x13,\s*x(8|9|1[0-4])\b', line)
+        if m and int(m.group(1)) in immediates:
+            base_offsets.add(immediates[int(m.group(1))])
+
+        m = re.search(
+            r'\bmov\s+w(8|9|1[0-4]),\s*#(0x[0-9a-f]+|\d+)', line)
+        if m:
+            immediates[int(m.group(1))] = int(m.group(2), 0)
+            continue
+
+        # W and X names alias the same register; discard stale immediates
+        # when an instruction writes one of these registers.
+        m = re.search(
+            r'\b(?:ldr|ldp|mov|movk|add|sub|and|orr|eor|csel|cinc|mul)'
+            r'\s+[wx](8|9|1[0-4])\s*,', line)
+        if m:
+            immediates.pop(int(m.group(1)), None)
+    # Switch branches can define an offset in one block and consume it in a
+    # later shared block, which a linear pass cannot associate reliably.
+    for m in re.finditer(
+            r'\bmov\s+w(?:8|9|1[0-4]),\s*#(0x[0-9a-f]+|\d+)', text):
+        value = int(m.group(1), 0)
+        if 0x800 <= value < 0x1400:
+            base_offsets.add(value)
+    return sorted(base_offsets or offs)
 
 
 def read_dt_table(serial, node, prop):

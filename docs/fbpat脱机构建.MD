@@ -24,3 +24,6 @@ cd /sys/firmware/devicetree/base && tar cf /sdcard/vivo_cms/cmsdt.tar $(find . -
 py -3 -m pip install pyelftools
 py -3 make-patch.py --from-dir ./PD2505
 ```
+
+脚本会从 `vfcs-cms-core.ko` 的反汇编中自动识别表指针偏移。若仍提示
+`offset extraction failed`，表示该固件的函数/结构布局尚未匹配；此时不要手动猜偏移或加载生成物，需要先分析该固件对应的反汇编。
