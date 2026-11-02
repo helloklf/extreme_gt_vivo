@@ -1,5 +1,12 @@
 .venv
 out/
-./tpoff
-./fbpat.ko
-./fbres.ko
+/tpoff
+/cmsboost
+/fbpat.ko
+/fbres.ko
+
+# X300 实机提取物（分析用，不入库）
+/x300/
+
+# 模块打包产物
+ExtremeGT_vivo/*.zip

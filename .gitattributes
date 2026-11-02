@@ -1,0 +1,11 @@
+# 统一使用 LF 换行符（工作区与仓库内一致）
+* text=auto eol=lf
+
+# 二进制文件不做换行转换
+*.ko binary
+*.gz binary
+*.zip binary
+*.img binary
+*.png binary
+*.jpg binary
+x300/cmsdt/** binary
