@@ -54,6 +54,16 @@ killall tpoff
 chmod 755 "$MODPATH/tpoff"
 nohup $MODPATH/tpoff -60 >/dev/null 2>&1 &
 
+# 风扇接管：只有带风扇的机型（如 iQOO 15 Ultra）才有 /dev/fanpwm
+# 温度源用 ddr(SoC 顶盖) + 电池，两条曲线取最大，配置在同目录 fan.conf
+if [[ -e /dev/fanpwm ]]; then
+  # thermal-engine 也会写这个节点，不停掉会互相抢风扇
+  stop thermal-engine 2>/dev/null
+  killall fanctld 2>/dev/null
+  chmod 755 "$MODPATH/fanctld"
+  nohup "$MODPATH/fanctld" >/dev/null 2>&1 &
+fi
+
 if [[ -e "$MODPATH/fbpat.ko" ]]; then
   insmod "$MODPATH/fbpat.ko"
 elif [[ "$(grep abogki543627742 /proc/version)" != "" ]]; then

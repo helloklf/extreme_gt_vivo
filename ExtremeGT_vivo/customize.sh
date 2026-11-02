@@ -1,4 +1,6 @@
 set_perm_recursive $MODPATH 0 0 0755 0644
+chmod 755 $MODPATH/fanctld 2>/dev/null
+chmod 644 $MODPATH/fan.conf 2>/dev/null
 
 # Mediatek thermal config
 mtk_t=/vendor/etc/thermal

@@ -110,6 +110,7 @@ py -3 make-patch.py --from-dir <目录>
 | `fbres.c` / `fbres.ko` | 还原模块（免重启恢复原厂表） |
 | `tpoff.c` / `tpoff` | 统一版温度偏移守护程序：探测 `fixed_temp` 是否影子电池温度，自动选“只写板温”（X300）或“板温+电池温”（iQOO15）；写入限幅 15–55°C 且回读校验 |
 | `cmsboost.c` / `cmsboost` | **未验证**：FCC 投票强制 3.5A + 温度看门狗；只证明能改 CC 设定值，没有实测到提速，PPS/UFCS/原装头下不接管 |
+| `fanctld.c` / `fan.conf` | 独立风扇控制器：`pop`（ddr tsens，PoP 封装温度）+ 电池两路曲线取最大值，C 静态实现，含起转脉冲/最小占空比/死区 |
 | `modload.c` / `modload` | finit_module 加载器（排错用，直接报 errno） |
 | `watch-charge.py` | 充电状态只读采样 |
 | `collect-root.py` | 设备快照采集 |
@@ -117,7 +118,7 @@ py -3 make-patch.py --from-dir <目录>
 | `analysis/` | 驱动字符串/符号表/关键函数摘录/设备树 json |
 | `modules/` | 设备原厂模块副本（分析与模板来源） |
 | `docs/X300充电温控分析.md` | X300 充电温控实现、参数集机制与提速突破口 |
-| `x300/` | X300 提取物：驱动 .ko、DT 表、符号表、config |
+| `docs/风扇控制.md` | fanctld 的两条曲线、配置格式、与 tpoff 的配合 |
 
 已删除的废弃路线：自制内核模块（`gen_module` 嫁接在本机加载即 panic）、
 `chgpat`/`chgtbl` 原型、以及一次性探测脚本。原因与已验证的表地址见文档 §7。
