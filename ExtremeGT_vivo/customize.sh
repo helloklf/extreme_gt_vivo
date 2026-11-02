@@ -78,8 +78,12 @@ tpoff_mode=board
 if [[ -f $fixed_temp ]]; then
   test_temp=10
   echo $test_temp > $fixed_temp
-  sleep 5
+  sleep 10
   real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
+  if [[ ! "$real_effect" = "$test_temp"* ]]; then
+    sleep 5
+    real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
+  fi
   after_temp="$(cat $main_batt_temp 2>/dev/null)"
   echo 0 > $fixed_temp
   if [[ "$real_effect" == "${test_temp}0" ]]; then
@@ -92,11 +96,19 @@ if [[ -f $fixed_temp ]]; then
     tpoff_mode=both
   fi
 fi
-echo $fixed_temp_scale > $MODPATH/fixed_temp_scale
-echo $tpoff_mode > $MODPATH/tpoff_mode
+cat > "$MODPATH/tpoff.conf" <<EOF
+fixed_temp_scale=$fixed_temp_scale
+tpoff_mode=$tpoff_mode
+temp_offset=-80
+EOF
+
+old_fbpat=/data/adb/modules/extreme_gt_vivo/fbpat.ko
+if [[ -f $old_fbpat ]]; then
+  cp $old_fbpat $MODPATH/fbpat.ko
+fi
 
 # Help
-if [[ "$(grep abogki543627742 /proc/version)" == "" ]]; then
+if [[ "$(grep abogki543627742 /proc/version)" == "" && ! -f $MODPATH/fbpat.ko ]]; then
   echo '其它提示：'
   echo '本模块未集成适用于当前设备的 fbpat.ko (亮屏充电提速补丁)'
   echo '需要自行参考开源项目'

@@ -2,6 +2,8 @@
 - 集成 fanctld 风扇控制器（仅带风扇的机型，如 iQOO 15 Ultra）
 - SoC 顶盖(ddr tsens) 与电池两条曲线分别计算、取最大占空比
 - 降速限幅 5%/轮，避免温度波动导致骤降/骤停；起转 45% 脉冲越过静摩擦
+- tpoff 改为安装期决定伪装模式与 fixed_temp 写入单位（customize.sh 探测 → tpoff.conf →
+  service.sh 传参），运行时不探测；兼容写入值需 /10 的机型
 
 # 2.2.0
 - vivo X300等多传感器共用数值的机型适配调整
