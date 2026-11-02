@@ -1,26 +1,21 @@
 /* tpoff (raw-syscall, no libc) - unified CMS temperature offset for vivo.
  *
- * Two device families behave differently, detected at startup:
+ * Two device families behave differently, detected at install time:
  *
- *   probe: write fixed_temp=299, read main_batt_temp back
- *     == 299  -> fixed_temp IS the battery temperature (X300 / MTK):
- *                writing it changes battery/temp and thermal zones, so we
- *                only override primary_board_temp.  Base = bat_btb_temp.
- *     != 299  -> fixed_temp is an independent knob (iQOO15 / QCOM):
- *                board and battery temperature must move together or the
- *                driver flags a "temp gap" anomaly and slows charging down.
- *                Write both, base = main_batt_temp.
+ *   mode=board -> fixed_temp shadows the battery temperature (X300 / MTK):
+ *                 only primary_board_temp is overridden.
+ *   mode=both  -> fixed_temp is independent (iQOO15 / QCOM): primary_board_temp
+ *                 and fixed_temp are overridden together.
  *
  * Usage:
  *   tpoff [offset]     offset in 0.1C, default -50, clamped to [-150,150];
  *                      0 exits immediately
- *   tpoff probe        print the detected mode and exit (no lasting writes)
+ *   tpoff [offset] [mode] [fixed_temp_scale]
+ *                      mode is board or both; scale is normally 1 or 10.
  *
- * Active only while charging (battery current < -50mA, or usb/wls online,
- * debounced 4 samples for the brief dips the charger produces) and while
- * game_bypass_charge_flag < 1.  On unplug / read failure / SIGTERM/SIGINT
- * the override is removed (board written 0 in board-only mode, real board
- * temp restored and fixed_temp cleared in both-mode).
+ * Active only while usb or wls is online and while
+ * game_bypass_charge_flag < 1.  On unplug / read failure the override is
+ * removed.
  *
  * Safety: every value written is clamped to [15.0C, 55.0C] and read back
  * (one retry) before it is trusted; a base value outside [-40C, 125C] is
@@ -42,15 +37,12 @@ typedef unsigned long u64;
 #define FIXED_NODE "/sys/class/cms_class/fixed_temp"
 #define MAIN_NODE  "/sys/class/cms_class/main_batt_temp"
 #define BTB_NODE   "/sys/class/cms_class/bat_btb_temp"
-#define REAL_NODE  "/sys/class/power_supply/battery/primary_board_temp"
 #define GAME_BYPASS_FLAG "/sys/class/cms_class/game_bypass_charge_flag"
 #define USB_ONLINE "/sys/class/power_supply/usb/online"
 #define WLS_ONLINE "/sys/class/power_supply/wls/online"
-#define BATT_CURRENT "/sys/class/power_supply/battery/current_now"
 #define LOG_PATH   "/data/local/tmp/tpoff.log"
 
 #define SA_RESTORER 0x04000000
-#define OFF_GRACE   4
 
 /* hard bounds for any temperature we write: never below 15.0C, never above
  * 55.0C (0.1C units).  Below 15C the CMS tables are already saturated and a
@@ -161,40 +153,23 @@ static int base_ok(long b)
     return b >= BASE_MIN && b <= BASE_MAX;
 }
 
-/* 1 = fixed_temp shadows the battery temperature (board-only device) */
-static int detect_mode(void)
-{
-    long v;
-    wr(FIXED_NODE, 299);
-    v = rd(MAIN_NODE, -10000);
-    wr(FIXED_NODE, 0);
-    return v == 299 ? MODE_BOARD : MODE_BOTH;
-}
-
 static void restore(int mode)
 {
-    if (mode == MODE_BOTH) {
-        long real = rd(REAL_NODE, -10000);
-        wr(BOARD_NODE, real > -10000 ? real : 0);
+    wr(BOARD_NODE, 0);       /* 0 = drop the override, driver reports real */
+    if (mode == MODE_BOTH)
         wr(FIXED_NODE, 0);
-    } else {
-        wr(BOARD_NODE, 0);   /* 0 = drop the override, driver reports real */
-    }
 }
 
 void __attribute__((noreturn)) run(long argc, char **argv)
 {
     long off = -50;
     int faking = 0;
-    int off_cnt = OFF_GRACE;
-    int mode;
-    int probe_only = 0;
+    int mode = MODE_BOTH;
+    long fixed_scale = 1;
     int clamp_logged = 0;
     int verify_warned = 0;
 
-    if (argc > 1 && (argv[1][0] == 'p' || argv[1][0] == 'P')) {
-        probe_only = 1;
-    } else if (argc > 1) {
+    if (argc > 1) {
         off = parse_long(argv[1]);
         if (off == 0)
             sc(SYS_exit, 0, 0, 0, 0);
@@ -204,50 +179,41 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             off = -150;
     }
 
-    mode = detect_mode();
-
-    if (probe_only) {
-        out_msg(mode == MODE_BOARD
-                ? "tpoff: fixed_temp shadows main_batt_temp -> board-only (X300)\n"
-                : "tpoff: fixed_temp independent -> both (iQOO15)\n");
-        sc(SYS_exit, 0, 0, 0, 0);
+    if (argc > 2) {
+        if (argv[2][0] == 'b' && argv[2][1] == 'o' &&
+            argv[2][2] == 't')
+            mode = MODE_BOTH;
+        else if (argv[2][0] == 'b' && argv[2][1] == 'o' &&
+                 argv[2][2] == 'a')
+            mode = MODE_BOARD;
+    }
+    if (argc > 3) {
+        fixed_scale = parse_long(argv[3]);
+        if (fixed_scale < 1)
+            fixed_scale = 1;
     }
 
-    log_msg(mode == MODE_BOARD
-            ? "tpoff: mode=board-only (fixed_temp is battery temp)\n"
-            : "tpoff: mode=both (fixed_temp independent)\n");
+    log_msg(mode == MODE_BOARD ? "tpoff: mode=board-only\n"
+                               : "tpoff: mode=both\n");
 
     /* clear leftovers from a previous instance / other tools */
-    if (mode == MODE_BOARD)
+    if (mode == MODE_BOTH)
         wr(FIXED_NODE, 0);
     wr(BOARD_NODE, 0);
 
     for (;;) {
-        /* use the battery current sign as the primary "charging" signal:
-         * with the vivo charge-pump path usb/online stays 0 while charging */
-        long ibat = rd(BATT_CURRENT, 0);
-        int charging = ibat < -50000 ||
-                       rd(USB_ONLINE, 0) == 1 || rd(WLS_ONLINE, 0) == 1;
+        int charging = rd(USB_ONLINE, 0) == 1 ||
+                       rd(WLS_ONLINE, 0) == 1;
         long base, gb;
-        int plugged;
-
-        if (charging)
-            off_cnt = 0;
-        else if (off_cnt < OFF_GRACE)
-            off_cnt++;
-        plugged = off_cnt < OFF_GRACE;
 
         gb = rd(GAME_BYPASS_FLAG, 0);
 
-        if (mode == MODE_BOARD) {
-            base = rd(BTB_NODE, -10000);
-        } else {
+        /* BTB is the physical battery sensor and is preferred on all modes. */
+        base = rd(BTB_NODE, -10000);
+        if (base <= -10000)
             base = rd(MAIN_NODE, -10000);
-            if (base <= -10000)
-                base = rd(BTB_NODE, -10000);
-        }
 
-        if (plugged && base_ok(base) && gb < 1) {
+        if (charging && base_ok(base) && gb < 1) {
             long raw = base + off;
             long fake = clamp_temp(raw);
 
@@ -266,20 +232,22 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 verify_warned = 1;
                 log_msg("tpoff: board write verify failed\n");
             }
-            if (mode == MODE_BOTH && !wr_verified(FIXED_NODE, fake) &&
-                !verify_warned) {
-                verify_warned = 1;
-                log_msg("tpoff: fixed_temp write verify failed\n");
+            if (mode == MODE_BOTH) {
+                long fixed = (fake + fixed_scale / 2) / fixed_scale;
+                if (!wr_verified(FIXED_NODE, fixed) && !verify_warned) {
+                    verify_warned = 1;
+                    log_msg("tpoff: fixed_temp write verify failed\n");
+                }
             }
         } else if (faking) {
             faking = 0;
             restore(mode);
             log_msg(gb >= 1 ? "tpoff: game bypass active, restored\n"
-                  : (plugged ? "tpoff: base temp out of range, restored\n"
-                             : "tpoff: unplug or read fail, restored\n"));
+                  : (charging ? "tpoff: base temp out of range, restored\n"
+                              : "tpoff: offline, restored\n"));
         }
         {
-            long ts[2] = { 2, 0 };
+            long ts[2] = { 3, 0 };
             sc(SYS_nanosleep, (s64)ts, 0, 0, 0);
         }
     }

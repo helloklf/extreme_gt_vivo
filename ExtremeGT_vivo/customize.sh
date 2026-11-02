@@ -68,6 +68,33 @@ do
   cp $overlay $plugin/$target
 done
 
+# TPOFF 探测 fixed_temp 的写入单位
+killall tpoff 2>/dev/null
+echo 'Starting temperature test...'
+fixed_temp=/sys/class/cms_class/fixed_temp
+main_batt_temp=/sys/class/cms_class/main_batt_temp
+fixed_temp_scale=1
+tpoff_mode=board
+if [[ -f $fixed_temp ]]; then
+  test_temp=10
+  echo $test_temp > $fixed_temp
+  sleep 5
+  real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
+  after_temp="$(cat $main_batt_temp 2>/dev/null)"
+  echo 0 > $fixed_temp
+  if [[ "$real_effect" == "${test_temp}0" ]]; then
+    fixed_temp_scale=10
+  fi
+  expected_temp=$((test_temp * fixed_temp_scale))
+  if [[ "$after_temp" == "$expected_temp" ]]; then
+    tpoff_mode=board
+  else
+    tpoff_mode=both
+  fi
+fi
+echo $fixed_temp_scale > $MODPATH/fixed_temp_scale
+echo $tpoff_mode > $MODPATH/tpoff_mode
+
 # Help
 if [[ "$(grep abogki543627742 /proc/version)" == "" ]]; then
   echo '其它提示：'

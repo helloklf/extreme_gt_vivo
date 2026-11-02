@@ -31,11 +31,11 @@ adb shell su -c 'insmod /data/local/tmp/fbpat.ko'
 adb push fbres.ko /data/local/tmp/
 adb shell su -c 'insmod /data/local/tmp/fbres.ko'
 
-# 2. 温度偏移（默认降温 5°C，插电才生效，拔线/被 kill 自动还原；
+# 2. 温度偏移（默认降温 5°C，USB/WLS online 才生效，拔线自动还原；
 #    game_bypass_charge_flag >= 1 时暂停伪装并还原）
 adb push tpoff /data/local/tmp/
 adb shell su -c 'chmod 755 /data/local/tmp/tpoff; nohup /data/local/tmp/tpoff >/dev/null 2>&1 &'
-adb shell su -c 'killall tpoff'    # 停止并还原
+adb shell su -c 'killall tpoff'    # 停止；下次启动会先清除覆盖
 
 # 3. 精细限流（mA，立即生效；写 17600 解除）
 adb shell su -c 'echo 3000 > /sys/class/cms_class/debug_chg_cur'
@@ -108,7 +108,7 @@ py -3 make-patch.py --from-dir <目录>
 | `gen_module.py` | 以原厂 .ko 为模板生成可加载模块 |
 | `fbpat.c` / `fbpat.ko` | 亮屏表补丁（V2505A 当前固件用） |
 | `fbres.c` / `fbres.ko` | 还原模块（免重启恢复原厂表） |
-| `tpoff.c` / `tpoff` | 统一版温度偏移守护程序：探测 `fixed_temp` 是否影子电池温度，自动选“只写板温”（X300）或“板温+电池温”（iQOO15）；写入限幅 15–55°C 且回读校验 |
+| `tpoff.c` / `tpoff` | 统一版温度偏移守护程序：伪装模式（只写板温 X300 / 板温+电池温 iQOO15）与 `fixed_temp` 写入单位全部由安装期探测决定（`tpoff_mode`、`fixed_temp_scale` → `service.sh` 传参），运行时不探测；写入限幅 15–55°C 且回读校验 |
 | `cmsboost.c` / `cmsboost` | **未验证**：FCC 投票强制 3.5A + 温度看门狗；只证明能改 CC 设定值，没有实测到提速，PPS/UFCS/原装头下不接管 |
 | `fanctld.c` / `fan.conf` | 独立风扇控制器：`pop`（ddr tsens，PoP 封装温度）+ 电池两路曲线取最大值，C 静态实现，含起转脉冲/最小占空比/死区 |
 | `modload.c` / `modload` | finit_module 加载器（排错用，直接报 errno） |

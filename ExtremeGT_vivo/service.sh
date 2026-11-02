@@ -52,7 +52,12 @@ done
 # chmod 444 /sys/class/cms_class/switch_state
 killall tpoff
 chmod 755 "$MODPATH/tpoff"
-nohup $MODPATH/tpoff -60 >/dev/null 2>&1 &
+# 伪装模式和 fixed_temp 的写入单位全部由 customize.sh 安装时决定。
+tp_mode=both
+tp_scale=1
+[ -f "$MODPATH/tpoff_mode" ] && read tp_mode < "$MODPATH/tpoff_mode"
+[ -f "$MODPATH/fixed_temp_scale" ] && read tp_scale < "$MODPATH/fixed_temp_scale"
+nohup "$MODPATH/tpoff" -80 "$tp_mode" "$tp_scale" >/dev/null 2>&1 &
 
 # 风扇接管：只有带风扇的机型（如 iQOO 15 Ultra）才有 /dev/fanpwm
 # 温度源用 ddr(SoC 顶盖) + 电池，两条曲线取最大，配置在同目录 fan.conf
