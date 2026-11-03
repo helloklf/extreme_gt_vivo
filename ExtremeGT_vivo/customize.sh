@@ -1,5 +1,6 @@
 set_perm_recursive $MODPATH 0 0 0755 0644
 chmod 755 $MODPATH/fanctld 2>/dev/null
+chmod 755 $MODPATH/fccc 2>/dev/null
 chmod 644 $MODPATH/fan.conf 2>/dev/null
 
 # Mediatek thermal config
@@ -101,6 +102,7 @@ cat > "$MODPATH/tpoff.conf" <<EOF
 fixed_temp_scale=$fixed_temp_scale
 tpoff_mode=$tpoff_mode
 temp_offset=-80
+fccc=0
 EOF
 
 old_fbpat=/data/adb/modules/extreme_gt_vivo/fbpat.ko
