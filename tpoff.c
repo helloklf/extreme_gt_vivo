@@ -15,7 +15,8 @@
  *
  * Active only while battery status is "Charging" and while
  * game_bypass_charge_flag < 1.  On unplug / read failure the override is
- * removed.
+ * removed.  Turbo mode disables CMS while charging below 41.0C and 30%
+ * capacity, unless game bypass is active.
  *
  * Safety: every value written is clamped to [15.0C, 55.0C] and read back
  * (one retry) before it is trusted; a base value outside [-40C, 125C] is
@@ -38,7 +39,9 @@ typedef unsigned long u64;
 #define MAIN_NODE  "/sys/class/cms_class/main_batt_temp"
 #define BTB_NODE   "/sys/class/cms_class/bat_btb_temp"
 #define GAME_BYPASS_FLAG "/sys/class/cms_class/game_bypass_charge_flag"
+#define CMS_ENABLE "/sys/class/cms_class/cms_enable"
 #define BATT_STATUS "/sys/class/power_supply/battery/status"
+#define BATT_CAPACITY "/sys/class/power_supply/battery/capacity"
 #define LOG_PATH   "/data/local/tmp/tpoff.log"
 
 #define SA_RESTORER 0x04000000
@@ -50,6 +53,7 @@ typedef unsigned long u64;
 #define TEMP_MAX    550
 #define BASE_MIN    (-400)   /* -40.0C, treat anything lower as a read error */
 #define BASE_MAX    1250     /* 125.0C */
+#define BTB_ADJUST   60       /* bat_btb_temp is about 6.0C above main */
 
 #define MODE_BOARD  1   /* board-only (X300) */
 #define MODE_BOTH   2   /* fixed_temp + board (iQOO15) */
@@ -174,19 +178,46 @@ static void restore(int mode)
         wr(FIXED_NODE, 0);
 }
 
+static int process_mode = MODE_BOTH;
+
+static void __attribute__((naked)) sig_restorer(void)
+{
+    asm volatile("mov x8, %0\nsvc #0" :: "i"(SYS_rt_sigreturn));
+}
+
+struct ksigaction { u64 handler, flags, restorer, mask; };
+
+static void setsig(int sig, void *handler)
+{
+    struct ksigaction action = {
+        (u64)handler, SA_RESTORER, (u64)sig_restorer, 0
+    };
+    sc(SYS_rt_sigaction, sig, (s64)&action, 0, 8);
+}
+
+static void exit_restore(long sig)
+{
+    (void)sig;
+    restore(process_mode);
+    wr(CMS_ENABLE, 1);
+    log_msg("tpoff: exit, restored CMS and temperature overrides\n");
+    sc(SYS_exit, 0, 0, 0, 0);
+    __builtin_unreachable();
+}
+
 void __attribute__((noreturn)) run(long argc, char **argv)
 {
     long off = -50;
     int faking = 0;
     int mode = MODE_BOTH;
     long fixed_scale = 1;
+    int turbo_active;
+    int turbo_warned = 0;
     int clamp_logged = 0;
     int verify_warned = 0;
 
     if (argc > 1) {
         off = parse_long(argv[1]);
-        if (off == 0)
-            sc(SYS_exit, 0, 0, 0, 0);
         if (off > 150)
             off = 150;
         else if (off < -150)
@@ -201,30 +232,73 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                  argv[2][2] == 'a')
             mode = MODE_BOARD;
     }
+    process_mode = mode;
+    setsig(15, exit_restore);
+    setsig(2, exit_restore);
+
     if (argc > 3) {
         fixed_scale = parse_long(argv[3]);
         if (fixed_scale < 1)
             fixed_scale = 1;
     }
+    if (off == 0)
+        exit_restore(0);
 
     log_msg(mode == MODE_BOARD ? "tpoff: mode=board-only\n"
                                : "tpoff: mode=both\n");
 
-    /* clear leftovers from a previous instance / other tools */
+    /* Preserve an existing CMS state so a restarted process does not
+     * accidentally cancel Turbo mode owned by an earlier instance/tool. */
+    turbo_active = rd(CMS_ENABLE, 1) == 0;
+    log_msg(turbo_active ? "tpoff: turbo already enabled\n"
+                         : "tpoff: turbo inactive at startup\n");
+
+    /* clear temperature leftovers from a previous instance / other tools */
     if (mode == MODE_BOTH)
         wr(FIXED_NODE, 0);
     wr(BOARD_NODE, 0);
 
     for (;;) {
         int plugged = charging();
-        long base, gb;
+        long base, gb, capacity;
 
         gb = rd(GAME_BYPASS_FLAG, 0);
 
-        /* BTB is the physical battery sensor and is preferred on all modes. */
-        base = rd(BTB_NODE, -10000);
-        if (base <= -10000)
-            base = rd(MAIN_NODE, -10000);
+        base = rd(MAIN_NODE, -10000);
+        if (base <= -10000) {
+            base = rd(BTB_NODE, -10000);
+            if (base > -10000)
+                base -= BTB_ADJUST;
+        }
+        if (base <= -10000) {
+            log_msg("tpoff: no battery temperature source, exiting\n");
+            exit_restore(0);
+        }
+
+        capacity = rd(BATT_CAPACITY, -1);
+        {
+            int turbo = plugged && gb < 1 && base_ok(base) &&
+                        base < 410 && capacity >= 0 && capacity < 30;
+            if (turbo && !turbo_active) {
+                if (wr_verified(CMS_ENABLE, 0)) {
+                    turbo_active = 1;
+                    turbo_warned = 0;
+                    log_msg("tpoff: turbo enabled\n");
+                } else if (!turbo_warned) {
+                    turbo_warned = 1;
+                    log_msg("tpoff: turbo enable verify failed\n");
+                }
+            } else if (!turbo && turbo_active) {
+                if (wr_verified(CMS_ENABLE, 1)) {
+                    turbo_active = 0;
+                    turbo_warned = 0;
+                    log_msg("tpoff: turbo disabled\n");
+                } else if (!turbo_warned) {
+                    turbo_warned = 1;
+                    log_msg("tpoff: turbo restore verify failed\n");
+                }
+            }
+        }
 
         if (plugged && base_ok(base) && gb < 1) {
             long raw = base + off;
@@ -260,7 +334,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                               : "tpoff: offline, restored\n"));
         }
         {
-            long ts[2] = { 3, 0 };
+            long ts[2] = { turbo_active ? 1 : 3, 0 };
             sc(SYS_nanosleep, (s64)ts, 0, 0, 0);
         }
     }
