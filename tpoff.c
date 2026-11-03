@@ -13,7 +13,7 @@
  *   tpoff [offset] [mode] [fixed_temp_scale]
  *                      mode is board or both; scale is normally 1 or 10.
  *
- * Active only while usb or wls is online and while
+ * Active only while battery status is "Charging" and while
  * game_bypass_charge_flag < 1.  On unplug / read failure the override is
  * removed.
  *
@@ -38,8 +38,7 @@ typedef unsigned long u64;
 #define MAIN_NODE  "/sys/class/cms_class/main_batt_temp"
 #define BTB_NODE   "/sys/class/cms_class/bat_btb_temp"
 #define GAME_BYPASS_FLAG "/sys/class/cms_class/game_bypass_charge_flag"
-#define USB_ONLINE "/sys/class/power_supply/usb/online"
-#define WLS_ONLINE "/sys/class/power_supply/wls/online"
+#define BATT_STATUS "/sys/class/power_supply/battery/status"
 #define LOG_PATH   "/data/local/tmp/tpoff.log"
 
 #define SA_RESTORER 0x04000000
@@ -89,6 +88,21 @@ static long rd(const char *path, long fallback)
         return fallback;
     buf[n] = 0;
     return parse_long(buf);
+}
+
+static int charging(void)
+{
+    char buf[16];
+    long fd = sc(SYS_openat, -100, (s64)BATT_STATUS, 0, 0);
+    long n;
+    if (fd < 0)
+        return 0;
+    n = sc(SYS_read, fd, (s64)buf, 15, 0);
+    sc(SYS_close, fd, 0, 0, 0);
+    return n >= 8 &&
+           buf[0] == 'C' && buf[1] == 'h' && buf[2] == 'a' &&
+           buf[3] == 'r' && buf[4] == 'g' && buf[5] == 'i' &&
+           buf[6] == 'n' && buf[7] == 'g';
 }
 
 static void wr(const char *path, long v)
@@ -202,8 +216,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     wr(BOARD_NODE, 0);
 
     for (;;) {
-        int charging = rd(USB_ONLINE, 0) == 1 ||
-                       rd(WLS_ONLINE, 0) == 1;
+        int plugged = charging();
         long base, gb;
 
         gb = rd(GAME_BYPASS_FLAG, 0);
@@ -213,7 +226,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         if (base <= -10000)
             base = rd(MAIN_NODE, -10000);
 
-        if (charging && base_ok(base) && gb < 1) {
+        if (plugged && base_ok(base) && gb < 1) {
             long raw = base + off;
             long fake = clamp_temp(raw);
 
@@ -243,7 +256,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             faking = 0;
             restore(mode);
             log_msg(gb >= 1 ? "tpoff: game bypass active, restored\n"
-                  : (charging ? "tpoff: base temp out of range, restored\n"
+                  : (plugged ? "tpoff: base temp out of range, restored\n"
                               : "tpoff: offline, restored\n"));
         }
         {
