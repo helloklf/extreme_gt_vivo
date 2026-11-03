@@ -68,9 +68,8 @@ fccc=0
 
 if [[ "$fccc" == 1 ]]; then
   nohup "$MODPATH/fccc" >> "$MODPATH/fccc.log" 2>&1 &
-else
-  nohup "$MODPATH/tpoff" "$temp_offset" "$tpoff_mode" "$fixed_temp_scale" >/dev/null 2>&1 &
 fi
+nohup "$MODPATH/tpoff" "$temp_offset" "$tpoff_mode" "$fixed_temp_scale" >/dev/null 2>&1 &
 
 # 风扇接管：只有带风扇的机型（如 iQOO 15 Ultra）才有 /dev/fanpwm
 # 温度源用 ddr(SoC 顶盖) + 电池，两条曲线取最大，配置在同目录 fan.conf

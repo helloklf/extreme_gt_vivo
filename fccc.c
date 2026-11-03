@@ -22,11 +22,11 @@ typedef unsigned long u64;
 
 #define BASE_MA    15600
 #define RELEASE_MA 0 // debug_chg_cur 写 17600 ， fchg_fcc_ma 写 0
-#define MIN_MA      1000
-#define TEMP_L1      451
-#define TEMP_L2      480
-#define TEMP_L3      490
-#define TEMP_EXIT    441
+#define MIN_MA      5000
+#define TEMP_L1      431
+#define TEMP_L2      440
+#define TEMP_L3      450
+#define TEMP_EXIT    421
 #define VOLT_L1     4300000
 #define VOLT_L2     4450000
 #define VOLT_L3     4500000
@@ -74,9 +74,10 @@ static char *put_number(char *p, long value)
     return p;
 }
 
-static void log_limit(long temp, long voltage, long temp_ma, long volt_ma, long current)
+static void log_limit(long temp, long voltage, long temp_ma, long volt_ma,
+                      int temp_limited, int volt_limited, long current, long target)
 {
-    char buf[160], *p = buf;
+    char buf[320], *p = buf;
     const char *s = "fccc: temp_0.1C=";
     while (*s) *p++ = *s++;
     p = put_number(p, temp);
@@ -89,9 +90,21 @@ static void log_limit(long temp, long voltage, long temp_ma, long volt_ma, long 
     s = " volt_mA=";
     while (*s) *p++ = *s++;
     p = put_number(p, volt_ma);
-    s = " requested_mA=";
+    s = " temp_limited=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, temp_limited);
+    s = " volt_limited=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, volt_limited);
+    s = " current_mA=";
     while (*s) *p++ = *s++;
     p = put_number(p, current);
+    s = " requested_mA=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, target);
+    s = " write_needed=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, target != current);
     *p++ = '\n';
     *p = 0;
     log_msg(buf);
@@ -181,7 +194,7 @@ static long current_for_temp(long temp, int *limited)
     ct = temp > TEMP_L3 ? TEMP_L3 : temp;
     current = scaled(current, ct > TEMP_L1 ? (int)(ct - TEMP_L1) : 0, 94);
     if (ct > TEMP_L2) current = scaled(current, (int)(ct - TEMP_L2), 85);
-    return current < MIN_MA ? MIN_MA : current;
+    return current < MIN_MA ? 0 : current;
 }
 
 /* Only the fractional exponent needs exp(); its magnitude is below 0.163.
@@ -329,15 +342,18 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             error = 1;
             break;
         }
-        if ((last < 0 && current != 0 && current != RELEASE_MA) ||
-            (last >= 0 && current != last)) {
-            log_msg("fccc: limit already in use or changed externally; stopping\n");
-            error = 1;
-            break;
-        }
+        /*  // 检查 被其它程序修改的情况
+            if ((last < 0 && current != 0 && current != RELEASE_MA) ||
+                (last >= 0 && current != last)) {
+                log_msg("fccc: limit already in use or changed externally; stopping\n");
+                error = 1;
+                break;
+            }
+        */
         temp_ma = current_for_temp(temp, &temp_limited);
         volt_ma = current_for_voltage(voltage, &volt_limited);
-        target = temp_ma < volt_ma ? temp_ma : volt_ma;
+        target = temp_ma; // temp_ma < volt_ma ? temp_ma : volt_ma;
+        log_limit(temp, voltage, temp_ma, volt_ma, temp_limited, volt_limited, current, target);
         if (target != current) {
             if (read_number(FIXED_NODE, &fixed) || fixed != 0) {
                 log_msg("fccc: fixed_temp changed; stopping, retaining limit\n");
@@ -350,7 +366,6 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 break;
             }
             last = target;
-            log_limit(temp, voltage, temp_ma, volt_ma, target);
         }
         sleep_second();
     }

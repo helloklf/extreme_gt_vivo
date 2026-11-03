@@ -110,6 +110,11 @@ bash build-all.sh
 重启后与 `tpoff` 二选一启动；默认 `fccc=0`，使用tpoff。
 也可以 root 手动运行模块目录下的 `fccc`，日志输出到标准错误；
 模块自动启动时日志写入模块目录下的 `fccc.log`。
+充电时每次计算（每秒一次）记录 `temp_0.1C`、`voltage_uV`、温度和电压各自算出的
+`temp_mA`、`volt_mA`、各自的迟滞限流状态 `temp_limited`、`volt_limited`、
+写入前的 `current_mA`、决策值 `requested_mA` 和是否需要写入 `write_needed`。
+日志在尝试写入前输出，`write_needed=1` 不表示写入成功；写入失败会另行报错。
+持续充电会不断增加日志文件大小。
 
 - `fixed_temp` 非零、不可读、温度、电压或充电状态异常时停止，**保留最后写入的限流值**，
   不解除其他程序的设置，也不写 `fchg_fcc_ma`。`fixed_temp=0` 并不能证明温度
