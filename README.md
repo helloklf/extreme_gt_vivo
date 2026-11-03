@@ -74,6 +74,17 @@ py -3 make-patch.py --from-dir <目录>
 
 **不适用会自动拒绝，不会写任何内存。** 已知不适用：MTK 平台老架构（cms_v2，无亮灭屏分表）。
 
+## 构建 Extreme GT 模块
+
+在 Linux 构建环境中安装 `zip` 和 `build.sh` 所需的编译工具后，运行：
+
+```bash
+bash build-all.sh
+```
+
+脚本编译 `tpoff` 和 `fanctld`，然后将 `ExtremeGT_vivo` 目录的内容打包到仓库根目录。
+压缩包名为 `ExtremeGT_vivo_<version>.zip`，版本号取自 `ExtremeGT_vivo/module.prop`。
+
 ## 原理要点
 
 - vivo 新固件的充电策略在 `vfcs-cms-core.ko`（vfcs-cms 驱动），可调属性在

@@ -10,4 +10,4 @@ out/
 /x300/
 
 # 模块打包产物
-ExtremeGT_vivo/*.zip
+/ExtremeGT_vivo_*.zip

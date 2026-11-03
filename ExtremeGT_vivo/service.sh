@@ -13,7 +13,13 @@ stop thermald
 rmmod qti_cpufreq_cdev
 if [[ "$(getprop ro.boot.hardware)" == 'qcom' ]]; then
   for c in /sys/class/thermal/cooling_device*; do
-    [ "$(cat "$c/type" 2>/dev/null)" = gpu ] && echo 0 > "$c/cur_state"
+    type=$(cat "$c/type" 2>/dev/null)
+    case "$type" in
+    gpu|pause-cpu*|cpu-hotplug*|cpufreq-cpu*|ddr-cdev)
+      echo 0 > "$c/cur_state"
+      chmod 444 "$c/cur_state"
+    ;;
+    esac
   done
 fi
 # stop thermal-engine # 可能产生不良影响
