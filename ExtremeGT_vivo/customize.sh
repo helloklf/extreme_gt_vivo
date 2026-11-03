@@ -70,7 +70,8 @@ done
 
 # TPOFF 探测 fixed_temp 的写入单位
 killall tpoff 2>/dev/null
-echo 'Starting temperature test...'
+echo '检测温度单位，此步骤很重要'
+echo '识别错误可能导致异常重启，请耐心等待'
 fixed_temp=/sys/class/cms_class/fixed_temp
 main_batt_temp=/sys/class/cms_class/main_batt_temp
 fixed_temp_scale=1
@@ -78,10 +79,10 @@ tpoff_mode=board
 if [[ -f $fixed_temp ]]; then
   test_temp=10
   echo $test_temp > $fixed_temp
-  sleep 10
+  sleep 15
   real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
   if [[ ! "$real_effect" = "$test_temp"* ]]; then
-    sleep 5
+    sleep 10
     real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
   fi
   after_temp="$(cat $main_batt_temp 2>/dev/null)"
