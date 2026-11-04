@@ -66,7 +66,7 @@ temp_offset=-80
 fccc=0
 [ -f "$MODPATH/tpoff.conf" ] && . "$MODPATH/tpoff.conf"
 
-if [[ "$fccc" == 1 ]]; then
+if [[ "$fccc" == '1' ]]; then
   nohup "$MODPATH/fccc" >> "$MODPATH/fccc.log" 2>&1 &
 fi
 nohup "$MODPATH/tpoff" "$temp_offset" "$tpoff_mode" "$fixed_temp_scale" >/dev/null 2>&1 &

@@ -15,6 +15,7 @@ typedef unsigned long u64;
 #define FIXED_NODE  "/sys/class/cms_class/fixed_temp"
 #define TEMP_NODE   "/sys/class/cms_class/main_batt_temp"
 #define VOLT_NODE   "/sys/class/power_supply/battery/voltage_now"
+#define CAP_NODE    "/sys/class/power_supply/battery/capacity"
 // #define LIMIT_NODE  "/sys/class/cms_class/debug_chg_cur"
 #define LIMIT_NODE  "/sys/class/vfcs_class/fchg_fcc_ma"
 #define STATUS_NODE "/sys/class/power_supply/battery/status"
@@ -27,11 +28,12 @@ typedef unsigned long u64;
 #define TEMP_L2      440
 #define TEMP_L3      450
 #define TEMP_EXIT    421
-#define VOLT_L1     4300000
-#define VOLT_L2     4450000
-#define VOLT_L3     4500000
-#define VOLT_EXIT   4280000
-#define VOLT_STEP     10000
+#define VOLT_CRIT   4490000
+#define VOLT_HIGH   4400000
+#define VOLT_LOW    4310000
+#define VOLT_DEC_FAST   50
+#define VOLT_DEC_SLOW   25
+#define CAP_RELEASE      70
 #define VOLT_MIN_MA    4000
 #define SA_RESTORER 0x04000000
 
@@ -74,8 +76,9 @@ static char *put_number(char *p, long value)
     return p;
 }
 
-static void log_limit(long temp, long voltage, long temp_ma, long volt_ma,
-                      int temp_limited, int volt_limited, long current, long target)
+static void log_limit(long temp, long voltage, long capacity, long temp_ma,
+                      long volt_ma, int temp_limited, int volt_limited,
+                      long current, long target, int write_needed)
 {
     char buf[320], *p = buf;
     const char *s = "fccc: temp_0.1C=";
@@ -84,6 +87,9 @@ static void log_limit(long temp, long voltage, long temp_ma, long volt_ma,
     s = " voltage_uV=";
     while (*s) *p++ = *s++;
     p = put_number(p, voltage);
+    s = " capacity_pct=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, capacity);
     s = " temp_mA=";
     while (*s) *p++ = *s++;
     p = put_number(p, temp_ma);
@@ -104,7 +110,7 @@ static void log_limit(long temp, long voltage, long temp_ma, long volt_ma,
     p = put_number(p, target);
     s = " write_needed=";
     while (*s) *p++ = *s++;
-    p = put_number(p, target != current);
+    p = put_number(p, write_needed);
     *p++ = '\n';
     *p = 0;
     log_msg(buf);
@@ -197,38 +203,22 @@ static long current_for_temp(long temp, int *limited)
     return current < MIN_MA ? 0 : current;
 }
 
-/* Only the fractional exponent needs exp(); its magnitude is below 0.163.
- * A short Taylor series keeps the static no-libc build independent of libm. */
-static long scaled_voltage(long current, long delta_uv, int percent, double log_decay)
+/* Ratchet: each poll above VOLT_HIGH lowers the cap (faster above VOLT_CRIT),
+ * never back up. Below VOLT_LOW the cap resets; in between it holds. Terminal
+ * voltage moves with the charge current itself, so allowing upward adjustment
+ * here would close a positive feedback loop and oscillate. */
+static long cap_for_voltage(long voltage, long cap, int *limited)
 {
-    long factor = 1000000000000L;
-    long ticks = delta_uv / VOLT_STEP;
-    double x = -log_decay * (double)(delta_uv % VOLT_STEP) / VOLT_STEP;
-    double sum = 1.0, term = 1.0;
-    int i;
-    while (ticks-- > 0) factor = factor * percent / 100;
-    for (i = 1; i <= 10; i++) {
-        term *= x / i;
-        sum += term;
-    }
-    return (long)((double)current * (double)factor / 1000000000000.0 * sum);
-}
-
-static long current_for_voltage(long voltage, int *limited)
-{
-    long current = BASE_MA, cv;
-    if (voltage <= VOLT_L1 && (!*limited || voltage <= VOLT_EXIT)) {
+    if (voltage < VOLT_LOW) {
         *limited = 0;
-        return current;
+        return BASE_MA;
     }
-    *limited = 1;
-    if (current > 15000) current = 15000;
-    cv = voltage > VOLT_L3 ? VOLT_L3 : voltage;
-    if (cv > VOLT_L1)
-        current = scaled_voltage(current, cv - VOLT_L1, 94, 0.06187540371808753);
-    if (cv > VOLT_L2)
-        current = scaled_voltage(current, cv - VOLT_L2, 85, 0.16251892949777494);
-    return current < VOLT_MIN_MA ? VOLT_MIN_MA : current;
+    if (voltage > VOLT_HIGH) {
+        *limited = 1;
+        cap -= voltage > VOLT_CRIT ? VOLT_DEC_FAST : VOLT_DEC_SLOW;
+        if (cap < VOLT_MIN_MA) cap = VOLT_MIN_MA;
+    }
+    return cap;
 }
 
 static volatile int stop_requested;
@@ -292,7 +282,8 @@ void __attribute__((noreturn)) run(long argc, char **argv)
 {
     long last = -1;
     long lock_fd;
-    int temp_limited = 0, volt_limited = 0, error = 0;
+    long volt_cap = BASE_MA;
+    int temp_limited = 0, volt_limited = 0, error = 0, write_ticks = 0;
     (void)argv;
     if (argc != 1 || setsig(2) || setsig(15)) {
         log_msg("fccc: unexpected arguments or signal setup failure\n");
@@ -307,7 +298,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     }
     log_msg("fccc: started\n");
     while (!stop_requested) {
-        long fixed, temp, voltage, temp_ma, volt_ma, current, target;
+        long fixed, temp, voltage, capacity, temp_ma, volt_ma, current, target;
         int state = charging();
         if (read_number(FIXED_NODE, &fixed) || fixed != 0) {
             log_msg("fccc: fixed_temp unavailable or active; stopping, retaining limit\n");
@@ -323,6 +314,8 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             if (release_limit(&last)) { error = 1; break; }
             temp_limited = 0;
             volt_limited = 0;
+            volt_cap = BASE_MA;
+            write_ticks = 0;
             sleep_second();
             continue;
         }
@@ -342,6 +335,11 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             error = 1;
             break;
         }
+        if (read_number(CAP_NODE, &capacity) || capacity < 0 || capacity > 100) {
+            log_msg("fccc: invalid or unavailable battery capacity; stopping, retaining limit\n");
+            error = 1;
+            break;
+        }
         /*  // 检查 被其它程序修改的情况
             if ((last < 0 && current != 0 && current != RELEASE_MA) ||
                 (last >= 0 && current != last)) {
@@ -350,11 +348,20 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 break;
             }
         */
+        int write_needed;
         temp_ma = current_for_temp(temp, &temp_limited);
-        volt_ma = current_for_voltage(voltage, &volt_limited);
-        target = temp_ma; // temp_ma < volt_ma ? temp_ma : volt_ma;
-        log_limit(temp, voltage, temp_ma, volt_ma, temp_limited, volt_limited, current, target);
-        if (target != current) {
+        volt_cap = cap_for_voltage(voltage, volt_cap, &volt_limited);
+        volt_ma = volt_cap;
+        target = temp_ma < volt_ma ? temp_ma : volt_ma;
+        /* Above the capacity threshold the forced current is disabled entirely. */
+        if (capacity > CAP_RELEASE) target = RELEASE_MA;
+        /* A write issued before fast charging activates may not take effect,
+         * so rewrite the target every 5 seconds even when it is unchanged. */
+        write_needed = target != current || ++write_ticks >= 5;
+        log_limit(temp, voltage, capacity, temp_ma, volt_ma, temp_limited,
+                  volt_limited, current, target, write_needed);
+        if (write_needed) {
+            write_ticks = 0;
             if (read_number(FIXED_NODE, &fixed) || fixed != 0) {
                 log_msg("fccc: fixed_temp changed; stopping, retaining limit\n");
                 error = 1;
