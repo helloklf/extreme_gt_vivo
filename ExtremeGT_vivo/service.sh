@@ -38,6 +38,10 @@ if [[ -e /proc/pem/thml_key_type ]]; then
 echo 100 > /proc/pem/thml_key_type # 遵循安兔兔的温控策略
   chmod 444 /proc/pem/thml_key_type
   echo "[policy_id = 100]" > /dev/thermal/thermal_data_summary.conf
+  for dir in /sys/devices/system/cpu/cpufreq/policy*
+  do
+    echo 0 > $dir/scaling_min_freq
+  done
 fi
 
 # 模拟温度
