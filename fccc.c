@@ -1,4 +1,5 @@
-/* Additional CMS current limit based on temperature (0.1 C) and voltage (uV). */
+/* Additional CMS current limit based on temperature (0.1 C), voltage (uV)
+ * and charge current (uA). */
 typedef long s64;
 typedef unsigned long u64;
 
@@ -16,6 +17,7 @@ typedef unsigned long u64;
 #define TEMP_NODE   "/sys/class/cms_class/main_batt_temp"
 #define VOLT_NODE   "/sys/class/power_supply/battery/voltage_now"
 #define CAP_NODE    "/sys/class/power_supply/battery/capacity"
+#define CUR_NODE    "/sys/class/power_supply/battery/current_now"
 // #define LIMIT_NODE  "/sys/class/cms_class/debug_chg_cur"
 #define LIMIT_NODE  "/sys/class/vfcs_class/fchg_fcc_ma"
 #define STATUS_NODE "/sys/class/power_supply/battery/status"
@@ -28,11 +30,11 @@ typedef unsigned long u64;
 #define TEMP_L2      440
 #define TEMP_L3      450
 #define TEMP_EXIT    421
-#define VOLT_CRIT   4490000
-#define VOLT_HIGH   4400000
+#define VOLT_CRIT   4510000
+#define VOLT_TREND  4500000
+#define VOLT_HIGH   4450000
 #define VOLT_LOW    4310000
-#define VOLT_DEC_FAST   50
-#define VOLT_DEC_SLOW   25
+#define IBAT_MIN_MA    100
 #define CAP_RELEASE      70
 #define VOLT_MIN_MA    4000
 #define SA_RESTORER 0x04000000
@@ -76,9 +78,10 @@ static char *put_number(char *p, long value)
     return p;
 }
 
-static void log_limit(long temp, long voltage, long capacity, long temp_ma,
-                      long volt_ma, int temp_limited, int volt_limited,
-                      long current, long target, int write_needed)
+static void log_limit(long temp, long voltage, long capacity, long ibat_ma,
+                      long peak_ma, long temp_ma, long volt_ma,
+                      int temp_limited, int volt_limited, long current,
+                      long target, int write_needed)
 {
     char buf[320], *p = buf;
     const char *s = "fccc: temp_0.1C=";
@@ -90,6 +93,12 @@ static void log_limit(long temp, long voltage, long capacity, long temp_ma,
     s = " capacity_pct=";
     while (*s) *p++ = *s++;
     p = put_number(p, capacity);
+    s = " ibat_mA=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, ibat_ma);
+    s = " peak_mA=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, peak_ma);
     s = " temp_mA=";
     while (*s) *p++ = *s++;
     p = put_number(p, temp_ma);
@@ -116,14 +125,60 @@ static void log_limit(long temp, long voltage, long capacity, long temp_ma,
     log_msg(buf);
 }
 
+static char *put_str(char *p, const char *s)
+{
+    while (*s) *p++ = *s++;
+    return p;
+}
+
+/* Report why a node read failed: the stage (open/read/parse), the failing
+ * syscall's errno, or the raw content when it does not parse as a number. */
+static void log_read_error(const char *stage, const char *path, long error,
+                           const char *raw)
+{
+    char buf[256], *p = buf;
+    p = put_str(p, "fccc: ");
+    p = put_str(p, stage);
+    p = put_str(p, " failed for ");
+    p = put_str(p, path);
+    if (raw) {
+        p = put_str(p, "; content=\"");
+        while (*raw && p < buf + sizeof(buf) - 32) {
+            *p++ = (*raw == '\n' || *raw == '\r') ? ' ' : *raw;
+            raw++;
+        }
+        *p++ = '"';
+    } else {
+        p = put_str(p, "; errno=");
+        p = put_number(p, -error);
+    }
+    *p++ = '\n';
+    *p = 0;
+    log_msg(buf);
+}
+
+/* Report a value that parsed fine but failed the caller's range check. */
+static void log_bad_value(const char *what, long value)
+{
+    char buf[192], *p = buf;
+    p = put_str(p, "fccc: ");
+    p = put_str(p, what);
+    p = put_str(p, " out of range: ");
+    p = put_number(p, value);
+    p = put_str(p, "; stopping, retaining limit\n");
+    *p = 0;
+    log_msg(buf);
+}
+
 static int read_text(const char *path, char *buf, int size)
 {
     long fd = sc(SYS_openat, -100, (s64)path, 0, 0);
     long n;
-    if (fd < 0) return -1;
+    if (fd < 0) { log_read_error("open", path, fd, 0); return -1; }
     n = sc(SYS_read, fd, (s64)buf, size - 1, 0);
     sc(SYS_close, fd, 0, 0, 0);
-    if (n <= 0 || n >= size - 1) return -1;
+    if (n <= 0) { log_read_error("read", path, n, 0); return -1; }
+    if (n >= size - 1) { log_read_error("read (too long)", path, n, 0); return -1; }
     buf[n] = 0;
     return 0;
 }
@@ -137,14 +192,24 @@ static int read_number(const char *path, long *value)
     while (*p == ' ' || *p == '\t') p++;
     if (*p == '-') { negative = 1; p++; }
     while (*p >= '0' && *p <= '9') {
-        if (v > 1000000) return -1;
+        if (v > 1000000000L) { log_read_error("parse", path, 0, buf); return -1; }
         v = v * 10 + *p++ - '0';
         digits++;
     }
     while (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\r') p++;
-    if (!digits || *p) return -1;
+    if (!digits || *p) { log_read_error("parse", path, 0, buf); return -1; }
     *value = negative ? -v : v;
     return 0;
+}
+
+/* tpoff mode=both means fixed_temp does not shadow the battery temperature
+ * (e.g. iQOO15), so a nonzero fixed_temp is then not a reason to stop. */
+static int fixed_independent;
+
+static int fixed_overridden(long *fixed)
+{
+    if (fixed_independent) return 0;
+    return read_number(FIXED_NODE, fixed) || *fixed != 0;
 }
 
 static int write_number(const char *path, long v)
@@ -203,21 +268,37 @@ static long current_for_temp(long temp, int *limited)
     return current < MIN_MA ? 0 : current;
 }
 
-/* Ratchet: each poll above VOLT_HIGH lowers the cap (faster above VOLT_CRIT),
- * never back up. Below VOLT_LOW the cap resets; in between it holds. Terminal
- * voltage moves with the charge current itself, so allowing upward adjustment
- * here would close a positive feedback loop and oscillate. */
-static long cap_for_voltage(long voltage, long cap, int *limited)
+/* Ratchet anchored to the peak observed charge current: on entry the cap is
+ * snapped down to the demonstrated capability, then decays geometrically --
+ * each poll multiplies the previous cap by 0.99 at or above VOLT_CRIT, by
+ * 0.995 above VOLT_HIGH, so the step shrinks together with the cap instead
+ * of growing relative to the falling charge current. Below VOLT_TREND the
+ * decay only applies while the voltage is still rising. In the safe band
+ * between VOLT_LOW and VOLT_HIGH the cap instead recovers by a fixed 10 mA
+ * per poll, slow enough not to reintroduce oscillation, so an overshoot
+ * does not stick forever; below VOLT_LOW it resets outright. */
+static long cap_for_voltage(long voltage, long prev_voltage, long peak_ma,
+                            long cap, int *limited)
 {
     if (voltage < VOLT_LOW) {
         *limited = 0;
         return BASE_MA;
     }
-    if (voltage > VOLT_HIGH) {
-        *limited = 1;
-        cap -= voltage > VOLT_CRIT ? VOLT_DEC_FAST : VOLT_DEC_SLOW;
-        if (cap < VOLT_MIN_MA) cap = VOLT_MIN_MA;
+    if (voltage <= VOLT_HIGH) {
+        cap += 10;
+        if (cap >= BASE_MA) {
+            *limited = 0;
+            return BASE_MA;
+        }
+        return cap;
     }
+    if (peak_ma < IBAT_MIN_MA) return cap;
+    if (voltage < VOLT_TREND && prev_voltage >= 0 && voltage <= prev_voltage)
+        return cap;
+    *limited = 1;
+    if (cap > peak_ma) cap = peak_ma;
+    cap = voltage >= VOLT_CRIT ? cap * 99 / 100 : cap * 995 / 1000;
+    if (cap < VOLT_MIN_MA) cap = VOLT_MIN_MA;
     return cap;
 }
 
@@ -254,7 +335,7 @@ static int release_limit(long *last)
 {
     long current, fixed;
     if (*last < 0) return 0;
-    if (read_number(FIXED_NODE, &fixed) || fixed != 0) {
+    if (fixed_overridden(&fixed)) {
         log_msg("fccc: unsafe or unknown state; retaining limit\n");
         return -1;
     }
@@ -281,26 +362,35 @@ static int release_limit(long *last)
 void __attribute__((noreturn)) run(long argc, char **argv)
 {
     long last = -1;
+    long last_target = -1;
+    long dither = 0;
     long lock_fd;
     long volt_cap = BASE_MA;
+    long ibat_peak = 0;
+    long prev_voltage = -1;
     int temp_limited = 0, volt_limited = 0, error = 0, write_ticks = 0;
-    (void)argv;
-    if (argc != 1 || setsig(2) || setsig(15)) {
+    if ((argc != 1 && argc != 2) || setsig(2) || setsig(15)) {
         log_msg("fccc: unexpected arguments or signal setup failure\n");
         sc(SYS_exit, 1, 0, 0, 0);
         __builtin_unreachable();
     }
+    /* fccc [tpoff_mode]: mode "both" means fixed_temp is independent of the
+     * battery temperature, so fixed_temp checks are skipped. */
+    if (argc == 2 && argv[1][0] == 'b' && argv[1][1] == 'o' &&
+        argv[1][2] == 't')
+        fixed_independent = 1;
     lock_fd = sc(SYS_openat, -100, (s64)LOCK_PATH, 2 | 0100 | 0400000, 0600);
     if (lock_fd < 0 || sc(SYS_flock, lock_fd, 2 | 4, 0, 0) < 0) {
         log_msg("fccc: cannot acquire instance lock\n");
         sc(SYS_exit, 1, 0, 0, 0);
         __builtin_unreachable();
     }
-    log_msg("fccc: started\n");
+    log_msg(fixed_independent ? "fccc: started (fixed_temp checks off)\n"
+                              : "fccc: started\n");
     while (!stop_requested) {
-        long fixed, temp, voltage, capacity, temp_ma, volt_ma, current, target;
+        long fixed, temp, voltage, capacity, ibat_ma, temp_ma, volt_ma, current, target;
         int state = charging();
-        if (read_number(FIXED_NODE, &fixed) || fixed != 0) {
+        if (fixed_overridden(&fixed)) {
             log_msg("fccc: fixed_temp unavailable or active; stopping, retaining limit\n");
             error = 1;
             break;
@@ -315,18 +405,30 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             temp_limited = 0;
             volt_limited = 0;
             volt_cap = BASE_MA;
+            ibat_peak = 0;
+            prev_voltage = -1;
+            last_target = -1;
             write_ticks = 0;
             sleep_second();
             continue;
         }
-        if (read_number(TEMP_NODE, &temp) || temp < -400 || temp > 1250 ||
-            read_number(FIXED_NODE, &fixed) || fixed != 0) {
-            log_msg("fccc: invalid or overridden battery temperature; stopping, retaining limit\n");
+        if (read_number(TEMP_NODE, &temp) || fixed_overridden(&fixed)) {
+            log_msg("fccc: unreadable or overridden battery temperature; stopping, retaining limit\n");
             error = 1;
             break;
         }
-        if (read_number(VOLT_NODE, &voltage) || voltage < 2000000 || voltage > 5000000) {
-            log_msg("fccc: invalid or unavailable single-cell battery voltage; stopping, retaining limit\n");
+        if (temp < -400 || temp > 1250) {
+            log_bad_value("battery temperature", temp);
+            error = 1;
+            break;
+        }
+        if (read_number(VOLT_NODE, &voltage)) {
+            log_msg("fccc: unavailable single-cell battery voltage; stopping, retaining limit\n");
+            error = 1;
+            break;
+        }
+        if (voltage < 2000000 || voltage > 5000000) {
+            log_bad_value("single-cell battery voltage", voltage);
             error = 1;
             break;
         }
@@ -335,8 +437,26 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             error = 1;
             break;
         }
-        if (read_number(CAP_NODE, &capacity) || capacity < 0 || capacity > 100) {
-            log_msg("fccc: invalid or unavailable battery capacity; stopping, retaining limit\n");
+        if (read_number(CAP_NODE, &capacity)) {
+            log_msg("fccc: unavailable battery capacity; stopping, retaining limit\n");
+            error = 1;
+            break;
+        }
+        if (capacity < 0 || capacity > 100) {
+            log_bad_value("battery capacity", capacity);
+            error = 1;
+            break;
+        }
+        /* current_now is in uA and negative while charging on some devices. */
+        if (read_number(CUR_NODE, &ibat_ma)) {
+            log_msg("fccc: cannot read battery current; stopping, retaining limit\n");
+            error = 1;
+            break;
+        }
+        if (ibat_ma < 0) ibat_ma = -ibat_ma;
+        ibat_ma /= 1000;
+        if (ibat_ma > 100000) {
+            log_bad_value("battery current", ibat_ma);
             error = 1;
             break;
         }
@@ -349,30 +469,44 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             }
         */
         int write_needed;
+        long write_val;
+        if (ibat_ma > ibat_peak) ibat_peak = ibat_ma;
         temp_ma = current_for_temp(temp, &temp_limited);
-        volt_cap = cap_for_voltage(voltage, volt_cap, &volt_limited);
+        volt_cap = cap_for_voltage(voltage, prev_voltage, ibat_peak, volt_cap,
+                                   &volt_limited);
         volt_ma = volt_cap;
+        prev_voltage = voltage;
         target = temp_ma < volt_ma ? temp_ma : volt_ma;
         /* Above the capacity threshold the forced current is disabled entirely. */
         if (capacity > CAP_RELEASE) target = RELEASE_MA;
         /* A write issued before fast charging activates may not take effect,
          * so rewrite the target every 5 seconds even when it is unchanged. */
-        write_needed = target != current || ++write_ticks >= 5;
-        log_limit(temp, voltage, capacity, temp_ma, volt_ma, temp_limited,
-                  volt_limited, current, target, write_needed);
+        write_needed = target != last_target || ++write_ticks >= 5;
+        /* A write equal to the value already in the node may be dropped by the
+         * driver, so nudge nonzero repeats by a cycling 1-50 mA offset. Never
+         * nudge a release (0), which would impose a near-zero limit instead. */
+        write_val = target;
+        if (write_needed && target > 0 && target == current) {
+            dither = dither % 50 + 1;
+            write_val = target + dither;
+        }
+        log_limit(temp, voltage, capacity, ibat_ma, ibat_peak, temp_ma,
+                  volt_ma, temp_limited, volt_limited, current, target,
+                  write_needed);
         if (write_needed) {
             write_ticks = 0;
-            if (read_number(FIXED_NODE, &fixed) || fixed != 0) {
+            if (fixed_overridden(&fixed)) {
                 log_msg("fccc: fixed_temp changed; stopping, retaining limit\n");
                 error = 1;
                 break;
             }
-            if (write_number(LIMIT_NODE, target)) {
+            if (write_number(LIMIT_NODE, write_val)) {
                 log_msg("fccc: limit write or readback failed; stopping\n");
                 error = 1;
                 break;
             }
-            last = target;
+            last = write_val;
+            last_target = target;
         }
         sleep_second();
     }

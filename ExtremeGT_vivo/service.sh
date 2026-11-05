@@ -1,8 +1,8 @@
-# 防止开机失败
-sleep 60
-
 # Magisk 开机脚本所在模块的根目录
 MODPATH=${0%/*}
+
+# 防止开机失败
+sleep 60
 
 # 关闭温控限频（联发科）
 stop thermal_core
@@ -67,7 +67,8 @@ fccc=0
 [ -f "$MODPATH/tpoff.conf" ] && . "$MODPATH/tpoff.conf"
 
 if [[ "$fccc" == '1' ]]; then
-  nohup "$MODPATH/fccc" >> "$MODPATH/fccc.log" 2>&1 &
+  # tpoff_mode=both 时 fixed_temp 不影响电池温度，fccc 跳过 fixed_temp 检查
+  nohup "$MODPATH/fccc" "$tpoff_mode" >> "$MODPATH/fccc.log" 2>&1 &
 fi
 nohup "$MODPATH/tpoff" "$temp_offset" "$tpoff_mode" "$fixed_temp_scale" >/dev/null 2>&1 &
 

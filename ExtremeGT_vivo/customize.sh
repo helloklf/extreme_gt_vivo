@@ -99,9 +99,13 @@ if [[ -f $fixed_temp ]]; then
   fi
 fi
 cat > "$MODPATH/tpoff.conf" <<EOF
+# 温度单位， 1 或 10 ，如果充电死机可以尝试切换
 fixed_temp_scale=$fixed_temp_scale
+# 自动配置好的，不要改！
 tpoff_mode=$tpoff_mode
+# 温度偏移量，-80相当于温控阈值调高8°C
 temp_offset=-80
+# 使用独立的充电控制程序
 fccc=0
 EOF
 
