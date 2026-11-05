@@ -34,9 +34,11 @@ fi
 # stop touch_boost
 
 # 动态温控配置（ThermalConfig.MD）
+if [[ -e /proc/pem/thml_key_type ]]; then
 echo 100 > /proc/pem/thml_key_type # 遵循安兔兔的温控策略
-chmod 444 /proc/pem/thml_key_type
-echo "[policy_id = 9]" > /dev/thermal/thermal_data_summary.conf
+  chmod 444 /proc/pem/thml_key_type
+  echo "[policy_id = 100]" > /dev/thermal/thermal_data_summary.conf
+fi
 
 # 模拟温度
 for tz in /sys/class/thermal/thermal_zone*; do
