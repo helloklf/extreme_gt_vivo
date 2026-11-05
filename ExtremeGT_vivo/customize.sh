@@ -117,9 +117,15 @@ fi
 # Help
 if [[ "$(grep abogki543627742 /proc/version)" == "" && ! -f $MODPATH/fbpat.ko ]]; then
   echo '其它提示：'
-  echo '本模块未集成适用于当前设备的 fbpat.ko (亮屏充电提速补丁)'
-  echo '需要自行参考开源项目'
+  echo '现在你有以下方式可以进一步提升充电效率'
+  echo '1.'
+  echo '参考开源项目 构建 fbpat.ko (亮屏充电提速补丁)'
   echo 'https://github.com/helloklf/extreme_gt_vivo'
-  echo '实机构建该内核模块，并手动放置到模块目录下'
+  echo '并手动放置到模块目录下'
   echo ''
+  if [ -f "/sys/class/vfcs_class/fchg_fcc_ma" ]; then
+    echo '2.'
+    echo '使用 fccc 程序取代系统默认的充电速度控制'
+    echo "修改 $MODPATH/tpoff.conf 配置 fccc=1 即可"
+  fi
 fi

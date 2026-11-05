@@ -17,7 +17,12 @@
  * game_bypass_charge_flag < 1.  On unplug / read failure the override is
  * removed.  Below 30% capacity, an additional 5.0C offset is applied.
  *
- * Safety: every value written is clamped to [15.0C, 55.0C] and read back
+ * Low-temperature guard: below 25.0C battery temperature no offset is
+ * applied at all (the system's own low-temp protection would otherwise
+ * throttle harder than it helps); a faked value is never written below
+ * 27.0C.
+ *
+ * Safety: every value written is clamped to [27.0C, 55.0C] and read back
  * (one retry) before it is trusted; a base value outside [-40C, 125C] is
  * treated as a read error and the override is dropped.
  */
@@ -44,9 +49,11 @@ typedef unsigned long u64;
 
 #define SA_RESTORER 0x04000000
 
-/* hard bounds for any temperature we write: never below 15.0C, never above
- * 55.0C (0.1C units).  Below 15C the CMS tables are already saturated and a
- * bad sensor read would otherwise produce a nonsense override. */
+/* hard bounds for any temperature we write: never below 27.0C (low-temp
+ * protection would kick in and throttle harder than the offset helps),
+ * never above 55.0C (0.1C units). */
+#define COLD_OFF    250      /* below 25.0C real battery temp: no offset */
+#define FAKE_MIN    270      /* never fake below 27.0C */
 #define TEMP_MIN    150
 #define TEMP_MAX    550
 #define BASE_MIN    (-400)   /* -40.0C, treat anything lower as a read error */
@@ -268,7 +275,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
 
         capacity = rd(BATT_CAPACITY, -1);
 
-        if (plugged && base_ok(base) && gb < 1) {
+        if (plugged && base_ok(base) && base >= COLD_OFF && gb < 1) {
             long effective_off = off;
             if (capacity >= 0 && capacity < 30) {
                 effective_off += LOW_SOC_OFFSET;
@@ -277,13 +284,14 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                     effective_off = LOW_SOC_MIN_OFFSET;
             }
             long raw = base + effective_off;
-            long fake = clamp_temp(raw);
+            long fake = raw < FAKE_MIN ? FAKE_MIN : raw;
+            fake = clamp_temp(fake);
 
             if (fake != raw && !clamp_logged) {
                 clamp_logged = 1;
-                log_msg(fake == TEMP_MIN
-                        ? "tpoff: clamped to 15.0C floor\n"
-                        : "tpoff: clamped to 55.0C ceiling\n");
+                log_msg(fake == TEMP_MAX
+                        ? "tpoff: clamped to 55.0C ceiling\n"
+                        : "tpoff: clamped to 27.0C floor\n");
             }
             if (!faking) {
                 faking = 1;
@@ -305,8 +313,10 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             faking = 0;
             restore(mode);
             log_msg(gb >= 1 ? "tpoff: game bypass active, restored\n"
-                  : (plugged ? "tpoff: base temp out of range, restored\n"
-                              : "tpoff: offline, restored\n"));
+                  : (!plugged ? "tpoff: offline, restored\n"
+                  : (base_ok(base) && base < COLD_OFF
+                     ? "tpoff: battery below 25.0C, restored\n"
+                     : "tpoff: base temp out of range, restored\n")));
         }
         {
             long ts[2] = { 3, 0 };
