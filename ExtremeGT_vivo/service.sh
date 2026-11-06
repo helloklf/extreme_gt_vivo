@@ -44,6 +44,9 @@ if [[ -e /proc/pem/thml_key_type ]]; then
   echo "[policy_id = 0]\n" > /dev/thermal/thermal_data_summary.conf
 fi
 
+# vivo温控 /vendor/etc/thermal/thermal_config.xml 
+# /proc/thermal_lifespan 不知道写点啥好，好像也没啥影响
+
 # 模拟温度
 for tz in /sys/class/thermal/thermal_zone*; do
   if [[ -f $tz/type ]]; then
