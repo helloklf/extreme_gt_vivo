@@ -93,10 +93,17 @@ fi
 
 if [[ -e "$MODPATH/fbpat.ko" ]]; then
   insmod "$MODPATH/fbpat.ko"
-elif [[ "$(grep abogki543627742 /proc/version)" != "" ]]; then
-  # 6.12.58-android16-6-gdd6fd5c98918-abogki543627742-4k
-  insmod "$MODPATH/fbpat_6.12.58_abogki543627742.ko"
 else
-  echo "fbpat.ko not found"
-  echo 'https://github.com/helloklf/extreme_gt_vivo'
+  # 兼容性锚定 cms 模块基线（而非 /proc/version；vivo 内核不校验 vermagic）：
+  # 模块文件须与构建基线同一 build，且已加载（内核 ABI 兼容的硬证明）
+  cms_ko=/vendor_dlkm/lib/modules/vfcs-cms-core.ko
+  cms_vermagic='vermagic=6.12.58-android16-6-gfd60568f1f3a-4k'
+  if grep -aq "$cms_vermagic" "$cms_ko" 2>/dev/null && \
+     grep -q '^vfcs_cms_core ' /proc/modules 2>/dev/null; then
+    # 基线: vfcs-cms-core.ko @ 6.12.58-android16-6-gfd60568f1f3a-4k
+    insmod "$MODPATH/fbpat_6.12.58_gfd60568f1f3a.ko"
+  else
+    echo "fbpat.ko not found or cms module baseline mismatch"
+    echo 'https://github.com/helloklf/extreme_gt_vivo'
+  fi
 fi

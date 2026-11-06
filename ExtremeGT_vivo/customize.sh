@@ -114,8 +114,22 @@ if [[ -f $old_fbpat ]]; then
   cp $old_fbpat $MODPATH/fbpat.ko
 fi
 
+# fbpat 兼容性锚点：设备上的 cms 模块须与构建基线同一 build，
+# 且当前已加载（证明内核 ABI 与该基线兼容）。
+# 注意不要用 /proc/version 判断：vivo 内核不校验 vermagic，
+# 内核 banner 与 vendor_dlkm 模块基线可能不同（混刷）。
+cms_ko=/vendor_dlkm/lib/modules/vfcs-cms-core.ko
+cms_vermagic='vermagic=6.12.58-android16-6-gfd60568f1f3a-4k'
+fbpat_applicable=0
+if grep -aq "$cms_vermagic" "$cms_ko" 2>/dev/null && \
+   grep -q '^vfcs_cms_core ' /proc/modules 2>/dev/null; then
+  fbpat_applicable=1
+else
+  rm -f $MODPATH/fbpat_6.12.58_gfd60568f1f3a.ko
+fi
+
 # Help
-if [[ "$(grep abogki543627742 /proc/version)" == "" && ! -f $MODPATH/fbpat.ko ]]; then
+if [[ $fbpat_applicable == 0 && ! -f $MODPATH/fbpat.ko ]]; then
   echo '其它提示：'
   echo '现在你有以下方式可以进一步提升充电效率'
   echo '1.'
