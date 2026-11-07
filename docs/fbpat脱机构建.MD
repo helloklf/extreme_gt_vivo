@@ -22,7 +22,7 @@ cd /sys/firmware/devicetree/base && tar cf /sdcard/vivo_cms/cmsdt.tar $(find . -
 ### 构建
 ```bash
 py -3 -m pip install pyelftools
-py -3 make-patch.py --from-dir ./PD2505
+py -3 src/fbpat/make-patch.py --from-dir ./PD2505
 ```
 
 脚本会从 `vfcs-cms-core.ko` 的反汇编中自动识别表指针偏移。若仍提示

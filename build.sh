@@ -1,6 +1,6 @@
 #!/bin/bash
 # 编译 x.c (aarch64 纯 syscall 静态程序)
-# 用法: ./build.sh tpoff.c
+# 用法: ./build.sh src/tpoff/tpoff.c
 set -e
 src="$1"
 out="${src%.c}"
@@ -73,4 +73,4 @@ fi
 
 "$STRIP" -s "$out"
 file "$out"
-mv "$out" ./ExtremeGT_vivo/"$out"
+mv "$out" "./ExtremeGT_vivo/$(basename "$out")"

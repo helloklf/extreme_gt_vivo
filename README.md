@@ -1,63 +1,93 @@
 # vivo/iQOO 充电调速工具集（以 V2505A / PD2505 为例）
 
-针对 vivo 新固件（vfcs-cms 充电策略架构）的运行时充电速度控制方案。
-不改任何分区、不装 Magisk 模块，全部改动都在内存中，重启即还原。
+针对 vivo 新固件（vfcs-cms 充电策略架构）的充电速度控制方案。
+充电侧改动全部在内存中，重启即还原；Extreme GT 模块走 Magisk/KernelSU systemless
+挂载，不改任何分区。
 
 实测环境：V2505A（iQOO 15），PD2505D_A_16.0.24.7.W10，内核 6.12.23-android16-5，KernelSU root。
 
 > **X300（V2509A，MTK）不一样**：`fixed_temp` 是**电池温度**的替代值，`primary_board_temp`
 > 才是主板温度且独立可写；没被识别成 vivo 闪充的第三方头（普通 DCP/PD）走 `chg` 参数集，
-> 41°C 以下恒 2700mA，温度伪装没有收益；原装头 / PPS / UFCS 头走 `sp`，用 [tpoff.c](tpoff.c)
+> 41°C 以下恒 2700mA，温度伪装没有收益；原装头 / PPS / UFCS 头走 `sp`，用 [tpoff.c](src/tpoff/tpoff.c)
 > 只压板温即可（原装头实测 10W → 32W）。详见 [docs/X300充电温控分析.md](docs/X300充电温控分析.md)。
 
 ## 能做什么
 
-- **亮屏充电提速**：原厂亮屏板温表比灭屏保守得多（40°C 时 4500mA vs 8400mA）。
-  补丁把内存中的亮屏表改写成灭屏曲线，亮屏充电 14W → 34W（实测）。
+- **动态限流（fccc）**：按电池温度/电压/电量每秒调节 `fchg_fcc_ma`，温度/电压双上限
+  取小、峰值锚定 ratchet，可接管充电控速（模块内默认关闭，`tpoff.conf` 设 `fccc=1`
+  与 tpoff 二选一开启）。不像 fbpat 那样绑定具体固件构建，参数随时可调——多数场景
+  下它可以取代 fbpat（前提是机型的 `fchg_fcc_ma` 节点能实际控制电荷泵通路）。
+- **温度阈值平移（tpoff）**：常驻程序把 CMS 使用的板温/电池温整体偏移 ±N°C。
 - **精细限流**：`debug_chg_cur` 节点可随时限制电池电流（mA 级）。
-- **温度阈值平移**：`tpoff` 常驻程序把 CMS 使用的板温/电池温整体偏移 ±N°C。
+- **亮屏充电提速（fbpat.ko，可选）**：原厂亮屏板温表比灭屏保守得多（40°C 时 4500mA
+  vs 8400mA）。补丁把内存中的亮屏表改写成灭屏曲线，亮屏充电 14W → 34W（实测）。
+  与固件严格绑定，只有确认瓶颈是亮屏表时才需要。
 - **停充/恢复**控制与限流归因观测工具链。
 
-所有手段都保留原厂电池曲线、NTC、过压、超时等保护；补丁本身只做"全表内容校验一致才覆写"，校验不过则拒绝写入。
+所有手段都保留原厂电池曲线、NTC、过压、超时等保护；fbpat 补丁本身只做"全表内容校验一致才覆写"，校验不过则拒绝写入。
 
 ## 快速开始
 
+Magisk/KernelSU 刷入 `ExtremeGT_vivo_<version>.zip`（构建见下文「构建 Extreme GT
+模块」）。安装期自动探测机型并生成 `tpoff.conf`：默认启用 tpoff 温度偏移；想让
+fccc 接管限流，把模块目录 `tpoff.conf` 里的 `fccc=0` 改为 `1` 后重启（与 tpoff
+二选一，详见「fccc 动态限流」）。
+
+### 可选：fbpat 亮屏提速补丁
+
+只有确认瓶颈是亮屏 A 表（用 `tools/chg-trace.sh` 抓掉档点定位）且补丁与当前固件
+严格匹配时才需要，重启即还原：
+
 ```bash
-# 1. 亮屏提速补丁（重启后需重新加载）
-adb push fbpat.ko /data/local/tmp/
+adb push out/fbpat.ko /data/local/tmp/
 adb shell su -c 'insmod /data/local/tmp/fbpat.ko'
-
-# 还原（免重启）
-adb push fbres.ko /data/local/tmp/
-adb shell su -c 'insmod /data/local/tmp/fbres.ko'
-
-# 2. 温度偏移（默认降温 5°C，USB/WLS online 才生效，拔线自动还原；
-#    game_bypass_charge_flag >= 1 时暂停伪装并还原）
-adb push tpoff /data/local/tmp/
-adb shell su -c 'chmod 755 /data/local/tmp/tpoff; nohup /data/local/tmp/tpoff >/dev/null 2>&1 &'
-adb shell su -c 'killall tpoff'    # 停止；下次启动会先清除覆盖
-
-# 3. 精细限流（mA，立即生效；写 17600 解除）
-adb shell su -c 'echo 3000 > /sys/class/cms_class/debug_chg_cur'
 ```
 
-观测当前限流来自哪里：
+其它固件用 `src/fbpat/make-patch.py` 重新生成（见「适配其它设备」），不要直接套用
+现成的 fbpat.ko。
+
+## 构建 Extreme GT 模块
+
+在 Linux 构建环境中安装 `zip` 和 `build.sh` 所需的编译工具后，运行：
 
 ```bash
-adb shell su -c 'grep effective $(grep -m1 debugfs /proc/mounts | cut -d" " -f2)/pmic-votable/USER_IBAT/status'
+bash build-all.sh
 ```
 
-## 适配其它设备：make-patch.py
+脚本编译 `tpoff`、`fanctld` 和 `fccc`，然后将 `ExtremeGT_vivo` 目录的内容打包到仓库根目录。
+压缩包名为 `ExtremeGT_vivo_<version>.zip`，版本号取自 `ExtremeGT_vivo/module.prop`。
+
+## fccc 动态限流（默认关闭）
+
+`fccc` 每秒读取电池温度、电压、电量和充电电流，向 `vfcs_class/fchg_fcc_ma`
+写入限流值（写 0 释放）：温度越高限得越狠；电压接近满电时以本次充电的峰值电流
+为锚点逐步下压，回落到安全区再缓慢恢复；两路上限取小，电量高于阈值直接释放。
+具体阈值和曲线系数以 [src/fccc/fccc.c](src/fccc/fccc.c) 文件头的宏定义为准，
+本文不复述，避免与代码脱节。
+
+开启方式：模块目录的 `tpoff.conf` 设 `fccc=1`，重启后与 `tpoff` 二选一启动
+（默认 `fccc=0`）。也可以 root 手动运行模块目录下的 `fccc`，日志输出到标准错误；
+模块自动启动时日志写入模块目录下的 `fccc.log`，持续充电日志会持续增长。
+
+使用边界：
+
+- 该节点能否控制某个机型的电荷泵通路需实机验证；fccc 不改变原厂保护，也
+  **不能作为独立安全保护**，阈值来自参考算法而非设备安全规范。
+- 与温度伪装工具互斥：`tpoff_mode=board`（如 X300）下 `fixed_temp` 会污染电池
+  温度读数，fccc 检测到即罢工；`tpoff_mode=both`（如 iQOO15）则跳过该检查。
+- 异常退出可能留下限流值未释放，请检查日志和 `fchg_fcc_ma` 当前值。
+
+## 适配其它设备：make-patch.py（fbpat 补丁）
 
 `fbpat.ko` 二进制只适用于上述固件（vermagic/符号 CRC/结构体偏移/表内容全部绑定具体构建）。
-同架构新固件用一键脚本重新生成：
+同架构新固件用一键脚本重新生成（从仓库根目录运行）：
 
 ```bash
 # 在线：设备连着 adb（需 root），全流程自动
-py -3 make-patch.py --serial <adb序列号>
+py -3 src/fbpat/make-patch.py --serial <adb序列号>
 
 # 离线：帮别人构建，让对方提供文件放进一个目录即可
-py -3 make-patch.py --from-dir <目录>
+py -3 src/fbpat/make-patch.py --from-dir <目录>
 ```
 
 离线目录内容（root 后从设备拉取，或从全量固件包的 vendor_dlkm.img/dtbo 解开）：
@@ -73,82 +103,6 @@ py -3 make-patch.py --from-dir <目录>
 （`CONFIG_MODULE_SIG_FORCE` 未开）。
 
 **不适用会自动拒绝，不会写任何内存。** 已知不适用：MTK 平台老架构（cms_v2，无亮灭屏分表）。
-
-## 构建 Extreme GT 模块
-
-在 Linux 构建环境中安装 `zip` 和 `build.sh` 所需的编译工具后，运行：
-
-```bash
-bash build-all.sh
-```
-
-脚本编译 `tpoff`、`fanctld` 和 `fccc`，然后将 `ExtremeGT_vivo` 目录的内容打包到仓库根目录。
-压缩包名为 `ExtremeGT_vivo_<version>.zip`，版本号取自 `ExtremeGT_vivo/module.prop`。
-
-## 动态限流（默认关闭）
-
-`fccc` 以 1 秒间隔读取 `main_batt_temp`（0.1°C）、
-`battery/voltage_now`（µV，要求单节电池电压）和 `battery/capacity`（%），
-写入 `vfcs_class/fchg_fcc_ma`（写 0 表示释放，不使用
-`cms_class/debug_chg_cur`）。
-它不改变原厂保护；该节点能否控制某个机型的电荷泵通路仍需实机验证，不能作为
-独立安全保护。
-
-基准为 15600 mA；温度超过 43.1°C 开始限制，先将基准钳到 15000 mA，
-随后每上升 0.1°C 乘以 0.94，超过 44.0°C 的部分再每 0.1°C 乘以 0.85。
-温度计算最高取 45.0°C，计算结果低于 5000 mA 时按 0（释放）处理；
-降至 42.1°C 或以下才退出温度限速状态。
-
-电压策略是锚定峰值电流的单向 ratchet：充电期间持续读取
-`battery/current_now`（µA，部分机型充电时为负，取绝对值）并记录
-本次充电观察到的最大电流（峰值，拔线重置）。触发限流时上限先一把
-钳到峰值，随后每轮在上一步决策值的基础上几何衰减：电压达到
-4.51 V（含）时乘以 0.99，高于 4.45 V 时乘以 0.995，步长随决策值
-同步缩小，不会在充电后半程形成过大的相对降幅；其中电压低于
-4.50 V 且本次采样未高于上次（电压无上升趋势）时保持不动。
-压到 4000 mA 下限为止；4.31–4.45 V（含）之间每轮固定回涨 10 mA
-（从下限爬回基准约 19 分钟，仅用于纠正过度下压），恢复到基准后
-退出电压限流状态；低于 4.31 V 或停止充电时直接重置回基准。
-峰值低于 100 mA 时跳过调节，避免把刚接入时的零电流当成锚点。
-衰减基于自身决策值而非瞬时电流，系统自行限流时不会叠加成滚降；
-升压只发生在安全带内且速率远低于压降速率，不会形成快速振荡。
-
-最终取温度与电压上限的较小值；电量高于 70% 时一律写 0，停用强制电流。
-目标值变化时立即写入，无变化也每 5 秒重写一次（快充未激活时的写入
-可能不生效，需要重写）。驱动可能忽略与节点当前值相同的写入，因此
-重复写入非零限值时会故意叠加 1–50 mA 的循环偏差（写 0 释放时不加，
-日志 `requested_mA` 仍显示目标值）。
-拔线时清除温度迟滞与电压 ratchet 状态。
-电压读数不可读或不在 2–5 V 范围、电流读数不可读或超过 100 A 时
-停止并保留限流，不把电池组电压自动除以二。
-
-构建并安装模块后，在模块目录的 `tpoff.conf` 中设置 `fccc=1`，
-重启后与 `tpoff` 二选一启动；默认 `fccc=0`，使用tpoff。
-启动脚本会把 `tpoff_mode` 作为第一个参数传给 `fccc`：
-`both` 表示该机型的 `fixed_temp` 独立于电池温度（如 iQOO15），
-此时 `fccc` 跳过全部 `fixed_temp` 检查；其他取值（含不传参）保持严格检查。
-也可以 root 手动运行模块目录下的 `fccc`，日志输出到标准错误；
-模块自动启动时日志写入模块目录下的 `fccc.log`。
-充电时每次计算（每秒一次）记录 `temp_0.1C`、`voltage_uV`、`capacity_pct`、
-实际充电电流 `ibat_mA`、本次充电观察到的峰值电流 `peak_mA`、
-温度和电压各自算出的 `temp_mA`、`volt_mA`、各自的限流状态
-`temp_limited`、`volt_limited`、写入前的 `current_mA`、决策值
-`requested_mA` 和是否需要写入 `write_needed`（含每 5 秒的周期重写）。
-日志在尝试写入前输出，`write_needed=1` 不表示写入成功；写入失败会另行报错。
-持续充电会不断增加日志文件大小。
-
-- `fixed_temp` 非零、不可读、温度、电压、电量、电流或充电状态异常时停止，**保留最后写入的限流值**，
-  不解除其他程序的设置，也不写 `fchg_fcc_ma`。`fixed_temp=0` 并不能证明温度
-  一定未被其他机制伪造。`tpoff_mode=both` 启动时跳过 `fixed_temp` 检查，
-  因为该模式下 `fixed_temp` 不影响电池温度读数。
-- `tpoff_mode=board` 下 `fixed_temp` 会覆盖电池温度（如 X300），
-  本程序的电池温度读数不再可信，因此检测到 `fixed_temp` 非零即罢工；
-  该模式下不要与温度伪装工具同时依赖电池温度。
-- 检测其他程序改写 `fchg_fcc_ma` 后退出的检查默认关闭（代码中保留，被注释）。
-  该节点没有跨程序的原子所有权，其他程序仍可能与本程序竞争。
-- 正常停止或拔线时，仅在读回仍是本程序设置的值时写入 0 释放。
-  异常退出或被强制终止可能留下限流；请检查日志和当前值。
-- 温度、电压阈值来自参考算法和配置要求，不是经验证的设备安全阈值。该程序不能替代硬件或原厂保护。
 
 ## 原理要点
 
@@ -178,23 +132,21 @@ bash build-all.sh
 
 ## 目录
 
-| 文件 | 说明 |
+| 路径 | 说明 |
 |---|---|
-| `make-patch.py` | 一键适配脚本（拉取→生成→加载→验证） |
-| `gen_module.py` | 以原厂 .ko 为模板生成可加载模块 |
-| `fbpat.c` / `fbpat.ko` | 亮屏表补丁（V2505A 当前固件用） |
-| `fbres.c` / `fbres.ko` | 还原模块（免重启恢复原厂表） |
-| `tpoff.c` / `tpoff` | 统一版温度偏移守护程序：伪装模式（只写板温 X300 / 板温+电池温 iQOO15）与 `fixed_temp` 写入单位全部由安装期探测决定（`tpoff.conf` → `service.sh` 传参），运行时不探测；写入限幅 15–55°C 且回读校验 |
-| `cmsboost.c` / `cmsboost` | **未验证**：FCC 投票强制 3.5A + 温度看门狗；只证明能改 CC 设定值，没有实测到提速，PPS/UFCS/原装头下不接管 |
-| `fanctld.c` / `fan.conf` | 独立风扇控制器：`pop`（ddr tsens，PoP 封装温度）+ 电池两路曲线取最大值，C 静态实现，含起转脉冲/最小占空比/死区 |
-| `fccc.c` | 按电池温度/电压/电量附加限流的守护程序，默认关闭 |
-| `modload.c` / `modload` | finit_module 加载器（排错用，直接报 errno） |
-| `watch-charge.py` | 充电状态只读采样 |
+| `src/fbpat/` | 亮屏表补丁功能：`make-patch.py`（一键适配脚本：拉取→生成→加载→验证，从仓库根目录运行）、`gen_module.py`（以原厂 .ko 为模板生成可加载模块）、`fbpat.c`（亮屏表补丁）、`fbres.c`（还原模块，免重启恢复原厂表）、`modload.c`/`modload`（finit_module 加载器，排错用，直接报 errno） |
+| `src/tpoff/tpoff.c` | 统一版温度偏移守护程序：伪装模式（只写板温 X300 / 板温+电池温 iQOO15）与 `fixed_temp` 写入单位全部由安装期探测决定（`tpoff.conf` → `service.sh` 传参），运行时不探测；写入限幅 15–55°C 且回读校验 |
+| `src/fccc/fccc.c` | 按电池温度/电压/电量附加限流的守护程序，默认关闭 |
+| `src/fanctld/` | 独立风扇控制器：`fanctld.c`（`pop`（ddr tsens，PoP 封装温度）+ 电池两路曲线取最大值，C 静态实现，含起转脉冲/最小占空比/死区）+ `fan.conf` |
+| `src/cmsboost/cmsboost.c` | **未验证**：FCC 投票强制 3.5A + 温度看门狗；只证明能改 CC 设定值，没有实测到提速，PPS/UFCS/原装头下不接管 |
+| `build.sh` / `build-all.sh` | aarch64 静态程序编译脚本 / Extreme GT 模块一键构建打包 |
+| `tools/watch-charge.py` | 充电状态只读采样 |
 | `tools/chg-trace.sh` | 设备端每秒采样 vbat/ibat/SOC/温度/投票，自动标出掉档点，用来定位 A 表哪一档在限流 |
-| `collect-root.py` | 设备快照采集 |
-| `annotate-disassembly.py` | 反汇编+重定位注释工具 |
+| `tools/collect-root.py` | 设备快照采集 |
+| `tools/annotate-disassembly.py` | 反汇编+重定位注释工具 |
+| `test/sim_fanctld.c` | fanctld 主机端模拟测试（syscall 层换成模拟文件系统） |
+| `ExtremeGT_vivo/` | Magisk 模块模板（含版本日志 `changes.log`），`build-all.sh` 打包为 `ExtremeGT_vivo_<version>.zip` |
 | `analysis/` | 驱动字符串/符号表/关键函数摘录/设备树 json |
-| `modules/` | 设备原厂模块副本（分析与模板来源） |
 | `docs/X300充电温控分析.md` | X300 充电温控实现、参数集机制与提速突破口 |
 | `docs/X300电压阶梯分析.md` | X300 "电压阶梯"（vbat→ibat 阶梯 / CV 浮充 / CP 退出阈值）的可行性、改写面与收益评估 |
 | `docs/风扇控制.md` | fanctld 的两条曲线、配置格式、与 tpoff 的配合 |

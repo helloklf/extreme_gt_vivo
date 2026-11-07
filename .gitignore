@@ -1,10 +1,5 @@
 .venv
 out/
-/tpoff
-/cmsboost
-/fanctld
-/fbpat.ko
-/fbres.ko
 
 # X300 实机提取物（分析用，不入库）
 /x300/

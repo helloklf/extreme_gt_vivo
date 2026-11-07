@@ -8,9 +8,9 @@ case "$versionName" in
 esac
 command -v zip >/dev/null || { echo "错误：找不到 zip" >&2; exit 1; }
 
-bash ./build.sh tpoff.c
-bash ./build.sh fanctld.c
-bash ./build.sh fccc.c
+bash ./build.sh src/tpoff/tpoff.c
+bash ./build.sh src/fanctld/fanctld.c
+bash ./build.sh src/fccc/fccc.c
 
 find ./ExtremeGT_vivo -type f -name "*.sh" -exec dos2unix {} +
 dos2unix ./ExtremeGT_vivo/META-INF/com/google/android/update-binary

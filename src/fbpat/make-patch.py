@@ -6,10 +6,10 @@ Pipeline: collect (adb pull stock module + config + DT tables)
         -> build (device-specific C -> clang -> gen_module.py graft)
         -> load & verify (push, insmod, check dmesg)
 
-Usage:
-  py -3 make-patch.py --serial 192.168.1.111:33445          # full patch flow
-  py -3 make-patch.py --serial ... --hello                  # only verify module injection works
-  py -3 make-patch.py --serial ... --scan-lo 0xa000 --scan-hi 0xe000
+Usage (run from repo root):
+  py -3 src/fbpat/make-patch.py --serial 192.168.1.111:33445          # full patch flow
+  py -3 src/fbpat/make-patch.py --serial ... --hello                  # only verify module injection works
+  py -3 src/fbpat/make-patch.py --serial ... --scan-lo 0xa000 --scan-hi 0xe000
 
 Fail-safe: the patch module only writes after matching complete DT table
 contents; on mismatch it logs and aborts without writing.
@@ -578,7 +578,9 @@ def write_and_build(fbon0, fboff, fbon1, offs, tmpl, cfi, h_init, h_cleanup):
 
 
 def load_and_verify(serial, hello):
-    subprocess.run(['adb', '-s', serial, 'push', 'modload',
+    subprocess.run(['adb', '-s', serial, 'push',
+                    os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                 'modload'),
                     '/data/local/tmp/modload'], capture_output=True)
     adb(serial, "su -c 'chmod 755 /data/local/tmp/modload'")
     subprocess.run(['adb', '-s', serial, 'push',

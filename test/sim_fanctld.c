@@ -1,7 +1,7 @@
 /* sim_fanctld.c - 在主机上把 fanctld 的 syscall 层换成模拟文件系统,跑场景矩阵。
  *
  * 构建(WSL/Linux):
- *   gcc -DHOSTTEST -O1 -Wall -Wextra -Werror fanctld.c test/sim_fanctld.c -o sim_fanctld
+ *   gcc -DHOSTTEST -O1 -Wall -Wextra -Werror src/fanctld/fanctld.c test/sim_fanctld.c -o sim_fanctld
  * 运行:
  *   ./sim_fanctld
  *
