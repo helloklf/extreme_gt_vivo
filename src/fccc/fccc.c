@@ -244,6 +244,23 @@ static int node_readable(const char *path)
     return 1;
 }
 
+/* Quiet probe: cell2_voltage must read as a positive number for the device
+ * to be dual-cell. Single-cell devices also expose the node, but report 0
+ * or empty content, so node_readable() alone is not enough. */
+static int cell2_present(void)
+{
+    char buf[16];
+    long fd, n, i, v = 0;
+    fd = sc(SYS_openat, -100, (s64)CELL2_NODE, 0, 0);
+    if (fd < 0) return 0;
+    n = sc(SYS_read, fd, (s64)buf, (long)sizeof buf - 1, 0);
+    sc(SYS_close, fd, 0, 0, 0);
+    if (n <= 0) return 0;
+    for (i = 0; i < n && buf[i] >= '0' && buf[i] <= '9'; i++)
+        v = v * 10 + buf[i] - '0';
+    return i > 0 && v > 0;
+}
+
 static int write_number(const char *path, long v)
 {
     char buf[24], reverse[24];
@@ -450,9 +467,11 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         temp_node = TEMP_NODE_ALT;
         log_msg("fccc: main_batt_temp unavailable; using power_supply battery temp\n");
     }
-    /* Dual-cell (2S) devices expose per-cell voltages in mV via cms; prefer
-     * them over battery/voltage_now, which reads the whole pack there. */
-    use_cell_nodes = node_readable(CELL1_NODE) && node_readable(CELL2_NODE);
+    /* Dual-cell (2S) devices report real per-cell voltages in mV via cms;
+     * prefer them over battery/voltage_now, which reads the whole pack
+     * there. cell2_voltage must hold a positive value -- the node exists
+     * but reads 0/empty on single-cell devices. */
+    use_cell_nodes = node_readable(CELL1_NODE) && cell2_present();
     if (use_cell_nodes) {
         cap_release = CAP_RELEASE_DUAL;
         log_msg("fccc: dual-cell device; using cms cell1/cell2_voltage (mV), cap release 82%\n");
