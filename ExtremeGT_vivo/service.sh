@@ -59,24 +59,28 @@ for tz in /sys/class/thermal/thermal_zone*; do
 done
 
 # 充电加速
-# echo 1 > /sys/class/cms_class/scene_disable
-# echo 1 > /sys/class/cms_class/freq_test
-# 可能导致过热并损坏设备
-# echo 0 > /sys/class/cms_class/cms_enable
-# echo 1 > /sys/class/cms_class/switch_state
-# chmod 444 /sys/class/cms_class/switch_state
+# echo 0 > /sys/class/cms_class/cms_enable # 可能导致过热并损坏设备，不动这个
 killall tpoff 2>/dev/null
 killall fccc 2>/dev/null
+killall fccc_turbo 2>/dev/null
 chmod 755 "$MODPATH/tpoff"
-# 伪装模式和 fixed_temp 的写入单位全部由 customize.sh 安装时决定。
+chmod 755 "$MODPATH/fccc"
 tpoff_mode=both
 fixed_temp_scale=1
 temp_offset=-80
 fccc=0
+fccc_ht=0
 [ -f "$MODPATH/tpoff.conf" ] && . "$MODPATH/tpoff.conf"
-
 if [[ "$fccc" == '1' ]]; then
   # tpoff_mode=both 时 fixed_temp 不影响电池温度，fccc 跳过 fixed_temp 检查
+  htccc_enable=/sys/class/cms_class/htccc_enable
+  if [[ -e $htccc_enable ]]; then
+    if [[ "$fccc_ht" == '1' ]]; then
+      echo 0 > $htccc_enable
+    else
+      echo 1 > $htccc_enable
+    fi
+  fi
   nohup "$MODPATH/fccc" "$tpoff_mode" >> "$MODPATH/fccc.log" 2>&1 &
 fi
 nohup "$MODPATH/tpoff" "$temp_offset" "$tpoff_mode" "$fixed_temp_scale" >/dev/null 2>&1 &
@@ -94,16 +98,11 @@ fi
 if [[ -e "$MODPATH/fbpat.ko" ]]; then
   insmod "$MODPATH/fbpat.ko"
 else
-  # 兼容性锚定 cms 模块基线（而非 /proc/version；vivo 内核不校验 vermagic）：
-  # 模块文件须与构建基线同一 build，且已加载（内核 ABI 兼容的硬证明）
   cms_ko=/vendor_dlkm/lib/modules/vfcs-cms-core.ko
   cms_vermagic='vermagic=6.12.58-android16-6-gfd60568f1f3a-4k'
   if grep -aq "$cms_vermagic" "$cms_ko" 2>/dev/null && \
      grep -q '^vfcs_cms_core ' /proc/modules 2>/dev/null; then
     # 基线: vfcs-cms-core.ko @ 6.12.58-android16-6-gfd60568f1f3a-4k
     insmod "$MODPATH/fbpat_6.12.58_gfd60568f1f3a.ko"
-  else
-    echo "fbpat.ko not found or cms module baseline mismatch"
-    echo 'https://github.com/helloklf/extreme_gt_vivo'
   fi
 fi

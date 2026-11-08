@@ -62,6 +62,8 @@ bash build-all.sh
 `fccc` 每秒读取电池温度、电压、电量和充电电流，向 `vfcs_class/fchg_fcc_ma`
 写入限流值（写 0 释放）：温度越高限得越狠；电压接近满电时以本次充电的峰值电流
 为锚点逐步下压，回落到安全区再缓慢恢复；两路上限取小，电量高于阈值直接释放。
+若 `cms_class/htccc_enable` 为 0（其它程序已解除原厂 45°C 墙），温度包络
+整体自动上移 3°C；该节点只在启动和接上充电器时读取，fccc 自己不写。
 具体阈值和曲线系数以 [src/fccc/fccc.c](src/fccc/fccc.c) 文件头的宏定义为准，
 本文不复述，避免与代码脱节。
 
@@ -137,6 +139,7 @@ py -3 src/fbpat/make-patch.py --from-dir <目录>
 | `src/fbpat/` | 亮屏表补丁功能：`make-patch.py`（一键适配脚本：拉取→生成→加载→验证，从仓库根目录运行）、`gen_module.py`（以原厂 .ko 为模板生成可加载模块）、`fbpat.c`（亮屏表补丁）、`fbres.c`（还原模块，免重启恢复原厂表）、`modload.c`/`modload`（finit_module 加载器，排错用，直接报 errno） |
 | `src/tpoff/tpoff.c` | 统一版温度偏移守护程序：伪装模式（只写板温 X300 / 板温+电池温 iQOO15）与 `fixed_temp` 写入单位全部由安装期探测决定（`tpoff.conf` → `service.sh` 传参），运行时不探测；写入限幅 15–55°C 且回读校验 |
 | `src/fccc/fccc.c` | 按电池温度/电压/电量附加限流的守护程序，默认关闭 |
+| `src/fccc_turbo/fccc_turbo.c` | fccc 同包络算法的功率制变体：DCHG_FCC votable force 后端，启动时关 `htccc_enable` 解除 45°C 墙、温控包络上探 48°C，退出时恢复；独立测试工具，不进模块（原理见 `analysis/fchg-45c-cutoff.md`） |
 | `src/fanctld/` | 独立风扇控制器：`fanctld.c`（`pop`（ddr tsens，PoP 封装温度）+ 电池两路曲线取最大值，C 静态实现，含起转脉冲/最小占空比/死区）+ `fan.conf` |
 | `src/cmsboost/cmsboost.c` | **未验证**：FCC 投票强制 3.5A + 温度看门狗；只证明能改 CC 设定值，没有实测到提速，PPS/UFCS/原装头下不接管 |
 | `build.sh` / `build-all.sh` | aarch64 静态程序编译脚本 / Extreme GT 模块一键构建打包 |

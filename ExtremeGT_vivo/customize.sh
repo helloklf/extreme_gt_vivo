@@ -105,41 +105,27 @@ fixed_temp_scale=$fixed_temp_scale
 tpoff_mode=$tpoff_mode
 # 温度偏移量，-80相当于温控阈值调高8°C
 temp_offset=-80
+
 # 使用独立的充电控制程序
 fccc=0
+# 提高fccc动态温控阈值
+fccc_ht=0
 EOF
 
 old_fbpat=/data/adb/modules/extreme_gt_vivo/fbpat.ko
 if [[ -f $old_fbpat ]]; then
   cp $old_fbpat $MODPATH/fbpat.ko
 fi
-
-# fbpat 兼容性锚点：设备上的 cms 模块须与构建基线同一 build，
-# 且当前已加载（证明内核 ABI 与该基线兼容）。
-# 注意不要用 /proc/version 判断：vivo 内核不校验 vermagic，
-# 内核 banner 与 vendor_dlkm 模块基线可能不同（混刷）。
 cms_ko=/vendor_dlkm/lib/modules/vfcs-cms-core.ko
 cms_vermagic='vermagic=6.12.58-android16-6-gfd60568f1f3a-4k'
-fbpat_applicable=0
-if grep -aq "$cms_vermagic" "$cms_ko" 2>/dev/null && \
-   grep -q '^vfcs_cms_core ' /proc/modules 2>/dev/null; then
-  fbpat_applicable=1
-else
-  rm -f $MODPATH/fbpat_6.12.58_gfd60568f1f3a.ko
-fi
+grep -aq "$cms_vermagic" "$cms_ko" 2>/dev/null && \
+grep -q '^vfcs_cms_core ' /proc/modules 2>/dev/null || \
+rm -f $MODPATH/fbpat_6.12.58_gfd60568f1f3a.ko
 
 # Help
-if [[ $fbpat_applicable == 0 && ! -f $MODPATH/fbpat.ko ]]; then
-  echo '其它提示：'
-  echo '现在你有以下方式可以进一步提升充电效率'
-  echo '1.'
-  echo '参考开源项目 构建 fbpat.ko (亮屏充电提速补丁)'
-  echo 'https://github.com/helloklf/extreme_gt_vivo'
-  echo '并手动放置到模块目录下'
-  echo ''
-  if [ -f "/sys/class/vfcs_class/fchg_fcc_ma" ]; then
-    echo '2.'
-    echo '使用 fccc 程序取代系统默认的充电速度控制'
-    echo "修改 $MODPATH/tpoff.conf 配置 fccc=1 即可"
-  fi
-fi
+echo '其它提示：'
+echo '有以下两步可以进一步提升充电效率'
+
+echo "修改 $MODPATH/tpoff.conf"
+echo "设置 fccc=1  使用fccc控制充电，去除官方限速阶梯"
+echo "设置 fccc_ht=1  将快充限制温度从45°C提高到48°C"

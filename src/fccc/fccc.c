@@ -18,22 +18,26 @@ typedef unsigned long u64;
 #define VOLT_NODE   "/sys/class/power_supply/battery/voltage_now"
 #define CAP_NODE    "/sys/class/power_supply/battery/capacity"
 #define CUR_NODE    "/sys/class/power_supply/battery/current_now"
-// #define LIMIT_NODE  "/sys/class/cms_class/debug_chg_cur"
 #define LIMIT_NODE  "/sys/class/vfcs_class/fchg_fcc_ma"
 #define STATUS_NODE "/sys/class/power_supply/battery/status"
+#define HTCCC_NODE  "/sys/class/cms_class/htccc_enable"
 #define LOCK_PATH   "/data/local/tmp/fccc.lock"
 
 #define BASE_MA    15600
-#define RELEASE_MA 0 // debug_chg_cur 写 17600 ， fchg_fcc_ma 写 0
+#define RELEASE_MA 0
 #define MIN_MA      5000
 #define TEMP_L1      431
 #define TEMP_L2      440
 #define TEMP_L3      450
 #define TEMP_EXIT    421
+/* While htccc_enable reads 0 (someone else disabled the OEM 45C wall),
+ * all temperature thresholds shift up by this much (0.1C units, = 3.0C).
+ * fccc only reads that node, it never writes it. */
+#define TEMP_SHIFT_HTCCC_OFF 30
 #define VOLT_CRIT   4510000
 #define VOLT_TREND  4500000
 #define VOLT_HIGH   4450000
-#define VOLT_LOW    4310000
+#define VOLT_LOW    4360000
 #define IBAT_MIN_MA    100
 #define CAP_RELEASE      70
 #define VOLT_MIN_MA    4000
@@ -212,6 +216,19 @@ static int fixed_overridden(long *fixed)
     return read_number(FIXED_NODE, fixed) || *fixed != 0;
 }
 
+/* Quiet 1-byte probe: 1 when the OEM high-temperature charge control is
+ * disabled (htccc_enable reads 0), 0 otherwise or when the node is missing.
+ * Read-only on purpose; another program owns the decision to disable it. */
+static int htccc_disabled(void)
+{
+    char c = 0;
+    long fd = sc(SYS_openat, -100, (s64)HTCCC_NODE, 0, 0);
+    if (fd < 0) return 0;
+    sc(SYS_read, fd, (s64)&c, 1, 0);
+    sc(SYS_close, fd, 0, 0, 0);
+    return c == '0';
+}
+
 static int write_number(const char *path, long v)
 {
     char buf[24], reverse[24];
@@ -253,18 +270,31 @@ static long scaled(long current, int ticks, int percent)
     return current * factor / 1000000000000L;
 }
 
-static long current_for_temp(long temp, int *limited)
+/* Cooling-trend exemption: inside the first band [L1, L2) a sample lower
+ * than the previous one means the temperature is already recovering, so the
+ * reduction is skipped entirely -- the curve would otherwise keep pushing
+ * the current down after the heat source is gone (overshoot). Above L2 the
+ * curve always applies. L1/L2/L3/EXIT = TEMP_* + shift; shift is
+ * TEMP_SHIFT_HTCCC_OFF while htccc_enable reads 0, else 0. */
+static long current_for_temp(long temp, long prev_temp, long shift,
+                             int *limited)
 {
     long current = BASE_MA, ct;
-    if (temp <= TEMP_L1 && (!*limited || temp <= TEMP_EXIT)) {
+    long l1 = TEMP_L1 + shift, l2 = TEMP_L2 + shift;
+    long l3 = TEMP_L3 + shift, lexit = TEMP_EXIT + shift;
+    if (temp <= l1 && (!*limited || temp <= lexit)) {
+        *limited = 0;
+        return current;
+    }
+    if (temp < l2 && prev_temp >= 0 && temp < prev_temp) {
         *limited = 0;
         return current;
     }
     *limited = 1;
     if (current > 15000) current = 15000;
-    ct = temp > TEMP_L3 ? TEMP_L3 : temp;
-    current = scaled(current, ct > TEMP_L1 ? (int)(ct - TEMP_L1) : 0, 94);
-    if (ct > TEMP_L2) current = scaled(current, (int)(ct - TEMP_L2), 85);
+    ct = temp > l3 ? l3 : temp;
+    current = scaled(current, ct > l1 ? (int)(ct - l1) : 0, 94);
+    if (ct > l2) current = scaled(current, (int)(ct - l2), 85);
     return current < MIN_MA ? 0 : current;
 }
 
@@ -368,7 +398,10 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     long volt_cap = BASE_MA;
     long ibat_peak = 0;
     long prev_voltage = -1;
+    long prev_temp = -1;
+    long temp_shift = -1;   /* -1 = not probed yet, else 0 or TEMP_SHIFT_HTCCC_OFF */
     int temp_limited = 0, volt_limited = 0, error = 0, write_ticks = 0;
+    int was_disconnected = 0;   /* set while unplugged; re-probe htccc on attach */
     if ((argc != 1 && argc != 2) || setsig(2) || setsig(15)) {
         log_msg("fccc: unexpected arguments or signal setup failure\n");
         sc(SYS_exit, 1, 0, 0, 0);
@@ -387,6 +420,11 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     }
     log_msg(fixed_independent ? "fccc: started (fixed_temp checks off)\n"
                               : "fccc: started\n");
+    /* Probe the OEM 45C wall switch once at startup (and again on each
+     * charger attach, see was_disconnected below); never written by us. */
+    temp_shift = htccc_disabled() ? TEMP_SHIFT_HTCCC_OFF : 0;
+    if (temp_shift)
+        log_msg("fccc: htccc disabled; temperature thresholds +3C\n");
     while (!stop_requested) {
         long fixed, temp, voltage, capacity, ibat_ma, temp_ma, volt_ma, current, target;
         int state = charging();
@@ -407,8 +445,10 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             volt_cap = BASE_MA;
             ibat_peak = 0;
             prev_voltage = -1;
+            prev_temp = -1;
             last_target = -1;
             write_ticks = 0;
+            was_disconnected = 1;
             sleep_second();
             continue;
         }
@@ -471,7 +511,19 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         int write_needed;
         long write_val;
         if (ibat_ma > ibat_peak) ibat_peak = ibat_ma;
-        temp_ma = current_for_temp(temp, &temp_limited);
+        /* Re-read the OEM 45C wall switch on charger attach (never written
+         * by us): while htccc is off, run the temperature envelope 3C higher. */
+        if (was_disconnected) {
+            long shift = htccc_disabled() ? TEMP_SHIFT_HTCCC_OFF : 0;
+            was_disconnected = 0;
+            if (shift != temp_shift) {
+                log_msg(shift ? "fccc: htccc disabled; temperature thresholds +3C\n"
+                              : "fccc: htccc enabled; temperature thresholds normal\n");
+                temp_shift = shift;
+            }
+        }
+        temp_ma = current_for_temp(temp, prev_temp, temp_shift, &temp_limited);
+        prev_temp = temp;
         volt_cap = cap_for_voltage(voltage, prev_voltage, ibat_peak, volt_cap,
                                    &volt_limited);
         volt_ma = volt_cap;
