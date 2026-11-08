@@ -59,9 +59,13 @@ bash build-all.sh
 
 ## fccc 动态限流（默认关闭）
 
-`fccc` 每秒读取电池温度、电压、电量和充电电流，向 `vfcs_class/fchg_fcc_ma`
+`fccc` 每秒读取电池温度（`cms_class/main_batt_temp`，缺失时回退
+`power_supply/battery/temp`，同为 0.1°C）、电压（两串电池组机型
+直接读 `cms_class/cell1/cell2_voltage` 取较高单节）、电量和充电电流，
+向 `vfcs_class/fchg_fcc_ma`
 写入限流值（写 0 释放）：温度越高限得越狠；电压接近满电时以本次充电的峰值电流
-为锚点逐步下压，回落到安全区再缓慢恢复；两路上限取小，电量高于阈值直接释放。
+为锚点逐步下压，回落到安全区再缓慢恢复；两路上限取小，电量高于阈值直接释放
+（两串电池组机型耐受更好，释放阈值从 70% 放宽到 82%）。
 若 `cms_class/htccc_enable` 为 0（其它程序已解除原厂 45°C 墙），温度包络
 整体自动上移 3°C；该节点只在启动和接上充电器时读取，fccc 自己不写。
 具体阈值和曲线系数以 [src/fccc/fccc.c](src/fccc/fccc.c) 文件头的宏定义为准，

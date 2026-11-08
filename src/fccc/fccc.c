@@ -15,7 +15,10 @@ typedef unsigned long u64;
 
 #define FIXED_NODE  "/sys/class/cms_class/fixed_temp"
 #define TEMP_NODE   "/sys/class/cms_class/main_batt_temp"
+#define TEMP_NODE_ALT "/sys/class/power_supply/battery/temp"
 #define VOLT_NODE   "/sys/class/power_supply/battery/voltage_now"
+#define CELL1_NODE  "/sys/class/cms_class/cell1_voltage"
+#define CELL2_NODE  "/sys/class/cms_class/cell2_voltage"
 #define CAP_NODE    "/sys/class/power_supply/battery/capacity"
 #define CUR_NODE    "/sys/class/power_supply/battery/current_now"
 #define LIMIT_NODE  "/sys/class/vfcs_class/fchg_fcc_ma"
@@ -40,6 +43,9 @@ typedef unsigned long u64;
 #define VOLT_LOW    4360000
 #define IBAT_MIN_MA    100
 #define CAP_RELEASE      70
+/* Dual-cell packs split the current across two cells and tolerate fast
+ * charging much longer; release to the OEM taper later there. */
+#define CAP_RELEASE_DUAL   82
 #define VOLT_MIN_MA    4000
 #define SA_RESTORER 0x04000000
 
@@ -229,6 +235,15 @@ static int htccc_disabled(void)
     return c == '0';
 }
 
+/* 1 = node can be opened for reading. */
+static int node_readable(const char *path)
+{
+    long fd = sc(SYS_openat, -100, (s64)path, 0, 0);
+    if (fd < 0) return 0;
+    sc(SYS_close, fd, 0, 0, 0);
+    return 1;
+}
+
 static int write_number(const char *path, long v)
 {
     char buf[24], reverse[24];
@@ -400,6 +415,9 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     long prev_voltage = -1;
     long prev_temp = -1;
     long temp_shift = -1;   /* -1 = not probed yet, else 0 or TEMP_SHIFT_HTCCC_OFF */
+    int use_cell_nodes;     /* dual-cell: read per-cell mV from cell*_voltage */
+    long cap_release = CAP_RELEASE;
+    const char *temp_node;
     int temp_limited = 0, volt_limited = 0, error = 0, write_ticks = 0;
     int was_disconnected = 0;   /* set while unplugged; re-probe htccc on attach */
     if ((argc != 1 && argc != 2) || setsig(2) || setsig(15)) {
@@ -425,6 +443,20 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     temp_shift = htccc_disabled() ? TEMP_SHIFT_HTCCC_OFF : 0;
     if (temp_shift)
         log_msg("fccc: htccc disabled; temperature thresholds +3C\n");
+    /* Battery temperature source: cms_class/main_batt_temp preferred; some
+     * devices lack it, then fall back to power_supply temp (also 0.1C). */
+    temp_node = TEMP_NODE;
+    if (!node_readable(TEMP_NODE) && node_readable(TEMP_NODE_ALT)) {
+        temp_node = TEMP_NODE_ALT;
+        log_msg("fccc: main_batt_temp unavailable; using power_supply battery temp\n");
+    }
+    /* Dual-cell (2S) devices expose per-cell voltages in mV via cms; prefer
+     * them over battery/voltage_now, which reads the whole pack there. */
+    use_cell_nodes = node_readable(CELL1_NODE) && node_readable(CELL2_NODE);
+    if (use_cell_nodes) {
+        cap_release = CAP_RELEASE_DUAL;
+        log_msg("fccc: dual-cell device; using cms cell1/cell2_voltage (mV), cap release 82%\n");
+    }
     while (!stop_requested) {
         long fixed, temp, voltage, capacity, ibat_ma, temp_ma, volt_ma, current, target;
         int state = charging();
@@ -452,7 +484,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             sleep_second();
             continue;
         }
-        if (read_number(TEMP_NODE, &temp) || fixed_overridden(&fixed)) {
+        if (read_number(temp_node, &temp) || fixed_overridden(&fixed)) {
             log_msg("fccc: unreadable or overridden battery temperature; stopping, retaining limit\n");
             error = 1;
             break;
@@ -462,7 +494,17 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             error = 1;
             break;
         }
-        if (read_number(VOLT_NODE, &voltage)) {
+        if (use_cell_nodes) {
+            long c1, c2;
+            if (read_number(CELL1_NODE, &c1) ||
+                read_number(CELL2_NODE, &c2)) {
+                log_msg("fccc: unavailable per-cell voltage; stopping, retaining limit\n");
+                error = 1;
+                break;
+            }
+            /* mV -> uV; the higher cell drives the voltage envelope */
+            voltage = (c1 > c2 ? c1 : c2) * 1000;
+        } else if (read_number(VOLT_NODE, &voltage)) {
             log_msg("fccc: unavailable single-cell battery voltage; stopping, retaining limit\n");
             error = 1;
             break;
@@ -530,7 +572,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         prev_voltage = voltage;
         target = temp_ma < volt_ma ? temp_ma : volt_ma;
         /* Above the capacity threshold the forced current is disabled entirely. */
-        if (capacity > CAP_RELEASE) target = RELEASE_MA;
+        if (capacity > cap_release) target = RELEASE_MA;
         /* A write issued before fast charging activates may not take effect,
          * so rewrite the target every 5 seconds even when it is unchanged. */
         write_needed = target != last_target || ++write_ticks >= 5;
