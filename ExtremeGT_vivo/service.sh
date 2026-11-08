@@ -65,6 +65,7 @@ killall fccc 2>/dev/null
 killall fccc_turbo 2>/dev/null
 chmod 755 "$MODPATH/tpoff"
 chmod 755 "$MODPATH/fccc"
+tpoff_enable=1
 tpoff_mode=both
 fixed_temp_scale=1
 temp_offset=-80
@@ -83,7 +84,10 @@ if [[ "$fccc" == '1' ]]; then
   fi
   nohup "$MODPATH/fccc" "$tpoff_mode" >> "$MODPATH/fccc.log" 2>&1 &
 fi
-nohup "$MODPATH/tpoff" "$temp_offset" "$tpoff_mode" "$fixed_temp_scale" >/dev/null 2>&1 &
+# tpoff_enable=0：安装期探测到此机型无电池温度节点，tpoff 不可用，不启动
+if [[ "$tpoff_enable" == '1' ]]; then
+  nohup "$MODPATH/tpoff" "$temp_offset" "$tpoff_mode" "$fixed_temp_scale" >/dev/null 2>&1 &
+fi
 
 # 风扇接管：只有带风扇的机型（如 iQOO 15 Ultra）才有 /dev/fanpwm
 # 温度源用 ddr(SoC 顶盖) + 电池，两条曲线取最大，配置在同目录 fan.conf

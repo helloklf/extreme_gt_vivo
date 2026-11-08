@@ -71,41 +71,73 @@ done
 
 # TPOFF 探测 fixed_temp 的写入单位
 killall tpoff 2>/dev/null
-echo '检测温度单位，此步骤很重要'
-echo '识别错误可能导致异常重启，请耐心等待'
 fixed_temp=/sys/class/cms_class/fixed_temp
 main_batt_temp=/sys/class/cms_class/main_batt_temp
+bat_btb_temp=/sys/class/cms_class/bat_btb_temp
 fixed_temp_scale=1
 tpoff_mode=board
-if [[ -f $fixed_temp ]]; then
-  test_temp=10
-  echo $test_temp > $fixed_temp
-  sleep 15
-  real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
-  if [[ ! "$real_effect" = "$test_temp"* ]]; then
-    sleep 10
+tpoff_enable=1
+
+# tpoff 需要电池温度来源（main_batt_temp，缺失时退而用 bat_btb_temp），
+# 两者都不存在则此机型不支持温度伪装，相关配置不写入 tpoff.conf
+if [[ ! -f $main_batt_temp && ! -f $bat_btb_temp ]]; then
+  tpoff_enable=0
+  echo '此机型缺少电池温度节点（main_batt_temp/bat_btb_temp），'
+  echo 'tpoff 温度伪装不可用，已跳过相关配置'
+fi
+
+if [[ $tpoff_enable == 1 ]]; then
+  echo '检测温度单位，此步骤很重要'
+  echo '识别错误可能导致异常重启，请耐心等待'
+  if [[ -f $fixed_temp ]]; then
+    test_temp=10
+    echo $test_temp > $fixed_temp
+    sleep 15
     real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
-  fi
-  after_temp="$(cat $main_batt_temp 2>/dev/null)"
-  echo 0 > $fixed_temp
-  if [[ "$real_effect" == "${test_temp}0" ]]; then
-    fixed_temp_scale=10
-  fi
-  expected_temp=$((test_temp * fixed_temp_scale))
-  if [[ "$after_temp" == "$expected_temp" ]]; then
-    tpoff_mode=board
-  else
-    tpoff_mode=both
+    if [[ ! "$real_effect" = "$test_temp"* ]]; then
+      sleep 10
+      real_effect="$(dumpsys battery | grep 'temperature:' | cut -d ':' -f 2 | tr -d ' ')"
+    fi
+    after_temp="$(cat $main_batt_temp 2>/dev/null)"
+    if [[ -z "$after_temp" ]]; then
+      # 某些机型/节点状态下 main_batt_temp 读取偶发失败，再试一次
+      sleep 2
+      after_temp="$(cat $main_batt_temp 2>/dev/null)"
+    fi
+    echo 0 > $fixed_temp
+    if [[ "$real_effect" == "${test_temp}0" ]]; then
+      fixed_temp_scale=10
+    fi
+    expected_temp=$((test_temp * fixed_temp_scale))
+    if [[ -z "$after_temp" ]]; then # 读不到(老机子)，不伪装
+      tpoff_mode=board
+    elif [[ "$after_temp" == "$expected_temp" ]]; then
+      tpoff_mode=board
+    else
+      tpoff_mode=both
+    fi
   fi
 fi
+
 cat > "$MODPATH/tpoff.conf" <<EOF
+# 温度伪装总开关（安装期探测，此机型无电池温度节点时为 0，service.sh 不启动 tpoff）
+tpoff_enable=$tpoff_enable
+EOF
+
+if [[ $tpoff_enable == 1 ]]; then
+cat >> "$MODPATH/tpoff.conf" <<EOF
+
 # 温度单位， 1 或 10 ，如果充电死机可以尝试切换
 fixed_temp_scale=$fixed_temp_scale
-# 自动配置好的，不要改！
-tpoff_mode=$tpoff_mode
 # 温度偏移量，-80相当于温控阈值调高8°C
 temp_offset=-80
+EOF
+fi
 
+cat >> "$MODPATH/tpoff.conf" <<EOF
+
+# 自动配置好的，不要改！（tpoff 和 fccc 都使用；tpoff_enable=0 时未探测，取保守默认 board）
+tpoff_mode=$tpoff_mode
 # 使用独立的充电控制程序
 fccc=0
 # 提高fccc动态温控阈值
