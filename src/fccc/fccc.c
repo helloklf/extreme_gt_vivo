@@ -28,7 +28,7 @@ typedef unsigned long u64;
 
 #define BASE_MA    15600
 #define RELEASE_MA 0
-#define MIN_MA      5000
+#define MIN_MA      3000
 #define TEMP_L1      431
 #define TEMP_L2      440
 #define TEMP_L3      450
@@ -309,7 +309,7 @@ static long current_for_temp(long temp, long prev_temp, long shift,
     if (current > 15000) current = 15000;
     ct = temp > l3 ? l3 : temp;
     current = scaled(current, ct > l1 ? (int)(ct - l1) : 0, 94);
-    if (ct > l2) current = scaled(current, (int)(ct - l2), 85);
+    if (ct > l2) current = scaled(current, (int)(ct - l2), 89);
     return current < MIN_MA ? 0 : current;
 }
 

@@ -155,9 +155,11 @@ grep -q '^vfcs_cms_core ' /proc/modules 2>/dev/null || \
 rm -f $MODPATH/fbpat_6.12.58_gfd60568f1f3a.ko
 
 # Help
+echo ''
 echo '其它提示：'
 echo '有以下两步可以进一步提升充电效率'
 
 echo "修改 $MODPATH/tpoff.conf"
 echo "设置 fccc=1  使用fccc控制充电，去除官方限速阶梯"
 echo "设置 fccc_ht=1  将快充限制温度从45°C提高到48°C"
+echo "但是，启用fccc可能导致充电尾段，电量百分比失准"
