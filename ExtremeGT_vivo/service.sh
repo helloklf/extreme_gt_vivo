@@ -58,6 +58,10 @@ for tz in /sys/class/thermal/thermal_zone*; do
   fi
 done
 
+# 解除发热限任务：ThermalRestrictionPlugin 会在热升档后禁止相册云同步等后台 job
+. "$MODPATH/uepp.sh"
+uepp_disable_job_restrict
+
 # 充电加速
 # echo 0 > /sys/class/cms_class/cms_enable # 可能导致过热并损坏设备，不动这个
 killall tpoff 2>/dev/null

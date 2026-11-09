@@ -29,45 +29,8 @@ if [[ -d $mtk_t ]]; then
 fi
 
 # UEPP
-oem_model=`getprop ro.vivo.oem.model`
-product_model=`getprop ro.vivo.product.model`
-platform=`getprop ro.vivo.product.platform`
-solution=`getprop ro.vivo.product.solution`
-
-uepp_sys=/system/etc/uepp/plugins
-uepp_mod=$MODPATH/system/etc/uepp/plugins
-for dir in `ls $uepp_mod`
-do
-  plugin=$uepp_mod/$dir
-  overlay=$plugin/overlay.xml
-  target=
-
-  [[ -f $overlay ]] || continue
-
-  sys_plugin=$uepp_sys/$dir
-  if [[ -d $sys_plugin ]]; then
-    for name in $oem_model $product_model $platform $solution default
-    do
-      if [[ -n $name && -f $sys_plugin/$name.xml ]]; then
-        target=$name.xml
-        break
-      fi
-    done
-
-    if [[ -z $target ]]; then
-      first_xml=`ls $sys_plugin/*.xml 2>/dev/null | head -n 1`
-      if [[ -n $first_xml ]]; then
-        target=`basename $first_xml`
-      fi
-    fi
-  fi
-
-  if [[ -z $target ]]; then
-    target=$product_model.xml
-  fi
-
-  cp $overlay $plugin/$target
-done
+. $MODPATH/uepp.sh
+uepp_deploy_overlays $MODPATH/system/etc/uepp/plugins
 
 # TPOFF 探测 fixed_temp 的写入单位
 killall tpoff 2>/dev/null

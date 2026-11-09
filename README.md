@@ -23,6 +23,11 @@
   vs 8400mA）。补丁把内存中的亮屏表改写成灭屏曲线，亮屏充电 14W → 34W（实测）。
   与固件严格绑定，只有确认瓶颈是亮屏表时才需要。
 - **停充/恢复**控制与限流归因观测工具链。
+- **解除发热限任务（job_restrict，默认开）**：vivo 在 thermal_status 升档后会通过
+  PEM 的 ThermalRestrictionPlugin 禁止后台 JobScheduler 任务（相册云同步、微信备份等
+  高温暂停即由此而来），与模块处理的 cooling device / 充电温控是独立链路。模块通过
+  PEM 的 unified 配置覆盖层（`/data/bbkcore/pem/uepp/unified/`，本地投放不验签）关闭
+  forbid 规则，开机自动生成、无需改系统分区；卸载模块时自动回收还原。
 
 所有手段都保留原厂电池曲线、NTC、过压、超时等保护；fbpat 补丁本身只做"全表内容校验一致才覆写"，校验不过则拒绝写入。
 
