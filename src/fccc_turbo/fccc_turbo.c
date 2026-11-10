@@ -19,6 +19,10 @@
  *    forcing entirely.
  *  - charger (usb) voltage/current are logged for reference; battery-side
  *    voltage is what sets battery-side power, so it drives the conversion.
+ *  - adapter temperature (/sys/class/stm32_debug/adapter_temp) is normalized
+ *    onto the battery-temp scale (85.0C adapter ceiling maps to TEMP_L3) and
+ *    merged by max(), so a hot adapter drives the same envelope as a hot
+ *    battery. Same scheme as fccc.
  *  - startup writes 0 to cms_class/htccc_enable (OEM high-temperature charge
  *    control off, so it cannot fight the force); restored to 1 on exit.
  *
@@ -53,6 +57,7 @@ typedef unsigned long u64;
 #define STATUS_NODE "/sys/class/power_supply/battery/status"
 #define UVOLT_NODE  "/sys/class/power_supply/usb/voltage_now"
 #define UCUR_NODE   "/sys/class/power_supply/usb/current_now"
+#define ADPT_TEMP_NODE "/sys/class/stm32_debug/adapter_temp"
 #define FVAL_NODE   "/sys/kernel/debug/pmic-votable/DCHG_FCC/force_val"
 #define FACT_NODE   "/sys/kernel/debug/pmic-votable/DCHG_FCC/force_active"
 #define DEBUGFS_DIR "/sys/kernel/debug"
@@ -73,6 +78,11 @@ typedef unsigned long u64;
 #define MAX_PWR_W       120
 #define DEFAULT_CAP_REL  70  /* release to the OEM taper above this SOC; 100 = never */
 #define MAX_FCC       17600  /* absolute battery-side current ceiling (mA) */
+/* Adapter thermal ceiling reported by the charger itself (0.1C): the vfcp
+ * stack drops fast charge when adapter_temp reaches 850 (see docs/
+ * iQOO15充电中后程功率闪崩分析.md). Adapter temp is normalized onto the
+ * battery-temp axis with this as the full-scale point. */
+#define ADPT_TEMP_MAX 850
 #define SA_RESTORER 0x04000000
 
 #ifdef HOSTTEST
@@ -134,13 +144,15 @@ static char *put_str(char *p, const char *s)
     return p;
 }
 
-static void log_limit(long temp, long voltage, long usb_uv, long capacity,
+static void log_limit(long temp, long adpt, long voltage, long usb_uv, long capacity,
                       long ibat_ma, long peak_ma, long base_ma, long temp_ma,
                       long volt_ma, long current, long target, int write_needed)
 {
     char buf[384], *p = buf;
     p = put_str(p, "fccc_turbo: temp_0.1C=");
     p = put_number(p, temp);
+    p = put_str(p, " adpt_0.1C=");
+    p = put_number(p, adpt);
     p = put_str(p, " voltage_uV=");
     p = put_number(p, voltage);
     p = put_str(p, " usb_uV=");
@@ -262,6 +274,10 @@ static int read_opt(const char *path, long *value)
 /* tpoff mode=both means fixed_temp does not shadow the battery temperature
  * (e.g. iQOO15), so a nonzero fixed_temp is then not a reason to stop. */
 static int fixed_independent;
+
+/* 1 = stm32_debug/adapter_temp is readable, adapter temp joins the
+ * temperature envelope (normalized onto the battery-temp scale). */
+static int adapter_tracking;
 
 static int fixed_overridden(long *fixed)
 {
@@ -618,6 +634,12 @@ usage:
     log_msg(fixed_independent
                 ? "fccc_turbo: started (fixed_temp checks off)\n"
                 : "fccc_turbo: started\n");
+    /* Charger temperature tracking is best-effort: the adapter only reports
+     * it while fast-charge protocol chatter is active, so a missing node or
+     * a failed read just leaves the battery as the only source. */
+    adapter_tracking = node_openable(ADPT_TEMP_NODE);
+    log_msg(adapter_tracking ? "fccc_turbo: adapter temp tracking on (85.0C ceiling)\n"
+                             : "fccc_turbo: adapter temp node missing; battery temp only\n");
     {
         char buf[128], *p = buf;
         p = put_str(p, "fccc_turbo: power ceiling W=");
@@ -629,7 +651,7 @@ usage:
         log_msg(buf);
     }
     while (!stop_requested) {
-        long fixed, temp, voltage, usb_uv, usb_ua, capacity, ibat_ma;
+        long fixed, temp, adpt, voltage, usb_uv, usb_ua, capacity, ibat_ma;
         long base, temp_ma, volt_ma, current, target;
         int state = charging();
         if (fixed_overridden(&fixed)) {
@@ -649,6 +671,7 @@ usage:
             volt_cap = 0;
             ibat_peak = 0;
             prev_voltage = -1;
+            prev_temp = -1;
             last_target = -1;
             write_ticks = 0;
             sleep_second();
@@ -663,6 +686,20 @@ usage:
             log_bad_value("battery temperature", temp);
             error = 1;
             break;
+        }
+        adpt = -1;
+        if (adapter_tracking) {
+            long raw;
+            if (!read_number(ADPT_TEMP_NODE, &raw) && raw >= 0 && raw <= 1250) {
+                /* Normalize the adapter's 85C ceiling onto the battery-temp
+                 * axis (TEMP_L3 = 48.0C is the full-scale point), then let
+                 * the hottest of the two sources drive the envelope:
+                 * adapter 80C reads as 80/85*480 ~= 451, just under L3.
+                 * raw 0 (not reported yet) scales to 0 and never limits. */
+                adpt = raw;
+                raw = raw * TEMP_L3 / ADPT_TEMP_MAX;
+                if (raw > temp) temp = raw;
+            }
         }
         if (read_number(VOLT_NODE, &voltage)) {
             log_msg("fccc_turbo: unavailable single-cell battery voltage; stopping, retaining limit\n");
@@ -716,7 +753,8 @@ usage:
         /* The voltage ratchet never exceeds the (moving) base; re-arm it
          * after a release or a fresh charge session. */
         if (volt_cap > base || volt_cap <= 0) volt_cap = base;
-        temp_ma = current_for_temp(temp, base, &temp_limited);
+        temp_ma = current_for_temp(temp, prev_temp, base, &temp_limited);
+        prev_temp = temp;
         volt_cap = cap_for_voltage(voltage, prev_voltage, ibat_peak, volt_cap,
                                    base, &volt_limited);
         volt_ma = volt_cap;
@@ -725,7 +763,7 @@ usage:
         /* Above the capacity threshold hand control back to the OEM taper. */
         if (capacity > g_cap_rel) target = 0;
         if (target <= 0) {
-            log_limit(temp, voltage, usb_uv, capacity, ibat_ma, ibat_peak,
+            log_limit(temp, adpt, voltage, usb_uv, capacity, ibat_ma, ibat_peak,
                       base, temp_ma, volt_ma, current, 0, last >= 0);
             if (release_limit(&last)) { error = 1; break; }
             last_target = 0;
@@ -743,7 +781,7 @@ usage:
             dither = dither % 50 + 1;
             write_val = target + dither;
         }
-        log_limit(temp, voltage, usb_uv, capacity, ibat_ma, ibat_peak,
+        log_limit(temp, adpt, voltage, usb_uv, capacity, ibat_ma, ibat_peak,
                   base, temp_ma, volt_ma, current, target, write_needed);
         if (write_needed) {
             write_ticks = 0;

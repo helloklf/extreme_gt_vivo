@@ -16,6 +16,7 @@ typedef unsigned long u64;
 #define FIXED_NODE  "/sys/class/cms_class/fixed_temp"
 #define TEMP_NODE   "/sys/class/cms_class/main_batt_temp"
 #define TEMP_NODE_ALT "/sys/class/power_supply/battery/temp"
+#define ADPT_TEMP_NODE "/sys/class/stm32_debug/adapter_temp"
 #define VOLT_NODE   "/sys/class/power_supply/battery/voltage_now"
 #define CELL1_NODE  "/sys/class/cms_class/cell1_voltage"
 #define CELL2_NODE  "/sys/class/cms_class/cell2_voltage"
@@ -37,6 +38,12 @@ typedef unsigned long u64;
  * all temperature thresholds shift up by this much (0.1C units, = 3.0C).
  * fccc only reads that node, it never writes it. */
 #define TEMP_SHIFT_HTCCC_OFF 30
+/* Adapter thermal ceiling reported by the charger itself (0.1C): the vfcp
+ * stack drops fast charge when adapter_temp reaches 850 (see docs/
+ * iQOO15充电中后程功率闪崩分析.md). Adapter temp is normalized onto the
+ * battery-temp axis with this as the full-scale point, so a hot adapter
+ * drives the same temp_ma envelope as a hot battery. */
+#define ADPT_TEMP_MAX 850
 #define VOLT_CRIT   4510000
 #define VOLT_TREND  4500000
 #define VOLT_HIGH   4450000
@@ -88,7 +95,7 @@ static char *put_number(char *p, long value)
     return p;
 }
 
-static void log_limit(long temp, long voltage, long capacity, long ibat_ma,
+static void log_limit(long temp, long adpt, long voltage, long capacity, long ibat_ma,
                       long peak_ma, long temp_ma, long volt_ma,
                       int temp_limited, int volt_limited, long current,
                       long target, int write_needed)
@@ -97,6 +104,9 @@ static void log_limit(long temp, long voltage, long capacity, long ibat_ma,
     const char *s = "fccc: temp_0.1C=";
     while (*s) *p++ = *s++;
     p = put_number(p, temp);
+    s = " adpt_0.1C=";
+    while (*s) *p++ = *s++;
+    p = put_number(p, adpt);
     s = " voltage_uV=";
     while (*s) *p++ = *s++;
     p = put_number(p, voltage);
@@ -215,6 +225,10 @@ static int read_number(const char *path, long *value)
 /* tpoff mode=both means fixed_temp does not shadow the battery temperature
  * (e.g. iQOO15), so a nonzero fixed_temp is then not a reason to stop. */
 static int fixed_independent;
+
+/* 1 = stm32_debug/adapter_temp is readable, adapter temp joins the
+ * temperature envelope (normalized onto the battery-temp scale). */
+static int adapter_tracking;
 
 static int fixed_overridden(long *fixed)
 {
@@ -467,6 +481,12 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         temp_node = TEMP_NODE_ALT;
         log_msg("fccc: main_batt_temp unavailable; using power_supply battery temp\n");
     }
+    /* Charger temperature tracking is best-effort: the adapter only reports
+     * it while fast-charge protocol chatter is active, so a missing node or
+     * a failed read just leaves the battery as the only source. */
+    adapter_tracking = node_readable(ADPT_TEMP_NODE);
+    log_msg(adapter_tracking ? "fccc: adapter temp tracking on (85.0C ceiling)\n"
+                             : "fccc: adapter temp node missing; battery temp only\n");
     /* Dual-cell (2S) devices report real per-cell voltages in mV via cms;
      * prefer them over battery/voltage_now, which reads the whole pack
      * there. cell2_voltage must hold a positive value -- the node exists
@@ -477,7 +497,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         log_msg("fccc: dual-cell device; using cms cell1/cell2_voltage (mV), cap release 82%\n");
     }
     while (!stop_requested) {
-        long fixed, temp, voltage, capacity, ibat_ma, temp_ma, volt_ma, current, target;
+        long fixed, temp, adpt, voltage, capacity, ibat_ma, temp_ma, volt_ma, current, target;
         int state = charging();
         if (fixed_overridden(&fixed)) {
             log_msg("fccc: fixed_temp unavailable or active; stopping, retaining limit\n");
@@ -583,6 +603,21 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 temp_shift = shift;
             }
         }
+        adpt = -1;
+        if (adapter_tracking) {
+            long raw;
+            if (!read_number(ADPT_TEMP_NODE, &raw) && raw >= 0 && raw <= 1250) {
+                /* Normalize the adapter's 85C ceiling onto the battery-temp
+                 * axis (same scale the TEMP_L* thresholds live on), then let
+                 * the hottest of the two sources drive the envelope:
+                 * adapter 80C with L3+shift=480 reads as 80/85*480 ~= 451,
+                 * i.e. just under the L3 wall. raw 0 (not reported yet)
+                 * scales to 0 and never limits. */
+                adpt = raw;
+                raw = raw * (TEMP_L3 + temp_shift) / ADPT_TEMP_MAX;
+                if (raw > temp) temp = raw;
+            }
+        }
         temp_ma = current_for_temp(temp, prev_temp, temp_shift, &temp_limited);
         prev_temp = temp;
         volt_cap = cap_for_voltage(voltage, prev_voltage, ibat_peak, volt_cap,
@@ -603,7 +638,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             dither = dither % 50 + 1;
             write_val = target + dither;
         }
-        log_limit(temp, voltage, capacity, ibat_ma, ibat_peak, temp_ma,
+        log_limit(temp, adpt, voltage, capacity, ibat_ma, ibat_peak, temp_ma,
                   volt_ma, temp_limited, volt_limited, current, target,
                   write_needed);
         if (write_needed) {
