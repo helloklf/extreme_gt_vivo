@@ -53,6 +53,9 @@ typedef unsigned long u64;
 /* Dual-cell packs split the current across two cells and tolerate fast
  * charging much longer; release to the OEM taper later there. */
 #define CAP_RELEASE_DUAL   82
+/* Hard hand-back point: at or above this capacity fccc always releases,
+ * even if the battery is still hot. */
+#define CAP_FORCE_EXIT     90
 #define VOLT_MIN_MA    4000
 #define SA_RESTORER 0x04000000
 
@@ -625,8 +628,16 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         volt_ma = volt_cap;
         prev_voltage = voltage;
         target = temp_ma < volt_ma ? temp_ma : volt_ma;
-        /* Above the capacity threshold the forced current is disabled entirely. */
-        if (capacity > cap_release) target = RELEASE_MA;
+        /* Above the capacity threshold the forced current is disabled, but
+         * only once the (envelope-driving) temperature has cooled to L3:
+         * handing back while hot would let the OEM thermal stack clamp far
+         * harder than fccc ever does. If fccc is limiting too hard the
+         * temperature recovers and the release follows; if it stays hot,
+         * fccc was not over-limiting and keeps control. CAP_FORCE_EXIT is
+         * the escape hatch either way. */
+        if (capacity > cap_release &&
+            (capacity >= CAP_FORCE_EXIT || temp <= TEMP_L3 + temp_shift))
+            target = RELEASE_MA;
         /* A write issued before fast charging activates may not take effect,
          * so rewrite the target every 5 seconds even when it is unchanged. */
         write_needed = target != last_target || ++write_ticks >= 5;

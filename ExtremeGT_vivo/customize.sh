@@ -82,6 +82,21 @@ if [[ $tpoff_enable == 1 ]]; then
   fi
 fi
 
+# 更新安装时，从旧配置继承用户已设置的值
+old_conf=/data/adb/modules/extreme_gt_vivo/tpoff.conf
+get_old_val() {
+  grep -m1 "^$1=" "$old_conf" 2>/dev/null | cut -d= -f2 | tr -d ' \r'
+}
+temp_offset=-80
+fccc=0
+fccc_ht=0
+if [[ -f $old_conf ]]; then
+  v=$(get_old_val temp_offset); [[ -n $v ]] && temp_offset=$v
+  v=$(get_old_val fccc_ht);     [[ -n $v ]] && fccc_ht=$v
+  v=$(get_old_val fccc);        [[ -n $v ]] && fccc=$v
+  echo "已继承旧配置: fccc=$fccc fccc_ht=$fccc_ht temp_offset=$temp_offset"
+fi
+
 cat > "$MODPATH/tpoff.conf" <<EOF
 # 温度伪装总开关（安装期探测，此机型无电池温度节点时为 0，service.sh 不启动 tpoff）
 tpoff_enable=$tpoff_enable
@@ -93,7 +108,7 @@ cat >> "$MODPATH/tpoff.conf" <<EOF
 # 温度单位， 1 或 10 ，如果充电死机可以尝试切换
 fixed_temp_scale=$fixed_temp_scale
 # 温度偏移量，-80相当于温控阈值调高8°C
-temp_offset=-80
+temp_offset=$temp_offset
 EOF
 fi
 
@@ -102,9 +117,9 @@ cat >> "$MODPATH/tpoff.conf" <<EOF
 # 自动配置好的，不要改！（tpoff 和 fccc 都使用；tpoff_enable=0 时未探测，取保守默认 board）
 tpoff_mode=$tpoff_mode
 # 使用独立的充电控制程序
-fccc=0
+fccc=$fccc
 # 提高fccc动态温控阈值
-fccc_ht=0
+fccc_ht=$fccc_ht
 EOF
 
 old_fbpat=/data/adb/modules/extreme_gt_vivo/fbpat.ko
