@@ -86,6 +86,7 @@ if [[ "$fccc" == '1' ]]; then
       echo 1 > $htccc_enable
     fi
   fi
+  echo '' > "$MODPATH/fccc.log"
   nohup "$MODPATH/fccc" "$tpoff_mode" >> "$MODPATH/fccc.log" 2>&1 &
 fi
 # tpoff_enable=0：安装期探测到此机型无电池温度节点，tpoff 不可用，不启动
