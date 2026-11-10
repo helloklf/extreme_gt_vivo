@@ -19,10 +19,16 @@
  *
  * Low-temperature guard: below 25.0C battery temperature no offset is
  * applied at all (the system's own low-temp protection would otherwise
- * throttle harder than it helps); a faked value is never written below
- * 27.0C.
+ * throttle harder than it helps). A faked value is never written below
+ * 30.0C — any lower and the fake sits inside the fast-charge admission
+ * low-temp window / battery-heating ladder (fchg gates + tbat-heating
+ * rungs at 20C/32.5C), which can block or delay fast-charge activation.
+ * The floor only truncates the offset: if it would push the fake at or
+ * above the real temperature (real temp already under the floor), no
+ * override is applied at all — a fake warmer than reality would only
+ * cost charging current.
  *
- * Safety: every value written is clamped to [27.0C, 55.0C] and read back
+ * Safety: every value written is clamped to [30.0C, 55.0C] and read back
  * (one retry) before it is trusted; a base value outside [-40C, 125C] is
  * treated as a read error and the override is dropped.
  */
@@ -49,11 +55,12 @@ typedef unsigned long u64;
 
 #define SA_RESTORER 0x04000000
 
-/* hard bounds for any temperature we write: never below 27.0C (low-temp
- * protection would kick in and throttle harder than the offset helps),
- * never above 55.0C (0.1C units). */
+/* hard bounds for any temperature we write: never below 30.0C (below that
+ * the fake risks sitting inside the fast-charge admission low-temp window
+ * and the battery-heating ladder, blocking fast charge), never above 55.0C
+ * (0.1C units). */
 #define COLD_OFF    250      /* below 25.0C real battery temp: no offset */
-#define FAKE_MIN    270      /* never fake below 27.0C */
+#define FAKE_MIN    300      /* never fake below 30.0C */
 #define TEMP_MIN    150
 #define TEMP_MAX    550
 #define BASE_MIN    (-400)   /* -40.0C, treat anything lower as a read error */
@@ -164,6 +171,20 @@ static int wr_verified(const char *path, long v)
     return back == v;
 }
 
+/* fixed_temp asymmetry (iQOO15): store() takes 0.1C units but show()
+ * reports whole 1C, so a correct write reads back as v/10; accept both. */
+static int wr_verified_fixed(long v)
+{
+    long back;
+    wr(FIXED_NODE, v);
+    back = rd(FIXED_NODE, -10000);
+    if (back != v && back * 10 != v) {
+        wr(FIXED_NODE, v);
+        back = rd(FIXED_NODE, -10000);
+    }
+    return back == v || back * 10 == v;
+}
+
 static long clamp_temp(long v)
 {
     if (v < TEMP_MIN)
@@ -218,6 +239,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     int mode = MODE_BOTH;
     long fixed_scale = 1;
     int clamp_logged = 0;
+    int floor_skip_logged = 0;
     int verify_warned = 0;
 
     if (argc > 1) {
@@ -287,26 +309,42 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             long fake = raw < FAKE_MIN ? FAKE_MIN : raw;
             fake = clamp_temp(fake);
 
-            if (fake != raw && !clamp_logged) {
-                clamp_logged = 1;
-                log_msg(fake == TEMP_MAX
-                        ? "tpoff: clamped to 55.0C ceiling\n"
-                        : "tpoff: clamped to 27.0C floor\n");
-            }
-            if (!faking) {
-                faking = 1;
-                verify_warned = 0;
-                log_msg("tpoff: charging, faking\n");
-            }
-            if (!wr_verified(BOARD_NODE, fake) && !verify_warned) {
-                verify_warned = 1;
-                log_msg("tpoff: board write verify failed\n");
-            }
-            if (mode == MODE_BOTH) {
-                long fixed = (fake + fixed_scale / 2) / fixed_scale;
-                if (!wr_verified(FIXED_NODE, fixed) && !verify_warned) {
+            if (fake >= base) {
+                /* 30.0C floor sits at/above the real temperature: applying
+                 * it would only fake upward and cost charging current. */
+                if (faking) {
+                    faking = 0;
+                    restore(mode);
+                    floor_skip_logged = 0;
+                    log_msg("tpoff: floor at/above real temp, restored\n");
+                }
+                if (!floor_skip_logged) {
+                    floor_skip_logged = 1;
+                    log_msg("tpoff: offset below 30.0C floor, not faking\n");
+                }
+            } else {
+                if (fake != raw && !clamp_logged) {
+                    clamp_logged = 1;
+                    log_msg(fake == TEMP_MAX
+                            ? "tpoff: clamped to 55.0C ceiling\n"
+                            : "tpoff: clamped to 30.0C floor\n");
+                }
+                if (!faking) {
+                    faking = 1;
+                    floor_skip_logged = 0;
+                    verify_warned = 0;
+                    log_msg("tpoff: charging, faking\n");
+                }
+                if (!wr_verified(BOARD_NODE, fake) && !verify_warned) {
                     verify_warned = 1;
-                    log_msg("tpoff: fixed_temp write verify failed\n");
+                    log_msg("tpoff: board write verify failed\n");
+                }
+                if (mode == MODE_BOTH) {
+                    long fixed = (fake + fixed_scale / 2) / fixed_scale;
+                    if (!wr_verified_fixed(fixed) && !verify_warned) {
+                        verify_warned = 1;
+                        log_msg("tpoff: fixed_temp write verify failed\n");
+                    }
                 }
             }
         } else if (faking) {
