@@ -29,11 +29,12 @@ typedef unsigned long u64;
 
 #define BASE_MA    15600
 #define RELEASE_MA 0
-#define MIN_MA      3000
-#define TEMP_L1      431
-#define TEMP_L2      440
-#define TEMP_L3      450
-#define TEMP_EXIT    421
+#define TEMP_FLOOR_MA 2000  /* temp ratchet floor; hold, never release while hot */
+#define TEMP_L1      425
+#define TEMP_L2      435
+#define TEMP_L3      445
+#define TEMP_L4      450
+#define TEMP_EXIT    420
 /* While htccc_enable reads 0 (someone else disabled the OEM 45C wall),
  * all temperature thresholds shift up by this much (0.1C units, = 3.0C).
  * fccc only reads that node, it never writes it. */
@@ -311,40 +312,58 @@ static int charging(void)
     return -1;
 }
 
-/* Fixed point reproduces the two separately truncated stages of the reference. */
-static long scaled(long current, int ticks, int percent)
-{
-    long factor = 1000000000000L;
-    while (ticks-- > 0) factor = factor * percent / 100;
-    return current * factor / 1000000000000L;
-}
-
-/* Cooling-trend exemption: inside the first band [L1, L2) a sample lower
- * than the previous one means the temperature is already recovering, so the
- * reduction is skipped entirely -- the curve would otherwise keep pushing
- * the current down after the heat source is gone (overshoot). Above L2 the
- * curve always applies. L1/L2/L3/EXIT = TEMP_* + shift; shift is
- * TEMP_SHIFT_HTCCC_OFF while htccc_enable reads 0, else 0. */
+/* Temperature envelope as a ratchet anchored to the peak charge current
+ * demonstrated this session (same anchor idea as the voltage ratchet below):
+ *
+ *   temp >= L4   snapped straight to the TEMP_FLOOR_MA floor -- through the
+ *                wall a slow per-poll walk-down cannot be trusted to hold
+ *                the temperature, so the limit drops decisively instead
+ *   [L3, L4)     x0.98 per poll, unconditional
+ *   [L2, L3)     x0.98 per poll only while the temperature is still rising;
+ *                held while it cools, so 0.1C sensor noise can no longer
+ *                pump the limit up and down across the band edge
+ *   (L1, L2)     +1% per poll back toward the anchor -- a slow probe that
+ *                cannot re-spike the temperature
+ *   temp <= L1   released, with lexit re-entry hysteresis
+ *
+ * Every adjustment is a small fraction of the cap itself, unlike the old
+ * fixed curve whose per-0.1C steps turned threshold quantization into
+ * amp-sized bang-bang. L1/L2/L3/L4/EXIT = TEMP_* + shift; shift is
+ * TEMP_SHIFT_HTCCC_OFF while htccc_enable reads 0, else 0. *cap carries the
+ * ratchet state across polls; the caller resets it together with the other
+ * envelope state when the charger detaches. */
 static long current_for_temp(long temp, long prev_temp, long shift,
-                             int *limited)
+                             long peak_ma, long *cap, int *limited)
 {
-    long current = BASE_MA, ct;
     long l1 = TEMP_L1 + shift, l2 = TEMP_L2 + shift;
-    long l3 = TEMP_L3 + shift, lexit = TEMP_EXIT + shift;
+    long l3 = TEMP_L3 + shift, l4 = TEMP_L4 + shift;
+    long lexit = TEMP_EXIT + shift;
+    long anchor = peak_ma >= IBAT_MIN_MA ? peak_ma : BASE_MA;
+    if (anchor > 15000) anchor = 15000;
     if (temp <= l1 && (!*limited || temp <= lexit)) {
         *limited = 0;
-        return current;
+        *cap = anchor;
+        return BASE_MA;
     }
-    if (temp < l2 && prev_temp >= 0 && temp < prev_temp) {
-        *limited = 0;
-        return current;
+    if (!*limited) {
+        /* Fresh entry: start from the demonstrated capability and let the
+         * ratchet walk down only as the temperature demands it. */
+        *cap = anchor;
     }
     *limited = 1;
-    if (current > 15000) current = 15000;
-    ct = temp > l3 ? l3 : temp;
-    current = scaled(current, ct > l1 ? (int)(ct - l1) : 0, 94);
-    if (ct > l2) current = scaled(current, (int)(ct - l2), 89);
-    return current < MIN_MA ? 0 : current;
+    if (temp >= l4) {
+        *cap = TEMP_FLOOR_MA;
+    } else if (temp >= l3) {
+        *cap = *cap * 98 / 100;
+    } else if (temp >= l2) {
+        if (prev_temp < 0 || temp >= prev_temp)
+            *cap = *cap * 98 / 100;
+    } else {
+        *cap += *cap / 100;
+        if (*cap > anchor) *cap = anchor;
+    }
+    if (*cap < TEMP_FLOOR_MA) *cap = TEMP_FLOOR_MA;
+    return *cap;
 }
 
 /* Ratchet anchored to the peak observed charge current: on entry the cap is
@@ -445,6 +464,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     long dither = 0;
     long lock_fd;
     long volt_cap = BASE_MA;
+    long temp_cap = BASE_MA;
     long ibat_peak = 0;
     long prev_voltage = -1;
     long prev_temp = -1;
@@ -517,6 +537,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             temp_limited = 0;
             volt_limited = 0;
             volt_cap = BASE_MA;
+            temp_cap = BASE_MA;
             ibat_peak = 0;
             prev_voltage = -1;
             prev_temp = -1;
@@ -613,7 +634,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 /* Normalize the adapter's 85C ceiling onto the battery-temp
                  * axis (same scale the TEMP_L* thresholds live on), then let
                  * the hottest of the two sources drive the envelope:
-                 * adapter 80C with L3+shift=480 reads as 80/85*480 ~= 451,
+                 * adapter 80C with L3+shift=475 reads as 80/85*475 ~= 447,
                  * i.e. just under the L3 wall. raw 0 (not reported yet)
                  * scales to 0 and never limits. */
                 adpt = raw;
@@ -621,7 +642,8 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 if (raw > temp) temp = raw;
             }
         }
-        temp_ma = current_for_temp(temp, prev_temp, temp_shift, &temp_limited);
+        temp_ma = current_for_temp(temp, prev_temp, temp_shift, ibat_peak,
+                                   &temp_cap, &temp_limited);
         prev_temp = temp;
         volt_cap = cap_for_voltage(voltage, prev_voltage, ibat_peak, volt_cap,
                                    &volt_limited);
