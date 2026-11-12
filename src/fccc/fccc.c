@@ -35,6 +35,12 @@ typedef unsigned long u64;
 #define TEMP_L3      445
 #define TEMP_L4      450
 #define TEMP_EXIT    420
+/* Slope-gated ratchet tuning: the trend is the temperature change over a
+ * whole window of polls (0.1C units) -- long enough to average out sensor
+ * quantization, short enough to lead the thermal peak. */
+#define TEMP_SLOPE_WIN   15
+#define TEMP_SLOPE_DB     1   /* |slope| below this is noise: hold */
+#define TEMP_SLOPE_CLAMP 30   /* bound one-poll steps (adapter reports) */
 /* While htccc_enable reads 0 (someone else disabled the OEM 45C wall),
  * all temperature thresholds shift up by this much (0.1C units, = 3.0C).
  * fccc only reads that node, it never writes it. */
@@ -312,34 +318,58 @@ static int charging(void)
     return -1;
 }
 
-/* Temperature envelope as a ratchet anchored to the peak charge current
- * demonstrated this session (same anchor idea as the voltage ratchet below):
+/* Temperature envelope: a slope-gated ratchet anchored to the peak charge
+ * current demonstrated this session (same anchor idea as the voltage
+ * ratchet below).
  *
- *   temp >= L4   snapped straight to the TEMP_FLOOR_MA floor -- through the
- *                wall a slow per-poll walk-down cannot be trusted to hold
- *                the temperature, so the limit drops decisively instead
- *   [L3, L4)     x0.98 per poll, unconditional
- *   [L2, L3)     x0.98 per poll only while the temperature is still rising;
- *                held while it cools, so 0.1C sensor noise can no longer
- *                pump the limit up and down across the band edge
- *   (L1, L2)     +1% per poll back toward the anchor -- a slow probe that
- *                cannot re-spike the temperature
+ * The pack is a lagged plant: a current change shows up in the battery
+ * temperature minutes later. Per-poll "warmer / cooler" feedback therefore
+ * always overshoots -- it keeps cutting through the whole thermal rise (by
+ * the temperature peaks the limit sits far below the balance current) and
+ * recovers into the next overheating. The fix is to steer by the trend over
+ * a whole window instead of the sign of the last sample: the slope returns
+ * to zero BEFORE the temperature peak, so cutting stops near the peak
+ * instead of after it. The window also averages out the 0.1C sensor
+ * quantization that a 1-poll difference cannot tell from a real trend.
+ *
+ *   slope = temp - temp TEMP_SLOPE_WIN polls ago   (0.1C per window)
+ *
+ *   temp >= L4   snapped straight to TEMP_FLOOR_MA -- the decisive wall
+ *   [L3, L4)     slope > 0: cut at double gain (no patience near the wall),
+ *                slope <= 0: hold -- never recover this close to L4
+ *   [L2, L3)     slope > db: cut; otherwise hold -- no recovery above L2
+ *   (L1, L2)     slope > db: cut proportional to the slope (min 0.5%/poll);
+ *                slope < -db: recover 0.5%/poll toward the anchor;
+ *                deadband: hold
  *   temp <= L1   released, with lexit re-entry hysteresis
  *
- * Every adjustment is a small fraction of the cap itself, unlike the old
- * fixed curve whose per-0.1C steps turned threshold quantization into
- * amp-sized bang-bang. L1/L2/L3/L4/EXIT = TEMP_* + shift; shift is
- * TEMP_SHIFT_HTCCC_OFF while htccc_enable reads 0, else 0. *cap carries the
- * ratchet state across polls; the caller resets it together with the other
- * envelope state when the charger detaches. */
+ * Cut magnitude is proportional to the warming rate and stops when the rise
+ * does, and recovery only runs while genuinely cooling, so a thermal event
+ * costs one bounded excursion instead of a sustained over/undershoot cycle.
+ * L1/L2/L3/L4/EXIT = TEMP_* + shift; shift is TEMP_SHIFT_HTCCC_OFF while
+ * htccc_enable reads 0, else 0. *cap carries the ratchet state across polls;
+ * the caller resets it together with the other envelope state when the
+ * charger detaches (prev_temp < 0 also clears the slope window). */
 static long current_for_temp(long temp, long prev_temp, long shift,
                              long peak_ma, long *cap, int *limited)
 {
+    static long hist[TEMP_SLOPE_WIN];
+    static int hidx, hfill;
     long l1 = TEMP_L1 + shift, l2 = TEMP_L2 + shift;
     long l3 = TEMP_L3 + shift, l4 = TEMP_L4 + shift;
     long lexit = TEMP_EXIT + shift;
     long anchor = peak_ma >= IBAT_MIN_MA ? peak_ma : BASE_MA;
+    long slope, cut;
+    int near;
     if (anchor > 15000) anchor = 15000;
+    /* Slope window; prev_temp < 0 marks a fresh session. */
+    if (prev_temp < 0) { hidx = 0; hfill = 0; }
+    hist[hidx] = temp;
+    hidx = (hidx + 1) % TEMP_SLOPE_WIN;
+    if (hfill < TEMP_SLOPE_WIN) hfill++;
+    slope = hfill > 1 ? temp - (hfill >= TEMP_SLOPE_WIN ? hist[hidx] : hist[0]) : 0;
+    if (slope > TEMP_SLOPE_CLAMP) slope = TEMP_SLOPE_CLAMP;
+    if (slope < -TEMP_SLOPE_CLAMP) slope = -TEMP_SLOPE_CLAMP;
     if (temp <= l1 && (!*limited || temp <= lexit)) {
         *limited = 0;
         *cap = anchor;
@@ -353,14 +383,20 @@ static long current_for_temp(long temp, long prev_temp, long shift,
     *limited = 1;
     if (temp >= l4) {
         *cap = TEMP_FLOOR_MA;
-    } else if (temp >= l3) {
-        *cap = *cap * 98 / 100;
-    } else if (temp >= l2) {
-        if (prev_temp < 0 || temp >= prev_temp)
-            *cap = *cap * 98 / 100;
     } else {
-        *cap += *cap / 100;
-        if (*cap > anchor) *cap = anchor;
+        near = temp >= l3;
+        if (slope > (near ? 0 : TEMP_SLOPE_DB)) {
+            /* Cutting: proportional to the warming rate, bounded. */
+            cut = *cap * slope * (near ? 4 : 2) / 1000;
+            if (cut < *cap / (near ? 100 : 200)) cut = *cap / (near ? 100 : 200);
+            if (cut > *cap * 5 / 100) cut = *cap * 5 / 100;
+            *cap -= cut;
+        } else if (!near && temp < l2 && slope < -TEMP_SLOPE_DB) {
+            /* Recovering: only below L2, only while clearly cooling. */
+            *cap += *cap / 200;
+            if (*cap > anchor) *cap = anchor;
+        }
+        /* Everything else (deadband, cooling near the wall) holds the cap. */
     }
     if (*cap < TEMP_FLOOR_MA) *cap = TEMP_FLOOR_MA;
     return *cap;
@@ -651,14 +687,16 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         prev_voltage = voltage;
         target = temp_ma < volt_ma ? temp_ma : volt_ma;
         /* Above the capacity threshold the forced current is disabled, but
-         * only once the (envelope-driving) temperature has cooled to L3:
-         * handing back while hot would let the OEM thermal stack clamp far
-         * harder than fccc ever does. If fccc is limiting too hard the
-         * temperature recovers and the release follows; if it stays hot,
-         * fccc was not over-limiting and keeps control. CAP_FORCE_EXIT is
-         * the escape hatch either way. */
+         * only once the (envelope-driving) temperature has cooled to the
+         * RAW TEMP_L2 -- no htccc shift: the shifted envelope is fccc's own
+         * privilege for pushing power, while handing back to the OEM stack
+         * at a floated-up temperature would mean releasing into weakened
+         * OEM protections. If fccc is limiting too hard the temperature
+         * recovers and the release follows; if it stays hot, fccc was not
+         * over-limiting and keeps control. CAP_FORCE_EXIT is the escape
+         * hatch either way. */
         if (capacity > cap_release &&
-            (capacity >= CAP_FORCE_EXIT || temp <= TEMP_L3 + temp_shift))
+            (capacity >= CAP_FORCE_EXIT || temp <= TEMP_L2))
             target = RELEASE_MA;
         /* A write issued before fast charging activates may not take effect,
          * so rewrite the target every 5 seconds even when it is unchanged. */
