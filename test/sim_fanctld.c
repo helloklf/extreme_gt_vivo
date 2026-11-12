@@ -12,7 +12,8 @@
  *   /data/local/tmp/fanctld.log          日志
  *
  * 验证:启动归零、起转脉冲、故障重试、曲线插值(status)、双路取最大、
- *       最小占空比、死区、降速限幅、缺 zone 退化、SIGTERM 归零和坏配置。
+ *       最小占空比、死区、降速限幅、延迟启动(连续 5 秒)、70C 立即启动、
+ *       需求计数复位、缺 zone 退化、SIGTERM 归零和坏配置。
  */
 #define _GNU_SOURCE
 #include <stdio.h>
@@ -313,7 +314,7 @@ static void tick_ramp_down(int n)
 
 static void tick_ramp_stop(int n)
 {
-    tick_after(n, 1, 50000);      /* 60C -> 50C */
+    tick_after(n, 5, 50000);      /* 先满足 5 秒延迟启动,再 60C -> 50C */
 }
 
 static void tick_deadband(int n)
@@ -322,6 +323,20 @@ static void tick_deadband(int n)
         set_zone("ddr\n", 94900);   /* 94.9C -> 99%,与 100% 差 1 < 死区 5 */
     if (n == 2)
         set_zone("ddr\n", 94800);   /* 94.8C -> 99% */
+}
+
+static void tick_force_start(int n)
+{
+    if (n == 3)
+        set_zone("ddr\n", 75000);   /* 累计中的需求遇到 pop>=70C,立即起转 */
+}
+
+static void tick_counter_reset(int n)
+{
+    if (n == 2)
+        set_zone("ddr\n", 45000);   /* 需求中断,累计清零 */
+    if (n == 4)
+        set_zone("ddr\n", 65000);   /* 重新累计,8 轮内不满 5 秒 */
 }
 
 static void tick_sigterm(int n)
@@ -433,12 +448,12 @@ int main(void)
         fail += expect("max(pop,batt)", exp, 3, rc, 1000);
     }
 
-    /* 4) 最小占空比:55C -> 15% -> 抬到 22% */
+    /* 4) 最小占空比:55C -> 15% -> 抬到 22%;pop<70C,需求满 5 秒才起转 */
     set_zone("ddr\n", 55000);
     set_batt(200);
     {
         const char *exp[] = { "0", "45", "22" };
-        int rc = run_case("pop=60:30 50:0\nbatt=45:0\n", 2, NULL);
+        int rc = run_case("pop=60:30 50:0\nbatt=45:0\n", 6, NULL);
         fail += expect("min_duty", exp, 3, rc, 1000);
     }
 
@@ -461,22 +476,49 @@ int main(void)
         fail += expect("ramp-down 5%/step", exp, 7, rc, 1000);
     }
 
-    /* 7) 降速到停:60C(30%) -> 50C(0%),逐级降到 0 */
+    /* 7) 降速到停:60C(30%) 满 5 秒起转,第 6 轮掉到 50C(0%),逐级降到 0 */
     set_zone("ddr\n", 60000);
     set_batt(200);
     {
         const char *exp[] = { "0", "45", "30", "25", "20", "15", "10",
                               "5", "0" };
-        int rc = run_case("pop=60:30 50:0\nbatt=45:0\n", 7, tick_ramp_stop);
+        int rc = run_case("pop=60:30 50:0\nbatt=45:0\n", 11, tick_ramp_stop);
         fail += expect("ramp-down to stop", exp, 9, rc, 1000);
     }
 
-    /* 8) 没有 ddr zone:退化为只用电池曲线 */
+    /* 7a) 延迟启动:65C(40%) 连续 5 秒才起转,前 4 轮保持停转 */
+    set_zone("ddr\n", 65000);
+    set_batt(200);
+    {
+        const char *exp[] = { "0", "45", "40" };
+        int rc = run_case(conf_pop, 6, NULL);
+        fail += expect("delayed start", exp, 3, rc, 1000);
+    }
+
+    /* 7b) 立即启动:65C 需求累计中,第 3 轮后 pop 冲到 75C(>=70C) 不等 5 秒 */
+    set_zone("ddr\n", 65000);
+    set_batt(200);
+    {
+        const char *exp[] = { "0", "45", "60" };
+        int rc = run_case(conf_pop, 5, tick_force_start);
+        fail += expect("force start >=70C", exp, 3, rc, 1000);
+    }
+
+    /* 7c) 需求计数复位:65C 累计 2 轮后掉到 45C(无需求),重新累计,8 轮内不起转 */
+    set_zone("ddr\n", 65000);
+    set_batt(200);
+    {
+        const char *exp[] = { "0" };
+        int rc = run_case(conf_pop, 8, tick_counter_reset);
+        fail += expect("demand counter reset", exp, 1, rc, 1000);
+    }
+
+    /* 8) 没有 ddr zone:退化为只用电池曲线;需求同样满 5 秒才起转 */
     set_zone("notddr\n", 95000);
     set_batt(430);
     {
         const char *exp[] = { "0", "45", "80" };
-        int rc = run_case("pop=95:100\nbatt=45:100 40:50\n", 2, NULL);
+        int rc = run_case("pop=95:100\nbatt=45:100 40:50\n", 6, NULL);
         fail += expect("no-zone fallback", exp, 3, rc, 1000);
     }
 

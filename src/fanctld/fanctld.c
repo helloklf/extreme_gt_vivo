@@ -8,11 +8,10 @@
  *
  * 输出 /dev/fanpwm:0-100 占空比。驱动 open() 上电、release() 断电,
  * 所以句柄全程保持打开;从停转起步时先给一个 45% 的起转脉冲越过静摩擦。
+ * 启动有延迟防抖:转速需求连续 5 秒才允许起转(防瞬时尖峰频繁启停),
+ * 但 pop(ddr)温度 >= 70C 时立即起转,不做等待。
  *
  * 配置文件默认取可执行文件同目录下的 fan.conf:
- *   pop=95:100 90:80 80:70 70:50 60:0
- *   batt=45:100 43:80 41:60 39:40 37:0
- *   batt_src=/sys/class/cms_class/main_batt_temp
  * 温度单位 ℃,转速 0-100%,按温度从高到低写,两点之间线性插值,
  * 高于第一点取第一点,低于最后一点取最后一点(最后一点给 0 即自动停转)。
  *
@@ -42,6 +41,8 @@ typedef unsigned long u64;
 #define DUTY_HYST 5    /* 占空比死区:变化小于该值不重写,避免曲线边界处每秒抖动 */
 #define MIN_DUTY 22    /* 运行中的最小占空比:实测 20% 才起转,留 2% 余量 */
 #define DOWN_STEP 5    /* 降速限幅:每轮最多降 5%,避免骤停 */
+#define START_DELAY 5      /* 延迟启动:转速需求连续 5 秒才允许起转,防瞬时尖峰启停 */
+#define START_FORCE_POP 700  /* pop >= 70.0C(0.1C 单位)立即起转,不等 5 秒 */
 #define INTERVAL_MS 1000   /* 轮询间隔 */
 #define RETRY_INTERVAL_MS 5000
 
@@ -457,6 +458,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     int status_only = 0;
     int have_conf = 0;
     int last = -1;
+    int demand_s = 0;
     int config_error_logged = 0;
     int device_error_logged = 0;
     int i;
@@ -580,6 +582,23 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             d = MIN_DUTY;
         if (d > 100)
             d = 100;
+
+        /* 延迟启动:只有转速需求(d>0)连续 START_DELAY 秒才允许起转,
+         * 防止瞬时温度尖峰导致频繁启停;pop >= 70C 立即起转。
+         * 已在运转(last>0)时不参与,停止后重新累计。 */
+        if (last <= 0) {
+            if (d > 0) {
+                if (pop >= START_FORCE_POP)
+                    demand_s = START_DELAY;
+                else if (demand_s < START_DELAY)
+                    demand_s++;
+                if (demand_s < START_DELAY)
+                    d = 0;   /* 需求未满 5 秒,本轮继续停转 */
+            } else {
+                demand_s = 0;
+            }
+        }
+
         if (last > 0 && d < last && last - d > DOWN_STEP)
             d = last - DOWN_STEP;   /* 降速限幅,避免一帧掉太多 */
         if (last > 0 && d > 0) {
