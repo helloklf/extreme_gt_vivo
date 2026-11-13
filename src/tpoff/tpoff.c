@@ -15,7 +15,7 @@
  *
  * Active only while battery status is "Charging" and while
  * game_bypass_charge_flag < 1.  On unplug / read failure the override is
- * removed.  Below 30% capacity, an additional 5.0C offset is applied.
+ * removed.
  *
  * Low-temperature guard: below 25.0C battery temperature no offset is
  * applied at all (the system's own low-temp protection would otherwise
@@ -50,7 +50,6 @@ typedef unsigned long u64;
 #define BTB_NODE   "/sys/class/cms_class/bat_btb_temp"
 #define GAME_BYPASS_FLAG "/sys/class/cms_class/game_bypass_charge_flag"
 #define BATT_STATUS "/sys/class/power_supply/battery/status"
-#define BATT_CAPACITY "/sys/class/power_supply/battery/capacity"
 #define LOG_PATH   "/data/local/tmp/tpoff.log"
 
 #define SA_RESTORER 0x04000000
@@ -66,8 +65,6 @@ typedef unsigned long u64;
 #define BASE_MIN    (-400)   /* -40.0C, treat anything lower as a read error */
 #define BASE_MAX    1250     /* 125.0C */
 #define BTB_ADJUST   60       /* bat_btb_temp is about 6.0C above main */
-#define LOW_SOC_OFFSET (-50)  /* additional -5.0C below 30% */
-#define LOW_SOC_MIN_OFFSET (-150) /* -15.0C minimum when offset is above it */
 
 #define MODE_BOARD  1   /* board-only (X300) */
 #define MODE_BOTH   2   /* fixed_temp + board (iQOO15) */
@@ -148,14 +145,6 @@ static void log_msg(const char *m)
         sc(SYS_write, fd, (s64)m, n, 0);
         sc(SYS_close, fd, 0, 0, 0);
     }
-}
-
-static void out_msg(const char *m)
-{
-    unsigned n = 0;
-    while (m[n])
-        n++;
-    sc(SYS_write, 1, (s64)m, n, 0);
 }
 
 /* write then read back; one retry, returns 1 only if the node reports it */
@@ -280,7 +269,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
 
     for (;;) {
         int plugged = charging();
-        long base, gb, capacity;
+        long base, gb;
 
         gb = rd(GAME_BYPASS_FLAG, 0);
 
@@ -295,17 +284,8 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             exit_restore(0);
         }
 
-        capacity = rd(BATT_CAPACITY, -1);
-
         if (plugged && base_ok(base) && base >= COLD_OFF && gb < 1) {
-            long effective_off = off;
-            if (capacity >= 0 && capacity < 30) {
-                effective_off += LOW_SOC_OFFSET;
-                if (off > LOW_SOC_MIN_OFFSET &&
-                    effective_off < LOW_SOC_MIN_OFFSET)
-                    effective_off = LOW_SOC_MIN_OFFSET;
-            }
-            long raw = base + effective_off;
+            long raw = base + off;
             long fake = raw < FAKE_MIN ? FAKE_MIN : raw;
             fake = clamp_temp(fake);
 

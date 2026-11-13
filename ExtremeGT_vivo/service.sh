@@ -63,8 +63,8 @@ done
 uepp_disable_job_restrict
 
 # 充电加速
-echo 530 > /sys/class/cms_class/battery_heating_tboard_thermal_limit
-echo 480 > /sys/class/cms_class/battery_heating_tz_shell_thermal_limit
+# echo 530 > /sys/class/cms_class/battery_heating_tboard_thermal_limit # 这俩Limit似乎有点多管闲事，注释掉
+# echo 480 > /sys/class/cms_class/battery_heating_tz_shell_thermal_limit
 # echo 0 > /sys/class/cms_class/cms_enable # 可能导致过热并损坏设备，不动这个
 killall tpoff 2>/dev/null
 killall fccc 2>/dev/null
