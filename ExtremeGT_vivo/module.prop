@@ -1,6 +1,6 @@
 id=extreme_gt_vivo
 name=Extreme GT (vivo)
-version=2.10.0
-versionCode=2100
+version=2.11.0
+versionCode=2110
 author=嘟嘟ski
 description=适用于vivo/iQOO机型，去除一些温度限制，提高性能释放和充电速度。

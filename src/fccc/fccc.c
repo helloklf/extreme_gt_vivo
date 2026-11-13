@@ -27,8 +27,15 @@ typedef unsigned long u64;
 #define HTCCC_NODE  "/sys/class/cms_class/htccc_enable"
 #define LOCK_PATH   "/data/local/tmp/fccc.lock"
 
-#define BASE_MA    15600
+#define PEAK_MA    15600
 #define RELEASE_MA 0
+/* One-shot turbo guard: "turbo" is the full PEAK ceiling, matching the OEM
+ * turbo window. While the quiet-bot-right-ntc zone (the X300 board NTC)
+ * stays below QUIET_TURBO_OFF, turbo_cap == PEAK_MA (turbo in effect); the
+ * first time the zone reaches the cutoff, turbo_cap snaps to NORMAL_MA
+ * (the 75% non-turbo ceiling) and stays there until the charger detaches. */
+#define NORMAL_MA     11700
+#define QUIET_TURBO_OFF 700   /* 70.0C, 0.1C units */
 #define TEMP_FLOOR_MA 2000  /* temp ratchet floor; hold, never release while hot */
 #define TEMP_L1      425
 #define TEMP_L2      435
@@ -240,6 +247,10 @@ static int fixed_independent;
  * temperature envelope (normalized onto the battery-temp scale). */
 static int adapter_tracking;
 
+/* Index of the quiet-bot-right-ntc thermal zone under /sys/class/thermal,
+ * -1 when no zone carries that type. Feeds the one-shot turbo guard. */
+static int quiet_zone = -1;
+
 static int fixed_overridden(long *fixed)
 {
     if (fixed_independent) return 0;
@@ -318,6 +329,27 @@ static int charging(void)
     return -1;
 }
 
+/* Scan /sys/class/thermal for the zone whose type is quiet-bot-right-ntc
+ * and return its index, -1 when absent. Probed once at startup; zone
+ * numbering is stable across a boot. */
+static int find_quiet_zone(void)
+{
+    char path[48], buf[32];
+    int i;
+    for (i = 0; i < 64; i++) {
+        char *p = path;
+        const char *s = "/sys/class/thermal/thermal_zone";
+        while (*s) *p++ = *s++;
+        p = put_number(p, i);
+        s = "/type";
+        while (*s) *p++ = *s++;
+        *p = 0;
+        if (!read_text(path, buf, sizeof buf) && same_status(buf, "quiet-bot-right-ntc"))
+            return i;
+    }
+    return -1;
+}
+
 /* Temperature envelope: a slope-gated ratchet anchored to the peak charge
  * current demonstrated this session (same anchor idea as the voltage
  * ratchet below).
@@ -358,7 +390,7 @@ static long current_for_temp(long temp, long prev_temp, long shift,
     long l1 = TEMP_L1 + shift, l2 = TEMP_L2 + shift;
     long l3 = TEMP_L3 + shift, l4 = TEMP_L4 + shift;
     long lexit = TEMP_EXIT + shift;
-    long anchor = peak_ma >= IBAT_MIN_MA ? peak_ma : BASE_MA;
+    long anchor = peak_ma >= IBAT_MIN_MA ? peak_ma : PEAK_MA;
     long slope, cut;
     int near;
     if (anchor > 15000) anchor = 15000;
@@ -373,7 +405,7 @@ static long current_for_temp(long temp, long prev_temp, long shift,
     if (temp <= l1 && (!*limited || temp <= lexit)) {
         *limited = 0;
         *cap = anchor;
-        return BASE_MA;
+        return PEAK_MA;
     }
     if (!*limited) {
         /* Fresh entry: start from the demonstrated capability and let the
@@ -416,13 +448,13 @@ static long cap_for_voltage(long voltage, long prev_voltage, long peak_ma,
 {
     if (voltage < VOLT_LOW) {
         *limited = 0;
-        return BASE_MA;
+        return PEAK_MA;
     }
     if (voltage <= VOLT_HIGH) {
         cap += 10;
-        if (cap >= BASE_MA) {
+        if (cap >= PEAK_MA) {
             *limited = 0;
-            return BASE_MA;
+            return PEAK_MA;
         }
         return cap;
     }
@@ -499,8 +531,9 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     long last_target = -1;
     long dither = 0;
     long lock_fd;
-    long volt_cap = BASE_MA;
-    long temp_cap = BASE_MA;
+    long volt_cap = PEAK_MA;
+    long temp_cap = PEAK_MA;
+    long turbo_cap = PEAK_MA;   /* one-shot guard: NORMAL_MA once the zone hits 70C */
     long ibat_peak = 0;
     long prev_voltage = -1;
     long prev_temp = -1;
@@ -546,6 +579,24 @@ void __attribute__((noreturn)) run(long argc, char **argv)
     adapter_tracking = node_readable(ADPT_TEMP_NODE);
     log_msg(adapter_tracking ? "fccc: adapter temp tracking on (85.0C ceiling)\n"
                              : "fccc: adapter temp node missing; battery temp only\n");
+    quiet_zone = find_quiet_zone();
+    if (quiet_zone >= 0) {
+        /* The zone may be spoofed via emul_temp by other modules; clear it
+         * once so the 70C cutoff judges the real NTC. */
+        char path[48];
+        char *p = path;
+        const char *s = "/sys/class/thermal/thermal_zone";
+        while (*s) *p++ = *s++;
+        p = put_number(p, quiet_zone);
+        s = "/emul_temp";
+        while (*s) *p++ = *s++;
+        *p = 0;
+        if (write_number(path, 0))
+            log_msg("fccc: cannot clear quiet zone emul_temp; readings may be spoofed\n");
+        log_msg("fccc: turbo guard on (quiet-bot-right-ntc, 70.0C cutoff)\n");
+    } else {
+        log_msg("fccc: turbo guard off (quiet-bot-right-ntc zone not found)\n");
+    }
     /* Dual-cell (2S) devices report real per-cell voltages in mV via cms;
      * prefer them over battery/voltage_now, which reads the whole pack
      * there. cell2_voltage must hold a positive value -- the node exists
@@ -572,8 +623,9 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             if (release_limit(&last)) { error = 1; break; }
             temp_limited = 0;
             volt_limited = 0;
-            volt_cap = BASE_MA;
-            temp_cap = BASE_MA;
+            volt_cap = PEAK_MA;
+            temp_cap = PEAK_MA;
+            turbo_cap = PEAK_MA;
             ibat_peak = 0;
             prev_voltage = -1;
             prev_temp = -1;
@@ -678,6 +730,25 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 if (raw > temp) temp = raw;
             }
         }
+        /* One-shot turbo guard: the first time the board NTC reaches 70C,
+         * snap the ceiling to NORMAL_MA for the rest of the charge session.
+         * Deliberately not normalized onto the battery axis -- this is a
+         * low-thermal-mass hotspot, only absolute thresholds make sense. */
+        if (quiet_zone >= 0 && turbo_cap > NORMAL_MA) {
+            char path[48];
+            char *p = path;
+            const char *s = "/sys/class/thermal/thermal_zone";
+            long raw;
+            while (*s) *p++ = *s++;
+            p = put_number(p, quiet_zone);
+            s = "/temp";
+            while (*s) *p++ = *s++;
+            *p = 0;
+            if (!read_number(path, &raw) && raw / 100 >= QUIET_TURBO_OFF) {
+                turbo_cap = NORMAL_MA;
+                log_msg("fccc: quiet zone 70.0C+; turbo off until unplug\n");
+            }
+        }
         temp_ma = current_for_temp(temp, prev_temp, temp_shift, ibat_peak,
                                    &temp_cap, &temp_limited);
         prev_temp = temp;
@@ -686,6 +757,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
         volt_ma = volt_cap;
         prev_voltage = voltage;
         target = temp_ma < volt_ma ? temp_ma : volt_ma;
+        if (target > turbo_cap) target = turbo_cap;
         /* Above the capacity threshold the forced current is disabled, but
          * only once the (envelope-driving) temperature has cooled to the
          * RAW TEMP_L2 -- no htccc shift: the shifted envelope is fccc's own
