@@ -38,18 +38,20 @@ Magisk/KernelSU 刷入 `ExtremeGT_vivo_<version>.zip`（构建见下文「构建
 fccc 接管限流，把模块目录 `tpoff.conf` 里的 `fccc=0` 改为 `1` 后重启（与 tpoff
 二选一，详见「fccc 动态限流」）。
 
-### 可选：fbpat 亮屏提速补丁
+### fbpat 亮屏提速补丁
 
-只有确认瓶颈是亮屏 A 表（用 `tools/chg-trace.sh` 抓掉档点定位）且补丁与当前固件
-严格匹配时才需要，重启即还原：
+模块自带与基线固件（vfcs-cms-core.ko @ 6.12.58-android16-6-gfd60568f1f3a-4k）
+匹配的 `fbpat_6.12.58_gfd60568f1f3a.ko`，开机检测到同版本固件时自动加载，无需手动
+操作。固件版本不同时想用这个补丁，先确认瓶颈是亮屏 A 表（用 `tools/chg-trace.sh`
+抓掉档点定位），再用 `src/fbpat/make-patch.py` 为当前固件重新生成（见「适配其它
+设备」），不要直接套用现成的 fbpat.ko。手动验证加载：
 
 ```bash
-adb push out/fbpat.ko /data/local/tmp/
+adb push fbpat.ko /data/local/tmp/
 adb shell su -c 'insmod /data/local/tmp/fbpat.ko'
 ```
 
-其它固件用 `src/fbpat/make-patch.py` 重新生成（见「适配其它设备」），不要直接套用
-现成的 fbpat.ko。
+重启即还原。
 
 ## 构建 Extreme GT 模块
 
@@ -75,7 +77,11 @@ bash build-all.sh
 窗口斜率先于温度峰值归零，配合电池热容的分钟级延迟不再产生过冲振荡；
 另有一刀切 turbo 保护：监控 quiet-bot-right-ntc 热区（X300 小板 NTC），超过
 70.0°C 即把上限一步砍到 11700mA（BASE 的 75%）且本次充电不再恢复，拔插重置
-（复刻 OEM turbo 窗口隐含的小板热预算）；电压接近满电时以本次充电的峰值电流
+（复刻 OEM turbo 窗口隐含的小板热预算）；适配器温度（`stm32_debug/adapter_temp`，
+仅快充协议握手期间有读数）按其自报的 85°C 上限归一化到电池温度轴，与电池温度取
+高者驱动温度包络，提前压流以避免适配器过热触发的功率闪崩（见
+[docs/iQOO15充电中后程功率闪崩分析.md](docs/iQOO15充电中后程功率闪崩分析.md)）；
+电压接近满电时以本次充电的峰值电流
 为锚点逐步下压，回落到安全区再缓慢恢复；两路上限取小，电量高于阈值后，
 待温度降到原始 L2（不受 htccc 位移影响）才释放交还系统——高温下直接退出只会让原厂温控压得更狠
 （两串电池组机型耐受更好，释放阈值从 70% 放宽到 82%；90% 无论如何都释放）。
@@ -155,10 +161,9 @@ py -3 src/fbpat/make-patch.py --from-dir <目录>
 |---|---|
 | `src/fbpat/` | 亮屏表补丁功能：`make-patch.py`（一键适配脚本：拉取→生成→加载→验证，从仓库根目录运行）、`gen_module.py`（以原厂 .ko 为模板生成可加载模块）、`fbpat.c`（亮屏表补丁）、`fbres.c`（还原模块，免重启恢复原厂表）、`modload.c`/`modload`（finit_module 加载器，排错用，直接报 errno） |
 | `src/tpoff/tpoff.c` | 统一版温度偏移守护程序：伪装模式（只写板温 X300 / 板温+电池温 iQOO15）与 `fixed_temp` 写入单位全部由安装期探测决定（`tpoff.conf` → `service.sh` 传参），运行时不探测；写入限幅 15–55°C 且回读校验 |
-| `src/fccc/fccc.c` | 按电池温度/电压/电量附加限流的守护程序，默认关闭 |
+| `src/fccc/fccc.c` | 按电池/适配器温度、电压、电量附加限流的守护程序，默认关闭 |
 | `src/fccc_turbo/fccc_turbo.c` | fccc 同包络算法的功率制变体：DCHG_FCC votable force 后端，启动时关 `htccc_enable` 解除 45°C 墙、温控包络上探 48°C，退出时恢复；独立测试工具，不进模块（原理见 `analysis/fchg-45c-cutoff.md`） |
 | `src/fanctld/` | 独立风扇控制器：`fanctld.c`（`pop`（ddr tsens，PoP 封装温度）+ 电池两路曲线取最大值，C 静态实现，含起转脉冲/最小占空比/死区）+ `fan.conf` |
-| `src/cmsboost/cmsboost.c` | **未验证**：FCC 投票强制 3.5A + 温度看门狗；只证明能改 CC 设定值，没有实测到提速，PPS/UFCS/原装头下不接管 |
 | `build.sh` / `build-all.sh` | aarch64 静态程序编译脚本 / Extreme GT 模块一键构建打包 |
 | `tools/watch-charge.py` | 充电状态只读采样 |
 | `tools/chg-trace.sh` | 设备端每秒采样 vbat/ibat/SOC/温度/投票，自动标出掉档点，用来定位 A 表哪一档在限流 |
@@ -178,4 +183,5 @@ py -3 src/fbpat/make-patch.py --from-dir <目录>
 | `docs/iQOO15充电芯片档案.md` | bq27426(电量计非电荷泵)参数辨析、iQOO 15 实际充电链路用料与 SC8550V 实测参数 |
 
 已删除的废弃路线：自制内核模块（`gen_module` 嫁接在本机加载即 panic）、
-`chgpat`/`chgtbl` 原型、以及一次性探测脚本。原因与已验证的表地址见文档 §7。
+`chgpat`/`chgtbl` 原型、`cmsboost`（FCC votable 强制，从未实测到提速，由 fccc 取代）、
+以及一次性探测脚本。原因与已验证的表地址见文档 §7。
