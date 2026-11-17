@@ -28,9 +28,15 @@
  * override is applied at all — a fake warmer than reality would only
  * cost charging current.
  *
- * Safety: every value written is clamped to [30.0C, 55.0C] and read back
- * (one retry) before it is trusted; a base value outside [-40C, 125C] is
- * treated as a read error and the override is dropped.
+ * Safety: every value written is clamped to [30.0C, 52.0C] and read back
+ * (one retry) before it is trusted; a base value below -40C is treated as
+ * a read error and the override is dropped.
+ *
+ * High-temperature guard: at/above 52.0C real battery temperature (the
+ * same TEMP_MAX that caps faked writes) the override is dropped entirely
+ * and the system thermal policy takes over; faking resumes only once the
+ * battery falls 2.0C below it (hysteresis avoids flapping on the 3s poll
+ * cycle).
  */
 typedef long s64;
 typedef unsigned long u64;
@@ -56,14 +62,15 @@ typedef unsigned long u64;
 
 /* hard bounds for any temperature we write: never below 30.0C (below that
  * the fake risks sitting inside the fast-charge admission low-temp window
- * and the battery-heating ladder, blocking fast charge), never above 55.0C
+ * and the battery-heating ladder, blocking fast charge), never above 52.0C
  * (0.1C units). */
 #define COLD_OFF    250      /* below 25.0C real battery temp: no offset */
 #define FAKE_MIN    300      /* never fake below 30.0C */
 #define TEMP_MIN    150
-#define TEMP_MAX    550
+#define TEMP_MAX    520      /* write ceiling AND real-temp cutoff: at/above
+                              * 52.0C real temp the override is dropped */
+#define HOT_RESUME  (TEMP_MAX - 20)  /* resume faking 2.0C below TEMP_MAX */
 #define BASE_MIN    (-400)   /* -40.0C, treat anything lower as a read error */
-#define BASE_MAX    1250     /* 125.0C */
 #define BTB_ADJUST   60       /* bat_btb_temp is about 6.0C above main */
 
 #define MODE_BOARD  1   /* board-only (X300) */
@@ -185,7 +192,7 @@ static long clamp_temp(long v)
 
 static int base_ok(long b)
 {
-    return b >= BASE_MIN && b <= BASE_MAX;
+    return b >= BASE_MIN;
 }
 
 static void restore(int mode)
@@ -225,6 +232,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
 {
     long off = -50;
     int faking = 0;
+    int hot = 0;
     int mode = MODE_BOTH;
     long fixed_scale = 1;
     int clamp_logged = 0;
@@ -284,7 +292,14 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             exit_restore(0);
         }
 
-        if (plugged && base_ok(base) && base >= COLD_OFF && gb < 1) {
+        /* high-temp guard with hysteresis: stop at TEMP_MAX (52.0C),
+         * resume only 2.0C below it */
+        if (base >= TEMP_MAX)
+            hot = 1;
+        else if (base <= HOT_RESUME)
+            hot = 0;
+
+        if (plugged && base_ok(base) && base >= COLD_OFF && !hot && gb < 1) {
             long raw = base + off;
             long fake = raw < FAKE_MIN ? FAKE_MIN : raw;
             fake = clamp_temp(fake);
@@ -306,7 +321,7 @@ void __attribute__((noreturn)) run(long argc, char **argv)
                 if (fake != raw && !clamp_logged) {
                     clamp_logged = 1;
                     log_msg(fake == TEMP_MAX
-                            ? "tpoff: clamped to 55.0C ceiling\n"
+                            ? "tpoff: clamped to 52.0C ceiling\n"
                             : "tpoff: clamped to 30.0C floor\n");
                 }
                 if (!faking) {
@@ -332,9 +347,10 @@ void __attribute__((noreturn)) run(long argc, char **argv)
             restore(mode);
             log_msg(gb >= 1 ? "tpoff: game bypass active, restored\n"
                   : (!plugged ? "tpoff: offline, restored\n"
+                  : (hot ? "tpoff: battery at/above 52.0C, restored\n"
                   : (base_ok(base) && base < COLD_OFF
                      ? "tpoff: battery below 25.0C, restored\n"
-                     : "tpoff: base temp out of range, restored\n")));
+                     : "tpoff: base temp out of range, restored\n"))));
         }
         {
             long ts[2] = { 3, 0 };
